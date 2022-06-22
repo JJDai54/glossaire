@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/**
+ * Glossaire module for xoops
+ *
+ * @copyright      2021 XOOPS Project (https://xoops.org)
+ * @license        GPL 2.0 or later
+ * @package        glossaire
+ * @since          1.0
+ * @min_xoops      2.5.10
+ * @author         XOOPS Development Team - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
+ */
+ul.menu {
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+ul.menu > li {
+    display: inline-block;
+}
+
+ul.menu > li + li:before {  
+    content: "|\a0";
+}
+
+.printOnly {
+    display: none;
+}
+
+img {
+    max-width: 300px;
+}
+
+.limagei {
+	/* list-style-image: url(../../images/faq.png); */
+	list-style-type: circle;
+	margin-left: 15px;
+    color:rgb(0,153,255);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.img_glossaire {
+ float: left;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 20px 20px 0px;
+}

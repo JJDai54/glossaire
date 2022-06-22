@@ -1,0 +1,328 @@
+[Config]
+Compilator.SaveAll=0
+Compilator.Capture=0
+Compilator.CompileOnBackground=0
+Compilator.ProgSaveAll=0
+Compilator.ProgRunSelection=0
+Compilator.LogType=0
+DefaultDir=J:\Xoops\modules-JJD\glossaire\projet\htdocs\modules\glossaire
+DefaultCP=0
+LogtoEnd=1
+DontOpen=0
+AbsolutePath=0
+FileFormat=0
+ProjectFilesOnly=0
+HTServer=localhost
+Extensions=*.*
+[Project tree]
+_glossaire
+	+_extra
+		..\..\..\..\..\quizmaker\projet\htdocs\modules\quizmaker\templates\admin\quizmaker_admin_import.tpl
+		..\..\..\..\..\quizmaker\projet\htdocs\modules\quizmaker\templates\admin\quizmaker_admin_export.tpl
+		..\..\..\..\..\quizmaker\projet\htdocs\modules\quizmaker\admin\import.php
+		..\..\..\..\..\quizmaker\projet\htdocs\modules\quizmaker\admin\export.php
+	+glossaire
+		+admin
+			admin\about.php
+			admin\categories.php
+			admin\clone.php
+			admin\entries.php
+			admin\entries-list.php
+			admin\export.php
+			admin\feedback.php
+			admin\footer.php
+			admin\header.php
+			admin\import.php
+			admin\index.php
+			admin\menu.php
+			admin\permissions.php
+			admin\entries-save.php
+		-assets
+			+css
+				-admin
+					assets\css\admin\index.php
+					assets\css\admin\style.css
+				assets\css\index.php
+				assets\css\style.css
+				assets\css\style-item-color.css
+				assets\css\style-item-design.css
+			-icons
+				-16
+					-arrows
+						-blue
+							assets\icons\16\arrows\blue\down-0.png
+							assets\icons\16\arrows\blue\down-1.png
+							assets\icons\16\arrows\blue\first-0.png
+							assets\icons\16\arrows\blue\first-1.png
+							assets\icons\16\arrows\blue\goto.png
+							assets\icons\16\arrows\blue\last-0.png
+							assets\icons\16\arrows\blue\last-1.png
+							assets\icons\16\arrows\blue\sommaire.png
+							assets\icons\16\arrows\blue\up-0.png
+							assets\icons\16\arrows\blue\up-1.png
+						-red
+							assets\icons\16\arrows\red\down-0.png
+							assets\icons\16\arrows\red\down-1.png
+							assets\icons\16\arrows\red\first-0.png
+							assets\icons\16\arrows\red\first-1.png
+							assets\icons\16\arrows\red\goto.png
+							assets\icons\16\arrows\red\last-0.png
+							assets\icons\16\arrows\red\last-1.png
+							assets\icons\16\arrows\red\sommaire.png
+							assets\icons\16\arrows\red\up-0.png
+							assets\icons\16\arrows\red\up-1.png
+					assets\icons\16\blank-08.png
+					assets\icons\16\blank-16.png
+					assets\icons\16\index.php
+					assets\icons\16\status0.png
+					assets\icons\16\status-0.png
+					assets\icons\16\status1.png
+					assets\icons\16\status-1.png
+					assets\icons\16\status2.png
+					assets\icons\16\status-2.png
+					assets\icons\16\status3.png
+				-32
+					assets\icons\32\broken.png
+					assets\icons\32\category.png
+					assets\icons\32\index.php
+					assets\icons\32\translations.png
+				assets\icons\delete.gif
+				assets\icons\edit.gif
+				assets\icons\index.html
+				assets\icons\index.php
+				assets\icons\off.gif
+				assets\icons\on.gif
+			-images
+				assets\images\blank.gif
+				assets\images\blank.png
+				assets\images\index.php
+				assets\images\logoModule.png
+			-js
+				assets\js\functions.js
+				assets\js\index.php
+			assets\index.php
+		+blocks
+			blocks\categories.php
+			blocks\entries.php
+			blocks\index.php
+		+class
+			-Common
+				class\Common\Breadcrumb.php
+				class\Common\Configurator.php
+				class\Common\DirectoryChecker.php
+				class\Common\FileChecker.php
+				class\Common\FilesManagement.php
+				class\Common\Migrate.php
+				class\Common\ModuleFeedback.php
+				class\Common\ModuleStats.php
+				class\Common\Resizer.php
+				class\Common\ServerStats.php
+				class\Common\SysUtility.php
+				class\Common\TableChecker.php
+				class\Common\VersionChecks.php
+				class\Common\XoopsConfirm.php
+			class\Categories.php
+			class\CategoriesHandler.php
+			class\Constants.php
+			class\Entries.php
+			class\EntriesHandler.php
+			class\Helper.php
+			class\index.php
+			class\Permissions.php
+			class\PermissionsHandler.php
+			class\Utility.php
+		-config
+			config\admin.yml
+			config\config.php
+			config\icons.php
+			config\index.php
+			config\paths.php
+		-docs
+			docs\changelog.txt
+			docs\credits.txt
+			docs\index.php
+			docs\install.txt
+			docs\lang.diff
+			docs\license.txt
+			docs\readme.txt
+		+include
+			include\common.php
+			include\functions.php
+			include\functions-colors-set.php
+			include\index.php
+			include\install.php
+			include\notification.inc.php
+			include\search.inc.php
+			include\uninstall.php
+			include\update.php
+			include\xoops_version.inc.php
+			include\import_export.php
+		+language
+			+english
+				-help
+					language\english\help\help.html
+					language\english\help\index.php
+				-mail_template
+					language\english\mail_template\category_approve_notify.tpl
+					language\english\mail_template\category_delete_notify.tpl
+					language\english\mail_template\category_modify_notify.tpl
+					language\english\mail_template\entry_approve_notify.tpl
+					language\english\mail_template\entry_delete_notify.tpl
+					language\english\mail_template\entry_modify_notify.tpl
+					language\english\mail_template\global_approve_notify.tpl
+					language\english\mail_template\global_delete_notify.tpl
+					language\english\mail_template\global_modify_notify.tpl
+					language\english\mail_template\global_new_notify.tpl
+					language\english\mail_template\index.php
+				language\english\admin.php
+				language\english\blocks.php
+				language\english\common.php
+				language\english\feedback.php
+				language\english\index.php
+				language\english\main.php
+				language\english\modinfo.php
+			+french
+				-help
+					language\french\help\help.html
+					language\french\help\index.php
+				-mail_template
+					language\french\mail_template\category_approve_notify.tpl
+					language\french\mail_template\category_delete_notify.tpl
+					language\french\mail_template\category_modify_notify.tpl
+					language\french\mail_template\entry_approve_notify.tpl
+					language\french\mail_template\entry_delete_notify.tpl
+					language\french\mail_template\entry_modify_notify.tpl
+					language\french\mail_template\global_approve_notify.tpl
+					language\french\mail_template\global_delete_notify.tpl
+					language\french\mail_template\global_modify_notify.tpl
+					language\french\mail_template\global_new_notify.tpl
+					language\french\mail_template\index.php
+				language\french\admin.php
+				language\french\blocks.php
+				language\french\common.php
+				language\french\feedback.php
+				language\french\index.php
+				language\french\main.php
+				language\french\modinfo.php
+			language\index.php
+		-preloads
+			preloads\autoloader.php
+			preloads\core.php
+			preloads\index.php
+		+sql
+			sql\index.php
+			sql\mysql.sql
+		+templates
+			+admin
+				templates\admin\glossaire_admin_about.tpl
+				templates\admin\glossaire_admin_categories.tpl
+				templates\admin\glossaire_admin_clone.tpl
+				templates\admin\glossaire_admin_entries.tpl
+				templates\admin\glossaire_admin_export.tpl
+				templates\admin\glossaire_admin_footer.tpl
+				templates\admin\glossaire_admin_header.tpl
+				templates\admin\glossaire_admin_import.tpl
+				templates\admin\glossaire_admin_index.tpl
+				templates\admin\glossaire_admin_permissions.tpl
+				templates\admin\index.php
+			+blocks
+				templates\blocks\glossaire_block_categories.tpl
+				templates\blocks\glossaire_block_entries.tpl
+				templates\blocks\index.php
+			templates\glossaire_breadcrumbs.tpl
+			templates\glossaire_categories.tpl
+			templates\glossaire_categories_cat.tpl
+			templates\glossaire_categories_cat_list.tpl
+			templates\glossaire_categories_colors_set.tpl
+			templates\glossaire_categories_item.tpl
+			templates\glossaire_categories_list.tpl
+			templates\glossaire_entries.tpl
+			templates\glossaire_entries_item-01.tpl
+			templates\glossaire_entries_item-02.tpl
+			templates\glossaire_entries_list.tpl
+			templates\glossaire_entries_terms_links.tpl
+			templates\glossaire_footer.tpl
+			templates\glossaire_header.tpl
+			templates\glossaire_index.tpl
+			templates\index.php
+			templates\escrri
+		-testdata
+			-english
+			-french
+			-images
+				testdata\images\blank.gif
+				testdata\images\blank.png
+			testdata\index.php
+		.scrutinizer.yml
+		categories.php
+		entries.php
+		entries-list.php
+		footer.php
+		header.php
+		index.php
+		notification_update.php
+		xoops_version.php
+[Open project files]
+0=templates\admin\glossaire_admin_import.tpl
+1=admin\import.php
+2=language\french\admin.php
+3=language\english\admin.php
+4=class\CategoriesHandler.php
+5=admin\categories.php
+6=sql\mysql.sql
+7=class\Entries.php
+8=admin\entries-save.php
+9=include\import_export.php
+10=templates\blocks\glossaire_block_entries.tpl
+11=admin\entries.php
+12=admin\entries-list.php
+13=admin\export.php
+14=read-me.txt
+[Selected Project Files]
+Main=
+Selected=read-me.txt
+[templates\admin\glossaire_admin_import.tpl]
+TopLine=1
+Caret=7,13
+[admin\import.php]
+TopLine=195
+Caret=1,224
+[language\french\admin.php]
+TopLine=146
+Caret=1,170
+[language\english\admin.php]
+TopLine=146
+Caret=1,169
+[class\CategoriesHandler.php]
+TopLine=238
+Caret=1,262
+[admin\categories.php]
+TopLine=88
+Caret=1,109
+[sql\mysql.sql]
+TopLine=35
+Caret=1,57
+[class\Entries.php]
+TopLine=132
+Caret=1,151
+[admin\entries-save.php]
+TopLine=24
+Caret=67,39
+[include\import_export.php]
+TopLine=158
+Caret=1,171
+[templates\blocks\glossaire_block_entries.tpl]
+TopLine=1
+Caret=1,1
+[admin\entries.php]
+TopLine=77
+Caret=25,107
+[admin\entries-list.php]
+TopLine=20
+Caret=101,41
+[admin\export.php]
+TopLine=40
+Caret=101,60
+[read-me.txt]
+TopLine=1
+Caret=19,5
