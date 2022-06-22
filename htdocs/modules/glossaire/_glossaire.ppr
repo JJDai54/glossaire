@@ -12,22 +12,18 @@ DontOpen=0
 AbsolutePath=0
 FileFormat=0
 ProjectFilesOnly=0
-HTServer=localhost
 Extensions=*.*
 [Project tree]
 _glossaire
-	+_extra
-		..\..\..\..\..\quizmaker\projet\htdocs\modules\quizmaker\templates\admin\quizmaker_admin_import.tpl
-		..\..\..\..\..\quizmaker\projet\htdocs\modules\quizmaker\templates\admin\quizmaker_admin_export.tpl
-		..\..\..\..\..\quizmaker\projet\htdocs\modules\quizmaker\admin\import.php
-		..\..\..\..\..\quizmaker\projet\htdocs\modules\quizmaker\admin\export.php
 	+glossaire
 		+admin
 			admin\about.php
 			admin\categories.php
 			admin\clone.php
 			admin\entries.php
+			admin\entries-delete.php
 			admin\entries-list.php
+			admin\entries-save.php
 			admin\export.php
 			admin\feedback.php
 			admin\footer.php
@@ -36,16 +32,13 @@ _glossaire
 			admin\index.php
 			admin\menu.php
 			admin\permissions.php
-			admin\entries-save.php
 		-assets
-			+css
+			-css
 				-admin
 					assets\css\admin\index.php
 					assets\css\admin\style.css
 				assets\css\index.php
 				assets\css\style.css
-				assets\css\style-item-color.css
-				assets\css\style-item-design.css
 			-icons
 				-16
 					-arrows
@@ -73,6 +66,9 @@ _glossaire
 							assets\icons\16\arrows\red\up-1.png
 					assets\icons\16\blank-08.png
 					assets\icons\16\blank-16.png
+					assets\icons\16\bool-0.gif
+					assets\icons\16\bool-1.gif
+					assets\icons\16\detail.png
 					assets\icons\16\index.php
 					assets\icons\16\status0.png
 					assets\icons\16\status-0.png
@@ -99,9 +95,10 @@ _glossaire
 				assets\images\logoModule.png
 			-js
 				assets\js\functions.js
+				assets\js\highslide.js
 				assets\js\index.php
 			assets\index.php
-		+blocks
+		-blocks
 			blocks\categories.php
 			blocks\entries.php
 			blocks\index.php
@@ -124,6 +121,7 @@ _glossaire
 			class\Categories.php
 			class\CategoriesHandler.php
 			class\Constants.php
+			class\delete
 			class\Entries.php
 			class\EntriesHandler.php
 			class\Helper.php
@@ -148,7 +146,7 @@ _glossaire
 		+include
 			include\common.php
 			include\functions.php
-			include\functions-colors-set.php
+			include\import_export.php
 			include\index.php
 			include\install.php
 			include\notification.inc.php
@@ -156,9 +154,8 @@ _glossaire
 			include\uninstall.php
 			include\update.php
 			include\xoops_version.inc.php
-			include\import_export.php
-		+language
-			+english
+		-language
+			-english
 				-help
 					language\english\help\help.html
 					language\english\help\index.php
@@ -181,7 +178,7 @@ _glossaire
 				language\english\index.php
 				language\english\main.php
 				language\english\modinfo.php
-			+french
+			-french
 				-help
 					language\french\help\help.html
 					language\french\help\index.php
@@ -225,13 +222,12 @@ _glossaire
 				templates\admin\glossaire_admin_index.tpl
 				templates\admin\glossaire_admin_permissions.tpl
 				templates\admin\index.php
-			+blocks
+			-blocks
 				templates\blocks\glossaire_block_categories.tpl
 				templates\blocks\glossaire_block_entries.tpl
 				templates\blocks\index.php
 			templates\glossaire_breadcrumbs.tpl
 			templates\glossaire_categories.tpl
-			templates\glossaire_categories_cat.tpl
 			templates\glossaire_categories_cat_list.tpl
 			templates\glossaire_categories_colors_set.tpl
 			templates\glossaire_categories_item.tpl
@@ -245,84 +241,36 @@ _glossaire
 			templates\glossaire_header.tpl
 			templates\glossaire_index.tpl
 			templates\index.php
-			templates\escrri
 		-testdata
 			-english
 			-french
+				testdata\french\Sigles_et_Acronymes_de_Sante(19).zip
 			-images
 				testdata\images\blank.gif
 				testdata\images\blank.png
 			testdata\index.php
 		.scrutinizer.yml
-		categories.php
 		entries.php
 		entries-list.php
 		footer.php
 		header.php
 		index.php
 		notification_update.php
+		read-me.txt
 		xoops_version.php
 [Open project files]
-0=templates\admin\glossaire_admin_import.tpl
-1=admin\import.php
-2=language\french\admin.php
-3=language\english\admin.php
-4=class\CategoriesHandler.php
-5=admin\categories.php
-6=sql\mysql.sql
-7=class\Entries.php
-8=admin\entries-save.php
-9=include\import_export.php
-10=templates\blocks\glossaire_block_entries.tpl
-11=admin\entries.php
-12=admin\entries-list.php
-13=admin\export.php
-14=read-me.txt
+0=admin\entries-save.php
+1=class\Entries.php
+2=admin\entries.php
 [Selected Project Files]
 Main=
-Selected=read-me.txt
-[templates\admin\glossaire_admin_import.tpl]
-TopLine=1
-Caret=7,13
-[admin\import.php]
-TopLine=195
-Caret=1,224
-[language\french\admin.php]
-TopLine=146
-Caret=1,170
-[language\english\admin.php]
-TopLine=146
-Caret=1,169
-[class\CategoriesHandler.php]
-TopLine=238
-Caret=1,262
-[admin\categories.php]
-TopLine=88
-Caret=1,109
-[sql\mysql.sql]
-TopLine=35
-Caret=1,57
-[class\Entries.php]
-TopLine=132
-Caret=1,151
+Selected=admin\entries.php
 [admin\entries-save.php]
-TopLine=24
-Caret=67,39
-[include\import_export.php]
-TopLine=158
-Caret=1,171
-[templates\blocks\glossaire_block_entries.tpl]
+TopLine=4
+Caret=69,97
+[class\Entries.php]
 TopLine=1
-Caret=1,1
+Caret=18,181
 [admin\entries.php]
-TopLine=77
-Caret=25,107
-[admin\entries-list.php]
-TopLine=20
-Caret=101,41
-[admin\export.php]
-TopLine=40
-Caret=101,60
-[read-me.txt]
-TopLine=1
-Caret=19,5
+TopLine=21
+Caret=1,43

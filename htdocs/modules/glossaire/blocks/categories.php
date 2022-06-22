@@ -88,11 +88,10 @@ function b_glossaire_categories_show($options)
             $block[$i]['id'] = $categoriesAll[$i]->getVar('cat_id');
             $block[$i]['name'] = \htmlspecialchars($categoriesAll[$i]->getVar('cat_name'), ENT_QUOTES | ENT_HTML5);
             $block[$i]['description'] = \strip_tags($categoriesAll[$i]->getVar('cat_description'));
-            $block[$i]['total'] = \htmlspecialchars($categoriesAll[$i]->getVar('cat_total'), ENT_QUOTES | ENT_HTML5);
             $block[$i]['weight'] = \htmlspecialchars($categoriesAll[$i]->getVar('cat_weight'), ENT_QUOTES | ENT_HTML5);
             $block[$i]['logourl'] = $categoriesAll[$i]->getVar('cat_logourl');
             $block[$i]['colors_set'] = $categoriesAll[$i]->getVar('cat_colors_set');
-            $block[$i]['count_children'] = $categoriesAll[$i]->getVar('cat_count_children');
+            $block[$i]['count_entries'] = $categoriesAll[$i]->getVar('cat_count_entries');
             $block[$i]['date_creation'] = $categoriesAll[$i]->getVar('cat_date_creation');
             $block[$i]['date_update'] = $categoriesAll[$i]->getVar('cat_date_update');
         }

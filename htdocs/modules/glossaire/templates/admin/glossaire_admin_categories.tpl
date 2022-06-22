@@ -77,7 +77,7 @@
                 <td class='center'><img src="<{xoModuleIcons32}><{$category.logourl}>" alt="categories" ></td>
                 <td class='center'><{$category.colors_set}></td>
                 
-                <td class='center'><{$category.count_children}></td>
+                <td class='center'><{$category.count_entries}></td>
                 <td class='center'><{$category.date_creation}></td>
                 <td class='center'><{$category.date_update}></td>
                 <td class="center  width5">

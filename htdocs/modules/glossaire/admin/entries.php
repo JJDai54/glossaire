@@ -76,7 +76,7 @@ switch ($op) {
         $form = $entriesObj->getFormEntries();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
-    case 'save':
+    case 'save':   //exit;
         include_once("entries-save.php");
         break;
         

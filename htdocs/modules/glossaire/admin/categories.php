@@ -99,6 +99,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
     case 'save':
+        $templateMain = 'glossaire_admin_categories.tpl';
         // Security Check
         if (!$GLOBALS['xoopsSecurity']->check()) {
             \redirect_header('categories.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -115,7 +116,6 @@ switch ($op) {
         $uploaderErrors = '';
         $categoriesObj->setVar('cat_name', Request::getString('cat_name', ''));
         $categoriesObj->setVar('cat_description', Request::getString('cat_description', ''));
-        $categoriesObj->setVar('cat_total', Request::getInt('cat_total', 0));
         $categoriesObj->setVar('cat_weight', Request::getInt('cat_weight', 0));
 		$categoriesObj->setVar('cat_date_update', \JJD\getSqlDate());
         
@@ -135,14 +135,30 @@ switch ($op) {
         } else {
             $categoriesObj->setVar('cat_logourl', Request::getString('cat_logourl'));
         }
-        if ($categoriesObj->getVar('cat_img_folder') == ''){
-            $imgFolder = \JJD\sanityseNameForFile($categoriesObj->getVar('cat_name'));
-            $categoriesObj->setVar('cat_img_folder', $imgFolder);
-        }  
+        //---------------------------------------------------
+        $oldImgFolder = $categoriesObj->getVar('cat_img_folder');
+        $newImgFolder = Request::getString('cat_img_folder', '');
+        if ($newImgFolder == ''){
+            $newImgFolder = \JJD\sanityseNameForFile(Request::getString('cat_name', ''));
+            $categoriesObj->setVar('cat_img_folder', $newImgFolder);
+        }elseif($newImgFolder != $oldImgFolder){
+            $newImgFolder = \JJD\sanityseNameForFile($newImgFolder);
+            $categoriesObj->setVar('cat_img_folder', $newImgFolder);
+        }else{
+            $categoriesObj->setVar('cat_img_folder', $oldImgFolder);
+        }
+        
+//         if ($categoriesObj->getVar('cat_img_folder') == ''){
+//             $imgFolder = \JJD\sanityseNameForFile($categoriesObj->getVar('cat_name'));
+//             $categoriesObj->setVar('cat_img_folder', $imgFolder);
+//         }else{
+//         }  
+        
+        //---------------------------------------------------
         $categoriesObj->setVar('cat_colors_set', Request::getString('cat_colors_set', ''));
         $categoriesObj->setVar('cat_is_acronym', Request::getInt('cat_is_acronym', 0));
         $categoriesObj->setVar('cat_show_terms_index', Request::getInt('cat_show_terms_index', 1));
-        $categoriesObj->setVar('cat_count_children', $entriesHandler->getCountOnCategory($catId));
+        $categoriesObj->setVar('cat_count_entries', $entriesHandler->getCountOnCategory($catId));
         
 //         $categoryDate_creationArr = Request::getArray('cat_date_creation');
 //         $categoryDate_creationObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $categoryDate_creationArr['date']);
@@ -160,6 +176,13 @@ switch ($op) {
             $permId = isset($_REQUEST['cat_id']) ? $catId : $newCatId;
             $grouppermHandler = \xoops_getHandler('groupperm');
             $mid = $GLOBALS['xoopsModule']->getVar('mid');
+            
+            if($newImgFolder != $oldImgFolder && $oldImgFolder != ''){
+                rename(GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH.'/'.$oldImgFolder, GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH.'/'.$newImgFolder);
+                //exit("renomage ok : {$newImgFolder} - {$oldImgFolder}");
+            }
+            if(!is_dir(GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH.'/'.$newImgFolder)) mkdir(GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH.'/'.$newImgFolder);
+            
             // Permission to view_categories
             $grouppermHandler->deleteByModule($mid, 'glossaire_view_categories', $permId);
             if (isset($_POST['groups_view_categories'])) {
@@ -188,10 +211,12 @@ switch ($op) {
             }
         }
         // Get Form
+
         $GLOBALS['xoopsTpl']->assign('error', $categoriesObj->getHtmlErrors());
         $form = $categoriesObj->getFormCategories();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
+        
     case 'edit':
         $templateMain = 'glossaire_admin_categories.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));

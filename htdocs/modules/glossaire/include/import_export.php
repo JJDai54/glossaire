@@ -179,14 +179,13 @@ global $categoriesHandler;
 	$categoriesObj->setVar('cat_id', 0);    
 	$categoriesObj->setVar('cat_name',        $data['cat_name'] . $suffix);    
 	$categoriesObj->setVar('cat_description', $data['cat_description']);    
-	$categoriesObj->setVar('cat_total',       $data['cat_total']);    
 	$categoriesObj->setVar('cat_weight',      $data['cat_weight']);    
 	$categoriesObj->setVar('cat_logourl',     $data['cat_logourl']);    
 	$categoriesObj->setVar('cat_img_folder',  $data['cat_img_folder'] . $suffix);    
 	$categoriesObj->setVar('cat_colors_set',  $data['cat_colors_set']);    
 	$categoriesObj->setVar('cat_is_acronym',  $data['cat_is_acronym']);    
 	$categoriesObj->setVar('cat_show_terms_index', $data['cat_show_terms_index']);    
-	$categoriesObj->setVar('cat_count_children',   $data['cat_count_children']);    
+	$categoriesObj->setVar('cat_count_entries',   $data['cat_count_entries']);    
 	$categoriesObj->setVar('cat_date_creation',    $data['cat_date_creation']);    
 	$categoriesObj->setVar('cat_date_update', date("Y-m-d H:i:00.00000"));
     

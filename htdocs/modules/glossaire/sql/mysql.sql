@@ -15,17 +15,17 @@ CREATE TABLE `glossaire_categories` (
   `cat_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   `cat_name` VARCHAR(255) NOT NULL DEFAULT '',
   `cat_description` TEXT NOT NULL ,
-  `cat_total` INT(11) NOT NULL DEFAULT '0',
   `cat_weight` INT(10) NOT NULL DEFAULT '0',
   `cat_logourl` VARCHAR(255) NOT NULL DEFAULT '',
   `cat_img_folder` VARCHAR(255) NOT NULL DEFAULT '',
   `cat_colors_set` VARCHAR(50) NOT NULL DEFAULT '',
   `cat_is_acronym` TINYINT(1) NOT NULL DEFAULT '0',   
   `cat_show_terms_index` TINYINT(1) NOT NULL DEFAULT '1',   
-  `cat_count_children` INT(11) NOT NULL DEFAULT '0',   
+  `cat_count_entries` INT(11) NOT NULL DEFAULT '0',   
   `cat_date_creation` DATETIME(6) NOT NULL DEFAULT '0000-00-00 00:00:00.0000',
   `cat_date_update` DATETIME(6) NOT NULL DEFAULT '0000-00-00 00:00:00.00000',
-  PRIMARY KEY (`cat_id`)
+  PRIMARY KEY (`cat_id`),
+ UNIQUE KEY `cat_img_folder` (`cat_img_folder`)  
 ) ENGINE=InnoDB;
 
 #

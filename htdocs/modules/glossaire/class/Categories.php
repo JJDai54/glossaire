@@ -57,13 +57,12 @@ class Categories extends \XoopsObject
         $this->initVar('cat_id', \XOBJ_DTYPE_INT);
         $this->initVar('cat_name', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_description', \XOBJ_DTYPE_TXTAREA);
-        $this->initVar('cat_total', \XOBJ_DTYPE_INT);
         $this->initVar('cat_weight', \XOBJ_DTYPE_INT);
         $this->initVar('cat_logourl', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_img_folder', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_colors_set', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_is_acronym', \XOBJ_DTYPE_INT); 
-        $this->initVar('cat_count_children', \XOBJ_DTYPE_INT); 
+        $this->initVar('cat_count_entries', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_show_terms_index', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_date_creation', \XOBJ_DTYPE_OTHER); //XOBJ_DTYPE_LTIME
         $this->initVar('cat_date_update', \XOBJ_DTYPE_OTHER); //XOBJ_DTYPE_LTIME
@@ -110,10 +109,13 @@ class Categories extends \XoopsObject
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
+        
         // Form Text catName
         $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_NAME, 'cat_name', 50, 255, $this->getVar('cat_name')), true);
+        
         // Form Text cat_img_folder
-        $form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CATEGORY_IMG_FOLDER, $this->getVar('cat_img_folder')));
+        //$form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CATEGORY_IMG_FOLDER, $this->getVar('cat_img_folder')));
+        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_IMG_FOLDER, 'cat_img_folder', 50, 255, $this->getVar('cat_img_folder')), false);
         // Form Editor TextArea catDescription
         //$form->addElement(new \XoopsFormTextArea(\_AM_GLOSSAIRE_CATEGORY_DESCRIPTION, 'cat_description', $this->getVar('cat_description', 'e'), 4, 47));
         $editorConfigs = [];
@@ -131,8 +133,6 @@ class Categories extends \XoopsObject
         $editorConfigs['editor'] = $editor;
         $form->addElement(new \XoopsFormEditor(\_AM_GLOSSAIRE_CATEGORY_DESCRIPTION, 'cat_description', $editorConfigs));
         
-        // Form Text catTotal
-        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_TOTAL, 'cat_total', 50, 255, $this->getVar('cat_total')));
         // Form Text catWeight
         $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_WEIGHT, 'cat_weight', 50, 255, $this->getVar('cat_weight')));
         // Form Frameworks Images Files catLogourl
@@ -156,10 +156,11 @@ class Categories extends \XoopsObject
         $imageTray->addElement($fileSelectTray);
         $form->addElement($imageTray);
         
+        
         // Form Text Date Select cat_colors_set
         //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_THEME, 'cat_colors_set', 50, 50, $this->getVar('cat_colors_set')));
         $selectFormColorSet = new \XoopsFormSelect(_AM_GLOSSAIRE_CATEGORY_COLOR_SET , 'cat_colors_set', $this->getVar( 'cat_colors_set', 'e' ) );
-        $selectFormColorSet->addOptionArray(colorSet\get_css_color(GLOSSAIRE_DIRNAME));
+        $selectFormColorSet->addOptionArray(\jjd\get_css_color(GLOSSAIRE_DIRNAME));
         //$selectFormColorSet->setDescription(_AM_GLOSSAIRE_CATEGORY_COLOR_SET_DESC);
         $form->addElement($selectFormColorSet);
 
@@ -235,14 +236,13 @@ class Categories extends \XoopsObject
         $ret['description']       = \strip_tags($this->getVar('cat_description', 'e'));
         $editorMaxchar = $helper->getConfig('editor_maxchar');
         $ret['description_short'] = $utility::truncateHtml($ret['description'], $editorMaxchar);
-        $ret['total']             = $this->getVar('cat_total');
         $ret['weight']            = $this->getVar('cat_weight');
         $ret['logourl']           = $this->getVar('cat_logourl');
         $ret['img_folder']        = $this->getVar('cat_img_folder');
         $ret['colors_set']        = $this->getVar('cat_colors_set');
         $ret['is_acronym']        = $this->getVar('cat_is_acronym');
         $ret['show_terms_index']  = $this->getVar('cat_show_terms_index');
-        $ret['count_children']    = $this->getVar('cat_count_children');
+        $ret['count_entries']    = $this->getVar('cat_count_entries');
 //         $ret['date_creation']     = \formatTimestamp($this->getVar('cat_date_creation'), 'm');
 //         $ret['date_update']       = \formatTimestamp($this->getVar('cat_date_update'), 'm');
 		$ret['date_creation']          = \JJD\getDateSql2Str($this->getVar('cat_date_creation'));

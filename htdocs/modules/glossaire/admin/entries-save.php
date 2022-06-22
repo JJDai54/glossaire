@@ -52,7 +52,6 @@ use XoopsModules\Glossaire\Common;
         $uploaderErrors = '';
         $categoriesObj->setVar('cat_name', Request::getString('cat_name', ''));
         $categoriesObj->setVar('cat_description', Request::getString('cat_description', ''));
-        $categoriesObj->setVar('cat_total', Request::getInt('cat_total', 0));
         $categoriesObj->setVar('cat_weight', Request::getInt('cat_weight', 0));
 
 */
@@ -82,15 +81,15 @@ use XoopsModules\Glossaire\Common;
         $imgFolder = \GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . "/" . $categoriesObj->getVar('cat_img_folder')."/";
         
         $ent_delete_img = Request::getInt('ent_delete_img', 0);
-        if($ent_delete_img){
+        if($ent_delete_img == 1){
             $entriesObj->delete_image($imgFolder);
             $entriesObj->setVar('ent_image', '');
         }
-        
-        
-        
         //mkdir($imgFolder);
         if (!is_dir($imgFolder)) mkdir($imgFolder, 0777, true);        
+        
+        
+        
         //echo "<hr>{$catId}-{$imgFolder}<hr>";exit;
         $uploader = new \XoopsMediaUploader($imgFolder, 
                                             $helper->getConfig('mimetypes_file'), 
@@ -126,7 +125,7 @@ use XoopsModules\Glossaire\Common;
         // Insert Data
         if ($entriesHandler->insert($entriesObj)) {
 //exit('ok');
-                \redirect_header("entries.php?op=list&amp;start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, \_AM_GLOSSAIRE_FORM_OK);
+                \redirect_header("entries.php?op=list&catIdSelect={$catId}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, \_AM_GLOSSAIRE_FORM_OK);
         }
 //exit('non');
         // Get Form

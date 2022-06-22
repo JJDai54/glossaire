@@ -129,6 +129,12 @@ class Entries extends \XoopsObject
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
+
+        $form->addElement(new \XoopsFormHidden('start', $this->start));
+        $form->addElement(new \XoopsFormHidden('limit', $this->limit));
+        $form->addElement(new \XoopsFormHidden('catIdSelect', $this->catIdSelect));
+        $form->addElement(new \XoopsFormHidden('statusIdSelect', $this->statusIdSelect));
+        
         
         // Form Table categories
         $catList = $categoriesHandler->getList();
@@ -172,6 +178,7 @@ class Entries extends \XoopsObject
         
         //-------------------------------------------------
         $entImage = $this->isNew() ? '' : $this->getVar('ent_image');
+            $form->addElement(new \XoopsFormHidden('ent_image', $entImage));        
         $imgFile = '/' . $categoriesObj->getVar('cat_img_folder') . '/' . $entImage; 
         $urlImg = GLOSSAIRE_UPLOAD_IMG_FOLDER_URL . $imgFile;
         $isImgOk = (is_readable(GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . $imgFile) AND $entImage!='');
@@ -200,9 +207,8 @@ class Entries extends \XoopsObject
             //$form->addElement($fileUploadTray);
 
         } else {
-            $fileUploadTray->addElement(new \XoopsFormHidden('ent_image', $entImage));
+
         }
-        
         $upload_size = $helper->getConfig('maxsize_image');
         $imageTray  = new \XoopsFormElementTray(_AM_GLOSSAIRE_ENTRY_IMAGE,"<br>"); 
         $imageTray->addElement($currentImg, false);
@@ -210,6 +216,31 @@ class Entries extends \XoopsObject
         $imageTray->addElement($fileUploadTray, false);
         $form->addElement($imageTray);
         //-------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             
         // Form Editor DhtmlTextArea entDefinition
         $editorConfigs = [];

@@ -47,7 +47,6 @@ switch($op) {
 		$GLOBALS['xoopsTpl']->assign('delai', 2000);        
 		$GLOBALS['xoopsTpl']->assign('name', $name);        
 
-      
         
 //      IMPORTANT : Pas de break ni de redirectheader pour continuer avec le formulaire de depart
 //  		redirect_header('export.php?op=list&');        
