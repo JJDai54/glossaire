@@ -69,12 +69,12 @@
  
     </div> 
       
-    
     <center><{$alphaBarre}>
       <{if $pagenav|default:''}>
-          <table style='width:100border:none;border-collapse:collapse;'><tr><td width='50%'></td><td><{$pagenav}></td><td width='50%'></td></tr></table>
+          <div class="pagenav pagenav-container"><{$pagenav}></div>
       <{/if}>
     </center>
+
 <{if $catSelected.show_terms_index}>    
     <{include file='db:glossaire_entries_terms_links.tpl' }>
 <{/if}>
@@ -85,15 +85,15 @@
 
     <{foreach item=entry from=$entries name=entry}>
 
-        <div class='panel panel-<{$panel_type|default:false}>'>
+
             <{include file='db:glossaire_entries_item-02.tpl' }>
-        </div>
+
     <{/foreach}>
 
 <{/if}>
     <center><{$alphaBarre}>
       <{if $pagenav|default:''}>
-          <table style='width:100border:none;border-collapse:collapse;'><tr><td width='50%'></td><td><{$pagenav}></td><td width='50%'></td></tr></table>
+          <div class="pagenav pagenav-container"><{$pagenav}></div>
       <{/if}>
     </center>
 <br>

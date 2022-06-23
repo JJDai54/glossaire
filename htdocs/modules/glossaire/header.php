@@ -22,6 +22,7 @@ declare(strict_types=1);
  * @min_xoops      2.5.10
  * @author         XOOPS Development Team - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
  */
+ 
 require \dirname(__DIR__, 2) . '/mainfile.php';
 require_once __DIR__ . '/include/common.php';
 //require __DIR__ . '/include/functions-colors-set.php';

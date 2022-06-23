@@ -52,14 +52,15 @@ use JJD AS JJD;
         */
         // --------------------------------------------
         // categories avec des onglets
+        \JJD\load_css();
         $catList = $categoriesHandler->getAllAllowed();
         if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
         $GLOBALS['xoopsTpl']->assign('categories', $catList);
         $GLOBALS['xoopsTpl']->assign('showButtonsImg', true);
         
-        \JJD\load_css(GLOSSAIRE_DIRNAME);
+        //Categorie selectionnée, utilisée notamment pour colorset
+        $GLOBALS['xoopsTpl']->assign('catSelected', $catList[$catIdSelect]);
         
-        //$GLOBALS['xoopsTpl']->assign('catSelected', $catList[$catIdSelect]);
         $GLOBALS['xoopsTpl']->assign('catIdSelect', $catIdSelect);
         $GLOBALS['xoopsTpl']->assign('nbCategories', count($catList));
         $GLOBALS['xoopsTpl']->assign('isCatAllowed', $categoriesHandler->isCatAllowed($catIdSelect));

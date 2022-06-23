@@ -184,4 +184,4 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 \define('_CO_GLOSSAIRE_TOTAL_REJECTED', 'Rejected');
 \define('_CO_GLOSSAIRE_TOTAL_SUBMITTED', 'Submitted');
 \define('_CO_GLOSSAIRE_CATEGORY', "Catégorie");
-\define('_CO_GLOSSAIRE_STATUS', "Statut");
+\define('_CO_GLOSSAIRE_STATUS', "Status");

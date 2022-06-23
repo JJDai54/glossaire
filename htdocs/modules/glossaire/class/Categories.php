@@ -160,7 +160,7 @@ class Categories extends \XoopsObject
         // Form Text Date Select cat_colors_set
         //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_THEME, 'cat_colors_set', 50, 50, $this->getVar('cat_colors_set')));
         $selectFormColorSet = new \XoopsFormSelect(_AM_GLOSSAIRE_CATEGORY_COLOR_SET , 'cat_colors_set', $this->getVar( 'cat_colors_set', 'e' ) );
-        $selectFormColorSet->addOptionArray(\jjd\get_css_color(GLOSSAIRE_DIRNAME));
+        $selectFormColorSet->addOptionArray(\jjd\get_css_color());
         //$selectFormColorSet->setDescription(_AM_GLOSSAIRE_CATEGORY_COLOR_SET_DESC);
         $form->addElement($selectFormColorSet);
 
@@ -239,7 +239,7 @@ class Categories extends \XoopsObject
         $ret['weight']            = $this->getVar('cat_weight');
         $ret['logourl']           = $this->getVar('cat_logourl');
         $ret['img_folder']        = $this->getVar('cat_img_folder');
-        $ret['colors_set']        = $this->getVar('cat_colors_set');
+        $ret['colors_set']        = ($this->getVar('cat_colors_set')) ? $this->getVar('cat_colors_set') : "default";
         $ret['is_acronym']        = $this->getVar('cat_is_acronym');
         $ret['show_terms_index']  = $this->getVar('cat_show_terms_index');
         $ret['count_entries']    = $this->getVar('cat_count_entries');
