@@ -116,6 +116,12 @@ switch ($op) {
         \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, \_AM_GLOSSAIRE_FORM_OK);
         break;
         
-                            
+    case 'cleanEntriesImages':
+    case 'cleanentriesimages':
+        $nbImgCleaned = $utility->cleanEntriesImages($catIdSelect, 1);     
+        $msg = sprintf(_AM_GLOSSAIRE_CLEAN_IMAGES_OK, $nbImgCleaned[1], $nbImgCleaned[2], $catIdSelect);         
+        \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, $msg);
+        break;
+        
 }
 require __DIR__ . '/footer.php';

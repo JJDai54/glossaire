@@ -339,5 +339,49 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
         return implode("<br>", $retArr);
     }
 
-    
+/* ***********************
+@ purgerFolderImg : compte ou supprime les images inutilisés
+@ $action : 0 = Compte - 1 = suppression
+************************** */
+function cleanEntriesImages($catId, $action = 0){
+global $categoriesHandler, $entriesHandler, $xoopsList;
+//if(!$categoriesHandler)return;
+    if($catId == 0)return 0;
+
+    $catObj = $categoriesHandler->get($catId);
+    $dirname = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $catObj->getVar('cat_img_folder');
+
+    $criteria = new \Criteria('ent_cat_id', $catId, '=');
+    $allEntries = $entriesHandler->getAllEntries($criteria);
+    $imgUsed = array();
+$nbImgNotExists = 0;    
+    foreach($allEntries AS $entry){
+        $img = $entry->getVar('ent_image');
+        $imgUsed[$img] = $img;
+        $f = $dirname . '/' . $img;
+        if (!is_readable($f) && $img != '' ){
+            if ($action == 1) {
+              $entry->setVar('ent_image', '');
+              $entriesHandler->insert($entry);
+            }
+            $nbImgNotExists++;
+        }
+    }
+// ----------------------------------------------- 
+xoops_load('XoopsLists');
+ //$xoopsList = new \XoopsList();
+
+    //$listImg = $xoopsList->getImgListAsArray($dirname);
+    $listImg = \XoopsLists::getImgListAsArray($dirname);
+//echo "<hr>{$dirname}<hr>";    
+    $nbImgDeleted = 0;
+    foreach($listImg as $key=>$img){
+        if (!array_key_exists($key, $imgUsed)){
+            if ($action == 1) unlink($dirname . '/' . $key);
+            $nbImgDeleted++;
+        }
+    }
+
+    return array($nbImgDeleted + $nbImgNotExists, $nbImgDeleted, $nbImgNotExists);
+   }
 }

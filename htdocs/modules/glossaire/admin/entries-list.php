@@ -28,19 +28,25 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
 
+        //$categoriesHandler = $helper->getHandler('Categories');
+        $catList = $categoriesHandler->getList();
+        if (count($catList) == 0) \redirect_header('categories.php', 5, _AM_GLOSSAIRE_NO_CATEGORIES1);
+        if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
 
         // Define Stylesheet
         $GLOBALS['xoTheme']->addStylesheet($style, null);
         $templateMain = 'glossaire_admin_entries.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('entries.php'));
         $adminObject->addItemButton(\_AM_GLOSSAIRE_ADD_ENTRY, "entries.php?op=new&catIdSelect={$catIdSelect}", 'add');
+
+        $imgCleanArr = $utility->cleanEntriesImages($catIdSelect, 0);
+        if($imgCleanArr[0] > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
+          $caption = sprintf(_AM_GLOSSAIRE_CLEAN_IMAGES, $imgCleanArr[1], $imgCleanArr[2]);
+          $adminObject->addItemButton($caption, "entries.php?op=cleanEntriesImages&catIdSelect={$catIdSelect}", 'update');
+        }
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+
         
-        //$categoriesHandler = $helper->getHandler('Categories');
-        $catList = $categoriesHandler->getList();
-        if (count($catList) == 0) \redirect_header('categories.php', 5, _AM_GLOSSAIRE_NO_CATEGORIES1);
-        
-        if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
         $inpCategory = new \XoopsFormSelect(\_AM_GLOSSAIRE_ENTRY_CAT_ID, 'catIdSelect', $catIdSelect);
         $inpCategory->addOptionArray($catList);
         $inpCategory->setExtra('onchange="document.select_filter.sender.value=this.name;document.select_filter.submit();"');

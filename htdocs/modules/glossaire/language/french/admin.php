@@ -165,7 +165,10 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_DELETE_IMG', "Supprimer l'image");
 \define('_AM_GLOSSAIRE_NO_CATEGORIES1', "Il n'y a aucune categorie de crée.<br>Vous devez d'abord créer une catégories avant d'ajouter des définitions.");
 \define('_AM_GLOSSAIRE_NO_CATEGORIES2', "Il n'y a aucune categorie à exporter.");
-define ('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY', "Catégorie de Lexikon");   
-define ('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY_DESC', "Sélectionez la catégorie du module Lexikon à importer");   
+\define ('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY', "Catégorie de Lexikon");   
+\define ('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY_DESC', "Sélectionez la catégorie du module Lexikon à importer");   
+
+\define('_AM_GLOSSAIRE_CLEAN_IMAGES', "Nettoyer les images: Il y a  %s image(s) inutilisé(s) et %s image(s) inexistante(s)");
+\define('_AM_GLOSSAIRE_CLEAN_IMAGES_OK', "Nettoyage des images : <br>%s image(s) ont été supprimées et %s définitions mises à jour<br>pour la catégorie #%s.");    
 
 // ---------------- End ----------------

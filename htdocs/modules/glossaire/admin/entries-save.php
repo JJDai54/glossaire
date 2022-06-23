@@ -70,6 +70,7 @@ use XoopsModules\Glossaire\Common;
         $entriesObj->setVar('ent_definition', Request::getText('ent_definition', ''));
         $entriesObj->setVar('ent_reference', Request::getText('ent_reference', ''));
         $entriesObj->setVar('ent_urls', Request::getText('ent_urls', ''));
+        $entriesObj->setVar('ent_image', Request::getString('ent_image', ''));    
 //         $entriesObj->setVar('ent_url1', Request::getString('ent_url1', ''));
 //         $entriesObj->setVar('ent_url2', Request::getString('ent_url2', ''));
         
@@ -77,11 +78,12 @@ use XoopsModules\Glossaire\Common;
         require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
         $filename       = $_FILES['ent_image']['name'];
         //$imgNameDef     = Request::getString('ent_cat_id');
-        $imgName     = \JJD\sanityseNameForFile(Request::getString('ent_term')) . '_';
+        $prefixImg = \JJD\sanityseNameForFile(Request::getString('ent_term')) . '_';
         $imgFolder = \GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . "/" . $categoriesObj->getVar('cat_img_folder')."/";
         
         $ent_delete_img = Request::getInt('ent_delete_img', 0);
         if($ent_delete_img == 1){
+            $entImage = '';
             $entriesObj->delete_image($imgFolder);
             $entriesObj->setVar('ent_image', '');
         }
@@ -96,8 +98,8 @@ use XoopsModules\Glossaire\Common;
                                             $helper->getConfig('maxsize_file'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $filename);
-            //$imgName = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
-            $uploader->setPrefix($imgName);
+            //$prefixImg = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
+            $uploader->setPrefix($prefixImg);
             $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
             if ($uploader->upload()) {
                 $entriesObj->setVar('ent_image', $uploader->getSavedFileName());
@@ -108,7 +110,7 @@ use XoopsModules\Glossaire\Common;
             if ($filename > '') {
                 $uploaderErrors .= '<br>' . $uploader->getErrors();
             }
-            $entriesObj->setVar('ent_image', Request::getString('ent_image'));
+            //$entriesObj->setVar('ent_image', );
         }
         
         

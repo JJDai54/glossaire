@@ -360,6 +360,7 @@ class Entries extends \XoopsObject
         $ret['image']            = $this->getVar('ent_image');
         if ($ret['image'] !== ''){
           $ret['image_url']        =  GLOSSAIRE_UPLOAD_IMG_FOLDER_URL . '/' . $categoriesObj->getVar('cat_img_folder') . '/' . $this->getVar('ent_image');
+          //definition_img contient l'image et la définition prete a l'emloi dans le FO
           $ret['definition_img'] = "<div class='highslide-gallery'>"
             . "<a href='{$ret['image_url']}' class='highslide' onclick='return hs.expand(this);' >"
             . "<img src='{$ret['image_url']}' class='img_glossaire' alt='' style='max-width:100px' />"
@@ -420,5 +421,6 @@ function delete_image($catImgFolder){
     if ($isImgOk) unlink($fImg);
 //exit ($fImg);
 }
+
 
 } // ----- FIN DE LA CLASSE -----

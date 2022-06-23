@@ -59,7 +59,7 @@ use JJD AS JJD;
         
         \JJD\load_css(GLOSSAIRE_DIRNAME);
         
-        $GLOBALS['xoopsTpl']->assign('catSelected', $catList[$catIdSelect]);
+        //$GLOBALS['xoopsTpl']->assign('catSelected', $catList[$catIdSelect]);
         $GLOBALS['xoopsTpl']->assign('catIdSelect', $catIdSelect);
         $GLOBALS['xoopsTpl']->assign('nbCategories', count($catList));
         $GLOBALS['xoopsTpl']->assign('isCatAllowed', $categoriesHandler->isCatAllowed($catIdSelect));

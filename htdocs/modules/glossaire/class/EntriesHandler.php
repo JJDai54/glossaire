@@ -291,4 +291,5 @@ public function getCountOnCategory($catId, $status = GLOSSAIRE_STATUS_APPROVED)
     return $this->getCountEntries($crCountEntries);
 }
 
+
 } // FIN dela CLASS

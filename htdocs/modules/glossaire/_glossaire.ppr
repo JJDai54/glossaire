@@ -12,6 +12,7 @@ DontOpen=0
 AbsolutePath=0
 FileFormat=0
 ProjectFilesOnly=0
+HTServer=localhost
 Extensions=*.*
 [Project tree]
 _glossaire
@@ -121,7 +122,6 @@ _glossaire
 			class\Categories.php
 			class\CategoriesHandler.php
 			class\Constants.php
-			class\delete
 			class\Entries.php
 			class\EntriesHandler.php
 			class\Helper.php
@@ -154,7 +154,7 @@ _glossaire
 			include\uninstall.php
 			include\update.php
 			include\xoops_version.inc.php
-		-language
+		+language
 			-english
 				-help
 					language\english\help\help.html
@@ -178,7 +178,7 @@ _glossaire
 				language\english\index.php
 				language\english\main.php
 				language\english\modinfo.php
-			-french
+			+french
 				-help
 					language\french\help\help.html
 					language\french\help\index.php
@@ -262,15 +262,43 @@ _glossaire
 0=admin\entries-save.php
 1=class\Entries.php
 2=admin\entries.php
+3=admin\entries-list.php
+4=class\EntriesHandler.php
+5=class\Utility.php
+6=entries.php
+7=language\french\admin.php
+8=templates\glossaire_entries_item-02.tpl
+9=templates\admin\glossaire_admin_entries.tpl
 [Selected Project Files]
 Main=
-Selected=admin\entries.php
+Selected=language\french\admin.php
 [admin\entries-save.php]
-TopLine=4
-Caret=69,97
+TopLine=58
+Caret=29,73
 [class\Entries.php]
-TopLine=1
-Caret=18,181
+TopLine=345
+Caret=20,360
 [admin\entries.php]
-TopLine=21
-Caret=1,43
+TopLine=90
+Caret=53,122
+[admin\entries-list.php]
+TopLine=47
+Caret=59,75
+[class\EntriesHandler.php]
+TopLine=75
+Caret=34,103
+[class\Utility.php]
+TopLine=351
+Caret=1,385
+[entries.php]
+TopLine=29
+Caret=1,1
+[language\french\admin.php]
+TopLine=151
+Caret=156,172
+[templates\glossaire_entries_item-02.tpl]
+TopLine=12
+Caret=1,32
+[templates\admin\glossaire_admin_entries.tpl]
+TopLine=31
+Caret=43,52
