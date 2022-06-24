@@ -54,6 +54,11 @@ use JJD AS JJD;
         // categories avec des onglets
         \JJD\load_css();
         $catList = $categoriesHandler->getAllAllowed();
+        if (count($catList) == 0) {
+            require __DIR__ . '/footer.php';
+            exit;
+        }
+        //----------------------------------------------------------
         if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
         $GLOBALS['xoopsTpl']->assign('categories', $catList);
         $GLOBALS['xoopsTpl']->assign('showButtonsImg', true);
@@ -64,7 +69,7 @@ use JJD AS JJD;
         $GLOBALS['xoopsTpl']->assign('catIdSelect', $catIdSelect);
         $GLOBALS['xoopsTpl']->assign('nbCategories', count($catList));
         $GLOBALS['xoopsTpl']->assign('isCatAllowed', $categoriesHandler->isCatAllowed($catIdSelect));
-        $GLOBALS['xoopsTpl']->assign('page2redirect', $page2redirect);
+        $GLOBALS['xoopsTpl']->assign('page2;irect', $page2redirect);
         
         
         //--- Criteres de recherche

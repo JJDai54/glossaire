@@ -33,6 +33,7 @@ require __DIR__ . '/header.php';
 $op = Request::getCmd('op', 'list');
 $catId  = Request::getInt('cat_id', -1);
 $catIdSelect = Request::getInt('catIdSelect',0);
+$gls_add_img = Request::getInt('gls_add_img',0);
 include_once GLOSSAIRE_PATH . "/include/import_export.php";
 
 $utility = new \XoopsModules\Glossaire\Utility();  
@@ -40,7 +41,8 @@ $utility = new \XoopsModules\Glossaire\Utility();
 switch($op) {
 	case 'export_ok':
         //$outZipUrl = $entriesHandler->export($catIdSelect);
-        $outZipUrl = export_glossaire($catIdSelect);
+        $outZipUrl = export_glossaire($catIdSelect, $gls_add_img);
+        
 		$templateMain = 'glossaire_admin_export.tpl';
 		$GLOBALS['xoopsTpl']->assign('download', 1);        
 		$GLOBALS['xoopsTpl']->assign('href', $outZipUrl);        
@@ -87,7 +89,10 @@ switch($op) {
  //      "
   	    $form->addElement($inpCategory);
         
-        
+        $inpImgYN = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_INCLUDE_IMG, 'gls_add_img', 0);
+        $inpImgYN->setExtra(_AM_GLOSSAIRE_INCLUDE_IMG_DESC);
+  	    $form->addElement($inpImgYN);
+                  
 //         $inpQuiz = new \XoopsFormSelect(_AM_QUIZMAKER_QUIZ, 'quiz_id', $quizId);
 //         $inpQuiz->addOptionArray($quizHandler->getListKeyName($catId));
 //         //$inpQuiz->setExtra('onchange="document.quizmaker_select_filter.sender.value=this.name;document.quizmaker_select_filter.submit();"');

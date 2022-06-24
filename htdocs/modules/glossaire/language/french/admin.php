@@ -169,6 +169,15 @@ require_once __DIR__ . '/main.php';
 \define ('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY_DESC', "Sélectionez la catégorie du module Lexikon à importer");   
 
 \define('_AM_GLOSSAIRE_CLEAN_IMAGES', "Nettoyer les images: Il y a  %s image(s) inutilisé(s) et %s image(s) inexistante(s)");
+\define('_AM_GLOSSAIRE_CLEAN_FOLDER_IMAGES', "Supprimer les %s image(s) inutilisé(s)");
 \define('_AM_GLOSSAIRE_CLEAN_IMAGES_OK', "Nettoyage des images : <br>%s image(s) ont été supprimées et %s définitions mises à jour<br>pour la catégorie #%s.");    
+\define ('_AM_GLOSSAIRE_INCLUDE_IMG', "Inclure les images");   
+\define ('_AM_GLOSSAIRE_INCLUDE_IMG_DESC', "Si les images ne sont pas incluses l'archive sera plus légère");   
+\define ('_AM_GLOSSAIRE_IMAGES_DELETED', "%s image(s) on été supprimées avec succès");   
+
+\define ('_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES', "Mettre à jour les %s définition(s) qui ont des images inexistantes");   
+\define ('_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES_UPDATE', "%s définitions on tété mises à jours");   
+\define('_AM_GLOSSAIRE_IMPORT_SUCCES', "Importation Ok dans catIdSelect #%s");
+\define('_AM_GLOSSAIRE_IMPORT_ECHEC', "Echec de l'importation<br>%s");
 
 // ---------------- End ----------------

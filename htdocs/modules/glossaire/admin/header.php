@@ -59,6 +59,8 @@ if (\file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) 
 //include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 
 xoops_cp_header();
+$helper = \XoopsModules\Glossaire\Helper::getInstance();
+
 $xoTheme->addScript(XOOPS_URL . '/Frameworks/trierTableauHTML/trierTableau.js');
 //$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/Frameworks/trierTableauHTML/trierTableau.js');
 

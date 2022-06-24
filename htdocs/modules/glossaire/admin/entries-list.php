@@ -38,14 +38,29 @@ use XoopsModules\Glossaire\Common;
         $templateMain = 'glossaire_admin_entries.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('entries.php'));
         $adminObject->addItemButton(\_AM_GLOSSAIRE_ADD_ENTRY, "entries.php?op=new&catIdSelect={$catIdSelect}", 'add');
-
+        
+        /* remplacé par deux boutons, un pour chaque cas
         $imgCleanArr = $utility->cleanEntriesImages($catIdSelect, 0);
         if($imgCleanArr[0] > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
           $caption = sprintf(_AM_GLOSSAIRE_CLEAN_IMAGES, $imgCleanArr[1], $imgCleanArr[2]);
           $adminObject->addItemButton($caption, "entries.php?op=cleanEntriesImages&catIdSelect={$catIdSelect}", 'update');
         }
+        */
+        
+        $imgNotExist = $utility->cleanImagesNotExists($catIdSelect, 0);
+        if($imgNotExist > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
+          $caption = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES, $imgNotExist);
+          $adminObject->addItemButton($caption, "entries.php?op=CleanImagesNotExists&catIdSelect={$catIdSelect}", 'update');
+        }
+        
+        $img2delete = $utility->cleanFolderImages($catIdSelect, 0);
+        if($img2delete > 0 ){ //il il i a des images a supprimée
+          $caption = sprintf(_AM_GLOSSAIRE_CLEAN_FOLDER_IMAGES, $img2delete);
+          $adminObject->addItemButton($caption, "entries.php?op=cleanFolderImages&catIdSelect={$catIdSelect}", 'update');
+        }
+        
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
-
+        //--------------------------------------------------------------------------
         
         $inpCategory = new \XoopsFormSelect(\_AM_GLOSSAIRE_ENTRY_CAT_ID, 'catIdSelect', $catIdSelect);
         $inpCategory->addOptionArray($catList);

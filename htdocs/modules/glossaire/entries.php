@@ -39,7 +39,7 @@ $entId = Request::getInt('ent_id', 0);
 $catIdSelect = Request::getInt('catIdSelect',0);
 $start = Request::getInt('start', 0);
 $limit = Request::getInt('limit', $helper->getConfig('userpager'));
-if (!$limit)$limit=12;
+if (!$limit)$limit=15;
 $letter= Request::getString('letter', '*');
 if ($letter=='@') $letter='#';
 $exp2search  = Request::getString('exp2search', '');

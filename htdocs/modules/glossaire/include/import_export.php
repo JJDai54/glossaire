@@ -36,7 +36,7 @@
 /**************************************************************
  * 
  * ************************************************************/
-function export_glossaire($catId)
+function export_glossaire($catId, $gls_add_img = false)
 {
     global $xoopsConfig, $xoopsDB, $utility, $categoriesHandler, $xoopsFolder;
     
@@ -52,7 +52,7 @@ function export_glossaire($catId)
     if (!is_dir($pathGlossaire)) mkdir($pathGlossaire, 0777, true);
     //--------------------------------------------------------------
     export_categories ($catId, $pathGlossaire, GLOSSAIRE_DIRNAME);    
-    export_entries    ($catId, $pathGlossaire, GLOSSAIRE_DIRNAME, $catObj->getVar('cat_img_folder'));    
+    export_entries    ($catId, $pathGlossaire, GLOSSAIRE_DIRNAME, $catObj->getVar('cat_img_folder'), $gls_add_img);    
     
     
     
@@ -78,18 +78,20 @@ function export_categories($catId, $pathExport, $moduleName){
 /**************************************************************
  * 
  * ************************************************************/
-function export_entries($catId, $pathExport, $moduleName, $imgFolder=''){
+function export_entries($catId, $pathExport, $moduleName, $imgFolder='',$gls_add_img){
     global $xoopsConfig, $xoopsDB, $utility, $categoriesHandler, $xoopsFolder;
     
     $criteria = new \CriteriaCompo(new \Criteria('ent_cat_id',$catId,'='));
     $tbl = 'entries';
     \Xmf\Database\TableLoad::saveTableToYamlFile("{$moduleName}_{$tbl}", $pathExport . $tbl . '.yml', $criteria);
     
-    $pathSource = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' .  $imgFolder; 
-    $options = array('from' => $pathSource, 
-                     'to'   => $pathExport . "/images",
-                     'mode' => 0777);
-    $xoopsFolder->copy($options);
+    if($gls_add_img){
+      $pathSource = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' .  $imgFolder; 
+      $options = array('from' => $pathSource, 
+                       'to'   => $pathExport . "/images",
+                       'mode' => 0777);
+      $xoopsFolder->copy($options);
+    }
     //----------------------------------------------------
     /*
 

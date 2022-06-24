@@ -35,6 +35,9 @@ $catIdSelect = Request::getInt('catIdSelect',0);
 $statusIdSelect = Request::getInt('statusIdSelect', GLOSSAIRE_STATUS_ALL);
 $start = Request::getInt('start', 0);
 $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
+if ($limit == 0) $limit = $helper->getConfig('adminpager');
+
+//if (!$limit)$limit=15;
 $GLOBALS['xoopsTpl']->assign('start', $start);
 $GLOBALS['xoopsTpl']->assign('limit', $limit);
 $GLOBALS['xoopsTpl']->assign('statusIdSelect', $statusIdSelect);
@@ -122,6 +125,20 @@ switch ($op) {
         $msg = sprintf(_AM_GLOSSAIRE_CLEAN_IMAGES_OK, $nbImgCleaned[1], $nbImgCleaned[2], $catIdSelect);         
         \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, $msg);
         break;
+
+    case 'cleanFolderImages':
+    case 'cleanfolderimages':
+        $nbImagesDeleted = $utility->cleanFolderImages($catIdSelect, 1);
+        $msg = sprintf(_AM_GLOSSAIRE_IMAGES_DELETED, $nbImagesDeleted);         
+        \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, $msg);
+        break;
+
+    case 'CleanImagesNotExists':
+    case 'cleanimagesnotexists':
+        $nbImagesDeletedEntriesUpdated = $utility->cleanImagesNotExists($catIdSelect, 1);
+        $msg = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES_UPDATE, $nbImagesDeletedEntriesUpdated);         
+        \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, $msg);
+        break;
         
-}
+    }
 require __DIR__ . '/footer.php';

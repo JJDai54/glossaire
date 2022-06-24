@@ -38,7 +38,7 @@ $catIdLexikon = Request::getInt('catIdLexikon', 0);
 $utility = new \XoopsModules\Glossaire\Utility();  
 include_once GLOSSAIRE_PATH . "/include/import_export.php";
 
-$upload_size = 900000;
+
 ////////////////////////////////////////////////////////////////////////
 /**
  * 
@@ -52,7 +52,7 @@ global $xoopsDB;
     $catList = array();
     
     while ($row = $xoopsDB->fetchArray($rst)){
-        $catList[$row['categoryID']] = $row[name];
+        $catList[$row['categoryID']] = $row['name'];
     }
     return $catList;
         
@@ -108,10 +108,10 @@ $sql = "INSERT INTO " . $xoopsDB->prefix('glossaire_entries')
 echo $sql . "<hr>";
     $ret = $xoopsDB->query($sql);
 }
+$upload_size = 5000000;
 ////////////////////////////////////////////////////////////////////////
 switch($op) {
 	case 'import_self':
-
           include_once XOOPS_ROOT_PATH . '/class/uploader.php';
           //$fileName       = basename($_FILES['glossaire_files']['name'],".zip");
           $h= strrpos($_FILES['glossaire_files']['name'], '.');  
@@ -119,8 +119,13 @@ switch($op) {
           $imgMimetype    = $_FILES['glossaire_files']['type'];
           //$imgNameDef     = Request::getString('sld_short_name');
           $uploaderErrors = '';
-          $uploader = new \XoopsMediaUploader(GLOSSAIRE_UPLOAD_FILES_PATH , 
-                      array('application/x-gzip','application/zip', 'text/plain','application/gzip','application/x-compressed','application/x-zip-compressed'), 
+          $uploader = new \XoopsMediaUploader(GLOSSAIRE_UPLOAD_IMPORT_PATH , 
+                      array('application/x-gzip',
+                            'application/zip', 
+                            'text/plain',
+                            'application/gzip',
+                            'application/x-compressed',
+                            'application/x-zip-compressed'), 
                       $upload_size, null, null);
           if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
               //$h= strlen($fileName) - strrpos($fileName, '.');  
@@ -133,24 +138,28 @@ switch($op) {
                       exit;
                   } else {
                       $savedFilename = $uploader->getSavedFileName();
-                      if (!is_dir(GLOSSAIRE_UPLOAD_FILES_PATH)) mkdir(GLOSSAIRE_UPLOAD_FILES_PATH);
-                      $fullName =  GLOSSAIRE_UPLOAD_FILES_PATH . "/". $savedFilename;
-                      $destPath = GLOSSAIRE_UPLOAD_FILES_PATH . '/' . $fileName; //"/files_new_glossaire";
+                      if (!is_dir(GLOSSAIRE_UPLOAD_IMPORT_PATH)) mkdir(GLOSSAIRE_UPLOAD_IMPORT_PATH);
+                      $fullName =  GLOSSAIRE_UPLOAD_IMPORT_PATH . "/". $savedFilename;
+                      $destPath = GLOSSAIRE_UPLOAD_IMPORT_PATH . '/' . $fileName; //"/files_new_glossaire";
                       //echo "<br>===>{$savedFilename}<br>===>{$fullName}<br>===>{$destPath}<br>";
                       \JJD\unZipFile($fullName, $destPath);
                       /*
                       $newQuizId = $quizUtility::loadAsNewData($destPath, $catId);
                       */
                       //$catIdSelect = $entriesHandler->import($destPath, $catIdSelect);
+                      //exit($destPath);
                       $catIdSelect = import_glossaire($destPath, $catIdSelect);
-                      
+
                       $xoopsFolder->delete($destPath);//();
                       unlink($fullName);
-
+                      
                   }
-                } 
+                  $msg = sprintf(_AM_GLOSSAIRE_IMPORT_SUCCES, $catIdSelect);
+                } else{
+                  $msg =  sprintf(_AM_GLOSSAIRE_IMPORT_ECHEC, $uploader->getErrors());
+                }
 //exit($fullName);
-            redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}", 5, "Importation Ok dans catIdSelect={$catIdSelect}");
+            redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}", 5, $msg);
         break;
     
 	case 'import_lexikon':
@@ -196,7 +205,7 @@ switch($op) {
 
         
 
-        $upload_size = $helper->getConfig('maxsize_image'); 
+        //$upload_size = 3145728;     //;$helper->getConfig('maxsize_image'); 
         $uploadTray = new \XoopsFormFile(_AM_GLOSSAIRE_FILE_TO_LOAD, 'glossaire_files', $upload_size);     
         $uploadTray->setDescription(_AM_GLOSSAIRE_FILE_DESC . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $upload_size / 1024), '<br>');
         $formImport->addElement($uploadTray, true);
@@ -210,7 +219,7 @@ switch($op) {
 		$GLOBALS['xoopsTpl']->assign('form', $formImport->render());        
   
         // /////////////////////////////////////////////////////////
-        // ////////  form pour import d'un export Glossaire ////////
+        // ////////  form pour import de lexikon            ////////
         // /////////////////////////////////////////////////////////
         // Title
 		$title = _AM_GLOSSAIRE_IMPORT_FROM_LEXIKON;        

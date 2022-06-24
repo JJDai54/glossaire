@@ -130,11 +130,6 @@ class Entries extends \XoopsObject
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
 
-        $form->addElement(new \XoopsFormHidden('start', $this->start));
-        $form->addElement(new \XoopsFormHidden('limit', $this->limit));
-        $form->addElement(new \XoopsFormHidden('catIdSelect', $this->catIdSelect));
-        $form->addElement(new \XoopsFormHidden('statusIdSelect', $this->statusIdSelect));
-        
         
         // Form Table categories
         $catList = $categoriesHandler->getList();
@@ -324,7 +319,10 @@ class Entries extends \XoopsObject
         $form->addElement(new \XoopsFormHidden('start', $this->start));
         $form->addElement(new \XoopsFormHidden('limit', $this->limit));
         $form->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));
+        $form->addElement(new \XoopsFormHidden('catIdSelect', $this->catIdSelect));
+        $form->addElement(new \XoopsFormHidden('statusIdSelect', $this->statusIdSelect));
         return $form;
+        
     }
 
     /**

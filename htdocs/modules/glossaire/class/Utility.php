@@ -285,7 +285,7 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
 
         //echo "<hr>{$str} | {$exp} | i={$i}<hr>";
         if($i === false){
-            $j=mb_strpos("|de|des|du|le|la|les|en|pour|à|et|e|y|", "|" . strtolower($exp) . "|");
+            $j=mb_strpos("|de|des|du|le|la|les|en|pour|à|au|aux|et|e|y|", "|" . strtolower($exp) . "|");
             if ($j===false)
                 $exp = sprintf("<b>%s</b>%s" ,mb_strtoupper(mb_substr($exp,0,1)), mb_substr($exp,1));
         }else{
@@ -328,12 +328,24 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
         $retArr = array();
         
         for ($h=0; $h<count($tUrls); $h++){
-            $tUrls[$h] = trim($tUrls[$h]);
-            $i = stripos($tUrls[$h], 'http');
+            $t = explode('|', trim($tUrls[$h]));
+            if(count($t) > 1){
+                $name = $t[0];
+                $url  = $t[1];
+            }else{
+                $name = '';
+                $url  = $t[0];
+            }
             
-            if ($tUrls[$h] != ''){
-              if ($i === false) $tUrls[$h] = 'http://' . $tUrls[$h];
-              $retArr[]  = sprintf("<a href='%s' title='' alt='' target='blank'>%s</a>", $tUrls[$h], $tUrls[$h]);
+            $i = stripos($url, 'http');
+            
+            if ($url != ''){
+              if ($i === false) $url = 'http://' . $url;
+              if($name == ''){
+                $retArr[]  = sprintf("<a href='%s' title='' alt='' target='blank'>%s</a>", $url, $url);
+              }else{
+                $retArr[]  = sprintf("<a href='%s' title='' alt='' target='blank'>%s</a>", $url, $name);
+              }
             }
         }
         return implode("<br>", $retArr);
@@ -384,4 +396,79 @@ xoops_load('XoopsLists');
 
     return array($nbImgDeleted + $nbImgNotExists, $nbImgDeleted, $nbImgNotExists);
    }
-}
+   
+/* ***********************
+@ purgerFolderImg : compte ou supprime les images qui n'existe pas
+@ $action : 0 = Compte - 1 = suppression
+************************** */
+function cleanImagesNotExists($catId, $action = 0){
+global $categoriesHandler, $entriesHandler, $xoopsList;
+//if(!$categoriesHandler)return;
+    if($catId == 0)return 0;
+
+    $catObj = $categoriesHandler->get($catId);
+    if(!$catObj) return 0;
+    $dirname = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $catObj->getVar('cat_img_folder');
+
+    $criteria = new \Criteria('ent_cat_id', $catId, '=');
+    $allEntries = $entriesHandler->getAllEntries($criteria);
+    $imgUsed = array();
+    $nbImgNotExists = 0;    
+    
+    foreach($allEntries AS $entry){
+        $img = $entry->getVar('ent_image');
+        $f = $dirname . '/' . $img;
+        if (!is_readable($f) && $img != '' ){
+        //echo "{$action} - {$f}<br>";
+            if ($action == 1) {
+              $entry->setVar('ent_image', '');
+              $entriesHandler->insert($entry);
+            }
+            $nbImgNotExists++;
+        }
+    }
+// ----------------------------------------------- 
+
+    return $nbImgNotExists;
+   }
+   
+/* ***********************
+@ purgerFolderImg : compte ou supprime les images inutilisés
+@ $action : 0 = Compte - 1 = suppression
+************************** */
+function cleanFolderImages($catId, $action = 0){
+global $categoriesHandler, $entriesHandler, $xoopsList;
+//if(!$categoriesHandler)return;
+    if($catId == 0)return 0;
+
+    $catObj = $categoriesHandler->get($catId);
+    if(!$catObj) return 0;
+
+    $dirname = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $catObj->getVar('cat_img_folder');
+
+    $criteria = new \Criteria('ent_cat_id', $catId, '=');
+    $allEntries = $entriesHandler->getAllEntries($criteria);
+    $imgUsed = array();
+
+    foreach($allEntries AS $entry){
+        $img = $entry->getVar('ent_image');
+        $imgUsed[$img] = $img;
+    }
+// ----------------------------------------------- 
+xoops_load('XoopsLists');
+ //$xoopsList = new \XoopsList();
+
+    //$listImg = $xoopsList->getImgListAsArray($dirname);
+    $listImg = \XoopsLists::getImgListAsArray($dirname);
+//echo "<hr>{$dirname}<hr>";    
+    $nbImgDeleted = 0;
+    foreach($listImg as $key=>$img){
+        if (!array_key_exists($key, $imgUsed)){
+            if ($action == 1) unlink($dirname . '/' . $key);
+            $nbImgDeleted++;
+        }
+    }
+
+    return $nbImgDeleted;
+   }
+} // ----- FIN DE La CLASS -----
