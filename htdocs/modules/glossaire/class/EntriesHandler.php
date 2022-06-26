@@ -131,6 +131,8 @@ class EntriesHandler extends \XoopsPersistableObjectHandler
      */
 public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
 {
+    global $helper;
+
     $linkRefOk  = "<b><a href='{$url}' title='' alt=''><span class='letter-all letter-exist'>%s</span></a></b>";
     $linkNoRef  = "<span class='letter-all letter-notexist'>%s</span>";
     $linkOldRef = "<span class='letter-all letter-selected'>%s</span>";
@@ -143,12 +145,21 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
      
     $lettersArr = array();
 
+    $style="<style>\n"
+    . ".letter-all{" .      $helper->getConfig('all_letter') . "}\n"
+    . ".letter-selected{" . $helper->getConfig('letter_selected') . "}\n"
+    . ".letter-exist{" .    $helper->getConfig('letter_exist') . "}\n"
+    . ".letter-notexist{" . $helper->getConfig('letter_notexist') . "}\n"
+    ."</style>\n";
+/*
     $style="<style>"
     . ".letter-all{margin-left:{$margin};margin-right:{$margin};}"
     . ".letter-selected{font-weight:bold;color:red;text-decoration:underline;underline red}"
     . ".letter-exist{font-weight:bold;}"
-    . ".letter-notexist{color: #bfc9ca;}"
+    . ".letter-notexist{color: #bfc9ca;}\n"
+    . ".alphabarre{font-size:" . GLOSSAIRE_ALPHABARRE_FONT_SIZE . ";}"
     ."</style>";
+*/    
     //------------------------------------------------------
     $letterLink = '*';
     $letterVisible = _ALL;
@@ -173,7 +184,7 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
 
     }
 
-    return $style . implode('', $lettersArr);
+    return $style. "<span class='alphabarre'>" . implode('', $lettersArr) . "</span>";
 }
 public function getAlphaBarre_old($catId, $url, $oldLetter, $status=GLOSSAIRE_STATUS_APPROVED, $margin="3px")
 {

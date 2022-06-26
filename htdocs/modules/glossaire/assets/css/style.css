@@ -43,10 +43,19 @@ img {
 
 .limagei {
 	/* list-style-image: url(../../images/faq.png); */
-	list-style-type: circle;
+
 	margin-left: 15px;
     color:rgb(0,153,255);
     font-size: 1.2em;
+    font-weight: bold;
+}
+
+.gls_seealso {
+	/* list-style-image: url(../../images/faq.png); */
+
+	margin-left: 15px;
+    color:rgb(0,153,255);
+    font-size: 1.0em;
     font-weight: bold;
 }
 
@@ -55,6 +64,16 @@ img {
  padding: 0px 0px 0px 0px;
  margin: 0px 20px 20px 0px;
 }
+
+.gls_button{
+    float:right;
+    margin-left:3px;
+    margin-right:3px;
+}
+.gls_buttonTop{
+    margin-left:12px;
+}
+
 
 /*
  * Default Admin Theme

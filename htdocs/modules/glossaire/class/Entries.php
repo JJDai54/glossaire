@@ -48,6 +48,12 @@ class Entries extends \XoopsObject
     /**
      * @var int
      */
+    public $statusAccess = 0;
+    
+    /**
+     * @var int
+     */
+     
     public $statusIdSelect = -1;//a verifier si utile
 
     /**
@@ -106,11 +112,10 @@ class Entries extends \XoopsObject
      * @param bool $action
      * @return \XoopsThemeForm
      */
-    public function getFormEntries($action = false, $isProposition = false)
+    public function getFormEntries($action = false)
     {//exit("<hr>getFormEntries - statusIdSelect = {$statusIdSelect}<hr>");
         global $categoriesHandler;
 
-        
         $helper = \XoopsModules\Glossaire\Helper::getInstance();
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
@@ -122,7 +127,24 @@ class Entries extends \XoopsObject
             $this->setVar('ent_is_acronym', $categoriesObj->getVar('cat_is_acronym'));
         }
         
-        $isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+        $isAdmin = ($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid()) : false;
+        if($GLOBALS['xoopsUser']){
+            if($this->isNew()){
+                $entUid = $GLOBALS['xoopsUser']->uid();
+                $creator = \XoopsUser::getUnameFromId($entUid);
+            }else{
+                $creator = $this->getVar('ent_creator');
+            }
+        }else{
+            $isAdmin = false;
+            if($this->isNew()){
+                    $entUid = 0;
+                    $creator = 'Anonyme';
+                }else{
+                    $creator = $this->getVar('ent_creator');
+                }
+        }        
+                
         // Title
         $title = $this->isNew() ? \sprintf(\_AM_GLOSSAIRE_ENTRY_ADD) : \sprintf(\_AM_GLOSSAIRE_ENTRY_EDIT);
         // Get Theme Form
@@ -133,16 +155,10 @@ class Entries extends \XoopsObject
         
         // Form Table categories
         $catList = $categoriesHandler->getList();
-        if($isProposition){
-          $form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CATEGORY, $catList[$catIdSelect]));
-          $form->addElement(new \XoopsFormHidden('ent_cat_id', $catIdSelect));   
-        
-        }else{
           $categoriesHandler = $helper->getHandler('Categories');
           $entCat_idSelect = new \XoopsFormSelect(\_AM_GLOSSAIRE_CATEGORY, 'ent_cat_id', $catIdSelect);
           $entCat_idSelect->addOptionArray($catList);
           $form->addElement($entCat_idSelect, true);
-        }
         
         // Form Select User entUid
         //en cas d'import d'une autre base le uid n'a pas de sens
@@ -163,17 +179,13 @@ class Entries extends \XoopsObject
         $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_SHORTDEF, 'ent_shortdef', 120, 255, $this->getVar('ent_shortdef')));
         
         // Form Text ent_is_acronym
-        if($isProposition){
-          $form->addElement(new \XoopsFormHidden('ent_is_acronym', 0));   
-        }else{
           $inpMagnifySd = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_ENTRY_MAGNIFY_SD, 'ent_is_acronym', $this->getVar('ent_is_acronym'));
           $inpMagnifySd->setDescription(\_AM_GLOSSAIRE_ENTRY_MAGNIFY_SD_DESC);
           $form->addElement($inpMagnifySd);
-        }
         
         //-------------------------------------------------
         $entImage = $this->isNew() ? '' : $this->getVar('ent_image');
-            $form->addElement(new \XoopsFormHidden('ent_image', $entImage));        
+        $form->addElement(new \XoopsFormHidden('ent_image', $entImage));        
         $imgFile = '/' . $categoriesObj->getVar('cat_img_folder') . '/' . $entImage; 
         $urlImg = GLOSSAIRE_UPLOAD_IMG_FOLDER_URL . $imgFile;
         $isImgOk = (is_readable(GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . $imgFile) AND $entImage!='');
@@ -211,31 +223,6 @@ class Entries extends \XoopsObject
         $imageTray->addElement($fileUploadTray, false);
         $form->addElement($imageTray);
         //-------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             
         // Form Editor DhtmlTextArea entDefinition
         $editorConfigs = [];
@@ -274,21 +261,6 @@ class Entries extends \XoopsObject
         $inpUrls = new \XoopsFormTextArea(_AM_GLOSSAIRE_ENTRY_URLS, 'ent_urls', $this->getVar('ent_urls'), 3, 120);  
         $inpUrls->setDescription(_AM_GLOSSAIRE_ENTRY_URLS_DESC); 
         $form->addElement($inpUrls);
-/*
-        // Form Text entUrl1
-        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_URL1, 'ent_url1', 50, 255, $this->getVar('ent_url1')));
-        // Form Text entUrl2
-        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_URL2, 'ent_url2', 50, 255, $this->getVar('ent_url2')));
-*/       
-        
-        
-//         // Form Text Date Select entDate_creation
-//         $entDate_creation = $this->isNew() ? \time() : $this->getVar('ent_date_creation');
-//         $form->addElement(new \XoopsFormTextDateSelect(\_AM_GLOSSAIRE_ENTRY_DATE_CREATION, 'ent_date_creation', '', $entDate_creation));
-//         // Form Text Date Select entDate_update
-//         $entDate_update = $this->isNew() ? \time() : $this->getVar('ent_date_update');
-//         $form->addElement(new \XoopsFormTextDateSelect(\_AM_GLOSSAIRE_ENTRY_DATE_UPDATE, 'ent_date_update', '', $entDate_update));
-        
         
         // Form Text entCounter
         //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_COUNTER, 'ent_counter', 50, 255, $this->getVar('ent_counter')));
@@ -301,19 +273,153 @@ class Entries extends \XoopsObject
                            GLOSSAIRE_PROPOSITION     => _AM_GLOSSAIRE_CATEGORY_STATUS_PROPOSITION,
                            GLOSSAIRE_STATUS_APPROVED => _AM_GLOSSAIRE_CATEGORY_STATUS_APPROVED);        
         // Form Select entStatus
-        if($isProposition){
-          //pas utile d'afficher le status
-          //$form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_ENTRY_STATUS, _AM_GLOSSAIRE_CATEGORY_STATUS_PROPOSITION));
-          $form->addElement(new \XoopsFormHidden('ent_status', $arrStatus[$this->getVar('ent_status')]));   
-        }else{
-          $entStatusSelect = new \XoopsFormRadio(\_AM_GLOSSAIRE_ENTRY_STATUS, 'ent_status', $this->getVar('ent_status'));
-          $entStatusSelect->addOptionArray($arrStatus);
-          $form->addElement($entStatusSelect);
-        }
+        $entStatusSelect = new \XoopsFormRadio(\_AM_GLOSSAIRE_ENTRY_STATUS, 'ent_status', $this->getVar('ent_status'));
+        $entStatusSelect->addOptionArray($arrStatus);
+        $form->addElement($entStatusSelect);
 
-        // Form Text entFlag
-        //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_FLAG, 'ent_flag', 50, 255, $this->getVar('ent_flag')));
+        // To Save
+        $form->addElement(new \XoopsFormHidden('op', 'save'));
+        $form->addElement(new \XoopsFormHidden('start', $this->start));
+        $form->addElement(new \XoopsFormHidden('limit', $this->limit));
+        $form->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));
+        $form->addElement(new \XoopsFormHidden('catIdSelect', $this->catIdSelect));
+        $form->addElement(new \XoopsFormHidden('statusIdSelect', $this->statusIdSelect));
+        return $form;
         
+    }
+
+    /**
+     * @public function getForm
+     * @param bool $action
+     * @return \XoopsThemeForm
+     * 
+     * C'est forcément une nouvel entrée donc pas besoin de teste $this->isNew()
+     * isAdmin est faux également
+     */
+    public function getFormEntriesLight($action = false)
+    {//exit("<hr>getFormEntries - statusIdSelect = {$statusIdSelect}<hr>");
+        global $categoriesHandler;
+
+        $helper = \XoopsModules\Glossaire\Helper::getInstance();
+        if (!$action) {
+            $action = $_SERVER['REQUEST_URI'];
+        }
+        $catIdSelect = $this->getVar('ent_cat_id');
+        $categoriesObj = $categoriesHandler->get($catIdSelect);
+
+        $this->setVar('ent_is_acronym', $categoriesObj->getVar('cat_is_acronym'));
+        
+        $isAdmin = false;
+        if($GLOBALS['xoopsUser']){
+            $entUid = $GLOBALS['xoopsUser']->uid();
+            $creator = \XoopsUser::getUnameFromId($entUid);
+        }else{
+            $creator = '';
+        }        
+                
+        // Title
+        $title = $this->isNew() ? \sprintf(\_AM_GLOSSAIRE_ENTRY_ADD) : \sprintf(\_AM_GLOSSAIRE_ENTRY_EDIT);
+        // Get Theme Form
+        \xoops_load('XoopsFormLoader');
+        $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
+        $form->setExtra('enctype="multipart/form-data"');
+
+        
+        // Form Table categories
+        $catList = $categoriesHandler->getList();
+
+        $form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CATEGORY, $catList[$catIdSelect]));
+        $form->addElement(new \XoopsFormHidden('ent_cat_id', $catIdSelect));   
+        
+        if($ceator != ''){
+          $form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CREATOR, $creator));
+          $form->addElement(new \XoopsFormHidden('ent_creator', $creator));   
+        }else{
+            $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CREATOR, 'ent_creator', 50, 50, ''), true);
+        }
+        
+        // Form Text entTerm
+        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_TERM, 'ent_term', 50, 255, $this->getVar('ent_term')), true);
+        // Form Text entShortdef
+        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_SHORTDEF, 'ent_shortdef', 120, 255, $this->getVar('ent_shortdef')));
+        
+        // Form Text ent_is_acronym
+        $form->addElement(new \XoopsFormHidden('ent_is_acronym', 0));   
+        
+        //-------------------------------------------------
+        $entImage = $this->isNew() ? '' : $this->getVar('ent_image');
+            $form->addElement(new \XoopsFormHidden('ent_image', $entImage));        
+        $imgFile = '/' . $categoriesObj->getVar('cat_img_folder') . '/' . $entImage; 
+        $urlImg = GLOSSAIRE_UPLOAD_IMG_FOLDER_URL . $imgFile;
+        $isImgOk = (is_readable(GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . $imgFile) AND $entImage!='');
+        $currentImg = new \XoopsFormLabel('', "<br><img src='{$urlImg}'  name='image_img2' id='image_img2' alt='' style='max-width:100px'>");
+        
+        // Form File: Upload entImage
+        $fileUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_IMAGE, '<br>');
+        $permissionUpload = true;
+        if ($permissionUpload) {
+            $fileDirectory = '/uploads/glossaire/files/entries';
+            if ($isImgOk) {
+                $fileUploadTray->addElement(new \XoopsFormLabel(\sprintf(\_AM_GLOSSAIRE_ENTRY_IMAGE_UPLOADS, ".{$fileDirectory}/"), $entImage));
+                $inpDeleteImg = new \XoopsFormCheckBox('', 'ent_delete_img', "",'<br>');
+                $inpDeleteImg->addOption(1, _AM_GLOSSAIRE_DELETE_IMG);
+                $fileUploadTray->addElement($inpDeleteImg);
+                
+            }
+            $maxsize = $helper->getConfig('maxsize_file');
+            $fileUploadTray->addElement(new \XoopsFormFile('', 'ent_image', $maxsize));
+            $fileUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
+            //$form->addElement($fileUploadTray);
+
+        } else {
+
+        }
+        $upload_size = $helper->getConfig('maxsize_image');
+        $imageTray  = new \XoopsFormElementTray(_AM_GLOSSAIRE_ENTRY_IMAGE,"<br>"); 
+        $imageTray->addElement($currentImg, false);
+        $imageTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC2 . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $upload_size / 1024), '<br>');
+        $imageTray->addElement($fileUploadTray, false);
+        $form->addElement($imageTray);
+        //-------------------------------------------------
+            
+        // Form Editor DhtmlTextArea entDefinition
+        $editorConfigs = [];
+        $editor = $helper->getConfig('editor_user');
+        $editorConfigs['name'] = 'ent_definition';
+        $editorConfigs['value'] = $this->getVar('ent_definition', 'e');
+        $editorConfigs['rows'] = 5;
+        $editorConfigs['cols'] = 40;
+        $editorConfigs['width'] = '100%';
+        $editorConfigs['height'] = '400px';
+        $editorConfigs['editor'] = $editor;
+        $form->addElement(new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_DEFINITION, 'ent_definition', $editorConfigs));
+        
+        // Form Editor DhtmlTextArea entReference
+        $editorConfigs = [];
+        $editor = $helper->getConfig('editor_user');
+        $editorConfigs['name'] = 'ent_reference';
+        $editorConfigs['value'] = $this->getVar('ent_reference', 'e');
+        $editorConfigs['rows'] = 5;
+        $editorConfigs['cols'] = 40;
+        $editorConfigs['width'] = '100%';
+        $editorConfigs['height'] = '400px';
+        $editorConfigs['editor'] = $editor;
+        $inpReference = new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_REFERENCES, 'ent_reference', $editorConfigs);
+        $inpReference->setDescription(_AM_GLOSSAIRE_ENTRY_REFERENCES_DESC);
+        $form->addElement($inpReference);
+        
+        // Form Text ent_urls
+        $inpUrls = new \XoopsFormTextArea(_AM_GLOSSAIRE_ENTRY_URLS, 'ent_urls', $this->getVar('ent_urls'), 3, 120);  
+        $inpUrls->setDescription(_AM_GLOSSAIRE_ENTRY_URLS_DESC); 
+        $form->addElement($inpUrls);
+        
+        // Form Text entCounter
+        //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_COUNTER, 'ent_counter', 50, 255, $this->getVar('ent_counter')));
+        $form->addElement(new \XoopsFormHidden(\_AM_GLOSSAIRE_ENTRY_COUNTER, $this->getVar('ent_counter')));
+                  
+        // Form Select entStatus
+        $form->addElement(new \XoopsFormHidden('ent_status', GLOSSAIRE_PROPOSITION));   
+
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormHidden('start', $this->start));
@@ -332,12 +438,13 @@ class Entries extends \XoopsObject
      * @param null $maxDepth
      * @return array
      */
-    public function getValuesEntries($keys = null, $format = null, $maxDepth = null)
+    public function getValuesEntries($keys = null, $format = null, $maxDepth = null, &$categoriesObj = null)
     {global $categoriesHandler;
         $helper  = \XoopsModules\Glossaire\Helper::getInstance();
         //$categoriesHandler = $helper->getHandler('Categories');
 //        if (is_null($categoriesHandler)) echo "categoriesHandler est null"; else echo 'bin non';
-        $categoriesObj = $categoriesHandler->get($this->getVar('ent_cat_id'));
+        
+        if(!$categoriesObj) $categoriesObj = $categoriesHandler->get($this->getVar('ent_cat_id'));
 
         //----------------------------------------------------
         $utility = new \XoopsModules\Glossaire\Utility();
@@ -356,7 +463,8 @@ class Entries extends \XoopsObject
         $editorMaxchar = $helper->getConfig('editor_maxchar');
         $ret['definition_short'] = $utility::truncateHtml($ret['definition'], $editorMaxchar);
         $ret['image']            = $this->getVar('ent_image');
-        if ($ret['image'] !== ''){
+        
+        if ($ret['image'] !== '' && is_readable(GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $categoriesObj->getVar('cat_img_folder') . '/' . $this->getVar('ent_image'))){
           $ret['image_url']        =  GLOSSAIRE_UPLOAD_IMG_FOLDER_URL . '/' . $categoriesObj->getVar('cat_img_folder') . '/' . $this->getVar('ent_image');
           //definition_img contient l'image et la définition prete a l'emloi dans le FO
           $ret['definition_img'] = "<div class='highslide-gallery'>"

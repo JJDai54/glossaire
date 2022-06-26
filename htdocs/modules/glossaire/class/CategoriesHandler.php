@@ -198,7 +198,27 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
 
         return $tPerm;
     }
-
+	/**
+     * getStatus renvoie les tatus qui défini le type d'accès aau formulaire des sefinition
+     * @param catId   iod de la catétogrie
+     * @return int  
+     *          0 : Aucune permission
+     *          1 : permet de soumettre une définition, certain champs seront masqué ou inaccessible
+     *          2 : permet d'approuver. Full acces au formulaire
+     */
+	public function getStatusAccess($catId){
+    
+    $tPerms = array_flip($this->getPermissions('approve'));
+    //echo "<hr>catId : {$catId}<pre>" . print_r($tPerms, true) . "</pre><hr>";
+    if (array_key_exists($catId, $tPerms)) return 2;
+  
+    $tPerms =  array_flip($this->getPermissions('submit'));
+    //echo "<hr>catId : {$catId}<pre>" . print_r($tPerms, true) . "</pre><hr>";
+    if (array_key_exists($catId, $tPerms)) return 1;
+    
+    return 0;
+    
+}
 
 	/**
      * Fonction qui liste les catégories qui respectent la permission demandée

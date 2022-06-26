@@ -101,4 +101,6 @@ Comme vous pouvez le voir, vous avez créé une page avec une liste de liens en 
 \define('_MA_GLOSSAIRE_SEEALSO', "Voir aussi");
 \define('_AM_GLOSSAIRE_NO_GLOSSAIRE', "Il n'y a aucun glossaire accessible");
 
+\define('_MA_GLOSSAIRE_REFERENCES', "Références");
+\define('_MA_GLOSSAIRE_ENTRY_SOUMETTRE', "Soumettre un terme");
 // ---------------- End ----------------

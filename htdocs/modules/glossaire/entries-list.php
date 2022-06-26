@@ -69,8 +69,11 @@ use JJD AS JJD;
         $GLOBALS['xoopsTpl']->assign('catIdSelect', $catIdSelect);
         $GLOBALS['xoopsTpl']->assign('nbCategories', count($catList));
         $GLOBALS['xoopsTpl']->assign('isCatAllowed', $categoriesHandler->isCatAllowed($catIdSelect));
-        $GLOBALS['xoopsTpl']->assign('page2;irect', $page2redirect);
+        $GLOBALS['xoopsTpl']->assign('page2redirect', $page2redirect);
         
+        $statusAccess = $categoriesHandler->getStatusAccess($catIdSelect);
+        echo "<hr>===> : {$statusAccess}<hr>";
+        $GLOBALS['xoopsTpl']->assign('statusAccess', $statusAccess);
         
         //--- Criteres de recherche
         $crEntries = new \CriteriaCompo();
@@ -123,7 +126,8 @@ use JJD AS JJD;
             $entCat_id = '';
             // Get All Entries
             foreach (\array_keys($entriesAll) as $i) {
-                $entries[$i] = $entriesAll[$i]->getValuesEntries();
+                //$entries[$i] = $entriesAll[$i]->getValuesEntries();
+                $entries[$i] = $entriesAll[$i]->getValuesEntries(null, null, null, $categoriesObj);
                 $entCat_id = $entriesAll[$i]->getVar('ent_cat_id');
                 $keywords[$i] = $entCat_id;
             }

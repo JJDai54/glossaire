@@ -5,6 +5,8 @@
 <{*  ------------------------------------------------------------------ *}>
 <{include file='db:glossaire_header.tpl' }>
 
+<{if !$form}>
+
 <div class='table-responsive'>
 <{if $catIdSelect}>
 <form name='select_filter' id='select_filter' action='entries.php' method='post' onsubmit='return xoopsFormValidate_form();' enctype=''>
@@ -38,7 +40,7 @@
 }
 </style>
  
-<div style='float: left;'> 
+<div style='float: left;color:black;'> 
   <form name='gls_search' id='gls_search' action='entries.php' method='post' enctype=''>
     <input type="hidden" name="op" value="list" />
     <input type="hidden" name="start" value="0" />
@@ -52,17 +54,19 @@
   </form>
 </div>
 
-<div> 
-<{if $isCatAllowed}>
+<div style='color:black;'> 
+<{if $statusAccess > 0}>
   <form name='gls_addnew' id='gls_addnew' action='entries.php' method='post' enctype=''>
     <input type="hidden" name="op" value="new" />
     <input type="hidden" name="catIdSelect" value="<{$catIdSelect}>" />
+    <input type="hidden" name="statusAccess" value="<{$statusAccess}>" />
     <button  type="submit" class="gls_btn_icon" style='width:300px;' onclick="">
-        <img src="<{xoModuleIcons16 add.png}>" title="<{$smarty.const._ADD}>" class='gls_btn_img'><{$smarty.const._MA_GLOSSAIRE_ENTRY_NEW}>
+        <img src="<{xoModuleIcons16 add.png}>" title="<{$smarty.const._ADD}>" class='gls_btn_img'>
+        <{if $statusAccess == 2}><{$smarty.const._MA_GLOSSAIRE_ENTRY_NEW}><{else}><{$smarty.const._MA_GLOSSAIRE_ENTRY_SOUMETTRE}><{/if}>
     </button>
   </form>
 <{else}><br>
-<{/if}> <{* //isCatAllowed *}>
+<{/if}> <{* //$statusAccess *}>
 </div>
   
 </div> 
@@ -100,8 +104,11 @@
 
 </div>
 
-<{if $form|default:''}>
+<{else}>
+<div class="item-round-no <{$colors_set}>-itemBody" style="padding:12px;margin-top:-5px;">
     <{$form|default:false}>
+</div>
+
 <{/if}>
 <{if $error|default:''}>
     <{$error|default:false}>

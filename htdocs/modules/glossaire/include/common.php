@@ -67,3 +67,6 @@ $localLogo = \GLOSSAIRE_IMAGE_URL . '/xoopsdevelopmentteam_logo.png';
 $copyright = "<a href='jubile.fr' title='XOOPS Project' target='_blank'><img src='" . $localLogo . "' alt='XOOPS Project' ></a>";
 require_once \XOOPS_ROOT_PATH . '/class/xoopsrequest.php';
 require_once \GLOSSAIRE_PATH . '/include/functions.php';
+
+//--------- a mettre dans xoops_version.php
+\define('GLOSSAIRE_ALPHABARRE_FONT_SIZE', "1.52em");

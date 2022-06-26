@@ -160,4 +160,23 @@ define('_MI_GLOSSAIRE_IMPORT', "Importation");
 \define('_MI_GLOSSAIRE_MIMETYPES_FILE', "Fichier des types MIME");
 \define('_MI_GLOSSAIRE_MIMETYPES_FILE_DESC', "Définir les types mime autorisés pour le téléchargement de fichiers");
 
+
+\define('_MI_GLOSSAIRE_BREAK_NOTIFICATION', "<center><div style='background-color:black;color:white;'>NOTIFICATION</div><center>");
+\define('_MI_GLOSSAIRE_BREAK_NOTIFICATION_DESC', "");
+
+\define('_MI_GLOSSAIRE_ALPHABARRE_CSS', "<br>Indiquer le style CSS sans les accolades et sans oublier les ';'");
+
+\define('_MI_GLOSSAIRE_BREAK_ALPHABARRE', "<center><div style='background-color:black;color:white;'>ALPHABARRE - Barre de sélection</div><center>");
+\define('_MI_GLOSSAIRE_BREAK_ALPHABARRE_DESC', "Barre constituée des lettres de l'aphabet pour la sélection dans le glossaire."._MI_GLOSSAIRE_ALPHABARRE_CSS);
+\define('_MI_GLOSSAIRE_ALPHABARRE_ALL_LETTER', "Style des lettres");
+\define('_MI_GLOSSAIRE_ALPHABARRE_ALL_LETTER_DESC', "Style CSS des lettre par défaut."._MI_GLOSSAIRE_ALPHABARRE_CSS);
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED', "Style de la lettre sélectionnée");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED_DESC', "Style de la lettre sélectionnée."._MI_GLOSSAIRE_ALPHABARRE_CSS);
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST', "Style des lettres existantes");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci existe"._MI_GLOSSAIRE_ALPHABARRE_CSS);
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST', "Style des lettres inexistantes");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci n'existe pas."._MI_GLOSSAIRE_ALPHABARRE_CSS);
+
+
+
 // ---------------- End ----------------

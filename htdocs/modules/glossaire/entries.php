@@ -44,6 +44,7 @@ $letter= Request::getString('letter', '*');
 if ($letter=='@') $letter='#';
 $exp2search  = Request::getString('exp2search', '');
 //if ($letter == '*') $exp2search ='';
+$statusAccess = Request::getInt('statusAccess', 0);
 $page2redirect = "entries.php";
 
 $GLOBALS['xoopsTpl']->assign('start', $start);
@@ -83,7 +84,17 @@ switch ($op) {
         $entriesObj = $entriesHandler->create();
         $entriesObj->setVar('ent_cat_id', $catIdSelect);
         $entriesObj->setVar('ent_status', GLOSSAIRE_PROPOSITION);
-        $form = $entriesObj->getFormEntries(false, true);
+        $entriesObj->setVar('statusAccess', $statusAccess);
+        if($statusAccess == 2){
+            $form = $entriesObj->getFormEntries(false, true);
+        }else{
+            $form = $entriesObj->getFormEntriesLight(false, true);
+        }
+        \JJD\load_css();
+        $catObj = $categoriesHandler->get($catIdSelect);
+        echo ($catObj) ? "<hr>OUI<hr>" : "<hr>NON<hr>"; 
+        $GLOBALS['xoopsTpl']->assign('colors_set', $catObj->getVar('cat_colors_set'));
+        echo "<hr>{$catIdSelect} : cat_colors_set : " . $catObj->getVar('cat_colors_set') . "<hr>";
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
     case 'edit':

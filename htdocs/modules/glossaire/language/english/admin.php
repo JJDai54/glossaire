@@ -157,6 +157,7 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_ENTRY_IMAGE_UPLOADS', "Image in %s :");
 \define('_AM_GLOSSAIRE_CATEGORY_IMG_FOLDER', "Dossier images");
 \define('_AM_GLOSSAIRE_ENTRY_IMG_DESC', "Sélectionnez une image existante ou téléchargez une nouvelle image.<br>Laissez vide pour garder l'image existante.");
+\define('_AM_GLOSSAIRE_ENTRY_IMG_DESC2', "Sélectionnez une image dans votre environnement ou Laissez vide.");
 \define('_AM_GLOSSAIRE_CREATOR', "Creator");
 \define('_AM_GLOSSAIRE_CATEGORY_ENTRIES', "Entries");
 \define('_AM_GLOSSAIRE_TOTAL', "Total");

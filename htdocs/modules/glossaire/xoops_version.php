@@ -574,7 +574,72 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 0];
 
+// ------------------- alphabarre ------------------- //
+$modversion['config'][] = [
+    'name'        => 'gls_break_alphabarre',
+    'title'       => '_MI_GLOSSAIRE_BREAK_ALPHABARRE',
+    'description' => '_MI_GLOSSAIRE_BREAK_ALPHABARRE_DESC',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'head',
+];
+
+// $modversion['config'][] = [
+//     'name'        => 'font_size',
+//     'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_FONT_SIZE',
+//     'description' => '\_MI_GLOSSAIRE_ALPHABARRE_FONT_SIZE_DESC',
+//     'formtype'    => 'textbox',
+//     'valuetype'   => 'text',
+//     'default'     => '',
+// ];
+
+$modversion['config'][] = [
+    'name'        => 'all_letter',
+    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_ALL_LETTER',
+    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_ALL_LETTER_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'font-size:1.5em;margin-left:3px;margin-right:3px;',
+];
+
+$modversion['config'][] = [
+    'name'        => 'letter_selected',
+    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED',
+    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'font-weight:bold;color:red;text-decoration:underline;underline red;',
+];
+
+$modversion['config'][] = [
+    'name'        => 'letter_exist',
+    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST',
+    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'font-weight:bold;',
+];
+
+$modversion['config'][] = [
+    'name'        => 'letter_notexist',
+    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST',
+    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'color: #bfc9ca;',
+];
+
+
 // ------------------- Notifications ------------------- //
+$modversion['config'][] = [
+    'name'        => 'gls_break_notification',
+    'title'       => '_MI_GLOSSAIRE_BREAK_NOTIFICATION',
+    'description' => '_MI_GLOSSAIRE_BREAK_NOTIFICATION_DESC',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'head',
+];
+
 $modversion['hasNotification'] = 1;
 $modversion['notification'] = [
     'lookup_file' => 'include/notification.inc.php',
