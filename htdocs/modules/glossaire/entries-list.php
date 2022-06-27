@@ -94,7 +94,7 @@ use JJD AS JJD;
         if($letter == '*')  $exp2search = '';
         $GLOBALS['xoopsTpl']->assign('exp2search', $exp2search);
             
-        if ($exp2search  !== '' && $letter != '*'){
+        if ($exp2search  !== '' && $letter != '*' && $sender != 'xoops'){
 include_once('include/search.inc.php');
             $crKeywords = glossaire_build_criteria_words($exp2search,null);
 //             $crKeywords = new \CriteriaCompo();
@@ -104,8 +104,8 @@ include_once('include/search.inc.php');
 //             $crKeywords->add(new \Criteria('ent_reference', "%{$exp2search}%" , 'LIKE'), 'OR');
             $crEntries->add($crKeywords);
        }else{
-         $exp2search = $exp2searchGlobal;
        }
+         $exp2search = $exp2searchGlobal;
 
     //url = XOOPS_URL . "/modules/glossaire/op=list&catId={$catId}&letter=%s";        &exp2search={$exp2search}
         $url = "{$page2redirect}?op=list&catIdSelect={$catIdSelect}&start=0&limit={$limit}&letter=%s&exp2search={$exp2search}";

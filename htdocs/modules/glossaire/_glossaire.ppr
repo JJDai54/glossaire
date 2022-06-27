@@ -277,7 +277,7 @@ _glossaire
 Main=
 Selected=entries-list.php
 [admin\import.php]
-TopLine=253
+TopLine=258
 Caret=1,293
 [language\french\admin.php]
 TopLine=149
@@ -289,14 +289,14 @@ Caret=1,464
 TopLine=130
 Caret=1,148
 [templates\glossaire_entries.tpl]
-TopLine=92
+TopLine=82
 Caret=28,82
 [entries-list.php]
-TopLine=55
-Caret=76,74
+TopLine=73
+Caret=65,97
 [entries.php]
-TopLine=54
-Caret=12,45
+TopLine=29
+Caret=8,47
 [templates\glossaire_categories_colors_set.tpl]
 TopLine=1
 Caret=33,19
@@ -311,7 +311,7 @@ TopLine=1
 Caret=33,7
 [include\search.inc.php]
 TopLine=128
-Caret=1,148
+Caret=89,154
 [templates\glossaire_entries_item-02.tpl]
 TopLine=1
 Caret=39,23

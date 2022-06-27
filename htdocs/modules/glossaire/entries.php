@@ -44,6 +44,7 @@ $letter= Request::getString('letter', '*');
 if ($letter=='@') $letter='#';
 $exp2search  = Request::getString('exp2search', '');
 $exp2searchGlobal  = Request::getString('exp2searchGlobal', '');
+$sender  = Request::getString('sender', '');
 
 //if ($letter == '*') $exp2search ='';
 $statusAccess = Request::getInt('statusAccess', 0);

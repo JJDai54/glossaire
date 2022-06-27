@@ -151,7 +151,7 @@ function glossaire_search($queryarray, $andor, $limit, $offset, $userid)
     $catTitle = (($showId) ? "[#%1\$s] - " : '')        . "%2\$s";
     
     $exp = implode(',', $queryarray);
-    $link = "entries.php?op=list&catIdSelect=%s&ent_id=%s&exp2searchGlobal={$exp}&letter=%s&start=0#entry-%s";
+    $link = "entries.php?op=list&catIdSelect=%s&ent_id=%s&exp2search={$exp}&sender=xoops&letter=%s&start=0#entry-%s";
     $catLink = "entries.php?catIdSelect=%s";
     $cuttentId = 0;
     
