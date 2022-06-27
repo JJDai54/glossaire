@@ -151,7 +151,7 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_FILE_DESC', "Une nouvelle catégorie sera générée");
 \define('_AM_GLOSSAIRE_FILE_TO_LOAD', "Fichier à importer");
 \define('_AM_GLOSSAIRE_FILE_UPLOADSIZE', "Taile maximum des fichiers %s mo");
-\define('_AM_GLOSSAIRE_SELECT_CATEGORY_DESC', "Sélectionnez une catégorie de destintion pour ce nouveau glossaire.");
+\define('_AM_GLOSSAIRE_SELECT_CATEGORY_DESC', "Sélectionnez une catégorie de destintion pour ces nouvelles définitions.");
 \define('_AM_GLOSSAIRE_IMPORTER', "Importer");
 \define('_AM_GLOSSAIRE_IMPORT_IN_NEW_CAT', "Importer dans une nouvelle catégorie");
 \define('_AM_GLOSSAIRE_ENTRY_IMAGE', "Image");
@@ -166,19 +166,23 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_DELETE_IMG', "Supprimer l'image");
 \define('_AM_GLOSSAIRE_NO_CATEGORIES1', "Il n'y a aucune categorie de crée.<br>Vous devez d'abord créer une catégories avant d'ajouter des définitions.");
 \define('_AM_GLOSSAIRE_NO_CATEGORIES2', "Il n'y a aucune categorie à exporter.");
-\define ('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY', "Catégorie de Lexikon");   
-\define ('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY_DESC', "Sélectionez la catégorie du module Lexikon à importer");   
+\define('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY', "Catégories de Lexikon");   
+\define('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY_DESC', "Sélectionez la catégorie du module Lexikon à importer");   
 
 \define('_AM_GLOSSAIRE_CLEAN_IMAGES', "Nettoyer les images: Il y a  %s image(s) inutilisé(s) et %s image(s) inexistante(s)");
 \define('_AM_GLOSSAIRE_CLEAN_FOLDER_IMAGES', "Supprimer les %s image(s) inutilisé(s)");
 \define('_AM_GLOSSAIRE_CLEAN_IMAGES_OK', "Nettoyage des images : <br>%s image(s) ont été supprimées et %s définitions mises à jour<br>pour la catégorie #%s.");    
-\define ('_AM_GLOSSAIRE_INCLUDE_IMG', "Inclure les images");   
-\define ('_AM_GLOSSAIRE_INCLUDE_IMG_DESC', "Si les images ne sont pas incluses l'archive sera plus légère");   
-\define ('_AM_GLOSSAIRE_IMAGES_DELETED', "%s image(s) on été supprimées avec succès");   
+\define('_AM_GLOSSAIRE_INCLUDE_IMG', "Inclure les images");   
+\define('_AM_GLOSSAIRE_INCLUDE_IMG_DESC', "Si les images ne sont pas incluses l'archive sera plus légère");   
+\define('_AM_GLOSSAIRE_IMAGES_DELETED', "%s image(s) on été supprimées avec succès");   
 
-\define ('_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES', "Mettre à jour les %s définition(s) qui ont des images inexistantes");   
-\define ('_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES_UPDATE', "%s définitions on tété mises à jours");   
+\define('_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES', "Mettre à jour les %s définition(s) qui ont des images inexistantes");   
+\define('_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES_UPDATE', "%s définitions on tété mises à jours");   
 \define('_AM_GLOSSAIRE_IMPORT_SUCCES', "Importation Ok dans catIdSelect #%s");
 \define('_AM_GLOSSAIRE_IMPORT_ECHEC', "Echec de l'importation<br>%s");
+
+\define('_AM_GLOSSAIRE_IMPORT_FROM_FTP', "Import direct du dossier 'mport-direct'");
+\define('_AM_GLOSSAIRE_FILE_TO_IMPORT', "Fichier à importer");
+\define('_AM_GLOSSAIRE_FILE_TO_IMPORT_DESC', "Le fichier doit être une archive exportée par le module 'glossaire' ou l'un de ses clones.<br>A utiliser quand le fichier est trop gros pour etre importé.<br>Copiez le fichier via FTP dans le dossier 'uploads/glossaire/imports-directs'.");
 
 // ---------------- End ----------------

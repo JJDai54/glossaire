@@ -38,6 +38,9 @@ $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
 $GLOBALS['xoopsTpl']->assign('start', $start);
 $GLOBALS['xoopsTpl']->assign('limit', $limit);
 
+
+
+
 $utility = new \XoopsModules\Glossaire\Utility();
         
 switch ($op) {

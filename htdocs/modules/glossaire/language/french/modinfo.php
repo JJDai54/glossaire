@@ -37,11 +37,11 @@ require_once __DIR__ . '/common.php';
 \define('_MI_GLOSSAIRE_ADMENU6', "Commentaires");
 \define('_MI_GLOSSAIRE_ABOUT', "A propos");
 // ---------------- Navigation Admin ----------------
-\define('_MI_GLOSSAIRE_ADMIN_PAGER', "Téléavertisseur d'administration");
-\define('_MI_GLOSSAIRE_ADMIN_PAGER_DESC', "Admin par liste de pages");
+\define('_MI_GLOSSAIRE_ADMIN_PAGER', "Nombre de lignes côté administration");
+\define('_MI_GLOSSAIRE_ADMIN_PAGER_DESC', "Nombre de lignes par page dans les listes de l'administration");
 //Utilisateur
-\define('_MI_GLOSSAIRE_USER_PAGER', "Téléavertisseur utilisateur");
-\define('_MI_GLOSSAIRE_USER_PAGER_DESC', "Liste des utilisateurs par page");
+\define('_MI_GLOSSAIRE_USER_PAGER', "Nombre de lignes côté utilisateur");
+\define('_MI_GLOSSAIRE_USER_PAGER_DESC', "Nombre de lignes par page dans les liste pour les utilisateurs");
 // sous-menu
 \define('_MI_GLOSSAIRE_SMNAME1', "Page d'index");
 \define('_MI_GLOSSAIRE_SMNAME2', "Catégories");
@@ -161,22 +161,40 @@ define('_MI_GLOSSAIRE_IMPORT', "Importation");
 \define('_MI_GLOSSAIRE_MIMETYPES_FILE_DESC', "Définir les types mime autorisés pour le téléchargement de fichiers");
 
 
-\define('_MI_GLOSSAIRE_BREAK_NOTIFICATION', "<center><div style='background-color:black;color:white;'>NOTIFICATION</div><center>");
-\define('_MI_GLOSSAIRE_BREAK_NOTIFICATION_DESC', "");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT', "Style des lettres par défaut");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT_DESC', "Style CSS des lettre par défaut.");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED', "Style de la lettre sélectionnée");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED_DESC', "Style de la lettre sélectionnée.");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST', "Style des lettres existantes");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci existe");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST', "Style des lettres inexistantes");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci n'existe pas.");
+\define('_MI_GLOSSAIRE_SHOW_ID', "Afficher les identifiants");
+\define('_MI_GLOSSAIRE_SHOW_ID_DESC', "Utilisé en mode développement, laisser de préférence 'False' en production");
+
+\define('_MI_GLOSSAIRE_SEARCH_MODE', "Mode de recherche");
+\define('_MI_GLOSSAIRE_SEARCH_MODE_DESC', "Module : Utilise la fonction de recherche du module<br>Globale : Utilise la fonction de rechecher de xoops");
+\define('_MI_GLOSSAIRE_SEARCH_MODE_LOCAL', "Module");
+\define('_MI_GLOSSAIRE_SEARCH_MODE_GLOBAL', "Globale");
+
+//--------
+\define('_MI_GLOSSAIRE_CONFIG_TITLE', "<center><div style='background-color:black;color:white;'>%s</div><center>");
 
 \define('_MI_GLOSSAIRE_ALPHABARRE_CSS', "<br>Indiquer le style CSS sans les accolades et sans oublier les ';'");
+\define('_MI_GLOSSAIRE_BREAK_ALPHABARRE_DESC', "<br>Barre constituée des lettres de l'aphabet pour la sélection dans le glossaire.");
+\define('_MI_GLOSSAIRE_BREAK_ALPHABARRE', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "ALPHABARRE - Barre de sélection" . _MI_GLOSSAIRE_BREAK_ALPHABARRE_DESC . _MI_GLOSSAIRE_ALPHABARRE_CSS));
 
-\define('_MI_GLOSSAIRE_BREAK_ALPHABARRE', "<center><div style='background-color:black;color:white;'>ALPHABARRE - Barre de sélection</div><center>");
-\define('_MI_GLOSSAIRE_BREAK_ALPHABARRE_DESC', "Barre constituée des lettres de l'aphabet pour la sélection dans le glossaire."._MI_GLOSSAIRE_ALPHABARRE_CSS);
-\define('_MI_GLOSSAIRE_ALPHABARRE_ALL_LETTER', "Style des lettres");
-\define('_MI_GLOSSAIRE_ALPHABARRE_ALL_LETTER_DESC', "Style CSS des lettre par défaut."._MI_GLOSSAIRE_ALPHABARRE_CSS);
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED', "Style de la lettre sélectionnée");
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED_DESC', "Style de la lettre sélectionnée."._MI_GLOSSAIRE_ALPHABARRE_CSS);
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST', "Style des lettres existantes");
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci existe"._MI_GLOSSAIRE_ALPHABARRE_CSS);
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST', "Style des lettres inexistantes");
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci n'existe pas."._MI_GLOSSAIRE_ALPHABARRE_CSS);
+\define('_MI_GLOSSAIRE_BREAK_IMAGE', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "Images"));
+\define('_MI_GLOSSAIRE_BREAK_FILE', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "Fichiers"));
+\define('_MI_GLOSSAIRE_BREAK_GROUP', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "Groupes"));
+\define('_MI_GLOSSAIRE_BREAK_INTERFACE', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "Interface"));
+\define('_MI_GLOSSAIRE_BREAK_EXTRA', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "Extra"));
+\define('_MI_GLOSSAIRE_BREAK_NOTIFICATION', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "NOTIFICATIONS") );
 
 
 
+/*
+\define('', "");
+\define('', "");
+*/
 // ---------------- End ----------------

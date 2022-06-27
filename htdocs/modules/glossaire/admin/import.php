@@ -34,6 +34,7 @@ $op = Request::getCmd('op', 'list');
 $catIdSelect = Request::getInt('catIdSelect',0);
 $catId  = Request::getInt('cat_id', -1);
 $catIdLexikon = Request::getInt('catIdLexikon', 0);
+$fileToImport = Request::getString('file_to_omport', '');
 
 $utility = new \XoopsModules\Glossaire\Utility();  
 include_once GLOSSAIRE_PATH . "/include/import_export.php";
@@ -119,6 +120,7 @@ switch($op) {
           $imgMimetype    = $_FILES['glossaire_files']['type'];
           //$imgNameDef     = Request::getString('sld_short_name');
           $uploaderErrors = '';
+          if (!is_dir(GLOSSAIRE_UPLOAD_IMPORT_PATH)) mkdir(GLOSSAIRE_UPLOAD_IMPORT_PATH);
           $uploader = new \XoopsMediaUploader(GLOSSAIRE_UPLOAD_IMPORT_PATH , 
                       array('application/x-gzip',
                             'application/zip', 
@@ -161,6 +163,20 @@ switch($op) {
 //exit($fullName);
             redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}", 5, $msg);
         break;
+        
+	case 'import_ftp':
+            $fullName = GLOSSAIRE_UPLOAD_IMPORT_DIRECT_PATH . '/' . $fileToImport;
+            $h = strrpos($fileToImport, '.');
+            $fileName = substr($fileToImport, 0, $h);
+            $destPath = GLOSSAIRE_UPLOAD_IMPORT_PATH . '/' . $fileName; //"/files_new_glossaire";
+            \JJD\unZipFile($fullName, $destPath);
+            $catIdSelect = import_glossaire($destPath, $catIdSelect);
+            //exit ("catIdSelect = {$catIdSelect}<br>{$fileName}<br>{$destPath}");
+
+            $xoopsFolder->delete($destPath);//();
+            //unlink($fullName);
+            redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}", 5, $msg);
+        break;
     
 	case 'import_lexikon':
         if ($catIdSelect < 0) $catIdSelect = importCategoryFromLexikon($catIdLexikon);
@@ -197,27 +213,57 @@ switch($op) {
        // Title
 		$title = _AM_GLOSSAIRE_IMPORT_FROM_GLOSSAIRE;        
 		// Get Theme Form
-		$formImport = new \XoopsThemeForm($title, 'form_import', 'import.php', 'post', true);
-		$formImport->setExtra('enctype="multipart/form-data"');
+		$formSelf = new \XoopsThemeForm($title, 'form_import', 'import.php', 'post', true);
+		$formSelf->setExtra('enctype="multipart/form-data"');
 		// To Save
-		$formImport->addElement(new \XoopsFormHidden('op', 'import_self'));
-		$formImport->addElement(new \XoopsFormHidden('sender', ''));
+		$formSelf->addElement(new \XoopsFormHidden('op', 'import_self'));
+		$formSelf->addElement(new \XoopsFormHidden('sender', ''));
 
         
 
         //$upload_size = 3145728;     //;$helper->getConfig('maxsize_image'); 
         $uploadTray = new \XoopsFormFile(_AM_GLOSSAIRE_FILE_TO_LOAD, 'glossaire_files', $upload_size);     
         $uploadTray->setDescription(_AM_GLOSSAIRE_FILE_DESC . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $upload_size / 1024), '<br>');
-        $formImport->addElement($uploadTray, true);
+        $formSelf->addElement($uploadTray, true);
 
         // ----- Listes de selection pour filtrage -----  
-  	    $formImport->addElement($inpCategory);
+  	    $formSelf->addElement($inpCategory);
 
         //----------------------------------------------- 
-		$formImport->addElement(new \XoopsFormButton('', _SUBMIT, _AM_GLOSSAIRE_IMPORTER, 'submit'));
-//echo $formImport->render()  ;      
-		$GLOBALS['xoopsTpl']->assign('form', $formImport->render());        
+		$formSelf->addElement(new \XoopsFormButton('', _SUBMIT, _AM_GLOSSAIRE_IMPORTER, 'submit'));
+//echo $formSelf->render()  ;      
+		$GLOBALS['xoopsTpl']->assign('form_self', $formSelf->render());        
   
+        // /////////////////////////////////////////////////////////////////
+        // /////// form pour import du dossier import_direct ///////////////
+         // ////////////////////////////////////////////////////////////////
+       // Title
+		$title = _AM_GLOSSAIRE_IMPORT_FROM_FTP;        
+		// Get Theme Form
+		$formFtp = new \XoopsThemeForm($title, 'form_import_ftp', 'import.php', 'post', true);
+		$formFtp->setExtra('enctype="multipart/form-data"');
+		// To Save
+		$formFtp->addElement(new \XoopsFormHidden('op', 'import_ftp'));
+		$formFtp->addElement(new \XoopsFormHidden('sender', ''));
+
+        
+xoops_load('XoopsLists');
+        $dirname = GLOSSAIRE_UPLOAD_IMPORT_DIRECT_PATH;
+        $listFile = \XoopsLists::getFileListByExtension($dirname, array('zip'));
+//echo "<hr>{$dirname}<hr>";    
+        $inpFile = new \xoopsFormSelect(\_AM_GLOSSAIRE_FILE_TO_IMPORT, 'file_to_omport','');
+        $inpFile->setDescription(\_AM_GLOSSAIRE_FILE_TO_IMPORT_DESC);
+        $inpFile->addOptionArray($listFile);
+        $formFtp->addElement($inpFile, true);
+        
+        // ----- Listes de selection pour filtrage -----  
+  	    $formFtp->addElement($inpCategory);
+
+        //----------------------------------------------- 
+		$formFtp->addElement(new \XoopsFormButton('', _SUBMIT, _AM_GLOSSAIRE_IMPORTER, 'submit'));
+//echo $formImport->render()  ;      
+		$GLOBALS['xoopsTpl']->assign('form_ftp', $formFtp->render());   
+             
         // /////////////////////////////////////////////////////////
         // ////////  form pour import de lexikon            ////////
         // /////////////////////////////////////////////////////////

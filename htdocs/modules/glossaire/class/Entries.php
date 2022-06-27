@@ -347,39 +347,21 @@ class Entries extends \XoopsObject
         $form->addElement(new \XoopsFormHidden('ent_is_acronym', 0));   
         
         //-------------------------------------------------
-        $entImage = $this->isNew() ? '' : $this->getVar('ent_image');
-            $form->addElement(new \XoopsFormHidden('ent_image', $entImage));        
-        $imgFile = '/' . $categoriesObj->getVar('cat_img_folder') . '/' . $entImage; 
-        $urlImg = GLOSSAIRE_UPLOAD_IMG_FOLDER_URL . $imgFile;
-        $isImgOk = (is_readable(GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . $imgFile) AND $entImage!='');
-        $currentImg = new \XoopsFormLabel('', "<br><img src='{$urlImg}'  name='image_img2' id='image_img2' alt='' style='max-width:100px'>");
+        $entImage = '';
+        $form->addElement(new \XoopsFormHidden('ent_image', $entImage));        
         
         // Form File: Upload entImage
+        $maxsize = $helper->getConfig('maxsize_image');
         $fileUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_IMAGE, '<br>');
         $permissionUpload = true;
         if ($permissionUpload) {
             $fileDirectory = '/uploads/glossaire/files/entries';
-            if ($isImgOk) {
-                $fileUploadTray->addElement(new \XoopsFormLabel(\sprintf(\_AM_GLOSSAIRE_ENTRY_IMAGE_UPLOADS, ".{$fileDirectory}/"), $entImage));
-                $inpDeleteImg = new \XoopsFormCheckBox('', 'ent_delete_img', "",'<br>');
-                $inpDeleteImg->addOption(1, _AM_GLOSSAIRE_DELETE_IMG);
-                $fileUploadTray->addElement($inpDeleteImg);
-                
-            }
-            $maxsize = $helper->getConfig('maxsize_file');
+            //$maxsize = $helper->getConfig('maxsize_file');
             $fileUploadTray->addElement(new \XoopsFormFile('', 'ent_image', $maxsize));
             $fileUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
-            //$form->addElement($fileUploadTray);
-
-        } else {
-
-        }
-        $upload_size = $helper->getConfig('maxsize_image');
-        $imageTray  = new \XoopsFormElementTray(_AM_GLOSSAIRE_ENTRY_IMAGE,"<br>"); 
-        $imageTray->addElement($currentImg, false);
-        $imageTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC2 . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $upload_size / 1024), '<br>');
-        $imageTray->addElement($fileUploadTray, false);
-        $form->addElement($imageTray);
+        $fileUploadTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC2 . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $maxsize / 1024), '<br>');
+        $form->addElement($fileUploadTray);
+        } 
         //-------------------------------------------------
             
         // Form Editor DhtmlTextArea entDefinition

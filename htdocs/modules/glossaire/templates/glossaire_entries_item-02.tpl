@@ -20,7 +20,7 @@
 *}>
 
 <div name='entry-<{$entry.id}>' id='entry-<{$entry.id}>' class="item-round-no <{$colors_set}>-itemBody" style="padding:12px;margin-top:-5px;">
-    <span class='limagei'><b><{$entry.term}></b>
+    <span class='limagei'><{if $showId}>[#<{$entry.id}>]-<{/if}><b><{$entry.term}></b>
 
 <{* Affichage de boutons image pour gérer l'entree *}>
     <a href='#haut_de_page'>

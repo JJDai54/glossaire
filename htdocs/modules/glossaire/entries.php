@@ -43,6 +43,8 @@ if (!$limit)$limit=15;
 $letter= Request::getString('letter', '*');
 if ($letter=='@') $letter='#';
 $exp2search  = Request::getString('exp2search', '');
+$exp2searchGlobal  = Request::getString('exp2searchGlobal', '');
+
 //if ($letter == '*') $exp2search ='';
 $statusAccess = Request::getInt('statusAccess', 0);
 $page2redirect = "entries.php";
@@ -164,6 +166,15 @@ switch ($op) {
         }
         break;
 
+    case 'globalSearch':
+    case 'globalsearch':
+        $exp2search = str_replace(",|; ", "+", $exp2search);
+        $andor = "OR";
+        $mid =  $GLOBALS['xoopsModule']->getVar('mid');
+        $url = XOOPS_URL . "/search.php?query={$exp2search}&andor={$andor}&mids%5B%5D={$mid}&submit=Recherche&action=results";
+        //exit($url);
+        \redirect_header($url, 0, '');
+        break;
 }
 if ($bolFoot){
 // Keywords

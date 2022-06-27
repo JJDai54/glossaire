@@ -16,7 +16,7 @@
     <{foreach item=category from=$categories name=lpCat}>&nbsp;&nbsp;
           <div class="fwj-onglets <{$category.colors_set}>-item-legend" >
             <a href="<{$smarty.const.GLOSSAIRE_URL}>/<{$page2redirect}>?catIdSelect=<{$category.id}>" >
-              <{$category.name}>
+              <{if $showId}>[#<{$category.id}>]-<{/if}><{$category.name}>
             </a>
 
           </div>

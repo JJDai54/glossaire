@@ -23,6 +23,20 @@ declare(strict_types=1);
  * @author         XOOPS Development Team - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
  */
 
+
+function glossaire_getBreakLine($name){
+// ------------------- Images ------------------- //
+$tBreakLine = [
+    'name'        => 'gls_break_' . strtolower($name),
+    'title'       => '\_MI_GLOSSAIRE_BREAK_' . strtoupper($name),
+    'description' => '', //\_MI_GLOSSAIRE_BREAK_' . strtoupper($name) . '_DESC',
+    'formtype'    => 'line_break',
+    'valuetype'   => 'textbox',
+    'default'     => 'head',
+];
+    return $tBreakLine;
+}
+
 // 
 $moduleDirName      = \basename(__DIR__);
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
@@ -234,33 +248,20 @@ require_once __DIR__ . '/include/xoops_version.inc.php';
 $iniPostMaxSize       = glossaireReturnBytes(\ini_get('post_max_size'));
 $iniUploadMaxFileSize = glossaireReturnBytes(\ini_get('upload_max_filesize'));
 $maxSize              = min($iniPostMaxSize, $iniUploadMaxFileSize);
-if ($maxSize > 10000 * 1048576) {
-    $increment = 500;
-}
-if ($maxSize <= 10000 * 1048576) {
-    $increment = 200;
-}
-if ($maxSize <= 5000 * 1048576) {
-    $increment = 100;
-}
-if ($maxSize <= 2500 * 1048576) {
-    $increment = 50;
-}
-if ($maxSize <= 1000 * 1048576) {
-    $increment = 10;
-}
-if ($maxSize <= 500 * 1048576) {
-    $increment = 5;
-}
-if ($maxSize <= 100 * 1048576) {
-    $increment = 2;
-}
-if ($maxSize <= 50 * 1048576) {
-    $increment = 1;
-}
-if ($maxSize <= 25 * 1048576) {
-    $increment = 0.5;
-}
+
+if ($maxSize > 10000  * 1048576) $increment = 500;
+if ($maxSize <= 10000 * 1048576) $increment = 200;
+if ($maxSize <= 5000  * 1048576) $increment = 100;
+if ($maxSize <= 2500  * 1048576) $increment = 50;
+if ($maxSize <= 1000  * 1048576) $increment = 10;
+if ($maxSize <= 500   * 1048576) $increment = 5;
+if ($maxSize <= 100   * 1048576) $increment = 2;
+if ($maxSize <= 50    * 1048576) $increment = 1;
+if ($maxSize <= 25    * 1048576) $increment = 0.5;
+
+// ------------------- Images ------------------- //
+$modversion['config'][] = glossaire_getBreakLine('image');
+
 $optionMaxsize = [];
 $i = $increment;
 while ($i * 1048576 <= $maxSize) {
@@ -284,7 +285,7 @@ $modversion['config'][] = [
     'description' => '\_MI_GLOSSAIRE_MIMETYPES_IMAGE_DESC',
     'formtype'    => 'select_multi',
     'valuetype'   => 'array',
-    'default'     => ['image/gif', 'image/jpeg', 'image/png'],
+    'default'     => ['image/gif','image/jpg',  'image/jpeg', 'image/png'],
     'options'     => ['bmp' => 'image/bmp','gif' => 'image/gif','pjpeg' => 'image/pjpeg', 'jpeg' => 'image/jpeg','jpg' => 'image/jpg','jpe' => 'image/jpe', 'png' => 'image/png'],
 ];
 $modversion['config'][] = [
@@ -303,6 +304,10 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 800,
 ];
+
+// ------------------- fichiers ------------------- //
+$modversion['config'][] = glossaire_getBreakLine('file');
+
 // Uploads : maxsize of file
 $modversion['config'][] = [
     'name'        => 'maxsize_file',
@@ -313,6 +318,7 @@ $modversion['config'][] = [
     'default'     => 3145728,
     'options'     => $optionMaxsize,
 ];
+
 // Uploads : mimetypes of file
 $modversion['config'][] = [
     'name'        => 'mimetypes_file',
@@ -325,6 +331,8 @@ $modversion['config'][] = [
 ];
 /////////////////////////////////////////////////////////////
 // Get groups
+$modversion['config'][] = glossaire_getBreakLine('group');
+
 $memberHandler = \xoops_getHandler('member');
 $xoopsGroups  = $memberHandler->getGroupList();
 $groups = [];
@@ -370,90 +378,61 @@ $modversion['config'][] = [
     'options'     => $adminGroups,
 ];
 unset($crGroups);
-// Keywords
+
+// ------------------- alphabarre ------------------- //
+$modversion['config'][] = glossaire_getBreakLine('gls_break_alphabarre');
+
 $modversion['config'][] = [
-    'name'        => 'keywords',
-    'title'       => '\_MI_GLOSSAIRE_KEYWORDS',
-    'description' => '\_MI_GLOSSAIRE_KEYWORDS_DESC',
+    'name'        => 'letter_default',
+    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT',
+    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'glossaire, categories, entries',
+    'default'     => 'font-size:1.5em;margin-left:3px;margin-right:3px;',
 ];
 
-// create increment steps for file size
-require_once __DIR__ . '/include/xoops_version.inc.php';
-$iniPostMaxSize       = glossaireReturnBytes(\ini_get('post_max_size'));
-$iniUploadMaxFileSize = glossaireReturnBytes(\ini_get('upload_max_filesize'));
-$maxSize              = min($iniPostMaxSize, $iniUploadMaxFileSize);
-if ($maxSize > 10000 * 1048576) {
-    $increment = 500;
-}
-if ($maxSize <= 10000 * 1048576) {
-    $increment = 200;
-}
-if ($maxSize <= 5000 * 1048576) {
-    $increment = 100;
-}
-if ($maxSize <= 2500 * 1048576) {
-    $increment = 50;
-}
-if ($maxSize <= 1000 * 1048576) {
-    $increment = 10;
-}
-if ($maxSize <= 500 * 1048576) {
-    $increment = 5;
-}
-if ($maxSize <= 100 * 1048576) {
-    $increment = 2;
-}
-if ($maxSize <= 50 * 1048576) {
-    $increment = 1;
-}
-if ($maxSize <= 25 * 1048576) {
-    $increment = 0.5;
-}
-$optionMaxsize = [];
-$i = $increment;
-while ($i * 1048576 <= $maxSize) {
-    $optionMaxsize[$i . ' ' . _MI_GLOSSAIRE_SIZE_MB] = $i * 1048576;
-    $i += $increment;
-}
-// Uploads : maxsize of image
 $modversion['config'][] = [
-    'name'        => 'maxsize_image',
-    'title'       => '\_MI_GLOSSAIRE_MAXSIZE_IMAGE',
-    'description' => '\_MI_GLOSSAIRE_MAXSIZE_IMAGE_DESC',
+    'name'        => 'letter_selected',
+    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED',
+    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'font-weight:bold;color:red;text-decoration:underline;underline red;',
+];
+
+$modversion['config'][] = [
+    'name'        => 'letter_exist',
+    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST',
+    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'font-weight:bold;',
+];
+
+$modversion['config'][] = [
+    'name'        => 'letter_notexist',
+    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST',
+    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'color: #bfc9ca;',
+];
+
+
+// ------------------- interface ------------------- //
+$modversion['config'][] = glossaire_getBreakLine('interface');
+
+$modversion['config'][] = [
+    'name'        => 'search_mode',
+    'title'       => '_MI_GLOSSAIRE_SEARCH_MODE',
+    'description' => '_MI_GLOSSAIRE_SEARCH_MODE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
-    'default'     => 3145728,
-    'options'     => $optionMaxsize,
+    'default'     => 0,
+    'options'     => array(_MI_GLOSSAIRE_SEARCH_MODE_GLOBAL => 0,
+                           _MI_GLOSSAIRE_SEARCH_MODE_LOCAL  => 1)
 ];
-// Uploads : mimetypes of image
-$modversion['config'][] = [
-    'name'        => 'mimetypes_image',
-    'title'       => '\_MI_GLOSSAIRE_MIMETYPES_IMAGE',
-    'description' => '\_MI_GLOSSAIRE_MIMETYPES_IMAGE_DESC',
-    'formtype'    => 'select_multi',
-    'valuetype'   => 'array',
-    'default'     => ['image/gif', 'image/jpeg', 'image/png'],
-    'options'     => ['bmp' => 'image/bmp','gif' => 'image/gif','pjpeg' => 'image/pjpeg', 'jpeg' => 'image/jpeg','jpg' => 'image/jpg','jpe' => 'image/jpe', 'png' => 'image/png'],
-];
-$modversion['config'][] = [
-    'name'        => 'maxwidth_image',
-    'title'       => '\_MI_GLOSSAIRE_MAXWIDTH_IMAGE',
-    'description' => '\_MI_GLOSSAIRE_MAXWIDTH_IMAGE_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'int',
-    'default'     => 800,
-];
-$modversion['config'][] = [
-    'name'        => 'maxheight_image',
-    'title'       => '\_MI_GLOSSAIRE_MAXHEIGHT_IMAGE',
-    'description' => '\_MI_GLOSSAIRE_MAXHEIGHT_IMAGE_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'int',
-    'default'     => 800,
-];
+
 // Admin pager
 $modversion['config'][] = [
     'name'        => 'adminpager',
@@ -472,6 +451,33 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 10,
 ];
+// Show Breadcrumbs
+$modversion['config'][] = [
+    'name'        => 'show_breadcrumbs',
+    'title'       => '\_MI_GLOSSAIRE_SHOW_BREADCRUMBS',
+    'description' => '\_MI_GLOSSAIRE_SHOW_BREADCRUMBS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+$modversion['config'][] = [
+    'name' => 'displayTemplateName',
+    'title'       => '_MI_GLOSSAIRE_SHOW_TPL_NAME',
+    'description' => '_MI_GLOSSAIRE_SHOW_TPL_NAME_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0];
+    
+$modversion['config'][] = [
+    'name' => 'showId',
+    'title'       => '_MI_GLOSSAIRE_SHOW_ID',
+    'description' => '_MI_GLOSSAIRE_SHOW_ID_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0];
+
+
+/*
 // Number column
 $modversion['config'][] = [
     'name'        => 'numb_col',
@@ -482,6 +488,7 @@ $modversion['config'][] = [
     'default'     => 1,
     'options'     => [1 => '1', 2 => '2', 3 => '3', 4 => '4'],
 ];
+
 // Divide by
 $modversion['config'][] = [
     'name'        => 'divideby',
@@ -512,6 +519,19 @@ $modversion['config'][] = [
     'default'     => 'default',
     'options'     => ['default' => 'default', 'primary' => 'primary', 'success' => 'success', 'info' => 'info', 'warning' => 'warning', 'danger' => 'danger'],
 ];
+*/
+
+$modversion['config'][] = glossaire_getBreakLine('extra');
+// Keywords
+$modversion['config'][] = [
+    'name'        => 'keywords',
+    'title'       => '\_MI_GLOSSAIRE_KEYWORDS',
+    'description' => '\_MI_GLOSSAIRE_KEYWORDS_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'glossaire, categories, entries',
+];
+
 // Paypal ID
 $modversion['config'][] = [
     'name'        => 'donations',
@@ -520,15 +540,6 @@ $modversion['config'][] = [
     'formtype'    => 'textbox',
     'valuetype'   => 'textbox',
     'default'     => 'XYZ123',
-];
-// Show Breadcrumbs
-$modversion['config'][] = [
-    'name'        => 'show_breadcrumbs',
-    'title'       => '\_MI_GLOSSAIRE_SHOW_BREADCRUMBS',
-    'description' => '\_MI_GLOSSAIRE_SHOW_BREADCRUMBS_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 1,
 ];
 // Advertise
 $modversion['config'][] = [
@@ -566,69 +577,6 @@ $modversion['config'][] = [
     'valuetype'   => 'text',
     'default'     => 'https://www.frxoops.org/modules/newbb/',
 ];
-$modversion['config'][] = [
-    'name' => 'displayTemplateName',
-    'title'       => '_MI_GLOSSAIRE_SHOW_TPL_NAME',
-    'description' => '_MI_GLOSSAIRE_SHOW_TPL_NAME_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 0];
-
-// ------------------- alphabarre ------------------- //
-$modversion['config'][] = [
-    'name'        => 'gls_break_alphabarre',
-    'title'       => '_MI_GLOSSAIRE_BREAK_ALPHABARRE',
-    'description' => '_MI_GLOSSAIRE_BREAK_ALPHABARRE_DESC',
-    'formtype'    => 'line_break',
-    'valuetype'   => 'textbox',
-    'default'     => 'head',
-];
-
-// $modversion['config'][] = [
-//     'name'        => 'font_size',
-//     'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_FONT_SIZE',
-//     'description' => '\_MI_GLOSSAIRE_ALPHABARRE_FONT_SIZE_DESC',
-//     'formtype'    => 'textbox',
-//     'valuetype'   => 'text',
-//     'default'     => '',
-// ];
-
-$modversion['config'][] = [
-    'name'        => 'all_letter',
-    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_ALL_LETTER',
-    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_ALL_LETTER_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => 'font-size:1.5em;margin-left:3px;margin-right:3px;',
-];
-
-$modversion['config'][] = [
-    'name'        => 'letter_selected',
-    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED',
-    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => 'font-weight:bold;color:red;text-decoration:underline;underline red;',
-];
-
-$modversion['config'][] = [
-    'name'        => 'letter_exist',
-    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST',
-    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => 'font-weight:bold;',
-];
-
-$modversion['config'][] = [
-    'name'        => 'letter_notexist',
-    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST',
-    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => 'color: #bfc9ca;',
-];
-
 
 // ------------------- Notifications ------------------- //
 $modversion['config'][] = [

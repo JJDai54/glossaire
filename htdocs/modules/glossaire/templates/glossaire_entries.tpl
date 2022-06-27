@@ -42,12 +42,12 @@
  
 <div style='float: left;color:black;'> 
   <form name='gls_search' id='gls_search' action='entries.php' method='post' enctype=''>
-    <input type="hidden" name="op" value="list" />
+    <input type="hidden" name="op" value="<{$searchMode}>" />
     <input type="hidden" name="start" value="0" />
     <input type="hidden" name="letter" value="+" />
     <input type="hidden" name="exp2search" value="<{$exp2search}>" />
     
-    <input type="text" id="exp2search" name="exp2search" required  minlength="4" maxlength="25" size="20" value='<{$exp2search}>'>  
+    <input type="text" id="exp2search" name="exp2search" required  minlength="4" maxlength="30" size="30" value='<{$exp2search}>'>  
     <button  type="submit" class="gls_btn_icon">
         <img src="<{xoModuleIcons16 search.png}>" title="<{$smarty.const._SEARCH}>" class='gls_btn_img'><{$smarty.const._MA_GLOSSAIRE_ENTRY_SEARCH}>
     </button>
@@ -60,7 +60,7 @@
     <input type="hidden" name="op" value="new" />
     <input type="hidden" name="catIdSelect" value="<{$catIdSelect}>" />
     <input type="hidden" name="statusAccess" value="<{$statusAccess}>" />
-    <button  type="submit" class="gls_btn_icon" style='width:300px;' onclick="">
+    <button  type="submit" class="gls_btn_icon" style='width:250px;' onclick="">
         <img src="<{xoModuleIcons16 add.png}>" title="<{$smarty.const._ADD}>" class='gls_btn_img'>
         <{if $statusAccess == 2}><{$smarty.const._MA_GLOSSAIRE_ENTRY_NEW}><{else}><{$smarty.const._MA_GLOSSAIRE_ENTRY_SOUMETTRE}><{/if}>
     </button>

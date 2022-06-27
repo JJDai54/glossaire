@@ -70,9 +70,11 @@ use JJD AS JJD;
         $GLOBALS['xoopsTpl']->assign('nbCategories', count($catList));
         $GLOBALS['xoopsTpl']->assign('isCatAllowed', $categoriesHandler->isCatAllowed($catIdSelect));
         $GLOBALS['xoopsTpl']->assign('page2redirect', $page2redirect);
-        
+        $GLOBALS['xoopsTpl']->assign('searchMode', array(0=>'globalSearch', 1=>'list')[$helper->getConfig('search_mode')]);
+        $GLOBALS['xoopsTpl']->assign('showId', $helper->getConfig('showId'));
+
         $statusAccess = $categoriesHandler->getStatusAccess($catIdSelect);
-        echo "<hr>===> : {$statusAccess}<hr>";
+//        echo "<hr>===> : {$statusAccess}<hr>";
         $GLOBALS['xoopsTpl']->assign('statusAccess', $statusAccess);
         
         //--- Criteres de recherche
@@ -93,13 +95,17 @@ use JJD AS JJD;
         $GLOBALS['xoopsTpl']->assign('exp2search', $exp2search);
             
         if ($exp2search  !== '' && $letter != '*'){
-            $crsearch = new \CriteriaCompo();
-            $crsearch->add(new \Criteria('ent_term', "%{$exp2search}%" , 'LIKE'), 'OR');
-            $crsearch->add(new \Criteria('ent_shortdef', "%{$exp2search}%" , 'LIKE'), 'OR');
-            $crsearch->add(new \Criteria('ent_definition', "%{$exp2search}%" , 'LIKE'), 'OR');
-            $crsearch->add(new \Criteria('ent_reference', "%{$exp2search}%" , 'LIKE'), 'OR');
-            $crEntries->add($crsearch);
-       }            
+include_once('include/search.inc.php');
+            $crKeywords = glossaire_build_criteria_words($exp2search,null);
+//             $crKeywords = new \CriteriaCompo();
+//             $crKeywords->add(new \Criteria('ent_term', "%{$exp2search}%" , 'LIKE'), 'OR');
+//             $crKeywords->add(new \Criteria('ent_shortdef', "%{$exp2search}%" , 'LIKE'), 'OR');
+//             $crKeywords->add(new \Criteria('ent_definition', "%{$exp2search}%" , 'LIKE'), 'OR');
+//             $crKeywords->add(new \Criteria('ent_reference', "%{$exp2search}%" , 'LIKE'), 'OR');
+            $crEntries->add($crKeywords);
+       }else{
+         $exp2search = $exp2searchGlobal;
+       }
 
     //url = XOOPS_URL . "/modules/glossaire/op=list&catId={$catId}&letter=%s";        &exp2search={$exp2search}
         $url = "{$page2redirect}?op=list&catIdSelect={$catIdSelect}&start=0&limit={$limit}&letter=%s&exp2search={$exp2search}";

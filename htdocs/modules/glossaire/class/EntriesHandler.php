@@ -133,9 +133,62 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
 {
     global $helper;
 
-    $linkRefOk  = "<b><a href='{$url}' title='' alt=''><span class='letter-all letter-exist'>%s</span></a></b>";
-    $linkNoRef  = "<span class='letter-all letter-notexist'>%s</span>";
-    $linkOldRef = "<span class='letter-all letter-selected'>%s</span>";
+    $linkRefOk  = "<b><a href='{$url}' title='' alt=''><span class='letter-exist'>%s</span></a></b>";
+    $linkNoRef  = "<span class='letter-notexist'>%s</span>";
+    $linkOldRef = "<span class='letter-selected'>%s</span>";
+
+    $oldLetter = strtoupper($oldLetter);
+    $sql = "SELECT GROUP_CONCAT(DISTINCT(`ent_initiale`)) as comaList FROM " . $this->table
+         . " " . $criteria->renderWhere();         
+    $rst = $this->db->query($sql);  
+    $arr = $this->db->fetchArray($rst)['comaList']; 
+
+    if($arr)      
+        $lettersfound = explode(',', $arr);
+    else
+        $lettersfound = array();
+    //---------------------------------------------
+    $lettersArr = array();
+
+    $style="<style>\n"
+    . ".letter-default span{"  . $helper->getConfig('letter_default') . "}\n"
+    . ".letter-selected{" . $helper->getConfig('letter_selected') . "}\n"
+    . ".letter-exist{"    . $helper->getConfig('letter_exist') . "}\n"
+    . ".letter-notexist{" . $helper->getConfig('letter_notexist') . "}\n"
+    ."</style>\n";
+    //------------------------------------------------------
+    $letterLink = '*';
+    $letterVisible = _ALL;
+        if($letterLink==$oldLetter)
+            $lettersArr[] =  sprintf($linkOldRef, $letterVisible);
+        else
+            $lettersArr[] =  sprintf($linkRefOk, $letterLink, $letterVisible);
+    
+    //------------------------------------------------------
+    for ($h = 0; $h < strlen(_GLS_ALPHABARRE); ++$h) {
+        $letterVisible = _GLS_ALPHABARRE[$h];
+        $letterLink = ($letterVisible=='#') ? '@' : $letterVisible;
+
+        if (array_search($letterVisible, $lettersfound)!==false){
+            if($letterVisible==$oldLetter)
+                $lettersArr[] = sprintf($linkOldRef, $letterVisible); 
+            else
+                $lettersArr[] = sprintf($linkRefOk, $letterLink, $letterVisible); 
+        }else{
+            $lettersArr[] = sprintf($linkNoRef, $letterVisible);
+        }
+
+    }
+
+    return $style. "<span class='letter-default'>" . implode('', $lettersArr) . "</span>";
+}
+public function getAlphaBarre_old($criteria, $url, $oldLetter, $margin="3px")
+{
+    global $helper;
+
+    $linkRefOk  = "<b><a href='{$url}' title='' alt=''><span class='letter-default letter-exist'>%s</span></a></b>";
+    $linkNoRef  = "<span class='letter-default letter-notexist'>%s</span>";
+    $linkOldRef = "<span class='letter-default letter-selected'>%s</span>";
 
     $oldLetter = strtoupper($oldLetter);
     $sql = "SELECT GROUP_CONCAT(DISTINCT(`ent_initiale`)) as comaList FROM " . $this->table
@@ -146,20 +199,11 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
     $lettersArr = array();
 
     $style="<style>\n"
-    . ".letter-all{" .      $helper->getConfig('all_letter') . "}\n"
+    . ".letter-default{"  . $helper->getConfig('letter_default') . "}\n"
     . ".letter-selected{" . $helper->getConfig('letter_selected') . "}\n"
-    . ".letter-exist{" .    $helper->getConfig('letter_exist') . "}\n"
+    . ".letter-exist{"    . $helper->getConfig('letter_exist') . "}\n"
     . ".letter-notexist{" . $helper->getConfig('letter_notexist') . "}\n"
     ."</style>\n";
-/*
-    $style="<style>"
-    . ".letter-all{margin-left:{$margin};margin-right:{$margin};}"
-    . ".letter-selected{font-weight:bold;color:red;text-decoration:underline;underline red}"
-    . ".letter-exist{font-weight:bold;}"
-    . ".letter-notexist{color: #bfc9ca;}\n"
-    . ".alphabarre{font-size:" . GLOSSAIRE_ALPHABARRE_FONT_SIZE . ";}"
-    ."</style>";
-*/    
     //------------------------------------------------------
     $letterLink = '*';
     $letterVisible = _ALL;
@@ -186,49 +230,7 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
 
     return $style. "<span class='alphabarre'>" . implode('', $lettersArr) . "</span>";
 }
-public function getAlphaBarre_old($catId, $url, $oldLetter, $status=GLOSSAIRE_STATUS_APPROVED, $margin="3px")
-{
-    $oldLetter = strtoupper($oldLetter);
-    $sql = "SELECT GROUP_CONCAT(DISTINCT(`ent_initiale`)) as comaList FROM " . $this->table
-         . " WHERE ent_cat_id={$catId} AND ent_status={$status}";         
-    $rst = $this->db->query($sql);         
-    $lettersfound = explode(',', $this->db->fetchArray($rst)['comaList']);
-     
-    $lettersArr = array();
-    $link = "<b><a href='{$url}' title='' alt=''>%s</a></b>";
 
-    $style="<style>"
-    . ".letter-all{margin-left:{$margin};margin-right:{$margin};}"
-    . ".letter-selected{font-weight:bold;color:red;text-decoration:underline;underline red}"
-    . ".letter-exist{font-weight:bold;}"
-    . ".letter-notexist{color: #bfc9ca;}"
-    ."</style>";
-    //------------------------------------------------------
-    $letter = '*';
-    $all = _ALL;
-        if($letter==$oldLetter)
-            $lettersArr[] = sprintf($link, $letter, "<span class='letter-all letter-selected''>{$all}</span>"); 
-        else
-            $lettersArr[] = sprintf($link, $letter, "<span class='letter-all letter-exist''>{$all}</span>"); 
-    
-    //------------------------------------------------------
-    for ($h = 0; $h < strlen(_GLS_ALPHABARRE); ++$h) {
-        $letter = _GLS_ALPHABARRE[$h];
-        $letter2 = ($letter=='#') ? '@' : $letter;
-
-        if (array_search($letter, $lettersfound)!==false){
-            if($letter==$oldLetter)
-                $lettersArr[] = sprintf($link, $letter2, "<span class='letter-all letter-selected'>{$letter}</span>"); 
-            else
-                $lettersArr[] = sprintf($link, $letter2, "<span class='letter-all letter-exist'>{$letter}</span>"); 
-        }else{
-            $lettersArr[] = "<span class='letter-all letter-notexist'>{$letter}</span>";
-        }
-
-    }
-
-    return $style . implode('', $lettersArr);
-}
     /**
      * @return new bool
      */

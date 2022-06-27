@@ -242,3 +242,4 @@ function glossaire_Filter($url, $type = '') {
     $url = ('' == $url) ? $type : \strtolower(\trim($url, '-'));
     return $url;
 }
+

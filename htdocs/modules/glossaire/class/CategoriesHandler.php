@@ -238,6 +238,13 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         $allEnrAllowed = parent::getList($criteria);
         return $allEnrAllowed;
     }
+
+	public function getIdsAllowed($short_permtype = 'view')
+    {
+        $tPerm = $this->getPermissions($short_permtype);
+        return join(',', $tPerm);
+    }
+    
 	public function getAllAllowed($short_permtype = 'view', $criteria = null, $start = 0, $limit = 0, $sort='cat_weight,cat_name,cat_id', $order="ASC")
     { 
         $tPerm = $this->getPermissions($short_permtype);
