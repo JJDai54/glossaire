@@ -32,9 +32,9 @@ $op = \Xmf\Request::getCmd('op', '');
 $moduleDirName = \basename(\dirname(__DIR__));
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
-$helper = Glossaire\Helper::getInstance();
+$glossaireHelper = Glossaire\Helper::getInstance();
 // Load language files
-$helper->loadLanguage('common');
+$glossaireHelper->loadLanguage('common');
 
 switch ($op) {
     case 'load':

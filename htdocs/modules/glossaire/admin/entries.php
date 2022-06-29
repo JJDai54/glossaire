@@ -34,8 +34,8 @@ $entId = Request::getInt('ent_id');
 $catIdSelect = Request::getInt('catIdSelect',0);
 $statusIdSelect = Request::getInt('statusIdSelect', GLOSSAIRE_STATUS_ALL);
 $start = Request::getInt('start', 0);
-$limit = Request::getInt('limit', $helper->getConfig('adminpager'));
-if ($limit == 0) $limit = $helper->getConfig('adminpager');
+$limit = Request::getInt('limit', $glossaireHelper->getConfig('adminpager'));
+if ($limit == 0) $limit = $glossaireHelper->getConfig('adminpager');
 
 //if (!$limit)$limit=15;
 $GLOBALS['xoopsTpl']->assign('start', $start);
@@ -114,7 +114,7 @@ switch ($op) {
     case 'incrementField':
     case 'incrementfield':
         //$entriesHandler->changeStatus($entId);
-        $fldName = Request::getString('field', $helper->getConfig('adminpager'));
+        $fldName = Request::getString('field', $glossaireHelper->getConfig('adminpager'));
         $entriesHandler->incrementeField($entId, $fldName, 2);
         \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, \_AM_GLOSSAIRE_FORM_OK);
         break;

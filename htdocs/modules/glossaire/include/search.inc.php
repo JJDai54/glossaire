@@ -64,6 +64,9 @@ function glossaire_build_criteria_words($queryarray, $andor = '')
             $crKeyword->add(new \Criteria('ent_shortdef', "%{$queryarray[$i]}%",'LIKE'),'OR');
             $crKeyword->add(new \Criteria('ent_definition', "%{$queryarray[$i]}%",'LIKE'),'OR');
             $crKeyword->add(new \Criteria('ent_reference', "%{$queryarray[$i]}%",'LIKE'),'OR');
+// a voir ajout du nom du fichier dans la recherche
+//ent_file_title_1
+//ent_file_name_1
 
             $crKeywords->add($crKeyword, $andor);
             unset($crKeyword);
@@ -86,8 +89,8 @@ function glossaire_search($queryarray, $andor, $limit, $offset, $userid)
 
 
     $ret = [];
-    $helper = \XoopsModules\Glossaire\Helper::getInstance();
-    $categoriesHandler = $helper->getHandler('Categories');
+    $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
+    $categoriesHandler = $glossaireHelper->getHandler('Categories');
     //$catIdsAllowes = $categoriesHandler->getIdsAllowed();
 	$catAllowed = $categoriesHandler->getListAllowed('view');
     $catIdsAllowes = implode(',', array_keys($catAllowed));
@@ -95,7 +98,7 @@ function glossaire_search($queryarray, $andor, $limit, $offset, $userid)
     // search in table entries
     // search keywords
     $elementCount = 0;
-    $entriesHandler = $helper->getHandler('Entries');
+    $entriesHandler = $glossaireHelper->getHandler('Entries');
     if (\is_array($queryarray)) {
         $elementCount = \count($queryarray);
     }
@@ -145,7 +148,7 @@ function glossaire_search($queryarray, $andor, $limit, $offset, $userid)
     $crSearch->setOrder('DESC');
     $entriesAll = $entriesHandler->getAll($crSearch);
 
-    $showId = $helper->getConfig('showId');    
+    $showId = $glossaireHelper->getConfig('showId');    
     $title1   = (($showId) ? "[#%1\$s/#%2\$s] - " : '') . "%3\$s : %4\$s";
     $title2   = (($showId) ? "[#%1\$s/#%2\$s] - " : '') . "%3\$s";
     $catTitle = (($showId) ? "[#%1\$s] - " : '')        . "%2\$s";

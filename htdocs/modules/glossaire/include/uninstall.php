@@ -35,12 +35,12 @@ function xoops_module_uninstall_glossaire(\XoopsModule $module)
     $moduleDirName      = \basename(\dirname(__DIR__));
     $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
-    $helper = Glossaire\Helper::getInstance();
+    $glossaireHelper = Glossaire\Helper::getInstance();
 
     $utility = new Glossaire\Utility();
 
     $success = true;
-    $helper->loadLanguage('admin');
+    $glossaireHelper->loadLanguage('admin');
 
     //------------------------------------------------------------------
     // Remove uploads folder (and all subfolders) if they exist

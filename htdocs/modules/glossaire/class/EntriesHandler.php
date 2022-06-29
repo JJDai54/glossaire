@@ -131,7 +131,7 @@ class EntriesHandler extends \XoopsPersistableObjectHandler
      */
 public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
 {
-    global $helper;
+    global $glossaireHelper;
 
     $linkRefOk  = "<b><a href='{$url}' title='' alt=''><span class='letter-exist'>%s</span></a></b>";
     $linkNoRef  = "<span class='letter-notexist'>%s</span>";
@@ -151,10 +151,10 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
     $lettersArr = array();
 
     $style="<style>\n"
-    . ".letter-default span{"  . $helper->getConfig('letter_default') . "}\n"
-    . ".letter-selected{" . $helper->getConfig('letter_selected') . "}\n"
-    . ".letter-exist{"    . $helper->getConfig('letter_exist') . "}\n"
-    . ".letter-notexist{" . $helper->getConfig('letter_notexist') . "}\n"
+    . ".letter-default span{"  . $glossaireHelper->getConfig('letter_default') . "}\n"
+    . ".letter-selected{" . $glossaireHelper->getConfig('letter_selected') . "}\n"
+    . ".letter-exist{"    . $glossaireHelper->getConfig('letter_exist') . "}\n"
+    . ".letter-notexist{" . $glossaireHelper->getConfig('letter_notexist') . "}\n"
     ."</style>\n";
     //------------------------------------------------------
     $letterLink = '*';
@@ -184,7 +184,7 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
 }
 public function getAlphaBarre_old($criteria, $url, $oldLetter, $margin="3px")
 {
-    global $helper;
+    global $glossaireHelper;
 
     $linkRefOk  = "<b><a href='{$url}' title='' alt=''><span class='letter-default letter-exist'>%s</span></a></b>";
     $linkNoRef  = "<span class='letter-default letter-notexist'>%s</span>";
@@ -199,10 +199,10 @@ public function getAlphaBarre_old($criteria, $url, $oldLetter, $margin="3px")
     $lettersArr = array();
 
     $style="<style>\n"
-    . ".letter-default{"  . $helper->getConfig('letter_default') . "}\n"
-    . ".letter-selected{" . $helper->getConfig('letter_selected') . "}\n"
-    . ".letter-exist{"    . $helper->getConfig('letter_exist') . "}\n"
-    . ".letter-notexist{" . $helper->getConfig('letter_notexist') . "}\n"
+    . ".letter-default{"  . $glossaireHelper->getConfig('letter_default') . "}\n"
+    . ".letter-selected{" . $glossaireHelper->getConfig('letter_selected') . "}\n"
+    . ".letter-exist{"    . $glossaireHelper->getConfig('letter_exist') . "}\n"
+    . ".letter-notexist{" . $glossaireHelper->getConfig('letter_notexist') . "}\n"
     ."</style>\n";
     //------------------------------------------------------
     $letterLink = '*';

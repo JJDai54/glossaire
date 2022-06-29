@@ -115,7 +115,7 @@ switch($op) {
 	case 'import_self':
           include_once XOOPS_ROOT_PATH . '/class/uploader.php';
           //$fileName       = basename($_FILES['glossaire_files']['name'],".zip");
-          $h= strrpos($_FILES['glossaire_files']['name'], '.');  
+          $h = strrpos($_FILES['glossaire_files']['name'], '.');  
           $fileName = substr($_FILES['glossaire_files']['name'], 0, $h); 
           $imgMimetype    = $_FILES['glossaire_files']['type'];
           //$imgNameDef     = Request::getString('sld_short_name');
@@ -152,7 +152,7 @@ switch($op) {
                       //exit($destPath);
                       $catIdSelect = import_glossaire($destPath, $catIdSelect);
 
-                      $xoopsFolder->delete($destPath);//();
+                      //$xoopsFolder->delete($destPath);//();
                       unlink($fullName);
                       
                   }
@@ -190,7 +190,7 @@ switch($op) {
     case 'list':
 	default:
 		$templateMain = 'glossaire_admin_import.tpl';
-		$helper = \XoopsModules\Glossaire\Helper::getInstance();
+		$glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
 // 		if (false === $action) {
 // 			$action = $_SERVER['REQUEST_URI'];
 // 		}
@@ -221,7 +221,7 @@ switch($op) {
 
         
 
-        //$upload_size = 3145728;     //;$helper->getConfig('maxsize_image'); 
+        //$upload_size = 3145728;     //;$glossaireHelper->getConfig('maxsize_image'); 
         $uploadTray = new \XoopsFormFile(_AM_GLOSSAIRE_FILE_TO_LOAD, 'glossaire_files', $upload_size);     
         $uploadTray->setDescription(_AM_GLOSSAIRE_FILE_DESC . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $upload_size / 1024), '<br>');
         $formSelf->addElement($uploadTray, true);

@@ -76,8 +76,8 @@ class Helper extends \Xmf\Module\Helper
         }
         /** @var \XoopsMySQLDatabase $db */
         $db     = \XoopsDatabaseFactory::getDatabaseConnection();
-        $helper = self::getInstance();
-        $ret    = new $class($db, $helper);
+        $glossaireHelper = self::getInstance();
+        $ret    = new $class($db, $glossaireHelper);
         $this->addLog("Getting handler '{$name}'");
 
         return $ret;

@@ -23,7 +23,7 @@ declare(strict_types=1);
  * @author         XOOPS Development Team - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
  */
 if (isset($templateMain)) {
-    $GLOBALS['xoopsTpl']->assign('maintainedby', $helper->getConfig('maintainedby'));
+    $GLOBALS['xoopsTpl']->assign('maintainedby', $glossaireHelper->getConfig('maintainedby'));
     $GLOBALS['xoopsTpl']->display("db:{$templateMain}");
 }
 

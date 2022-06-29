@@ -74,6 +74,8 @@ class Entries extends \XoopsObject
         $this->initVar('ent_image', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_definition', \XOBJ_DTYPE_OTHER);
         $this->initVar('ent_reference', \XOBJ_DTYPE_OTHER);
+        $this->initVar('ent_file_title_1', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('ent_file_name_1', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_urls', \XOBJ_DTYPE_OTHER);
 //         $this->initVar('ent_url1', \XOBJ_DTYPE_TXTBOX);
 //         $this->initVar('ent_url2', \XOBJ_DTYPE_TXTBOX);
@@ -83,6 +85,8 @@ class Entries extends \XoopsObject
         $this->initVar('ent_status', \XOBJ_DTYPE_INT);
         $this->initVar('ent_flag', \XOBJ_DTYPE_INT);
     }
+
+
 
     /**
      * @static function &getInstance
@@ -116,7 +120,7 @@ class Entries extends \XoopsObject
     {//exit("<hr>getFormEntries - statusIdSelect = {$statusIdSelect}<hr>");
         global $categoriesHandler;
 
-        $helper = \XoopsModules\Glossaire\Helper::getInstance();
+        $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
         }
@@ -155,7 +159,7 @@ class Entries extends \XoopsObject
         
         // Form Table categories
         $catList = $categoriesHandler->getList();
-          $categoriesHandler = $helper->getHandler('Categories');
+          $categoriesHandler = $glossaireHelper->getHandler('Categories');
           $entCat_idSelect = new \XoopsFormSelect(\_AM_GLOSSAIRE_CATEGORY, 'ent_cat_id', $catIdSelect);
           $entCat_idSelect->addOptionArray($catList);
           $form->addElement($entCat_idSelect, true);
@@ -186,9 +190,9 @@ class Entries extends \XoopsObject
         //-------------------------------------------------
         $entImage = $this->isNew() ? '' : $this->getVar('ent_image');
         $form->addElement(new \XoopsFormHidden('ent_image', $entImage));        
-        $imgFile = '/' . $categoriesObj->getVar('cat_img_folder') . '/' . $entImage; 
-        $urlImg = GLOSSAIRE_UPLOAD_IMG_FOLDER_URL . $imgFile;
-        $isImgOk = (is_readable(GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . $imgFile) AND $entImage!='');
+ 
+        $urlImg = $categoriesObj->getPathUploads('images', true) . '/' . $entImage;
+        $isImgOk = (is_readable($categoriesObj->getPathUploads('images', false) . '/' . $entImage) AND $entImage!='');
         $currentImg = new \XoopsFormLabel('', "<br><img src='{$urlImg}'  name='image_img2' id='image_img2' alt='' style='max-width:100px'>");
         
 //         if (!is_null() && $fulName!=='' && is_readable($fulName)) {
@@ -208,7 +212,7 @@ class Entries extends \XoopsObject
                 $fileUploadTray->addElement($inpDeleteImg);
                 
             }
-            $maxsize = $helper->getConfig('maxsize_file');
+            $maxsize = $glossaireHelper->getConfig('maxsize_file');
             $fileUploadTray->addElement(new \XoopsFormFile('', 'ent_image', $maxsize));
             $fileUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
             //$form->addElement($fileUploadTray);
@@ -216,7 +220,7 @@ class Entries extends \XoopsObject
         } else {
 
         }
-        $upload_size = $helper->getConfig('maxsize_image');
+        $upload_size = $glossaireHelper->getConfig('maxsize_image');
         $imageTray  = new \XoopsFormElementTray(_AM_GLOSSAIRE_ENTRY_IMAGE,"<br>"); 
         $imageTray->addElement($currentImg, false);
         $imageTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $upload_size / 1024), '<br>');
@@ -227,9 +231,9 @@ class Entries extends \XoopsObject
         // Form Editor DhtmlTextArea entDefinition
         $editorConfigs = [];
         if ($isAdmin) {
-            $editor = $helper->getConfig('editor_admin');
+            $editor = $glossaireHelper->getConfig('editor_admin');
         } else {
-            $editor = $helper->getConfig('editor_user');
+            $editor = $glossaireHelper->getConfig('editor_user');
         }
         $editorConfigs['name'] = 'ent_definition';
         $editorConfigs['value'] = $this->getVar('ent_definition', 'e');
@@ -242,9 +246,9 @@ class Entries extends \XoopsObject
         // Form Editor DhtmlTextArea entReference
         $editorConfigs = [];
         if ($isAdmin) {
-            $editor = $helper->getConfig('editor_admin');
+            $editor = $glossaireHelper->getConfig('editor_admin');
         } else {
-            $editor = $helper->getConfig('editor_user');
+            $editor = $glossaireHelper->getConfig('editor_user');
         }
         $editorConfigs['name'] = 'ent_reference';
         $editorConfigs['value'] = $this->getVar('ent_reference', 'e');
@@ -267,7 +271,7 @@ class Entries extends \XoopsObject
         $form->addElement(new \XoopsFormHidden(\_AM_GLOSSAIRE_ENTRY_COUNTER, $this->getVar('ent_counter')));
                   
         // Entries Handler
-        $entriesHandler = $helper->getHandler('Entries');
+        $entriesHandler = $glossaireHelper->getHandler('Entries');
 
         $arrStatus = array(GLOSSAIRE_STATUS_INACTIF  => _AM_GLOSSAIRE_CATEGORY_STATUS_INATIF,
                            GLOSSAIRE_PROPOSITION     => _AM_GLOSSAIRE_CATEGORY_STATUS_PROPOSITION,
@@ -300,7 +304,7 @@ class Entries extends \XoopsObject
     {//exit("<hr>getFormEntries - statusIdSelect = {$statusIdSelect}<hr>");
         global $categoriesHandler;
 
-        $helper = \XoopsModules\Glossaire\Helper::getInstance();
+        $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
         }
@@ -351,12 +355,12 @@ class Entries extends \XoopsObject
         $form->addElement(new \XoopsFormHidden('ent_image', $entImage));        
         
         // Form File: Upload entImage
-        $maxsize = $helper->getConfig('maxsize_image');
+        $maxsize = $glossaireHelper->getConfig('maxsize_image');
         $fileUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_IMAGE, '<br>');
         $permissionUpload = true;
         if ($permissionUpload) {
             $fileDirectory = '/uploads/glossaire/files/entries';
-            //$maxsize = $helper->getConfig('maxsize_file');
+            //$maxsize = $glossaireHelper->getConfig('maxsize_file');
             $fileUploadTray->addElement(new \XoopsFormFile('', 'ent_image', $maxsize));
             $fileUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
         $fileUploadTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC2 . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $maxsize / 1024), '<br>');
@@ -366,7 +370,7 @@ class Entries extends \XoopsObject
             
         // Form Editor DhtmlTextArea entDefinition
         $editorConfigs = [];
-        $editor = $helper->getConfig('editor_user');
+        $editor = $glossaireHelper->getConfig('editor_user');
         $editorConfigs['name'] = 'ent_definition';
         $editorConfigs['value'] = $this->getVar('ent_definition', 'e');
         $editorConfigs['rows'] = 5;
@@ -378,7 +382,7 @@ class Entries extends \XoopsObject
         
         // Form Editor DhtmlTextArea entReference
         $editorConfigs = [];
-        $editor = $helper->getConfig('editor_user');
+        $editor = $glossaireHelper->getConfig('editor_user');
         $editorConfigs['name'] = 'ent_reference';
         $editorConfigs['value'] = $this->getVar('ent_reference', 'e');
         $editorConfigs['rows'] = 5;
@@ -390,6 +394,9 @@ class Entries extends \XoopsObject
         $inpReference->setDescription(_AM_GLOSSAIRE_ENTRY_REFERENCES_DESC);
         $form->addElement($inpReference);
         
+        //todo ajouter le telechargement d'un fichier
+        // Form Text ent_file_title_1 et ent_file_name_1
+
         // Form Text ent_urls
         $inpUrls = new \XoopsFormTextArea(_AM_GLOSSAIRE_ENTRY_URLS, 'ent_urls', $this->getVar('ent_urls'), 3, 120);  
         $inpUrls->setDescription(_AM_GLOSSAIRE_ENTRY_URLS_DESC); 
@@ -422,8 +429,8 @@ class Entries extends \XoopsObject
      */
     public function getValuesEntries($keys = null, $format = null, $maxDepth = null, &$categoriesObj = null)
     {global $categoriesHandler;
-        $helper  = \XoopsModules\Glossaire\Helper::getInstance();
-        //$categoriesHandler = $helper->getHandler('Categories');
+        $glossaireHelper  = \XoopsModules\Glossaire\Helper::getInstance();
+        //$categoriesHandler = $glossaireHelper->getHandler('Categories');
 //        if (is_null($categoriesHandler)) echo "categoriesHandler est null"; else echo 'bin non';
         
         if(!$categoriesObj) $categoriesObj = $categoriesHandler->get($this->getVar('ent_cat_id'));
@@ -442,13 +449,15 @@ class Entries extends \XoopsObject
         $ret['is_acronym']       = $this->getVar('ent_is_acronym');
         $ret['shortdefMagnifed'] = ($ret['is_acronym']) ? $utility->get_acronym($ret['shortdef']) : $ret['shortdef'];
         $ret['definition']       = $this->getVar('ent_definition', 'e');
-        $editorMaxchar = $helper->getConfig('editor_maxchar');
+        $editorMaxchar = $glossaireHelper->getConfig('editor_maxchar');
         $ret['definition_short'] = $utility::truncateHtml($ret['definition'], $editorMaxchar);
         $ret['image']            = $this->getVar('ent_image');
         
-        if ($ret['image'] !== '' && is_readable(GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $categoriesObj->getVar('cat_img_folder') . '/' . $this->getVar('ent_image'))){
-          $ret['image_url']        =  GLOSSAIRE_UPLOAD_IMG_FOLDER_URL . '/' . $categoriesObj->getVar('cat_img_folder') . '/' . $this->getVar('ent_image');
-          //definition_img contient l'image et la définition prete a l'emloi dans le FO
+        $imgPath =  $categoriesObj->getPathUploads('images', false);
+        $imgUrl  =  $categoriesObj->getPathUploads('images', true);
+        if ($ret['image'] !== '' && is_readable($imgPath . '/' . $this->getVar('ent_image'))){
+          $ret['image_url']        =  $imgUrl . '/' . $this->getVar('ent_image');
+          //definition_img contient l'image et la définition prete a l'emloi dans le form
           $ret['definition_img'] = "<div class='highslide-gallery'>"
             . "<a href='{$ret['image_url']}' class='highslide' onclick='return hs.expand(this);' >"
             . "<img src='{$ret['image_url']}' class='img_glossaire' alt='' style='max-width:100px' />"
@@ -457,13 +466,20 @@ class Entries extends \XoopsObject
             . "</div>"
             . $ret['definition'];
                
+          $ret['image_ok'] = 1;
         }else{
           $ret['image_url']      = '';
           $ret['definition_img'] = $ret['definition'];
+          $ret['image_ok'] = 0;
         }
         
         $ret['reference']        = $this->getVar('ent_reference', 'e');
         $ret['reference_short']  = $utility::truncateHtml($ret['reference'], $editorMaxchar);
+        $ret['file_title_1']        = $this->getVar('ent_file_title_1', 'e');
+        $ret['file_name_1']        = $this->getVar('ent_file_name_1', 'e');
+        //todo
+        //$ret['file_name_1_fullname']        = $this->getVar('ent_file_name_1', 'e');
+
         $ret['urls']             = $utility::build_urls($this->getVar('ent_urls'));
 //         $ret['url1']             = $this->getVar('ent_url1');
 //         $ret['url2']             = $this->getVar('ent_url2');

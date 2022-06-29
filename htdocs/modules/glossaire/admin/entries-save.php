@@ -68,6 +68,8 @@ use XoopsModules\Glossaire\Common;
         $entriesObj->setVar('ent_shortdef', Request::getString('ent_shortdef', ''));
         $entriesObj->setVar('ent_is_acronym', Request::getInt('ent_is_acronym', 0));
         $entriesObj->setVar('ent_definition', Request::getText('ent_definition', ''));
+        $entriesObj->setVar('', Request::getText('', ''));
+        $entriesObj->setVar('', Request::getText('', ''));
         $entriesObj->setVar('ent_reference', Request::getText('ent_reference', ''));
         $entriesObj->setVar('ent_urls', Request::getText('ent_urls', ''));
         $entriesObj->setVar('ent_image', Request::getString('ent_image', ''));    
@@ -79,8 +81,7 @@ use XoopsModules\Glossaire\Common;
         $filename       = $_FILES['ent_image']['name'];
         //$imgNameDef     = Request::getString('ent_cat_id');
         $prefixImg = \JJD\sanityseNameForFile(Request::getString('ent_term')) . '_';
-        $imgFolder = \GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . "/" . $categoriesObj->getVar('cat_img_folder')."/";
-        
+        $imgFolder = $categoriesObj->getPathUploads('images', false) ."/";
         $ent_delete_img = Request::getInt('ent_delete_img', 0);
         if($ent_delete_img == 1){
             $entImage = '';
@@ -94,8 +95,8 @@ use XoopsModules\Glossaire\Common;
         
         //echo "<hr>{$catId}-{$imgFolder}<hr>";exit;
         $uploader = new \XoopsMediaUploader($imgFolder, 
-                                            $helper->getConfig('mimetypes_file'), 
-                                            $helper->getConfig('maxsize_file'), null, null);
+                                            $glossaireHelper->getConfig('mimetypes_file'), 
+                                            $glossaireHelper->getConfig('maxsize_file'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $filename);
             //$prefixImg = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
@@ -113,9 +114,14 @@ use XoopsModules\Glossaire\Common;
             //$entriesObj->setVar('ent_image', );
         }
         
+//ajout du téléchargement du fichier joint
+//modifier au le test pour l'image pour bien diférencier les deux        
+//         $entriesObj->setVar('', Request::getText('ent_file_title_1', ''));
+//         $entriesObj->setVar('', Request::getText('ent_file_name_1', ''));
         
         
-        
+
+
         
 //         $entryDate_creationObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('ent_date_creation'));
 //         $entriesObj->setVar('ent_date_creation', $entryDate_creationObj->getTimestamp());

@@ -190,8 +190,8 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         
         global $xoopsUser;
         $tPerm = array();
-        $helper = Helper::getHelper($moduleName);
-        $moduleHandler = $helper->getModule();
+        $glossaireHelper = Helper::getHelper($moduleName);
+        $moduleHandler = $glossaireHelper->getModule();
         $groups = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
         $gpermHandler = xoops_getHandler('groupperm');
         $tPerm = $gpermHandler->getItemIds($permtype, $groups, $moduleHandler->getVar('mid'));

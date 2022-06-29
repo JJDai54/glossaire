@@ -28,7 +28,7 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
 
-        //$categoriesHandler = $helper->getHandler('Categories');
+        //$categoriesHandler = $glossaireHelper->getHandler('Categories');
         $catList = $categoriesHandler->getList();
         if (count($catList) == 0) \redirect_header('categories.php', 5, _AM_GLOSSAIRE_NO_CATEGORIES1);
         if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);

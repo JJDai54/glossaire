@@ -115,9 +115,9 @@ function import_glossaire($pathImport, $catId)
         $catId = $categoriesObj->getVar("cat_id");
     }
     //---------------------------------------------------------
-     $imgFolder = $categoriesObj->getVar('cat_img_folder');
+     $imgPath = $categoriesObj->getPathUploads('images');
 //     echo ("<hr>===>catId = {$catId}<hr>");
-     import_entries($pathImport, $catId, $imgFolder);
+     import_entries($pathImport, $catId, $imgPath);
 
 
 
@@ -126,7 +126,7 @@ function import_glossaire($pathImport, $catId)
 /**************************************************************
  * 
  * ************************************************************/
-function import_entries($pathImport, $catId, $imgFolder){
+function import_entries($pathImport, $catId, $imgPath){
 global $entriesHandler, $xoopsFolder;
 
     $fullName = "{$pathImport}/entries.yml";
@@ -149,7 +149,7 @@ global $entriesHandler, $xoopsFolder;
     // Importation des images
     //-----------------------------------------
     $xoopsFolder->copy(array('from' => $pathImport . '/images', 
-                             'to'   => GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . "/{$imgFolder}",
+                             'to'   => $imgPath,
                              'mode' => 0777));
     
     

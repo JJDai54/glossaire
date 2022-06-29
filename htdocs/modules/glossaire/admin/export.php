@@ -61,7 +61,7 @@ switch($op) {
         if (count($catList) == 0) \redirect_header('categories.php', 5, _AM_GLOSSAIRE_NO_CATEGORIES2);
                 
 		$templateMain = 'glossaire_admin_export.tpl';
-		$helper = \XoopsModules\Glossaire\Helper::getInstance();
+		$glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
 // 		if (false === $action) {
 // 			$action = $_SERVER['REQUEST_URI'];
 // 		}

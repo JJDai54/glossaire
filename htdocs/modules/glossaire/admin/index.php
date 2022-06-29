@@ -59,7 +59,7 @@ foreach (\array_keys($folder) as $i) {
 // Render Index
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
 // Test Data
-if ($helper->getConfig('displaySampleButton')) {
+if ($glossaireHelper->getConfig('displaySampleButton')) {
     \xoops_loadLanguage('admin/modulesadmin', 'system');
     require_once \dirname(__DIR__) . '/testdata/index.php';
     $adminObject->addItemButton(\constant('_CO_GLOSSAIRE_ADD_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=load', 'add');

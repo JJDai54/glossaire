@@ -146,13 +146,13 @@ class Utility
     }
 
     /**
-     * @param \Xmf\Module\Helper $helper
+     * @param \Xmf\Module\Helper $glossaireHelper
      * @param array|null         $options
      * @return \XoopsFormDhtmlTextArea|\XoopsFormEditor
      */
-    public static function getEditor($helper = null, $options = null)
+    public static function getEditor($glossaireHelper = null, $options = null)
     {
-        /** @var Glossaire\Helper $helper */
+        /** @var Glossaire\Helper $glossaireHelper */
         if (null === $options) {
             $options           = [];
             $options['name']   = 'Editor';
@@ -163,13 +163,13 @@ class Utility
             $options['height'] = '400px';
         }
 
-        $isAdmin = $helper->isUserAdmin();
+        $isAdmin = $glossaireHelper->isUserAdmin();
 
         if (\class_exists('XoopsFormEditor')) {
             if ($isAdmin) {
-                $descEditor = new \XoopsFormEditor(\ucfirst($options['name']), $helper->getConfig('editorAdmin'), $options, $nohtml = false, $onfailure = 'textarea');
+                $descEditor = new \XoopsFormEditor(\ucfirst($options['name']), $glossaireHelper->getConfig('editorAdmin'), $options, $nohtml = false, $onfailure = 'textarea');
             } else {
-                $descEditor = new \XoopsFormEditor(\ucfirst($options['name']), $helper->getConfig('editorUser'), $options, $nohtml = false, $onfailure = 'textarea');
+                $descEditor = new \XoopsFormEditor(\ucfirst($options['name']), $glossaireHelper->getConfig('editorUser'), $options, $nohtml = false, $onfailure = 'textarea');
             }
         } else {
             $descEditor = new \XoopsFormDhtmlTextArea(\ucfirst($options['name']), $options['name'], $options['value'], '100%', '100%');

@@ -35,9 +35,9 @@ $modPathIcon32   = \GLOSSAIRE_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modi
 xoops_load('XoopsFormLoader');
 
 // Get instance of module
-$helper = \XoopsModules\Glossaire\Helper::getInstance();
-$categoriesHandler = $helper->getHandler('Categories');
-$entriesHandler = $helper->getHandler('Entries');
+$glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
+$categoriesHandler = $glossaireHelper->getHandler('Categories');
+$entriesHandler = $glossaireHelper->getHandler('Entries');
 $myts = MyTextSanitizer::getInstance();
 // 
 if (!isset($xoopsTpl) || !\is_object($xoopsTpl)) {
@@ -59,7 +59,7 @@ if (\file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) 
 //include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 
 xoops_cp_header();
-$helper = \XoopsModules\Glossaire\Helper::getInstance();
+$glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
 
 $xoTheme->addScript(XOOPS_URL . '/Frameworks/trierTableauHTML/trierTableau.js');
 //$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/Frameworks/trierTableauHTML/trierTableau.js');

@@ -57,17 +57,17 @@ function xoops_module_install_glossaire(\XoopsModule $module)
 {
     require \dirname(__DIR__) . '/preloads/autoloader.php';
 
-    /** @var Glossaire\Helper $helper */ 
+    /** @var Glossaire\Helper $glossaireHelper */ 
     /** @var Glossaire\Utility $utility */
     /** @var Common\Configurator $configurator */
-    $helper       = Glossaire\Helper::getInstance();
+    $glossaireHelper       = Glossaire\Helper::getInstance();
     $utility      = new Glossaire\Utility();
     $configurator = new Common\Configurator();
 
     // Load language files
-    $helper->loadLanguage('admin');
-    $helper->loadLanguage('modinfo');
-    $helper->loadLanguage('common');
+    $glossaireHelper->loadLanguage('admin');
+    $glossaireHelper->loadLanguage('modinfo');
+    $glossaireHelper->loadLanguage('common');
 
     //  ---  CREATE FOLDERS ---------------
     if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {

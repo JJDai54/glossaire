@@ -41,7 +41,7 @@ use JJD AS JJD;
         \JJD\include_highslide(array('allowMultipleInstances'=>false));    
         // --------------------------------------------
         // categories avec une listbox
-        //$categoriesHandler = $helper->getHandler('Categories');
+        //$categoriesHandler = $glossaireHelper->getHandler('Categories');
         /*
         $catList = $categoriesHandler->getListAllowed();
         if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
@@ -70,8 +70,8 @@ use JJD AS JJD;
         $GLOBALS['xoopsTpl']->assign('nbCategories', count($catList));
         $GLOBALS['xoopsTpl']->assign('isCatAllowed', $categoriesHandler->isCatAllowed($catIdSelect));
         $GLOBALS['xoopsTpl']->assign('page2redirect', $page2redirect);
-        $GLOBALS['xoopsTpl']->assign('searchMode', array(0=>'globalSearch', 1=>'list')[$helper->getConfig('search_mode')]);
-        $GLOBALS['xoopsTpl']->assign('showId', $helper->getConfig('showId'));
+        $GLOBALS['xoopsTpl']->assign('searchMode', array(0=>'globalSearch', 1=>'list')[$glossaireHelper->getConfig('search_mode')]);
+        $GLOBALS['xoopsTpl']->assign('showId', $glossaireHelper->getConfig('showId'));
 
         $statusAccess = $categoriesHandler->getStatusAccess($catIdSelect);
 //        echo "<hr>===> : {$statusAccess}<hr>";
@@ -145,10 +145,10 @@ include_once('include/search.inc.php');
                 $pagenav = new \XoopsPageNav($entriesCount, $limit, $start, 'start', "op=list&catIdSelect={$catIdSelect}&limit={$limit}&letter={$letter}&exp2search={$exp2search}" );
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
-            $GLOBALS['xoopsTpl']->assign('table_type', $helper->getConfig('table_type'));
-            $GLOBALS['xoopsTpl']->assign('panel_type', $helper->getConfig('panel_type'));
-            $GLOBALS['xoopsTpl']->assign('divideby', $helper->getConfig('divideby'));
-            $GLOBALS['xoopsTpl']->assign('numb_col', $helper->getConfig('numb_col'));
+            $GLOBALS['xoopsTpl']->assign('table_type', $glossaireHelper->getConfig('table_type'));
+            $GLOBALS['xoopsTpl']->assign('panel_type', $glossaireHelper->getConfig('panel_type'));
+            $GLOBALS['xoopsTpl']->assign('divideby', $glossaireHelper->getConfig('divideby'));
+            $GLOBALS['xoopsTpl']->assign('numb_col', $glossaireHelper->getConfig('numb_col'));
             if ('show' == $op && '' != $entCat_id) {
                 $GLOBALS['xoopsTpl']->assign('xoops_pagetitle', \strip_tags($entCat_id . ' - ' . $GLOBALS['xoopsModule']->getVar('name')));
             }

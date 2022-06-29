@@ -141,10 +141,10 @@ function glossaireMetaDescription($content)
 function glossaire_RewriteUrl($module, $array, $type = 'content')
 {
     $comment = '';
-    $helper = \XoopsModules\Glossaire\Helper::getInstance();
-    $entriesHandler = $helper->getHandler('entries');
-    $lenght_id = $helper->getConfig('lenght_id');
-    $rewrite_url = $helper->getConfig('rewrite_url');
+    $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
+    $entriesHandler = $glossaireHelper->getHandler('entries');
+    $lenght_id = $glossaireHelper->getConfig('lenght_id');
+    $rewrite_url = $glossaireHelper->getConfig('rewrite_url');
 
     if (0 != $lenght_id) {
         $id = $array['content_id'];
@@ -229,9 +229,9 @@ function glossaire_RewriteUrl($module, $array, $type = 'content')
 function glossaire_Filter($url, $type = '') {
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
-    $helper = \XoopsModules\Glossaire\Helper::getInstance();
-    $entriesHandler = $helper->getHandler('entries');
-    $regular_expression = $helper->getConfig('regular_expression');
+    $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
+    $entriesHandler = $glossaireHelper->getHandler('entries');
+    $regular_expression = $glossaireHelper->getConfig('regular_expression');
 
     $url = \strip_tags($url);
     $url .= \preg_replace('`\[.*\]`U', '', $url);

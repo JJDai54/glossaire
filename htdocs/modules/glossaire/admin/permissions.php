@@ -59,19 +59,19 @@ switch ($op) {
         $formTitle = \_AM_GLOSSAIRE_PERMISSIONS_APPROVE;
         $permName = 'glossaire_approve_categories';
         $permDesc = \_AM_GLOSSAIRE_PERMISSIONS_APPROVE_DESC . ' Categories';
-        $handler = $helper->getHandler('categories');
+        $handler = $glossaireHelper->getHandler('categories');
         break;
     case 'submit_categories':
         $formTitle = \_AM_GLOSSAIRE_PERMISSIONS_SUBMIT;
         $permName = 'glossaire_submit_categories';
         $permDesc = \_AM_GLOSSAIRE_PERMISSIONS_SUBMIT_DESC . ' Categories';
-        $handler = $helper->getHandler('categories');
+        $handler = $glossaireHelper->getHandler('categories');
         break;
     case 'view_categories':
         $formTitle = \_AM_GLOSSAIRE_PERMISSIONS_VIEW;
         $permName = 'glossaire_view_categories';
         $permDesc = \_AM_GLOSSAIRE_PERMISSIONS_VIEW_DESC . ' Categories';
-        $handler = $helper->getHandler('categories');
+        $handler = $glossaireHelper->getHandler('categories');
         break;
 }
 $moduleId = $xoopsModule->getVar('mid');

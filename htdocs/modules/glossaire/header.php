@@ -32,10 +32,10 @@ $moduleDirName = \basename(__DIR__);
 // Breadcrumbs
 $xoBreadcrumbs = [];
 // Get instance of module
-$helper = \XoopsModules\Glossaire\Helper::getInstance();
-$categoriesHandler = $helper->getHandler('Categories');
-$entriesHandler = $helper->getHandler('Entries');
-$permissionsHandler = $helper->getHandler('Permissions');
+$glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
+$categoriesHandler = $glossaireHelper->getHandler('Categories');
+$entriesHandler = $glossaireHelper->getHandler('Entries');
+$permissionsHandler = $glossaireHelper->getHandler('Permissions');
 // 
 $myts = MyTextSanitizer::getInstance();
 // Default Css Style

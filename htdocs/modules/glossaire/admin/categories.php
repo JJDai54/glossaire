@@ -34,7 +34,7 @@ require __DIR__ . '/header.php';
 $op = Request::getCmd('op', 'list');
 $catId = Request::getInt('cat_id');
 $start = Request::getInt('start', 0);
-$limit = Request::getInt('limit', $helper->getConfig('adminpager'));
+$limit = Request::getInt('limit', $glossaireHelper->getConfig('adminpager'));
 $GLOBALS['xoopsTpl']->assign('start', $start);
 $GLOBALS['xoopsTpl']->assign('limit', $limit);
 
@@ -125,8 +125,8 @@ switch ($op) {
         // Set Var cat_logourl
         require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
         $uploader = new \XoopsMediaUploader(\XOOPS_ROOT_PATH . '/Frameworks/moduleclasses/icons/32', 
-                                                    $helper->getConfig('mimetypes_image'), 
-                                                    $helper->getConfig('maxsize_image'), null, null);
+                                                    $glossaireHelper->getConfig('mimetypes_image'), 
+                                                    $glossaireHelper->getConfig('maxsize_image'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             //$uploader->setPrefix(cat_logourl_);
             //$uploader->fetchMedia($_POST['xoops_upload_file'][0]);

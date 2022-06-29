@@ -22,13 +22,13 @@ declare(strict_types=1);
  * @min_xoops      2.5.10
  * @author         XOOPS Development Team - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
  */
-if ($helper->getConfig('show_breadcrumbs') && \count($xoBreadcrumbs) > 0) {
+if ($glossaireHelper->getConfig('show_breadcrumbs') && \count($xoBreadcrumbs) > 0) {
     $GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
 }
-$GLOBALS['xoopsTpl']->assign('adv', $helper->getConfig('advertise'));
+$GLOBALS['xoopsTpl']->assign('adv', $glossaireHelper->getConfig('advertise'));
 // 
-$GLOBALS['xoopsTpl']->assign('bookmarks', $helper->getConfig('bookmarks'));
-$GLOBALS['xoopsTpl']->assign('fbcomments', $helper->getConfig('fbcomments'));
+$GLOBALS['xoopsTpl']->assign('bookmarks', $glossaireHelper->getConfig('bookmarks'));
+$GLOBALS['xoopsTpl']->assign('fbcomments', $glossaireHelper->getConfig('fbcomments'));
 // 
 $GLOBALS['xoopsTpl']->assign('admin', \GLOSSAIRE_ADMIN);
 $GLOBALS['xoopsTpl']->assign('copyright', $copyright);

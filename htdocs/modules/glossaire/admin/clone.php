@@ -34,7 +34,7 @@ switch ($op) {
     default:
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('clone.php'));
         require_once $GLOBALS['xoops']->path('class/xoopsformloader.php');
-        $form  = new \XoopsThemeForm(\sprintf(\_AM_GLOSSAIRE_CLONE_TITLE, $helper->getModule()->getVar('name', 'E')), 'clone', 'clone.php', 'post', true);
+        $form  = new \XoopsThemeForm(\sprintf(\_AM_GLOSSAIRE_CLONE_TITLE, $glossaireHelper->getModule()->getVar('name', 'E')), 'clone', 'clone.php', 'post', true);
         $clone = new \XoopsFormText(\_AM_GLOSSAIRE_CLONE_NAME, 'clone', 20, 20, '');
         $clone->setDescription(\_AM_GLOSSAIRE_CLONE_NAME_DSC);
         $form->addElement($clone, true);

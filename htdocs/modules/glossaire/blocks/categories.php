@@ -42,8 +42,8 @@ function b_glossaire_categories_show($options)
     $typeBlock   = $options[0];
     $limit       = $options[1];
     $lenghtTitle = $options[2];
-    $helper      = Helper::getInstance();
-    $categoriesHandler = $helper->getHandler('Categories');
+    $glossaireHelper      = Helper::getInstance();
+    $categoriesHandler = $glossaireHelper->getHandler('Categories');
     $crCategories = new \CriteriaCompo();
     \array_shift($options);
     \array_shift($options);
@@ -109,8 +109,8 @@ function b_glossaire_categories_show($options)
 function b_glossaire_categories_edit($options)
 {
     require_once \XOOPS_ROOT_PATH . '/modules/glossaire/class/categories.php';
-    $helper = Helper::getInstance();
-    $categoriesHandler = $helper->getHandler('Categories');
+    $glossaireHelper = Helper::getInstance();
+    $categoriesHandler = $glossaireHelper->getHandler('Categories');
     $GLOBALS['xoopsTpl']->assign('glossaire_upload_url', \GLOSSAIRE_UPLOAD_URL);
     $form = \_MB_GLOSSAIRE_DISPLAY;
     $form .= "<input type='hidden' name='options[0]' value='".$options[0]."' >";

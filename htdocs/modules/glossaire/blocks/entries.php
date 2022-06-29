@@ -44,9 +44,9 @@ $dirname = "glossaire";
     $typeBlock   = $options[0];
     $limit       = $options[1];
     $lenghtTitle = $options[2];
-    $helper      = Helper::getInstance();
-    $entriesHandler = $helper->getHandler('Entries');
-    $categoriesHandler = $helper->getHandler('Categories');
+    $glossaireHelper      = Helper::getInstance();
+    $entriesHandler = $glossaireHelper->getHandler('Entries');
+    $categoriesHandler = $glossaireHelper->getHandler('Categories');
     $crEntries = new \CriteriaCompo();
     $crEntries->add(new \Criteria('ent_status', GLOSSAIRE_STATUS_APPROVED, '='));
     $idsCat = implode(',', $categoriesHandler->getPermissions('view'));
@@ -120,8 +120,8 @@ $dirname = "glossaire";
 function b_glossaire_entries_edit($options)
 {
     require_once \XOOPS_ROOT_PATH . '/modules/glossaire/class/Entries.php';
-    $helper = Helper::getInstance();
-    $entriesHandler = $helper->getHandler('Entries');
+    $glossaireHelper = Helper::getInstance();
+    $entriesHandler = $glossaireHelper->getHandler('Entries');
     $GLOBALS['xoopsTpl']->assign('glossaire_upload_url', \GLOSSAIRE_UPLOAD_URL);
     $form = \_MB_GLOSSAIRE_DISPLAY;
     $form .= "<input type='hidden' name='options[0]' value='".$options[0]."' >";

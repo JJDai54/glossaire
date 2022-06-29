@@ -98,7 +98,7 @@ class Categories extends \XoopsObject
      */
     public function getFormCategories($action = false)
     {
-        $helper = \XoopsModules\Glossaire\Helper::getInstance();
+        $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
         }
@@ -120,9 +120,9 @@ class Categories extends \XoopsObject
         //$form->addElement(new \XoopsFormTextArea(\_AM_GLOSSAIRE_CATEGORY_DESCRIPTION, 'cat_description', $this->getVar('cat_description', 'e'), 4, 47));
         $editorConfigs = [];
         if ($isAdmin) {
-            $editor = $helper->getConfig('editor_admin');
+            $editor = $glossaireHelper->getConfig('editor_admin');
         } else {
-            $editor = $helper->getConfig('editor_user');
+            $editor = $glossaireHelper->getConfig('editor_user');
         }
         $editorConfigs['name'] = 'cat_description';
         $editorConfigs['value'] = $this->getVar('cat_description', 'e');
@@ -151,7 +151,7 @@ class Categories extends \XoopsObject
         $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . \XOOPS_URL . '/' . $imageDirectory . '/' . $catLogourl . "' id='imglabel_cat_logourl' alt='' style='max-width:100px' >"));
         // Form Frameworks Images catLogourl: Upload new image
         $fileSelectTray = new \XoopsFormElementTray('', '<br>');
-        $fileSelectTray->addElement(new \XoopsFormFile(\_AM_GLOSSAIRE_FORM_UPLOAD_NEW, 'cat_logourl', $helper->getConfig('maxsize_image')));
+        $fileSelectTray->addElement(new \XoopsFormFile(\_AM_GLOSSAIRE_FORM_UPLOAD_NEW, 'cat_logourl', $glossaireHelper->getConfig('maxsize_image')));
         $fileSelectTray->addElement(new \XoopsFormLabel(''));
         $imageTray->addElement($fileSelectTray);
         $form->addElement($imageTray);
@@ -228,13 +228,13 @@ class Categories extends \XoopsObject
      */
     public function getValuesCategories($keys = null, $format = null, $maxDepth = null)
     {
-        $helper  = \XoopsModules\Glossaire\Helper::getInstance();
+        $glossaireHelper  = \XoopsModules\Glossaire\Helper::getInstance();
         $utility = new \XoopsModules\Glossaire\Utility();
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id']                = $this->getVar('cat_id');
         $ret['name']              = $this->getVar('cat_name');
         $ret['description']       = \strip_tags($this->getVar('cat_description', 'e'));
-        $editorMaxchar = $helper->getConfig('editor_maxchar');
+        $editorMaxchar = $glossaireHelper->getConfig('editor_maxchar');
         $ret['description_short'] = $utility::truncateHtml($ret['description'], $editorMaxchar);
         $ret['weight']            = $this->getVar('cat_weight');
         $ret['logourl']           = $this->getVar('cat_logourl');
@@ -264,5 +264,43 @@ class Categories extends \XoopsObject
             $ret[$var] = $this->getVar('"{$var}"');
         }
         return $ret;
+    }
+    
+    /**
+     * Returns chemin de stockage des images et fichiers de la catégories
+     *
+     * @return string fullPath
+     */
+    public function getPathUploads($subFolder='', $isUrl=false, $mode= 0777){
+    
+        if($subFolder !== '')
+            $folder = '/' . $this->getVar('cat_img_folder') . '/' . $subFolder;
+        else
+            $folder = '/' . $this->getVar('cat_img_folder');
+        $fIndex  = XOOPS_UPLOAD_PATH . '/index.php';        
+        //--------------------------------------------------
+        $fullPath = GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH . $folder;
+        //optimisation, le dossier a sans doute ete déja créé avec la premiere image
+        if(!is_dir($fullPath)){
+            //echo "getPathUploads fullPath : {$fullPath}<br>";
+            $h = strpos($fullPath, '/', strlen(XOOPS_ROOT_PATH)+1);
+            while($h !== false){
+                $dir = substr($fullPath, 0, $h);
+                //echo "getPathUploads dir : {$dir}<br>";
+                if(!is_dir($dir)) mkdir($dir, $mode);  
+                
+                if (!is_readable($dir . '/index.php') && !is_readable($dir . '/index.html')) 
+                    copy($fIndex, $dir . '/index.php');    
+                
+                $h = strpos($fullPath , '/', $h+1);
+            }
+            if(!is_dir($fullPath)) mkdir($fullPath, $mode);      
+            //echo "getPathUploads fullPath : {$fullPath}<br>";
+        }
+        //--------------------------------------------        
+        if ($isUrl) 
+            return GLOSSAIRE_UPLOAD_IMPORT_DATA_URL . $folder;
+        else
+            return $fullPath;
     }
 }

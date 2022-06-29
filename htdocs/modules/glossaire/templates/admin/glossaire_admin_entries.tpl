@@ -49,7 +49,9 @@
                     <{$entry.term}>
                     </a>
                 </td>
-                <td class='left'><{$entry.image}></td>
+                <td class='left'>
+                    <img src='<{$modPathIcon16}>/bool-<{$entry.image_ok}>.gif' title=''><{$entry.image}>
+                </td>
                 <td class='left'>
                     <{if $entry.shortdefMagnifed}>
                     <a href="entries.php?op=incrementField&field=ent_is_acronym&catIdSelect=<{$entry.ent_cat_id}>&ent_id=<{$entry.id}>&start=<{$start}>&limit=<{$limit}>" title="">

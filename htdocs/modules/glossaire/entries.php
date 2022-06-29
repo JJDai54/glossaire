@@ -38,7 +38,7 @@ $op    = Request::getCmd('op', 'list');
 $entId = Request::getInt('ent_id', 0);
 $catIdSelect = Request::getInt('catIdSelect',0);
 $start = Request::getInt('start', 0);
-$limit = Request::getInt('limit', $helper->getConfig('userpager'));
+$limit = Request::getInt('limit', $glossaireHelper->getConfig('userpager'));
 if (!$limit)$limit=15;
 $letter= Request::getString('letter', '*');
 if ($letter=='@') $letter='#';
@@ -179,7 +179,7 @@ switch ($op) {
 }
 if ($bolFoot){
 // Keywords
-glossaireMetaKeywords($helper->getConfig('keywords') . ', ' . \implode(',', $keywords));
+glossaireMetaKeywords($glossaireHelper->getConfig('keywords') . ', ' . \implode(',', $keywords));
 unset($keywords);
 
 // Description
