@@ -53,6 +53,10 @@
         <span class='gls_seealso'><{$smarty.const._MA_GLOSSAIRE_SEEALSO}> : </span><br>
         <{$entry.urls}>
     <{/if}>
+    <{if $entry.file_name}>
+        <br><br><span class='gls_seealso'><{$smarty.const._MA_GLOSSAIRE_FILE_LINKED}> : </span><br>
+        <{$entry.file_link}>
+    <{/if}>
 </div>
 
 

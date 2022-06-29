@@ -1,3 +1,22 @@
+Style des lettres par défaut
+Style CSS des lettre par défaut.
+	
+Style de la lettre sélectionnée
+Style de la lettre sélectionnée.
+	
+Style des lettres existantes
+Style des lettres quand des définitions commençant par cette-ci existe
+	
+Style des lettres inexistantes
+Style des lettres quand des définitions commençant par cette-ci n'existe pas.
+
+css_letter
+css_letter_selected
+css_letter_exists
+css_letter_not-exists
+
+
+
 
  Appliquer les permission pour les suggestions - fait
  appliquer les permission charger uns image

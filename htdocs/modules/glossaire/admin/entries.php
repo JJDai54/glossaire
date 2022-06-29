@@ -37,6 +37,12 @@ $start = Request::getInt('start', 0);
 $limit = Request::getInt('limit', $glossaireHelper->getConfig('adminpager'));
 if ($limit == 0) $limit = $glossaireHelper->getConfig('adminpager');
 
+// $gp=array_merge($_GET, $_POST);
+// 
+// echo "<hr><pre>" . print_r($gp, true) . "</pre><hr>";
+// echo "<hr><pre>" . print_r($_FILES, true) . "</pre><hr>";
+
+
 //if (!$limit)$limit=15;
 $GLOBALS['xoopsTpl']->assign('start', $start);
 $GLOBALS['xoopsTpl']->assign('limit', $limit);

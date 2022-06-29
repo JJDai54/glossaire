@@ -252,7 +252,10 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
     {
         return \ucfirst(\mb_strtolower(\trim($str)));
     }
+    
+    //**************************************************
     //------------- functions JJd ----------------------
+    //**************************************************
     
     /**
      * @param $str

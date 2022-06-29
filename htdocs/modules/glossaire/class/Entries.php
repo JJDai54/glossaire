@@ -74,8 +74,8 @@ class Entries extends \XoopsObject
         $this->initVar('ent_image', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_definition', \XOBJ_DTYPE_OTHER);
         $this->initVar('ent_reference', \XOBJ_DTYPE_OTHER);
-        $this->initVar('ent_file_title_1', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('ent_file_name_1', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('ent_file_name', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('ent_file_path', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_urls', \XOBJ_DTYPE_OTHER);
 //         $this->initVar('ent_url1', \XOBJ_DTYPE_TXTBOX);
 //         $this->initVar('ent_url2', \XOBJ_DTYPE_TXTBOX);
@@ -201,21 +201,21 @@ class Entries extends \XoopsObject
 //           $urlImg = SLIDER_UPLOAD_IMAGE_URL . "/slides/" . $slideImg;
 //         }
         // Form File: Upload entImage
-        $fileUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_IMAGE, '<br>');
+        $imgUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_IMAGE, '<br>');
         $permissionUpload = true;
         if ($permissionUpload) {
             $fileDirectory = '/uploads/glossaire/files/entries';
             if ($isImgOk) {
-                $fileUploadTray->addElement(new \XoopsFormLabel(\sprintf(\_AM_GLOSSAIRE_ENTRY_IMAGE_UPLOADS, ".{$fileDirectory}/"), $entImage));
+                $imgUploadTray->addElement(new \XoopsFormLabel(\sprintf(\_AM_GLOSSAIRE_ENTRY_IMAGE_UPLOADS, ".{$fileDirectory}/"), $entImage));
                 $inpDeleteImg = new \XoopsFormCheckBox('', 'ent_delete_img', "",'<br>');
                 $inpDeleteImg->addOption(1, _AM_GLOSSAIRE_DELETE_IMG);
-                $fileUploadTray->addElement($inpDeleteImg);
+                $imgUploadTray->addElement($inpDeleteImg);
                 
             }
             $maxsize = $glossaireHelper->getConfig('maxsize_file');
-            $fileUploadTray->addElement(new \XoopsFormFile('', 'ent_image', $maxsize));
-            $fileUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
-            //$form->addElement($fileUploadTray);
+            $imgUploadTray->addElement(new \XoopsFormFile('', 'ent_image', $maxsize));
+            $imgUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
+            //$form->addElement($imgUploadTray);
 
         } else {
 
@@ -224,7 +224,7 @@ class Entries extends \XoopsObject
         $imageTray  = new \XoopsFormElementTray(_AM_GLOSSAIRE_ENTRY_IMAGE,"<br>"); 
         $imageTray->addElement($currentImg, false);
         $imageTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $upload_size / 1024), '<br>');
-        $imageTray->addElement($fileUploadTray, false);
+        $imageTray->addElement($imgUploadTray, false);
         $form->addElement($imageTray);
         //-------------------------------------------------
             
@@ -260,6 +260,48 @@ class Entries extends \XoopsObject
         $inpReference = new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_REFERENCES, 'ent_reference', $editorConfigs);
         $inpReference->setDescription(_AM_GLOSSAIRE_ENTRY_REFERENCES_DESC);
         $form->addElement($inpReference);
+
+        //todo ajouter le telechargement d'un fichier
+        // Form Text ent_file
+define('_AM_GLOSSAIRE_FILE_NAME', "Titre du fichier");        
+define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier à importer");        
+        //-------------------------------------------------
+        $entFileName = $this->isNew() ? '' : $this->getVar('ent_file_name');
+        $entFilePath = $this->isNew() ? '' : $this->getVar('ent_file_path');
+        $form->addElement(new \XoopsFormHidden('ent_file_name', $entFileName));        
+        $form->addElement(new \XoopsFormHidden('ent_file_path', $entFilePath));        
+ 
+        $isFileOk = (is_readable($categoriesObj->getPathUploads('files', false) . '/' . $entFilePath) AND $entFilePath != '');
+        //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_FILE_NAME, 'ent_file_name', 50, 50, $this->getVar('ent_file_name')), false);
+        //-------------------------------------------------
+        if ($isFileOk) {
+            $currentFileTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_CURRENT_FILE, '<br>');
+            
+            $currentFile = new \XoopsFormLabel('', sprintf("%s ===> <span style='color:blue;'>%s</span><br>", $entFileName, $entFilePath));
+            $currentFileTray->addElement($currentFile);
+            
+            //$imgUploadTray->addElement(new \XoopsFormLabel(\sprintf(\_AM_GLOSSAIRE_ENTRY_IMAGE_UPLOADS, ".{$fileDirectory}/"), $entImage));
+            $inpDeleteFile = new \XoopsFormCheckBox('', 'ent_delete_file', "",'<br>');            
+            $inpDeleteFile->addOption(1, _AM_GLOSSAIRE_DELETE_FILE);
+            $currentFileTray->addElement($inpDeleteFile);
+            
+            $form->addElement($currentFileTray);
+        }
+        
+        // Form File: Upload entImage
+        $maxsize = $glossaireHelper->getConfig('maxsize_file');
+        $fileUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_FILE, '<br>');
+        $permissionUpload = true;
+        if ($permissionUpload) {
+        
+            //$fileDirectory = '/uploads/glossaire/files/entries';
+            //$maxsize = $glossaireHelper->getConfig('maxsize_file');
+            $fileUploadTray->addElement(new \XoopsFormFile('', 'ent_file_name', $maxsize));
+            $fileUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
+        $fileUploadTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC2 . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $maxsize / 1024), '<br>');
+        $form->addElement($fileUploadTray);
+        } 
+        //-------------------------------------------------
         
         // Form Text ent_urls
         $inpUrls = new \XoopsFormTextArea(_AM_GLOSSAIRE_ENTRY_URLS, 'ent_urls', $this->getVar('ent_urls'), 3, 120);  
@@ -335,7 +377,7 @@ class Entries extends \XoopsObject
         $form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CATEGORY, $catList[$catIdSelect]));
         $form->addElement(new \XoopsFormHidden('ent_cat_id', $catIdSelect));   
         
-        if($ceator != ''){
+        if($creator != ''){
           $form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CREATOR, $creator));
           $form->addElement(new \XoopsFormHidden('ent_creator', $creator));   
         }else{
@@ -356,15 +398,15 @@ class Entries extends \XoopsObject
         
         // Form File: Upload entImage
         $maxsize = $glossaireHelper->getConfig('maxsize_image');
-        $fileUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_IMAGE, '<br>');
+        $imgUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_IMAGE, '<br>');
         $permissionUpload = true;
         if ($permissionUpload) {
             $fileDirectory = '/uploads/glossaire/files/entries';
             //$maxsize = $glossaireHelper->getConfig('maxsize_file');
-            $fileUploadTray->addElement(new \XoopsFormFile('', 'ent_image', $maxsize));
-            $fileUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
-        $fileUploadTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC2 . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $maxsize / 1024), '<br>');
-        $form->addElement($fileUploadTray);
+            $imgUploadTray->addElement(new \XoopsFormFile('', 'ent_image', $maxsize));
+            $imgUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
+        $imgUploadTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC2 . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $maxsize / 1024), '<br>');
+        $form->addElement($imgUploadTray);
         } 
         //-------------------------------------------------
             
@@ -394,8 +436,23 @@ class Entries extends \XoopsObject
         $inpReference->setDescription(_AM_GLOSSAIRE_ENTRY_REFERENCES_DESC);
         $form->addElement($inpReference);
         
-        //todo ajouter le telechargement d'un fichier
-        // Form Text ent_file_title_1 et ent_file_name_1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Form Text ent_urls
         $inpUrls = new \XoopsFormTextArea(_AM_GLOSSAIRE_ENTRY_URLS, 'ent_urls', $this->getVar('ent_urls'), 3, 120);  
@@ -475,8 +532,11 @@ class Entries extends \XoopsObject
         
         $ret['reference']        = $this->getVar('ent_reference', 'e');
         $ret['reference_short']  = $utility::truncateHtml($ret['reference'], $editorMaxchar);
-        $ret['file_title_1']        = $this->getVar('ent_file_title_1', 'e');
-        $ret['file_name_1']        = $this->getVar('ent_file_name_1', 'e');
+        $ret['file_name']        = $this->getVar('ent_file_name', 'e');
+        $ret['file_path']        = $this->getVar('ent_file_path', 'e');
+        $link = "<a href='%s/%s' title=''>%s<a>";
+        $ret['file_link']    = sprintf($link, $categoriesObj->getPathUploads('files', true), $ret['file_path'], $ret['file_name']);
+
         //todo
         //$ret['file_name_1_fullname']        = $this->getVar('ent_file_name_1', 'e');
 
@@ -523,6 +583,19 @@ function delete_image($catImgFolder){
     $fImg = $catImgFolder . $entImage;  
     $isImgOk = (is_readable($fImg) AND $entImage != '');
     if ($isImgOk) unlink($fImg);
+    $this->setVar('ent_image', '');
+//exit ($fImg);
+}
+function delete_file($catFilegFolder){
+
+    $entFilePath = $this->getVar('ent_file_path');
+    //$f = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . "/{$catImgFolder}/{$entImage}")  
+    $fFilePath = $catFileFolder . $entFilePath;  
+    $isFileOk = (is_readable($fFilePath) AND $fFilePath != '');
+    if ($isFileOk) unlink($fFilePath);
+    $this->setVar('ent_file_name', '');
+    $this->setVar('ent_file_path', '');
+    
 //exit ($fImg);
 }
 

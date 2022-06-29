@@ -65,8 +65,8 @@ function glossaire_build_criteria_words($queryarray, $andor = '')
             $crKeyword->add(new \Criteria('ent_definition', "%{$queryarray[$i]}%",'LIKE'),'OR');
             $crKeyword->add(new \Criteria('ent_reference', "%{$queryarray[$i]}%",'LIKE'),'OR');
 // a voir ajout du nom du fichier dans la recherche
-//ent_file_title_1
-//ent_file_name_1
+//ent_file_name
+
 
             $crKeywords->add($crKeyword, $andor);
             unset($crKeyword);

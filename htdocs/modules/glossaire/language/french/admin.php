@@ -74,7 +74,7 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_ENTRY_URL1', "Url1");
 \define('_AM_GLOSSAIRE_ENTRY_URL2', "Url2");
 \define('_AM_GLOSSAIRE_ENTRY_DATE_CREATION', "Date de création");
-\define('_AM_GLOSSAIRE_ENTRY_DATE_UPDATE', "Mise à jour de la date");
+\define('_AM_GLOSSAIRE_ENTRY_DATE_UPDATE', "Date de mise à jour");
 \define('_AM_GLOSSAIRE_ENTRY_COUNTER', "Compteur");
 \define('_AM_GLOSSAIRE_ENTRY_STATUS', "Statut");
 \define('_AM_GLOSSAIRE_ENTRY_FLAG', "Drapeau");
@@ -184,5 +184,8 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_IMPORT_FROM_FTP', "Import direct du dossier 'mport-direct'");
 \define('_AM_GLOSSAIRE_FILE_TO_IMPORT', "Fichier à importer");
 \define('_AM_GLOSSAIRE_FILE_TO_IMPORT_DESC', "Le fichier doit être une archive exportée par le module 'glossaire' ou l'un de ses clones.<br>A utiliser quand le fichier est trop gros pour etre importé.<br>Copiez le fichier via FTP dans le dossier 'uploads/glossaire/imports-directs'.");
+\define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier");
+\define('_AM_GLOSSAIRE_DELETE_FILE', "Supprimer le fichier");
+\define('_AM_GLOSSAIRE_ENTRY_CURRENT_FILE', "Fichier actuel");
 
 // ---------------- End ----------------

@@ -23,12 +23,13 @@
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_INITIALE}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_TERM}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_IMAGE}></th>
+                <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_FILE}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_SHORTDEF}></th>
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_DEFINITION}></th> *}>
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_REFERENCES}></th> *}>
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_URL1}></th> *}>
                 <{* ><th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_URL2}></th> *}>
-                <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_DATE_CREATION}></th>
+                <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_DATE_CREATION}></th> *}>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_DATE_UPDATE}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_COUNTER}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_STATUS}></th>
@@ -53,6 +54,9 @@
                     <img src='<{$modPathIcon16}>/bool-<{$entry.image_ok}>.gif' title=''><{$entry.image}>
                 </td>
                 <td class='left'>
+                    <{$entry.file_link}>
+                </td>
+                <td class='left'>
                     <{if $entry.shortdefMagnifed}>
                     <a href="entries.php?op=incrementField&field=ent_is_acronym&catIdSelect=<{$entry.ent_cat_id}>&ent_id=<{$entry.id}>&start=<{$start}>&limit=<{$limit}>" title="">
                         <img src='<{$modPathIcon16}>/bool-<{$entry.is_acronym}>.gif'>
@@ -64,7 +68,7 @@
                 <{* <td class='center'><{$entry.reference_short}></td> *}>
                 <{* <td class='center'><{$entry.url1}></td> *}>
                 <{* <td class='center'><{$entry.url2}></td> *}>
-                <td class='center'><{$entry.date_creation}></td>
+                <{* <td class='center'><{$entry.date_creation}></td> *}>
                 <td class='center'><{$entry.date_update}></td>
                 <td class='center'><{$entry.counter}></td>
                 <td class='center'>

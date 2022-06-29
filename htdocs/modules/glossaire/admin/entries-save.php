@@ -27,6 +27,56 @@ use Xmf\Request;
 use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
+//exit;
+
+/*
+function glossaire_upload_file($index, $prefix, $subfolder){
+global $_POST, $_FILES;
+    $key = $_POST['xoops_upload_file'][1];
+    $filename = $_FILES['ent_file']['name'];
+
+
+
+
+        $prefixFile = \JJD\sanityseNameForFile($prefix) . '_';
+        $fileFolder = $categoriesObj->getPathUploads($subfolder, false) ."/";
+/////////////////////////////////////////////////////////
+        $ent_delete_file = Request::getInt('ent_delete_file', 0);
+        if($ent_delete_file == 1){
+            $entFile = '';
+            $entriesObj->delete_image($fileFolder);
+            $entriesObj->setVar('ent_file', '');
+        }
+        //mkdir($imgFolder);
+        //if (!is_dir($fileFolder)) mkdir($fileFolder, 0777, true);        
+        
+        //echo "<hr>{$catId}-{$imgFolder}<hr>";exit;
+        $uploader = new \XoopsMediaUploader($fileFolder, 
+                                            $glossaireHelper->getConfig('mimetypes_file'), 
+                                            $glossaireHelper->getConfig('maxsize_file'), null, null);
+        if ($uploader->fetchMedia($_POST['xoops_upload_file'][1])) {
+            $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $filename);
+            //$prefixImg = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
+            $uploader->setPrefix($prefixFile);
+            $uploader->fetchMedia($_POST['xoops_upload_file'][1]);
+            if ($uploader->upload()) {
+                $entriesObj->setVar('ent_file', $uploader->getSavedFileName());
+            } else {
+                $uploaderErrors .= '<br>' . $uploader->getErrors();
+            }
+        } else {
+            if ($filename > '') {
+                $uploaderErrors .= '<br>' . $uploader->getErrors();
+            }
+            //$entriesObj->setVar('ent_image', );
+        }
+        
+
+
+
+}
+*/
+
 
         // Security Check
         if (!$GLOBALS['xoopsSecurity']->check()) {
@@ -58,6 +108,7 @@ use XoopsModules\Glossaire\Common;
         $catId = Request::getInt('ent_cat_id', 0);
         $categoriesObj = $categoriesHandler->get($catId);
         
+        
         // Set Vars
 		$entriesObj->setVar('ent_date_update', \JJD\getSqlDate());
         $entriesObj->setVar('ent_cat_id', Request::getInt('ent_cat_id', 0));
@@ -68,11 +119,13 @@ use XoopsModules\Glossaire\Common;
         $entriesObj->setVar('ent_shortdef', Request::getString('ent_shortdef', ''));
         $entriesObj->setVar('ent_is_acronym', Request::getInt('ent_is_acronym', 0));
         $entriesObj->setVar('ent_definition', Request::getText('ent_definition', ''));
-        $entriesObj->setVar('', Request::getText('', ''));
-        $entriesObj->setVar('', Request::getText('', ''));
+//         $entriesObj->setVar('', Request::getText('', ''));
+//         $entriesObj->setVar('', Request::getText('', ''));
         $entriesObj->setVar('ent_reference', Request::getText('ent_reference', ''));
         $entriesObj->setVar('ent_urls', Request::getText('ent_urls', ''));
         $entriesObj->setVar('ent_image', Request::getString('ent_image', ''));    
+        $entriesObj->setVar('ent_file_name', Request::getString('ent_file_name', ''));    
+        $entriesObj->setVar('ent_file_path', Request::getString('ent_file_path', ''));    
 //         $entriesObj->setVar('ent_url1', Request::getString('ent_url1', ''));
 //         $entriesObj->setVar('ent_url2', Request::getString('ent_url2', ''));
         
@@ -84,24 +137,21 @@ use XoopsModules\Glossaire\Common;
         $imgFolder = $categoriesObj->getPathUploads('images', false) ."/";
         $ent_delete_img = Request::getInt('ent_delete_img', 0);
         if($ent_delete_img == 1){
-            $entImage = '';
             $entriesObj->delete_image($imgFolder);
-            $entriesObj->setVar('ent_image', '');
         }
         //mkdir($imgFolder);
         if (!is_dir($imgFolder)) mkdir($imgFolder, 0777, true);        
         
-        
-        
         //echo "<hr>{$catId}-{$imgFolder}<hr>";exit;
+        $key = 0;
         $uploader = new \XoopsMediaUploader($imgFolder, 
                                             $glossaireHelper->getConfig('mimetypes_file'), 
                                             $glossaireHelper->getConfig('maxsize_file'), null, null);
-        if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
+        if ($uploader->fetchMedia($_POST['xoops_upload_file'][$key])) {
             $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $filename);
             //$prefixImg = \str_replace(' ', '', $imgNameDef) . '.' . $extension;
             $uploader->setPrefix($prefixImg);
-            $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
+            $uploader->fetchMedia($_POST['xoops_upload_file'][$key]);
             if ($uploader->upload()) {
                 $entriesObj->setVar('ent_image', $uploader->getSavedFileName());
             } else {
@@ -113,12 +163,43 @@ use XoopsModules\Glossaire\Common;
             }
             //$entriesObj->setVar('ent_image', );
         }
-        
 //ajout du téléchargement du fichier joint
 //modifier au le test pour l'image pour bien diférencier les deux        
-//         $entriesObj->setVar('', Request::getText('ent_file_title_1', ''));
-//         $entriesObj->setVar('', Request::getText('ent_file_name_1', ''));
+//         $entriesObj->setVar('', Request::getText('ent_file_name', ''));
+
         
+        // Set Var ent_file
+
+        $fileName       = $_FILES['ent_file_name']['name'];
+        $prefixFile = \JJD\sanityseNameForFile(Request::getString('ent_term')) . '_';
+        $fileFolder = $categoriesObj->getPathUploads('files', false) ."/";
+        $ent_delete_file = Request::getInt('ent_delete_file', 0);
+        if($ent_delete_file == 1){
+            $entriesObj->delete_file($fileFolder);
+        }
+
+        $key = 1;
+        $uploader = new \XoopsMediaUploader($fileFolder, 
+                                            $glossaireHelper->getConfig('mimetypes_file'), 
+                                            $glossaireHelper->getConfig('maxsize_file'), null, null);
+        if ($uploader->fetchMedia($_POST['xoops_upload_file'][$key])) {
+            $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
+            $uploader->setPrefix($prefixFile);
+            $uploader->fetchMedia($_POST['xoops_upload_file'][$key]);
+            if ($uploader->upload()) {
+                $entriesObj->setVar('ent_file_name', $fileName);
+                $newName =  $prefixFile . \JJD\sanityseNameForFile($fileName);
+                rename($fileFolder .'/' . $uploader->getSavedFileName(), $fileFolder . '/' . $newName);
+                $entriesObj->setVar('ent_file_path', $newName);
+            } else {
+                $uploaderErrors .= '<br>' . $uploader->getErrors();
+            }
+        } else {
+            if ($fileName > '') {
+                $uploaderErrors .= '<br>' . $uploader->getErrors();
+            }
+            //$entriesObj->setVar('ent_image', );
+        }
         
 
 
