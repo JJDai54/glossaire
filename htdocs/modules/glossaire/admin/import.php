@@ -109,7 +109,10 @@ $sql = "INSERT INTO " . $xoopsDB->prefix('glossaire_entries')
 echo $sql . "<hr>";
     $ret = $xoopsDB->query($sql);
 }
-$upload_size = 5000000;
+$upload_size = $glossaireHelper->getConfig('maxsize_file');
+//echo "upload_size===> : {$upload_size}";
+
+
 ////////////////////////////////////////////////////////////////////////
 switch($op) {
 	case 'import_self':

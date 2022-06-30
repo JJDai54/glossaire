@@ -233,12 +233,14 @@ switch ($op) {
         $form = $categoriesObj->getFormCategories();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
+        
     case 'delete':
         $templateMain = 'glossaire_admin_categories.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
         $categoriesObj = $categoriesHandler->get($catId);
         $catName = $categoriesObj->getVar('cat_name');
-        $imgFolder = $categoriesObj->getVar('cat_img_folder');
+        //$imgFolder = $categoriesObj->getVar('cat_img_folder');
+        $glsUploads = $categoriesObj->getPathUploads();
 //echo "<hr>===>" . GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $imgFolder . "<hr>";        
         if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
@@ -248,7 +250,8 @@ switch ($op) {
                 $entCriteria = new \Criteria('ent_cat_id', $catId,'=');
                 $entriesHandler->deleteAll($entCriteria);
                 //todo : supprimer les images de la categories dans le dosier deu glossaire
-                $xoopsFolder->delete(GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $imgFolder); 
+                $xoopsFolder->delete($glsUploads); 
+                
                 \redirect_header('categories.php', 3, \_AM_GLOSSAIRE_FORM_DELETE_OK);
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', $categoriesObj->getHtmlErrors());

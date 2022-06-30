@@ -1,3 +1,6 @@
+
+Ajout des fichiers joints dans l'export et l'import
+
 Style des lettres par défaut
 Style CSS des lettre par défaut.
 	

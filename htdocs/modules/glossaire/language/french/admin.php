@@ -187,5 +187,7 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier");
 \define('_AM_GLOSSAIRE_DELETE_FILE', "Supprimer le fichier");
 \define('_AM_GLOSSAIRE_ENTRY_CURRENT_FILE', "Fichier actuel");
+\define('_AM_GLOSSAIRE_INCLUDE_FILES_DESC', "Ajouter les fichiers joints");
+\define('_AM_GLOSSAIRE_INCLUDE_FILES_DESC', "Vous pouvez ajouter ou non les fichiers joints.");
 
 // ---------------- End ----------------

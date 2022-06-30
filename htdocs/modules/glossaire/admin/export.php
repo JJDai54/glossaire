@@ -34,14 +34,18 @@ $op = Request::getCmd('op', 'list');
 $catId  = Request::getInt('cat_id', -1);
 $catIdSelect = Request::getInt('catIdSelect',0);
 $gls_add_img = Request::getInt('gls_add_img',0);
+$gls_add_files = Request::getInt('gls_add_files',0);
 include_once GLOSSAIRE_PATH . "/include/import_export.php";
+
+// echo "<hr><pre>" . print_r($_GET, true) . "</pre><hr>";
+// echo "<hr><pre>" . print_r($_POST, true) . "</pre><hr>";
 
 $utility = new \XoopsModules\Glossaire\Utility();  
 ////////////////////////////////////////////////////////////////////////
 switch($op) {
 	case 'export_ok':
         //$outZipUrl = $entriesHandler->export($catIdSelect);
-        $outZipUrl = export_glossaire($catIdSelect, $gls_add_img);
+        $outZipUrl = export_glossaire($catIdSelect, $gls_add_img, $gls_add_files);
         
 		$templateMain = 'glossaire_admin_export.tpl';
 		$GLOBALS['xoopsTpl']->assign('download', 1);        
@@ -86,13 +90,17 @@ switch($op) {
         $inpCategory = new \XoopsFormSelect(_AM_GLOSSAIRE_CATEGORY, 'catIdSelect', $catIdSelect);
         $inpCategory->addOptionArray($catList);
         $inpCategory->setExtra("onchange=\"document.form_export.op.value='list';document.form_export.sender.value=this.name;document.form_export.submit();\"");
- //      "
+ // &gls_add_img={$gls_add_img}&gls_add_files={$gls_add_files}
   	    $form->addElement($inpCategory);
         
-        $inpImgYN = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_INCLUDE_IMG, 'gls_add_img', 0);
+        $inpImgYN = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_INCLUDE_IMG, 'gls_add_img', $gls_add_img);
         $inpImgYN->setExtra(_AM_GLOSSAIRE_INCLUDE_IMG_DESC);
   	    $form->addElement($inpImgYN);
                   
+        $inpFileYN = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_INCLUDE_IMG, 'gls_add_files', $gls_add_files);
+        $inpFileYN->setExtra(_AM_GLOSSAIRE_INCLUDE_FILES_DESC);
+  	    $form->addElement($inpFileYN);
+
 //         $inpQuiz = new \XoopsFormSelect(_AM_QUIZMAKER_QUIZ, 'quiz_id', $quizId);
 //         $inpQuiz->addOptionArray($quizHandler->getListKeyName($catId));
 //         //$inpQuiz->setExtra('onchange="document.quizmaker_select_filter.sender.value=this.name;document.quizmaker_select_filter.submit();"');

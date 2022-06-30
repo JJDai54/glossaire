@@ -20,7 +20,6 @@ $(function() {
 });
 
 $(document).ready(function(){     
-
         $("#glossaire_download").delay(8000).hide(2000, "linear", function(){
             //alert("Titre bien caché");
         });

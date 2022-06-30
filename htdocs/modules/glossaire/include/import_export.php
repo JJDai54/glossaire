@@ -36,7 +36,7 @@
 /**************************************************************
  * 
  * ************************************************************/
-function export_glossaire($catId, $gls_add_img = false)
+function export_glossaire($catId, $gls_add_img = false, $gls_add_files=false)
 {
     global $xoopsConfig, $xoopsDB, $utility, $categoriesHandler, $xoopsFolder;
     
@@ -51,8 +51,10 @@ function export_glossaire($catId, $gls_add_img = false)
     $pathGlossaire = $pathExport . "/{$folder}/";
     if (!is_dir($pathGlossaire)) mkdir($pathGlossaire, 0777, true);
     //--------------------------------------------------------------
+    $uploadsPath = $catObj->getPathUploads();
+    //echo "===>uploadsPath : {$uploadsPath}<br>";
     export_categories ($catId, $pathGlossaire, GLOSSAIRE_DIRNAME);    
-    export_entries    ($catId, $pathGlossaire, GLOSSAIRE_DIRNAME, $catObj->getVar('cat_img_folder'), $gls_add_img);    
+    export_entries    ($catId, $pathGlossaire, GLOSSAIRE_DIRNAME, $uploadsPath, $gls_add_img, $gls_add_files);    
     
     
     
@@ -78,21 +80,29 @@ function export_categories($catId, $pathExport, $moduleName){
 /**************************************************************
  * 
  * ************************************************************/
-function export_entries($catId, $pathExport, $moduleName, $imgFolder='',$gls_add_img){
+function export_entries($catId, $pathExport, $moduleName, $uploadsPath='',$gls_add_img, $gls_add_files){
     global $xoopsConfig, $xoopsDB, $utility, $categoriesHandler, $xoopsFolder;
     
     $criteria = new \CriteriaCompo(new \Criteria('ent_cat_id',$catId,'='));
     $tbl = 'entries';
     \Xmf\Database\TableLoad::saveTableToYamlFile("{$moduleName}_{$tbl}", $pathExport . $tbl . '.yml', $criteria);
     
+    //----------------------------------------------------
     if($gls_add_img){
-      $pathSource = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' .  $imgFolder; 
-      $options = array('from' => $pathSource, 
+ 
+      $options = array('from' => $uploadsPath . '/images', 
                        'to'   => $pathExport . "/images",
                        'mode' => 0777);
       $xoopsFolder->copy($options);
     }
     //----------------------------------------------------
+    if($gls_add_files){
+ 
+      $options = array('from' => $uploadsPath . '/files', 
+                       'to'   => $pathExport . "/files",
+                       'mode' => 0777);
+      $xoopsFolder->copy($options);
+    }
     /*
 
     */
@@ -115,9 +125,9 @@ function import_glossaire($pathImport, $catId)
         $catId = $categoriesObj->getVar("cat_id");
     }
     //---------------------------------------------------------
-     $imgPath = $categoriesObj->getPathUploads('images');
+     $glsUploads = $categoriesObj->getPathUploads();
 //     echo ("<hr>===>catId = {$catId}<hr>");
-     import_entries($pathImport, $catId, $imgPath);
+     import_entries($pathImport, $catId, $glsUploads);
 
 
 
@@ -126,7 +136,7 @@ function import_glossaire($pathImport, $catId)
 /**************************************************************
  * 
  * ************************************************************/
-function import_entries($pathImport, $catId, $imgPath){
+function import_entries($pathImport, $catId, $glsUploads){
 global $entriesHandler, $xoopsFolder;
 
     $fullName = "{$pathImport}/entries.yml";
@@ -148,10 +158,20 @@ global $entriesHandler, $xoopsFolder;
     //-----------------------------------------
     // Importation des images
     //-----------------------------------------
+    if (is_readable($pathImport . '/images')){
     $xoopsFolder->copy(array('from' => $pathImport . '/images', 
-                             'to'   => $imgPath,
+                             'to'   => $glsUploads . '/images',
                              'mode' => 0777));
+    }
     
+    //-----------------------------------------
+    // Importation des fichiers joints
+    //-----------------------------------------
+    if (is_readable($pathImport . '/images')){
+    $xoopsFolder->copy(array('from' => $pathImport . '/files', 
+                             'to'   => $glsUploads . '/files',
+                             'mode' => 0777));
+    }
     
     
 }
