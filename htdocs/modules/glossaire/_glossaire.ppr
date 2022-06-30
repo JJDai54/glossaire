@@ -266,11 +266,10 @@ _glossaire
 0=admin\export.php
 1=include\import_export.php
 2=class\Categories.php
-3=admin\import.php
-4=admin\categories.php
+3=class\Entries.php
 [Selected Project Files]
 Main=
-Selected=admin\categories.php
+Selected=class\Categories.php
 [admin\export.php]
 TopLine=33
 Caret=81,48
@@ -278,11 +277,8 @@ Caret=81,48
 TopLine=117
 Caret=1,175
 [class\Categories.php]
-TopLine=268
-Caret=35,274
-[admin\import.php]
-TopLine=110
-Caret=3,113
-[admin\categories.php]
-TopLine=228
-Caret=49,253
+TopLine=223
+Caret=1,237
+[class\Entries.php]
+TopLine=47
+Caret=59,75

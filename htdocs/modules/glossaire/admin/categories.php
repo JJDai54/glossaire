@@ -118,7 +118,7 @@ switch ($op) {
         // Set Vars
         $uploaderErrors = '';
         $categoriesObj->setVar('cat_name', Request::getString('cat_name', ''));
-        $categoriesObj->setVar('cat_description', Request::getString('cat_description', ''));
+        $categoriesObj->setVar('cat_description', Request::getText('cat_description', ''));
         $categoriesObj->setVar('cat_weight', Request::getInt('cat_weight', 0));
 		$categoriesObj->setVar('cat_date_update', \JJD\getSqlDate());
         

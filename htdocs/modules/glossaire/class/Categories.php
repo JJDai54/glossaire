@@ -56,7 +56,7 @@ class Categories extends \XoopsObject
     {
         $this->initVar('cat_id', \XOBJ_DTYPE_INT);
         $this->initVar('cat_name', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('cat_description', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('cat_description', \XOBJ_DTYPE_OTHER);
         $this->initVar('cat_weight', \XOBJ_DTYPE_INT);
         $this->initVar('cat_logourl', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_img_folder', \XOBJ_DTYPE_TXTBOX);
@@ -233,7 +233,7 @@ class Categories extends \XoopsObject
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id']                = $this->getVar('cat_id');
         $ret['name']              = $this->getVar('cat_name');
-        $ret['description']       = \strip_tags($this->getVar('cat_description', 'e'));
+        $ret['description']       = $this->getVar('cat_description', 'e');
         $editorMaxchar = $glossaireHelper->getConfig('editor_maxchar');
         $ret['description_short'] = $utility::truncateHtml($ret['description'], $editorMaxchar);
         $ret['weight']            = $this->getVar('cat_weight');
