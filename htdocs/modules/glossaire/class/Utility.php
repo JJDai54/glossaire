@@ -53,7 +53,7 @@ class Utility
      * @return string Trimmed string.
      */
     public static function truncateHtml($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true)
-    {
+    {$text = strip_tags($text);
         if ($considerHtml) {
             // if the plain text is shorter than the maximum length, return the whole text
             if (\mb_strlen(\preg_replace('/<.*?' . '>/', '', $text)) <= $length) {
@@ -269,7 +269,7 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
       {
           return $initiale;
       }else{
-          return '#';
+          return GLOSSAIRE_CHIFFRES;
       }
     }
 

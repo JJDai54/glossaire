@@ -129,11 +129,28 @@ class EntriesHandler extends \XoopsPersistableObjectHandler
     /**
      * @return array
      */
-public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
+public function getAlphaBarre($criteria, $url, $oldLetter, $catObj=null)
 {
     global $glossaireHelper;
-
+    
+    if($catObj){
+        $alphabarre          = $catObj->getVar('cat_alphabarre');
+        $alphabarre_mode     = $catObj->getVar('cat_alphabarre_mode');
+        $letter_css_default  = $catObj->getVar('cat_letter_css_default');
+        $letter_css_selected = $catObj->getVar('cat_letter_css_selected');
+        $letter_css_exist    = $catObj->getVar('cat_letter_css_exist');
+        $letter_css_notexist = $catObj->getVar('cat_letter_css_notexist');
+    }else{
+        $alphabarre          = $glossaireHelper->getConfig('alphabarre');
+        $alphabarre_mode     = $glossaireHelper->getConfig('alphabarre_mode');
+        $letter_css_default  = $glossaireHelper->getConfig('letter_css_default');
+        $letter_css_selected = $glossaireHelper->getConfig('letter_css_selected');
+        $letter_css_exist    = $glossaireHelper->getConfig('letter_css_exist');
+        $letter_css_notexist = $glossaireHelper->getConfig('letter_css_notexist');
+    }
+    
     $linkRefOk  = "<b><a href='{$url}' title='' alt=''><span class='letter-exist'>%s</span></a></b>";
+    //$linkNoRef  = "<span>%s</span>";
     $linkNoRef  = "<span class='letter-notexist'>%s</span>";
     $linkOldRef = "<span class='letter-selected'>%s</span>";
 
@@ -151,10 +168,10 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
     $lettersArr = array();
 
     $style="<style>\n"
-    . ".letter-default span{"  . $glossaireHelper->getConfig('letter_default') . "}\n"
-    . ".letter-selected{" . $glossaireHelper->getConfig('letter_selected') . "}\n"
-    . ".letter-exist{"    . $glossaireHelper->getConfig('letter_exist') . "}\n"
-    . ".letter-notexist{" . $glossaireHelper->getConfig('letter_notexist') . "}\n"
+    . ".letter-default span{{$letter_css_default}}\n"
+    . ".letter-selected{{$letter_css_selected}}\n"
+    . ".letter-exist{{$letter_css_exist}}\n"
+    . ".letter-notexist{{$letter_css_notexist}}\n"
     ."</style>\n";
     //------------------------------------------------------
     $letterLink = '*';
@@ -165,70 +182,22 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $margin="3px")
             $lettersArr[] =  sprintf($linkRefOk, $letterLink, $letterVisible);
     
     //------------------------------------------------------
-    for ($h = 0; $h < strlen(_GLS_ALPHABARRE); ++$h) {
-        $letterVisible = _GLS_ALPHABARRE[$h];
-        $letterLink = ($letterVisible=='#') ? '@' : $letterVisible;
+    for ($h = 0; $h < strlen($alphabarre); ++$h) {
+        $letterVisible = $alphabarre[$h];
+        $letterLink = ($letterVisible == GLOSSAIRE_CHIFFRES) ? '@' : $letterVisible;
 
         if (array_search($letterVisible, $lettersfound)!==false){
             if($letterVisible==$oldLetter)
                 $lettersArr[] = sprintf($linkOldRef, $letterVisible); 
             else
                 $lettersArr[] = sprintf($linkRefOk, $letterLink, $letterVisible); 
-        }else{
+        }elseif ($alphabarre_mode == 1){
             $lettersArr[] = sprintf($linkNoRef, $letterVisible);
         }
 
     }
 
     return $style. "<span class='letter-default'>" . implode('', $lettersArr) . "</span>";
-}
-public function getAlphaBarre_old($criteria, $url, $oldLetter, $margin="3px")
-{
-    global $glossaireHelper;
-
-    $linkRefOk  = "<b><a href='{$url}' title='' alt=''><span class='letter-default letter-exist'>%s</span></a></b>";
-    $linkNoRef  = "<span class='letter-default letter-notexist'>%s</span>";
-    $linkOldRef = "<span class='letter-default letter-selected'>%s</span>";
-
-    $oldLetter = strtoupper($oldLetter);
-    $sql = "SELECT GROUP_CONCAT(DISTINCT(`ent_initiale`)) as comaList FROM " . $this->table
-         . " " . $criteria->renderWhere();         
-    $rst = $this->db->query($sql);         
-    $lettersfound = explode(',', $this->db->fetchArray($rst)['comaList']);
-     
-    $lettersArr = array();
-
-    $style="<style>\n"
-    . ".letter-default{"  . $glossaireHelper->getConfig('letter_default') . "}\n"
-    . ".letter-selected{" . $glossaireHelper->getConfig('letter_selected') . "}\n"
-    . ".letter-exist{"    . $glossaireHelper->getConfig('letter_exist') . "}\n"
-    . ".letter-notexist{" . $glossaireHelper->getConfig('letter_notexist') . "}\n"
-    ."</style>\n";
-    //------------------------------------------------------
-    $letterLink = '*';
-    $letterVisible = _ALL;
-        if($letterLink==$oldLetter)
-            $lettersArr[] =  sprintf($linkOldRef, $letterVisible);
-        else
-            $lettersArr[] =  sprintf($linkRefOk, $letterLink, $letterVisible);
-    
-    //------------------------------------------------------
-    for ($h = 0; $h < strlen(_GLS_ALPHABARRE); ++$h) {
-        $letterVisible = _GLS_ALPHABARRE[$h];
-        $letterLink = ($letterVisible=='#') ? '@' : $letterVisible;
-
-        if (array_search($letterVisible, $lettersfound)!==false){
-            if($letterVisible==$oldLetter)
-                $lettersArr[] = sprintf($linkOldRef, $letterVisible); 
-            else
-                $lettersArr[] = sprintf($linkRefOk, $letterLink, $letterVisible); 
-        }else{
-            $lettersArr[] = sprintf($linkNoRef, $letterVisible);
-        }
-
-    }
-
-    return $style. "<span class='alphabarre'>" . implode('', $lettersArr) . "</span>";
 }
 
     /**

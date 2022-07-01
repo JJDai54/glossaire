@@ -6,6 +6,7 @@
 <input type="hidden" name="sender" value="0" />
 <{$smarty.const._CO_GLOSSAIRE_CATEGORY}> : <{$catIdSelect}>
 <{$smarty.const._CO_GLOSSAIRE_STATUS}> : <{$statusSelect}>
+<{$smarty.const._CO_GLOSSAIRE_ENTRIES_SORT0}> : <{$sortIdSelect}>
 </form>
 
 <{if $entries_list|default:''}>
@@ -20,20 +21,20 @@
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_ID}></th>
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_CAT_ID}></th> *}>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CREATOR}></th>
-                <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_INITIALE}></th>
+                <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_INITIALE}></th> *}>
+                <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_STATUS}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_TERM}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_IMAGE}></th>
-                <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_FILE}></th>
+                <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_FILE}></th> 
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_SHORTDEF}></th>
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_DEFINITION}></th> *}>
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_REFERENCES}></th> *}>
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_URL1}></th> *}>
                 <{* ><th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_URL2}></th> *}>
-                <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_DATE_CREATION}></th> *}>
-                <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_DATE_UPDATE}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_COUNTER}></th>
-                <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_STATUS}></th>
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_FLAG}></th> *}>
+                <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_DATE_CREATION}></th>
+                <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_DATE_UPDATE}></th>
                 <th class="center width5"><{$smarty.const._AM_GLOSSAIRE_FORM_ACTION}></th>
             </tr>
         </thead>
@@ -44,18 +45,28 @@
                 <td class='center'><{$entry.cat_id}>/<{$entry.id}></td>
                 <{* <td class='center'><{$entry.cat_id}></td> *}>
                 <td class='center'><{$entry.creator}></td>
-                <td class='center width5'><{$entry.initiale}></td>
-                <td class='left'>
-                    <a href="entries.php?op=edit&amp;ent_id=<{$entry.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}>">
-                    <{$entry.term}>
+                <td class='center'>
+                    <a href="entries.php?op=changeStatus&catIdSelect=<{$entry.ent_cat_id}>&ent_id=<{$entry.id}>&start=<{$start}>&limit=<{$limit}>&statusIdSelect=<{$statusIdSelect}>" title="">
+                        <img src='<{$modPathIcon16}>/status-<{$entry.status}>.png'>
                     </a>
                 </td>
                 <td class='left'>
-                    <img src='<{$modPathIcon16}>/bool-<{$entry.image_ok}>.gif' title=''><{$entry.image}>
+                    <a href="entries.php?op=edit&amp;ent_id=<{$entry.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._EDIT}>">
+                        <img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}>">
+                        [<{$entry.initiale}>] - <{$entry.term}>
+                    </a>
+                </td>
+                
+                <td class='center'>
+                    <img src='<{$modPathIcon16}>/bool-<{$entry.image_ok}>.gif' title='<{$entry.image}>'>
                 </td>
                 <td class='left'>
                     <{$entry.file_link}>
                 </td>
+                
+                
+                
+                
                 <td class='left'>
                     <{if $entry.shortdefMagnifed}>
                     <a href="entries.php?op=incrementField&field=ent_is_acronym&catIdSelect=<{$entry.ent_cat_id}>&ent_id=<{$entry.id}>&start=<{$start}>&limit=<{$limit}>" title="">
@@ -68,16 +79,11 @@
                 <{* <td class='center'><{$entry.reference_short}></td> *}>
                 <{* <td class='center'><{$entry.url1}></td> *}>
                 <{* <td class='center'><{$entry.url2}></td> *}>
-                <{* <td class='center'><{$entry.date_creation}></td> *}>
-                <td class='center'><{$entry.date_update}></td>
                 <td class='center'><{$entry.counter}></td>
-                <td class='center'>
-                    <a href="entries.php?op=changeStatus&catIdSelect=<{$entry.ent_cat_id}>&ent_id=<{$entry.id}>&start=<{$start}>&limit=<{$limit}>&statusIdSelect=<{$statusIdSelect}>" title="">
-                        <img src='<{$modPathIcon16}>/status-<{$entry.status}>.png'>
-                    </a>
-                </td>
                 
                 <{* <td class='center'><{$entry.flag}></td> *}>
+                <td class='center'><{$entry.date_creation}></td>
+                <td class='center'><{$entry.date_update}></td>
                 <td class="center  width5">
                     <a href="entries.php?op=edit&amp;ent_id=<{$entry.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}> entries" ></a>
                     <a href="entries.php?op=clone&amp;ent_id_source=<{$entry.id}>" title="<{$smarty.const._CLONE}>"><img src="<{xoModuleIcons16 editcopy.png}>" alt="<{$smarty.const._CLONE}> entries" ></a>
@@ -103,7 +109,7 @@
 
 <script>
 tth_set_value('last_asc', true);
-tth_trierTableau('entries_list', 4, "1,2,3,4,5,6,7,8,9,10,11");  
+tth_trierTableau('entries_list', <{$tplColToSort}>, "1,2,3,4,5,6,7,8,9,10,11");  
 </script>
 
 <!-- Footer -->

@@ -59,6 +59,12 @@ class Categories extends \XoopsObject
         $this->initVar('cat_description', \XOBJ_DTYPE_OTHER);
         $this->initVar('cat_weight', \XOBJ_DTYPE_INT);
         $this->initVar('cat_logourl', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_alphabarre', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_alphabarre_mode', \XOBJ_DTYPE_INT);
+        $this->initVar('cat_letter_css_default', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_letter_css_selected', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_letter_css_exist', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_letter_css_notexist', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_img_folder', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_colors_set', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_is_acronym', \XOBJ_DTYPE_INT); 
@@ -156,8 +162,15 @@ class Categories extends \XoopsObject
         $imageTray->addElement($fileSelectTray);
         $form->addElement($imageTray);
         
+        // Form Text 
+        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE, 'cat_alphabarre', 150, 255, $this->getVar('cat_alphabarre')));
+        $form->addElement(new \XoopsFormRadioYN(\_MI_GLOSSAIRE_ALPHABARRE_MODE, 'cat_alphabarre_mode', $this->getVar('cat_alphabarre_mode')));
+        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT, 'cat_letter_css_default', 150, 255, $this->getVar('cat_letter_css_default')));
+        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED, 'cat_letter_css_selected', 150, 255, $this->getVar('cat_letter_css_selected')));
+        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST, 'cat_letter_css_exist', 150, 255, $this->getVar('cat_letter_css_exist')));
+        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST, 'cat_letter_css_notexist', 150, 255, $this->getVar('cat_letter_css_notexist')));
         
-        // Form Text Date Select cat_colors_set
+       // Form Text Date Select cat_colors_set
         //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_THEME, 'cat_colors_set', 50, 50, $this->getVar('cat_colors_set')));
         $selectFormColorSet = new \XoopsFormSelect(_AM_GLOSSAIRE_CATEGORY_COLOR_SET , 'cat_colors_set', $this->getVar( 'cat_colors_set', 'e' ) );
         $selectFormColorSet->addOptionArray(\jjd\get_css_color());
@@ -238,15 +251,23 @@ class Categories extends \XoopsObject
         $ret['description_short'] = $utility::truncateHtml($ret['description'], $editorMaxchar);
         $ret['weight']            = $this->getVar('cat_weight');
         $ret['logourl']           = $this->getVar('cat_logourl');
+        
+        $ret['alphabarre']          = $this->getVar('cat_alphabarre');
+        $ret['alphabarre_mode']     = $this->getVar('cat_alphabarre_mode');
+        $ret['letter_css_default']  = $this->getVar('cat_letter_css_default');
+        $ret['letter_css_selected'] = $this->getVar('cat_letter_css_selected');
+        $ret['letter_css_exist']    = $this->getVar('cat_letter_css_exist');
+        $ret['letter_css_notexist'] = $this->getVar('cat_letter_css_notexist');
+
         $ret['img_folder']        = $this->getVar('cat_img_folder');
         $ret['colors_set']        = ($this->getVar('cat_colors_set')) ? $this->getVar('cat_colors_set') : "default";
         $ret['is_acronym']        = $this->getVar('cat_is_acronym');
         $ret['show_terms_index']  = $this->getVar('cat_show_terms_index');
-        $ret['count_entries']    = $this->getVar('cat_count_entries');
+        $ret['count_entries']     = $this->getVar('cat_count_entries');
 //         $ret['date_creation']     = \formatTimestamp($this->getVar('cat_date_creation'), 'm');
-//         $ret['date_update']       = \formatTimestamp($this->getVar('cat_date_update'), 'm');
-		$ret['date_creation']          = \JJD\getDateSql2Str($this->getVar('cat_date_creation'));
-		$ret['date_update']            = \JJD\getDateSql2Str($this->getVar('cat_date_update'));
+//         $ret['date_update']    = \formatTimestamp($this->getVar('cat_date_update'), 'm');
+		$ret['date_creation']     = \JJD\getDateSql2Str($this->getVar('cat_date_creation'));
+		$ret['date_update']       = \JJD\getDateSql2Str($this->getVar('cat_date_update'));
         
         return $ret;
     }

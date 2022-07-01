@@ -83,9 +83,18 @@ switch ($op) {
         // Form Create
         $categoriesObj = $categoriesHandler->create();
         $categoriesObj->setVar('cat_weight', $categoriesHandler->getMax('cat_weight')+10);
+        
+        $categoriesObj->setVar('cat_alphabarre',            $glossaireHelper->getConfig('alphabarre'));
+        $categoriesObj->setVar('cat_alphabarre_mode',       $glossaireHelper->getConfig('alphabarre_mode'));
+        $categoriesObj->setVar('cat_letter_css_default',    $glossaireHelper->getConfig('letter_css_default'));
+        $categoriesObj->setVar('cat_letter_css_selected',   $glossaireHelper->getConfig('letter_css_selected'));
+        $categoriesObj->setVar('cat_letter_css_exist',      $glossaireHelper->getConfig('letter_css_exist'));
+        $categoriesObj->setVar('cat_letter_css_notexist',   $glossaireHelper->getConfig('letter_css_notexist'));
+        
         $form = $categoriesObj->getFormCategories();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
+        
     case 'clone':
         $templateMain = 'glossaire_admin_categories.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
@@ -101,6 +110,7 @@ switch ($op) {
         $form = $categoriesObj->getFormCategories();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
+        
     case 'save':
         $templateMain = 'glossaire_admin_categories.tpl';
         // Security Check
@@ -157,6 +167,20 @@ switch ($op) {
 //         }else{
 //         }  
         
+//         $categoriesObj->setVar('cat_alphabarre',            Request::getString('cat_alphabarre', ""));
+//         $categoriesObj->setVar('cat_alphabarre_mode',       Request::getInt('cat_alphabarre_mode', ''));
+//         $categoriesObj->setVar('cat_letter_css_default',    Request::getString('cat_letter_css_default', ''));
+//         $categoriesObj->setVar('cat_letter_css_selected',   Request::getString('cat_letter_css_selected', ''));
+//         $categoriesObj->setVar('cat_letter_css_exist',      Request::getString('cat_letter_css_exist', ''));
+//         $categoriesObj->setVar('cat_letter_css_notexist',   Request::getString('cat_letter_css_notexist', ''));
+
+        $categoriesObj->setVar('cat_alphabarre',            (Request::getString('cat_alphabarre', "")!='') ? Request::getString('cat_alphabarre', "") : $glossaireHelper->getConfig('alphabarre'));
+        $categoriesObj->setVar('cat_alphabarre_mode',       (Request::getInt('cat_alphabarre_mode', "")!='') ? Request::getInt('cat_alphabarre_mode', "") : $glossaireHelper->getConfig('alphabarre_mode'));
+        $categoriesObj->setVar('cat_letter_css_default',    (Request::getString('cat_letter_css_default', "")!='') ? Request::getString('cat_letter_css_default', "") : $glossaireHelper->getConfig('letter_css_default'));
+        $categoriesObj->setVar('cat_letter_css_selected',   (Request::getString('cat_letter_css_selected', "")!='') ? Request::getString('cat_letter_css_selected', "") : $glossaireHelper->getConfig('letter_css_selected'));
+        $categoriesObj->setVar('cat_letter_css_exist',      (Request::getString('cat_letter_css_exist', "")!='') ? Request::getString('cat_letter_css_exist', "") : $glossaireHelper->getConfig('letter_css_exist'));
+        $categoriesObj->setVar('cat_letter_css_notexist',   (Request::getString('cat_letter_css_notexist', "")!='') ? Request::getString('cat_letter_css_notexist', "") : $glossaireHelper->getConfig('letter_css_notexist'));
+
         //---------------------------------------------------
         $categoriesObj->setVar('cat_colors_set', Request::getString('cat_colors_set', ''));
         $categoriesObj->setVar('cat_is_acronym', Request::getInt('cat_is_acronym', 0));

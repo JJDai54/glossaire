@@ -161,14 +161,7 @@ define('_MI_GLOSSAIRE_IMPORT', "Importation");
 \define('_MI_GLOSSAIRE_MIMETYPES_FILE_DESC', "Définir les types mime autorisés pour le téléchargement de fichiers");
 
 
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT', "Style des lettres par défaut");
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT_DESC', "Style CSS des lettre par défaut.");
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED', "Style de la lettre sélectionnée");
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED_DESC', "Style de la lettre sélectionnée.");
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST', "Style des lettres existantes");
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci existe");
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST', "Style des lettres inexistantes");
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci n'existe pas.");
+
 \define('_MI_GLOSSAIRE_SHOW_ID', "Afficher les identifiants");
 \define('_MI_GLOSSAIRE_SHOW_ID_DESC', "Utilisé en mode développement, laisser de préférence 'False' en production");
 
@@ -191,7 +184,19 @@ define('_MI_GLOSSAIRE_IMPORT', "Importation");
 \define('_MI_GLOSSAIRE_BREAK_EXTRA', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "Extra"));
 \define('_MI_GLOSSAIRE_BREAK_NOTIFICATION', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "NOTIFICATIONS") );
 
+\define('_MI_GLOSSAIRE_ALPHABARRE', "Barre de lettres");
+\define('_MI_GLOSSAIRE_ALPHABARRE_DESC', "Liste des lettres de la barre de sélection par initiale.<br>Utiliser le caractère \"#\" pour tous les chiffres.");
+\define('_MI_GLOSSAIRE_ALPHABARRE_MODE', "Afficher toutes les lettres");
+\define('_MI_GLOSSAIRE_ALPHABARRE_MODE_DESC', "<b>Non</b> : Affiche que les lettres existantes pour la sélection courante.<br><b>Oui</b> : Affiche la barre complète quelque soit la séléction.");
 
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT', "Style des lettres par défaut");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT_DESC', "Style CSS des lettre par défaut.");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED', "Style de la lettre sélectionnée");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED_DESC', "Style de la lettre sélectionnée.");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST', "Style des lettres existantes");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci existe");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST', "Style des lettres inexistantes");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci n'existent pas.");
 
 /*
 \define('', "");

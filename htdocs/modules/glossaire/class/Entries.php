@@ -534,8 +534,13 @@ define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier à importer");
         $ret['reference_short']  = $utility::truncateHtml($ret['reference'], $editorMaxchar);
         $ret['file_name']        = $this->getVar('ent_file_name', 'e');
         $ret['file_path']        = $this->getVar('ent_file_path', 'e');
-        $link = "<a href='%s/%s' title=''>%s<a>";
-        $ret['file_link']    = sprintf($link, $categoriesObj->getPathUploads('files', true), $ret['file_path'], $ret['file_name']);
+        $ret['file_ok'] = (is_readable($categoriesObj->getPathUploads('files', false) . '/' . $ret['file_path']));
+        if($ret['file_ok']){
+            $link = "<a href='%s/%s' title=''>%s<a>";
+            $ret['file_link']    = sprintf($link, $categoriesObj->getPathUploads('files', true), $ret['file_path'], $ret['file_name']);
+        }else{
+            $ret['file_link']    = '';
+        }
 
         //todo
         //$ret['file_name_1_fullname']        = $this->getVar('ent_file_name_1', 'e');

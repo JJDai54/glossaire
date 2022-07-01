@@ -17,6 +17,12 @@ CREATE TABLE `glossaire_categories` (
   `cat_description` TEXT NOT NULL ,
   `cat_weight` INT(10) NOT NULL DEFAULT '0',
   `cat_logourl` VARCHAR(255) NOT NULL DEFAULT '',
+  `cat_alphabarre` VARCHAR(255) NOT NULL DEFAULT ''
+  `cat_alphabarre_mode` INT(10) NOT NULL DEFAULT '1'
+  `cat_letter_css_default` VARCHAR(255) NOT NULL DEFAULT ''
+  `cat_letter_css_selected` VARCHAR(255) NOT NULL DEFAULT ''
+  `cat_letter_css_exist` VARCHAR(255) NOT NULL DEFAULT ''
+  `cat_letter_css_notexist` VARCHAR(255) NOT NULL DEFAULT ''
   `cat_img_folder` VARCHAR(255) NOT NULL DEFAULT '',
   `cat_colors_set` VARCHAR(50) NOT NULL DEFAULT '',
   `cat_is_acronym` TINYINT(1) NOT NULL DEFAULT '0',   
@@ -27,6 +33,11 @@ CREATE TABLE `glossaire_categories` (
   PRIMARY KEY (`cat_id`),
  UNIQUE KEY `cat_img_folder` (`cat_img_folder`)  
 ) ENGINE=InnoDB;
+
+
+
+
+
 
 #
 # Structure table for `glossaire_entries` 14

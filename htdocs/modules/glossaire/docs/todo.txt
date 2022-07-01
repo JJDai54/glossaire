@@ -1,3 +1,4 @@
+Ajout d'une list pour le tri dans l'admin des termes
 
 Ajout des fichiers joints dans l'export et l'import
 

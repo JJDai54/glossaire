@@ -41,7 +41,7 @@ $start = Request::getInt('start', 0);
 $limit = Request::getInt('limit', $glossaireHelper->getConfig('userpager'));
 if (!$limit)$limit=15;
 $letter= Request::getString('letter', '*');
-if ($letter=='@') $letter='#';
+if ($letter=='@') $letter = GLOSSAIRE_CHIFFRES;
 $exp2search  = Request::getString('exp2search', '');
 $exp2searchGlobal  = Request::getString('exp2searchGlobal', '');
 $sender  = Request::getString('sender', '');

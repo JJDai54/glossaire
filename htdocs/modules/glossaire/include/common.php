@@ -28,11 +28,11 @@ if (!\defined('XOOPS_ICONS32_PATH')) {
 if (!\defined('XOOPS_ICONS32_URL')) {
     \define('XOOPS_ICONS32_URL', \XOOPS_URL . '/Frameworks/moduleclasses/icons/32');
 }
-if (isset($xoopsModuleConfig)) define('_GLS_SHOW_TPL_NAME', $xoopsModuleConfig['displayTemplateName']);
-else define('_GLS_SHOW_TPL_NAME', 0);
+if (isset($xoopsModuleConfig)) define('GLOSSAIRE_SHOW_TPL_NAME', $xoopsModuleConfig['displayTemplateName']);
+else define('GLOSSAIRE_SHOW_TPL_NAME', 0);
 
-define('_GLS_ALPHABARRE', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#');
-define('_GLS_CHIFFRE', '#');
+
+define('GLOSSAIRE_CHIFFRES', '#');
 
 \define('GLOSSAIRE_DIRNAME', 'glossaire');
 \define('GLOSSAIRE_PATH', \XOOPS_ROOT_PATH . '/modules/' . \GLOSSAIRE_DIRNAME);
@@ -73,4 +73,17 @@ require_once \XOOPS_ROOT_PATH . '/class/xoopsrequest.php';
 require_once \GLOSSAIRE_PATH . '/include/functions.php';
 
 //--------- a mettre dans xoops_version.php
-\define('GLOSSAIRE_ALPHABARRE_FONT_SIZE', "1.52em");
+
+$row=1;
+define('GLOSSAIRE_COL_ADM_ENTRIES_ID', $row++);
+define('GLOSSAIRE_COL_ADM_ENTRIES_CREATOR', $row++);
+define('GLOSSAIRE_COL_ADM_ENTRIES_STATUS', $row++);
+define('GLOSSAIRE_COL_ADM_ENTRIES_TERM', $row++);
+define('GLOSSAIRE_COL_ADM_ENTRIES_IMAGE', $row++);
+define('GLOSSAIRE_COL_ADM_ENTRIES_FILE', $row++);
+define('GLOSSAIRE_COL_ADM_ENTRIES_SHORTDEF', $row++);
+define('GLOSSAIRE_COL_ADM_ENTRIES_COUNTER', $row++);
+define('GLOSSAIRE_COL_ADM_ENTRIES_DATE_CREATION', $row++);
+define('GLOSSAIRE_COL_ADM_ENTRIES_DATE_UPDATE', $row++);
+define('GLOSSAIRE_COL_ADM_ENTRIES_FORM_ACTION', $row++);
+

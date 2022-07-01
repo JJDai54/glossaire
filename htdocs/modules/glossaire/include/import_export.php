@@ -202,7 +202,14 @@ global $categoriesHandler;
 	$categoriesObj->setVar('cat_name',        $data['cat_name'] . $suffix);    
 	$categoriesObj->setVar('cat_description', $data['cat_description']);    
 	$categoriesObj->setVar('cat_weight',      $data['cat_weight']);    
-	$categoriesObj->setVar('cat_logourl',     $data['cat_logourl']);    
+	$categoriesObj->setVar('cat_logourl',     $data['cat_logourl']);  
+    
+	$categoriesObj->setVar('cat_alphabarre',     $data['cat_alphabarre']);  
+	$categoriesObj->setVar('cat_alphabarre_mode',     $data['cat_alphabarre_mode']);  
+	$categoriesObj->setVar('cat_letter_css_default',     $data['cat_letter_css_default']);  
+	$categoriesObj->setVar('cat_letter_css_selected',     $data['cat_letter_css_selected']);  
+	$categoriesObj->setVar('cat_letter_css_exist',     $data['cat_letter_css_exist']);  
+	$categoriesObj->setVar('cat_letter_css_notexist',     $data['cat_letter_css_notexist']);  
 	$categoriesObj->setVar('cat_img_folder',  $data['cat_img_folder'] . $suffix);    
 	$categoriesObj->setVar('cat_colors_set',  $data['cat_colors_set']);    
 	$categoriesObj->setVar('cat_is_acronym',  $data['cat_is_acronym']);    

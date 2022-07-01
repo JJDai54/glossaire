@@ -185,3 +185,16 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 \define('_CO_GLOSSAIRE_TOTAL_SOUMIS', "Soumis");
 \define('_CO_GLOSSAIRE_CATEGORY', "Catégorie");
 \define('_CO_GLOSSAIRE_STATUS', "Statut");
+
+\define('_CO_GLOSSAIRE_ENTRIES_SORT0', "Trier par");
+\define('_CO_GLOSSAIRE_ENTRIES_SORT1', "Terme, Identifiant");
+\define('_CO_GLOSSAIRE_ENTRIES_SORT2', "Identifiant");
+\define('_CO_GLOSSAIRE_ENTRIES_SORT3', "Définition courte, Identifiant");
+\define('_CO_GLOSSAIRE_ENTRIES_SORT4', "Créateur, Terme, Identifiant");
+\define('_CO_GLOSSAIRE_ENTRIES_SORT5', "Date de création, Identifiant");
+\define('_CO_GLOSSAIRE_ENTRIES_SORT6', "Date de mise à jour, Identifiant");
+\define('_CO_GLOSSAIRE_ENTRIES_SORT7', "Nombre de cliques, Terme, Identifiant");
+\define('_CO_GLOSSAIRE_ENTRIES_SORT8', "Statut, Terme, Identifiant");
+
+
+        

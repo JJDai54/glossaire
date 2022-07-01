@@ -383,7 +383,25 @@ unset($crGroups);
 $modversion['config'][] = glossaire_getBreakLine('gls_break_alphabarre');
 
 $modversion['config'][] = [
-    'name'        => 'letter_default',
+    'name'        => 'alphabarre',
+    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE',
+    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#',
+];
+
+$modversion['config'][] = [
+    'name'        => 'alphabarre_mode',
+    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_MODE',
+    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_MODE_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+
+$modversion['config'][] = [
+    'name'        => 'letter_css_default',
     'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT',
     'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT_DESC',
     'formtype'    => 'textbox',
@@ -392,7 +410,7 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
-    'name'        => 'letter_selected',
+    'name'        => 'letter_css_selected',
     'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED',
     'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED_DESC',
     'formtype'    => 'textbox',
@@ -401,7 +419,7 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
-    'name'        => 'letter_exist',
+    'name'        => 'letter_css_exist',
     'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST',
     'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST_DESC',
     'formtype'    => 'textbox',
@@ -410,7 +428,7 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
-    'name'        => 'letter_notexist',
+    'name'        => 'letter_css_notexist',
     'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST',
     'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC',
     'formtype'    => 'textbox',

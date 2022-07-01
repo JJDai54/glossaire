@@ -58,6 +58,7 @@ use JJD AS JJD;
             require __DIR__ . '/footer.php';
             exit;
         }
+        $catObj = $categoriesHandler->get($catIdSelect);
         //----------------------------------------------------------
         if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
         $GLOBALS['xoopsTpl']->assign('categories', $catList);
@@ -97,11 +98,6 @@ use JJD AS JJD;
         if ($exp2search  !== '' && $letter != '*' && $sender != 'xoops'){
 include_once('include/search.inc.php');
             $crKeywords = glossaire_build_criteria_words($exp2search,null);
-//             $crKeywords = new \CriteriaCompo();
-//             $crKeywords->add(new \Criteria('ent_term', "%{$exp2search}%" , 'LIKE'), 'OR');
-//             $crKeywords->add(new \Criteria('ent_shortdef', "%{$exp2search}%" , 'LIKE'), 'OR');
-//             $crKeywords->add(new \Criteria('ent_definition', "%{$exp2search}%" , 'LIKE'), 'OR');
-//             $crKeywords->add(new \Criteria('ent_reference', "%{$exp2search}%" , 'LIKE'), 'OR');
             $crEntries->add($crKeywords);
        }else{
        }
@@ -109,9 +105,9 @@ include_once('include/search.inc.php');
 
     //url = XOOPS_URL . "/modules/glossaire/op=list&catId={$catId}&letter=%s";        &exp2search={$exp2search}
         $url = "{$page2redirect}?op=list&catIdSelect={$catIdSelect}&start=0&limit={$limit}&letter=%s&exp2search={$exp2search}";
-        $GLOBALS['xoopsTpl']->assign('alphaBarre', $entriesHandler->getAlphaBarre($crEntries, $url, $letter));
+        $GLOBALS['xoopsTpl']->assign('alphaBarre', $entriesHandler->getAlphaBarre($crEntries, $url, $letter, $catObj));
 
-        if (strpos(_GLS_ALPHABARRE, $letter) !== false){
+        if (strpos($glossaireHelper->getConfig('alphabarre'), $letter) !== false){
             $crEntries->add(new \Criteria('ent_initiale',$letter, "="));
         }
         $entriesCount = $entriesHandler->getCount($crEntries);
