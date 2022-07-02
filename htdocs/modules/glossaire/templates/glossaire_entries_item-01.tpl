@@ -38,7 +38,7 @@
 </div>
 
 <{* Affichage de boutons image pour gérer l'entree *}>
-<{if $showButtonsImg}>
+<{if $catPerms.submit}>
   <div class="item-round-no <{$colors_set}>-itemHead" style="padding:6px;margin-top:-5px;text-align:right;">
     <a href='entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>''>
       <img src="<{xoModuleIcons16 edit.png}>" title="<{$smarty.const._EDIT}>"></a>

@@ -65,6 +65,23 @@ class EntriesHandler extends \XoopsPersistableObjectHandler
     {
         return parent::get($i, $fields);
     }
+    
+    /**
+     * retrieve a field
+     *
+     * @param int $i field id
+     * @param null fields
+     * @return \arrat|null reference to the {@link Get} object
+     */
+    public function getArray($i = null, $fields = null)
+    {
+        $catObj =  parent::get($i, $fields);
+        if($catObj){
+          return $catObj->getValuesCategories();
+        }else{
+            return null;
+        }
+    }
 
     /**
      * get inserted id

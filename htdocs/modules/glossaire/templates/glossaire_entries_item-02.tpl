@@ -29,7 +29,7 @@
     <{if $entry.shortdef}> : <{$entry.shortdefMagnifed}><br><{/if}>
 
 
-<{if $showButtonsImg}>
+<{if $catPerms.approve}>
     <a href='entries.php?op=delete&amp;ent_id=<{$entry.ent_id}>' title='<{$smarty.const._DELETE}>'>
        <img src="<{xoModuleIcons16 delete.png}>" class='gls_button' title="<{$smarty.const._DELETE}>"></a>
     <a href='entries.php?op=new&catIdSelect=<{$catIdSelect}>' title='<{$smarty.const._ADD}>'>

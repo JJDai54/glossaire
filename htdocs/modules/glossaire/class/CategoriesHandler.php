@@ -276,6 +276,25 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         return (!(array_search($idCat, $tPerm) === false));
     }
 
+// 	/**
+//      * Fonction qui liste les catégories qui respectent la permission demandée
+//      * @param string   $permtype	Type de permission
+//      * @return array   $cat		    Liste des catégorie qui correspondent à la permission
+//      */
+// 	public function getPerms($idCat)
+//     {   $allPerms = array();
+//     
+//         $tPerm = $this->getPermissions('view');
+//         $allPerms['view'] = !(array_search($idCat, $tPerm) === false)
+//         
+//         $tPerm = $this->getPermissions('submit');
+//         $allPerms['submit'] = !(array_search($idCat, $tPerm) === false)
+//         
+//         $tPerm = $this->getPermissions('approve');
+//         $allPerms['approve'] = !(array_search($idCat, $tPerm) === false)
+//         
+//         return $allPerms;
+//     }
 
 	/**
      * Fonction crée une nouvelle catégorie

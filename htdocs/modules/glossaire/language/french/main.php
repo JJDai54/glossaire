@@ -83,7 +83,7 @@ Comme vous pouvez le voir, vous avez créé une page avec une liste de liens en 
 \define('_MA_GLOSSAIRE_INDEX_THEREARE', "Il y a %s entrées");
 \define('_MA_GLOSSAIRE_INDEX_LATEST_LIST', "Dernier glossaire");
 // Soumettre
-\define('_MA_GLOSSAIRE_SUBMIT', "Soumettre");
+\define('_MA_GLOSSAIRE_SUBMIT', "Soumettre une entrée");
 // formulaire
 \define('_MA_GLOSSAIRE_FORM_OK', "Sauvegardé avec succès");
 \define('_MA_GLOSSAIRE_FORM_DELETE_OK', "Supprimé avec succès");

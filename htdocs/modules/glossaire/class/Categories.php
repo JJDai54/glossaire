@@ -324,4 +324,36 @@ class Categories extends \XoopsObject
         else
             return $fullPath;
     }
+
+
+	/**
+     * Fonction qui liste les catégories qui respectent la permission demandée
+     * @param string   $permtype	Type de permission
+     * @return array   $cat		    Liste des catégorie qui correspondent à la permission
+     */
+	public function getPerms()
+    {global $categoriesHandler;
+     
+        $allPerms = array();
+        $idCat=$this->getVar('cat_id');
+        
+        $tPerm = $categoriesHandler->getPermissions('view');
+
+//echo "<hr>cat_id = {$idCat}<pre>" . print_r($tPerm, true) . "</pre><hr>";
+        
+        $allPerms['view'] = !(array_search($idCat, $tPerm) === false);
+        
+        $tPerm = $categoriesHandler->getPermissions('submit');
+        $allPerms['submit'] = !(array_search($idCat, $tPerm) === false);
+        
+        $tPerm = $categoriesHandler->getPermissions('approve');
+        $allPerms['approve'] = !(array_search($idCat, $tPerm) === false);
+        //-------------------------------------
+//         $allPerms['view'] = ($allPerms['view']) ? "Ok" : "Pas Ok";
+//         $allPerms['submit'] = ($allPerms['submit']) ? "Ok" : "Pas Ok";
+//         $allPerms['approve'] = ($allPerms['approve']) ? "Ok" : "Pas Ok";
+        
+        return $allPerms;
+    }
+
 }

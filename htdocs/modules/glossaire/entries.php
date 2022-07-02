@@ -47,7 +47,7 @@ $exp2searchGlobal  = Request::getString('exp2searchGlobal', '');
 $sender  = Request::getString('sender', '');
 
 //if ($letter == '*') $exp2search ='';
-$statusAccess = Request::getInt('statusAccess', 0);
+//$statusAccess = Request::getInt('statusAccess', 0);
 $page2redirect = "entries.php";
 
 $GLOBALS['xoopsTpl']->assign('start', $start);
@@ -65,57 +65,94 @@ $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_INDEX, 'link' => $page2redirect];
 // Permissions
 $GLOBALS['xoopsTpl']->assign('showItem', $entId > 0);
 
-        $utility = new \XoopsModules\Glossaire\Utility();        
+//------------------------------------------------------------
+//           chargement des permissions
+//------------------------------------------------------------
+        $utility = new \XoopsModules\Glossaire\Utility();  
+        $catList = $categoriesHandler->getAllAllowed();
+        if (count($catList) == 0) {
+            require __DIR__ . '/footer.php';
+            exit;
+        }
+        if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
+        $catObj = $categoriesHandler->get($catIdSelect);
+        $catArr = $catObj->getValuesCategories();
+        $catPerms = $catObj->getPerms();
+
+echo "<hr>perms<pre>" . print_r($catPerms, true) . "</pre><hr>";
+              
 $bolFoot = true;
 switch ($op) {
     case 'show':
     case 'list':
     default:
+//         if (!$categoriesHandler->isCatAllowed($catIdSelect, 'view'))
+//             \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
         include_once "entries-list.php";
         break;
 
     case 'save':
+//         if (!$categoriesHandler->isCatAllowed($catIdSelect, 'submit'))
+//             \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
             include_once("admin/entries-save.php");
             exit;
         break;
 
 
+    case 'new_light':
     case 'new':
+//         if (!$categoriesHandler->isCatAllowed($catIdSelect, 'submit'))
+//             \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_ENTRY_ADD];
         // Form Create
         $entriesObj = $entriesHandler->create();
         $entriesObj->setVar('ent_cat_id', $catIdSelect);
         $entriesObj->setVar('ent_status', GLOSSAIRE_PROPOSITION);
-        $entriesObj->setVar('statusAccess', $statusAccess);
-        if($statusAccess == 2){
+//        $entriesObj->setVar('statusAccess', $statusAccess);
+        if($catPerms['approve'] ){
             $form = $entriesObj->getFormEntries(false, true);
         }else{
             $form = $entriesObj->getFormEntriesLight(false, true);
         }
         \JJD\load_css();
-        $catObj = $categoriesHandler->get($catIdSelect);
-        echo ($catObj) ? "<hr>OUI<hr>" : "<hr>NON<hr>"; 
+        //$catObj = $categoriesHandler->get($catIdSelect);
+echo ($catObj) ? "<hr>OUI<hr>" : "<hr>NON<hr>"; 
         $GLOBALS['xoopsTpl']->assign('colors_set', $catObj->getVar('cat_colors_set'));
-        echo "<hr>{$catIdSelect} : cat_colors_set : " . $catObj->getVar('cat_colors_set') . "<hr>";
+        $GLOBALS['xoopsTpl']->assign('cat_name', $catObj->getVar('cat_name'));
+        //$GLOBALS['xoopsTpl']->assign('catArr', $catArr);
+echo "<hr>{$catIdSelect} : cat_colors_set : " . $catObj->getVar('cat_colors_set') . "<hr>";
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
+        
     case 'edit':
-        // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_ENTRY_EDIT];
-        // Check params
+        if (!$catPerms['approve'] ) {
+            \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
+        }
         if (0 == $entId) {
             \redirect_header("{$page2redirect}?op=list", 3, \_MA_GLOSSAIRE_INVALID_PARAM);
         }
+        // Breadcrumbs
+        $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_ENTRY_EDIT];
+        // Check params
         // Get Form
         $entriesObj = $entriesHandler->get($entId);
+//         if (!$categoriesHandler->isCatAllowed($entriesObj->getVar('ent_cat_id'), 'submit'))
+//             \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
+        
         $entriesObj->start = $start;
         $entriesObj->limit = $limit;
         $entriesObj->exp2search = $exp2search;
         $form = $entriesObj->getFormEntries();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        $GLOBALS['xoopsTpl']->assign('colors_set', $catObj->getVar('cat_colors_set'));
+        $GLOBALS['xoopsTpl']->assign('cat_name', $catObj->getVar('cat_name'));
+        \JJD\load_css();
         break;
+        
     case 'clone':
+        if (!$categoriesHandler->isCatAllowed($catIdSelect, 'submit'))
+            \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_ENTRY_CLONE];
         // Request source
@@ -129,9 +166,14 @@ switch ($op) {
         $entriesObj = $entriesObjSource->xoopsClone();
         $form = $entriesObj->getFormEntries();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        $GLOBALS['xoopsTpl']->assign('colors_set', $catObj->getVar('cat_colors_set'));
+        $GLOBALS['xoopsTpl']->assign('cat_name', $catObj->getVar('cat_name'));
+        \JJD\load_css();
         break;
         
     case 'delete':
+//         if (!$categoriesHandler->isCatAllowed($catIdSelect, 'submit'))
+//             \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
         include_once 'admin/entries-delete';
         break;
         // Breadcrumbs

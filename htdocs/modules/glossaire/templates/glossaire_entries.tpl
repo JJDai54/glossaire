@@ -48,6 +48,7 @@
     <input type="hidden" name="start" value="0" />
     <input type="hidden" name="letter" value="+" />
     <input type="hidden" name="exp2search" value="<{$exp2search}>" />
+    <input type="hidden" name="catIdSelect" value="<{$catIdSelect}>" />
     
     <input type="text" id="exp2search" name="exp2search" required  minlength="4" maxlength="30" size="30" value='<{$exp2search}>'>  
     <button  type="submit" class="gls_btn_icon">
@@ -56,20 +57,19 @@
   </form>
 </div>
 
-<div style='color:black;'> 
-<{if $statusAccess > 0}>
-  <form name='gls_addnew' id='gls_addnew' action='entries.php' method='post' enctype=''>
-    <input type="hidden" name="op" value="new" />
-    <input type="hidden" name="catIdSelect" value="<{$catIdSelect}>" />
-    <input type="hidden" name="statusAccess" value="<{$statusAccess}>" />
-    <button  type="submit" class="gls_btn_icon" style='width:250px;' onclick="">
-        <img src="<{xoModuleIcons16 add.png}>" title="<{$smarty.const._ADD}>" class='gls_btn_img'>
-        <{if $statusAccess == 2}><{$smarty.const._MA_GLOSSAIRE_ENTRY_NEW}><{else}><{$smarty.const._MA_GLOSSAIRE_ENTRY_SOUMETTRE}><{/if}>
-    </button>
-  </form>
-<{else}><br>
-<{/if}> <{* //$statusAccess *}>
-</div>
+<{if $catPerms.approve OR $catPerms.submit}>
+  <div style='color:black;'> 
+    <form name='gls_addnew' id='gls_addnew' action='entries.php' method='post' enctype=''>
+      <input type="hidden" name="op" value="<{if $catPerms.approve}>new<{else}>new_light<{/if}>" />         
+      <input type="hidden" name="catIdSelect" value="<{$catIdSelect}>" />
+      <input type="hidden" name="statusAccess" value="<{$statusAccess}>" />
+      <button  type="submit" class="gls_btn_icon" style='width:250px;' onclick="">
+          <img src="<{xoModuleIcons16 add.png}>" title="<{$smarty.const._ADD}>" class='gls_btn_img'>
+          <{if $catPerms.approve}><{$smarty.const._MA_GLOSSAIRE_ENTRY_NEW}><{elseif $catPerms.submit}><{$smarty.const._MA_GLOSSAIRE_ENTRY_SOUMETTRE}><{/if}>
+      </button>
+    </form>
+  </div>
+<{else}>&nbsp;<{/if}>
   
 </div> 
  
@@ -104,9 +104,13 @@
 </div>
 
 <{else}>
+<div class="item-round-top <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;">
+    <{$cat_name}>
+</div>
 <div class="item-round-no <{$colors_set}>-itemBody" style="padding:12px;margin-top:-5px;">
     <{$form|default:false}>
 </div>
+<div class="item-round-bottom <{$colors_set}>-itemFoot" style="padding:12px;margin-top:-5px;"><center>...</center></div>
 
 <{/if}>
 <{if $error|default:''}>

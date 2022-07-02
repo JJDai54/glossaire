@@ -53,16 +53,10 @@ use JJD AS JJD;
         // --------------------------------------------
         // categories avec des onglets
         \JJD\load_css();
-        $catList = $categoriesHandler->getAllAllowed();
-        if (count($catList) == 0) {
-            require __DIR__ . '/footer.php';
-            exit;
-        }
-        $catObj = $categoriesHandler->get($catIdSelect);
+        $GLOBALS['xoopsTpl']->assign('catPerms', $catPerms);
+        
         //----------------------------------------------------------
-        if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
         $GLOBALS['xoopsTpl']->assign('categories', $catList);
-        $GLOBALS['xoopsTpl']->assign('showButtonsImg', true);
         
         //Categorie selectionnée, utilisée notamment pour colorset
         $GLOBALS['xoopsTpl']->assign('catSelected', $catList[$catIdSelect]);
@@ -74,9 +68,9 @@ use JJD AS JJD;
         $GLOBALS['xoopsTpl']->assign('searchMode', array(0=>'globalSearch', 1=>'list')[$glossaireHelper->getConfig('search_mode')]);
         $GLOBALS['xoopsTpl']->assign('showId', $glossaireHelper->getConfig('showId'));
 
-        $statusAccess = $categoriesHandler->getStatusAccess($catIdSelect);
+//        $statusAccess = $categoriesHandler->getStatusAccess($catIdSelect);
 //        echo "<hr>===> : {$statusAccess}<hr>";
-        $GLOBALS['xoopsTpl']->assign('statusAccess', $statusAccess);
+//        $GLOBALS['xoopsTpl']->assign('statusAccess', $statusAccess);
         
         //--- Criteres de recherche
         $crEntries = new \CriteriaCompo();
@@ -101,7 +95,8 @@ include_once('include/search.inc.php');
             $crEntries->add($crKeywords);
        }else{
        }
-         $exp2search = $exp2searchGlobal;
+        //a-verifier
+         //$exp2search = $exp2searchGlobal;
 
     //url = XOOPS_URL . "/modules/glossaire/op=list&catId={$catId}&letter=%s";        &exp2search={$exp2search}
         $url = "{$page2redirect}?op=list&catIdSelect={$catIdSelect}&start=0&limit={$limit}&letter=%s&exp2search={$exp2search}";

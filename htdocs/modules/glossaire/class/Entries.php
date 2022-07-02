@@ -364,7 +364,7 @@ define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier à importer");
         }        
                 
         // Title
-        $title = $this->isNew() ? \sprintf(\_AM_GLOSSAIRE_ENTRY_ADD) : \sprintf(\_AM_GLOSSAIRE_ENTRY_EDIT);
+        $title = $this->isNew() ? \sprintf(\_MA_GLOSSAIRE_SUBMIT) : \sprintf(\_AM_GLOSSAIRE_ENTRY_EDIT);
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
@@ -603,6 +603,5 @@ function delete_file($catFilegFolder){
     
 //exit ($fImg);
 }
-
 
 } // ----- FIN DE LA CLASSE -----
