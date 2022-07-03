@@ -74,6 +74,12 @@ img {
     margin-left:12px;
 }
 
+.gls_logoTopLeft {
+float: left;
+width: 32px; /* largeur en pixel de ta photo */
+height:32px; /* hauteur en pixel de ta photo */
+margin-right:10px; /* marge en pixel à droite de la photo */
+} 
 
 /*
  * Default Admin Theme

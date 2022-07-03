@@ -123,6 +123,7 @@ global $_POST, $_FILES;
 //         $entriesObj->setVar('', Request::getText('', ''));
         $entriesObj->setVar('ent_reference', Request::getText('ent_reference', ''));
         $entriesObj->setVar('ent_urls', Request::getText('ent_urls', ''));
+        $entriesObj->setVar('ent_email', Request::getText('ent_email', ''));
         $entriesObj->setVar('ent_image', Request::getString('ent_image', ''));    
         $entriesObj->setVar('ent_file_name', Request::getString('ent_file_name', ''));    
         $entriesObj->setVar('ent_file_path', Request::getString('ent_file_path', ''));    
@@ -214,7 +215,10 @@ global $_POST, $_FILES;
         // Insert Data
         if ($entriesHandler->insert($entriesObj)) {
 //exit('ok');
-                \redirect_header("entries.php?op=list&catIdSelect={$catId}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, \_AM_GLOSSAIRE_FORM_OK);
+          if ($addNew)
+            \redirect_header("entries.php?op=new&catIdSelect={$catId}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, \_AM_GLOSSAIRE_FORM_OK);
+          else
+            \redirect_header("entries.php?op=list&catIdSelect={$catId}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, \_AM_GLOSSAIRE_FORM_OK);
         }
 //exit('non');
         // Get Form

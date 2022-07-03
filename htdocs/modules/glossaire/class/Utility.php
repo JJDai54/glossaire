@@ -345,13 +345,13 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
             if ($url != ''){
               if ($i === false) $url = 'http://' . $url;
               if($name == ''){
-                $retArr[]  = sprintf("<a href='%s' title='' alt='' target='blank'>%s</a>", $url, $url);
+                $retArr[]  = sprintf("<li><a href='%s' title='' alt='' target='blank'>%s</a></li>", $url, $url);
               }else{
-                $retArr[]  = sprintf("<a href='%s' title='' alt='' target='blank'>%s</a>", $url, $name);
+                $retArr[]  = sprintf("<li><a href='%s' title='' alt='' target='blank'>%s</a></li>", $url, $name);
               }
             }
         }
-        return implode("<br>", $retArr);
+        return "<ul>" . implode("\n", $retArr) . "</ul>";
     }
 
 /* ***********************
@@ -364,7 +364,7 @@ global $categoriesHandler, $entriesHandler, $xoopsList;
     if($catId == 0)return 0;
 
     $catObj = $categoriesHandler->get($catId);
-    $dirname = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $catObj->getVar('cat_img_folder');
+    $dirname = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $catObj->getVar('cat_upload_folder');
 
     $criteria = new \Criteria('ent_cat_id', $catId, '=');
     $allEntries = $entriesHandler->getAllEntries($criteria);
@@ -411,7 +411,7 @@ global $categoriesHandler, $entriesHandler, $xoopsList;
 
     $catObj = $categoriesHandler->get($catId);
     if(!$catObj) return 0;
-    $dirname = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $catObj->getVar('cat_img_folder');
+    $dirname =  $catObj->getPathUploads($subFolder='images');
 
     $criteria = new \Criteria('ent_cat_id', $catId, '=');
     $allEntries = $entriesHandler->getAllEntries($criteria);
@@ -447,7 +447,7 @@ global $categoriesHandler, $entriesHandler, $xoopsList;
     $catObj = $categoriesHandler->get($catId);
     if(!$catObj) return 0;
 
-    $dirname = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $catObj->getVar('cat_img_folder');
+    $dirname = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $catObj->getVar('cat_upload_folder');
 
     $criteria = new \Criteria('ent_cat_id', $catId, '=');
     $allEntries = $entriesHandler->getAllEntries($criteria);

@@ -4,7 +4,7 @@
 <{/if}>
 <{*  ------------------------------------------------------------------ *}>
 
-<div class='fwj-contenair-onglets'>
+<div class='fwj-contenair-onglets' style='margin-bottom:-5px'>
     <{if $showBtnAllCategorys}>
       <div class="fwj-onglets">
         <a href="<{$smarty.const.GLOSSAIRE_URL}><{$page2redirect}>" >

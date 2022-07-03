@@ -79,7 +79,7 @@ $GLOBALS['xoopsTpl']->assign('showItem', $entId > 0);
         $catArr = $catObj->getValuesCategories();
         $catPerms = $catObj->getPerms();
 
-echo "<hr>perms<pre>" . print_r($catPerms, true) . "</pre><hr>";
+//echo "<hr>perms<pre>" . print_r($catPerms, true) . "</pre><hr>";
               
 $bolFoot = true;
 switch ($op) {
@@ -95,7 +95,6 @@ switch ($op) {
 //         if (!$categoriesHandler->isCatAllowed($catIdSelect, 'submit'))
 //             \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
             include_once("admin/entries-save.php");
-            exit;
         break;
 
 
@@ -120,7 +119,9 @@ switch ($op) {
 echo ($catObj) ? "<hr>OUI<hr>" : "<hr>NON<hr>"; 
         $GLOBALS['xoopsTpl']->assign('colors_set', $catObj->getVar('cat_colors_set'));
         $GLOBALS['xoopsTpl']->assign('cat_name', $catObj->getVar('cat_name'));
+
         //$GLOBALS['xoopsTpl']->assign('catArr', $catArr);
+        
 echo "<hr>{$catIdSelect} : cat_colors_set : " . $catObj->getVar('cat_colors_set') . "<hr>";
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;

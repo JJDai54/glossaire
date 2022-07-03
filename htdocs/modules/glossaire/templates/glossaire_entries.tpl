@@ -22,10 +22,15 @@
 <{assign var="colors_set" value=$catSelected.colors_set}>
 <{if $nbCategories > 1}>
     <{include file="db:glossaire_categories_colors_set.tpl"}>
+    <div class="item-round-topleft-no <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;color:white;">
+<{else}>    
+    <div class="item-round-top <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;color:white;">
 <{/if}>
 
-    <div class="item-round-topleft-no <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;color:white;">
-        <{if $catSelected.description}><{$catSelected.description}><{/if}>
+        <{if $catSelected.description_img}><{$catSelected.description_img}><{/if}>
+</div>
+<{*  ------------------------------------------------------------------ *}>
+
 <div class="item-round-no <{$colors_set}>-itemHead" style="padding:6px;margin-top:-5px;text-align:right;">
  
 <style>
@@ -73,8 +78,8 @@
   
 </div> 
  
-    </div> 
-      
+ 
+<div class="item-round-no <{$colors_set}>-itemBody" style="padding:12px;margin-top:-5px;color:white;">      
     <center><{$alphaBarre}>
       <{if $pagenav|default:''}>
           <div class="pagenav pagenav-container"><{$pagenav}></div>
@@ -84,6 +89,7 @@
 <{if $catSelected.show_terms_index}>    
     <{include file='db:glossaire_entries_terms_links.tpl' }>
 <{/if}>
+</div> 
     
 <{if $entriesCount|default:0 > 0}>
 <div class="item-round-no <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;">
@@ -93,28 +99,33 @@
             <{include file='db:glossaire_entries_item-02.tpl' }>
     <{/foreach}>
 
+    <{* ------------- Barre de navigation  --------------------*}>
 <{/if}>
+    <div class="item-round-no <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;"></div>
+    <div class="item-round-bottom <{$colors_set}>-itemBody" style="padding:12px;margin-top:-5px;">
     <center><{$alphaBarre}>
       <{if $pagenav|default:''}>
           <div class="pagenav pagenav-container"><{$pagenav}></div>
       <{/if}>
     </center>
+</div>
 <br>
 
 </div>
 
 <{else}>
-<div class="item-round-top <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;">
-    <{$cat_name}>
-</div>
-<div class="item-round-no <{$colors_set}>-itemBody" style="padding:12px;margin-top:-5px;">
-    <{$form|default:false}>
-</div>
-<div class="item-round-bottom <{$colors_set}>-itemFoot" style="padding:12px;margin-top:-5px;"><center>...</center></div>
-
+    <{* ------------- Formulaire d'édition --------------------*}>
+    <div class="item-round-top <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;">
+        <{$cat_name}>
+    </div>
+    <div class="item-round-no <{$colors_set}>-itemBody" style="padding:12px;margin-top:-5px;">
+        <{$form|default:false}>
+    </div>
+    <div class="item-round-bottom <{$colors_set}>-itemFoot" style="padding:12px;margin-top:-5px;"><center>...</center></div>
 <{/if}>
+    
 <{if $error|default:''}>
-    <{$error|default:false}>
+      <{$error|default:false}>
 <{/if}>
 
 <{include file='db:glossaire_footer.tpl' }>

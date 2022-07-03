@@ -268,9 +268,35 @@ public function getMax($field = "cat_weight", $cat_id_parent = null)
 /* ******************************
  * incremente le compteur pour la selection
  * *********************** */
-public function incrementCounter($criteria=null, $fldName='ent_counter'){
-    $sql = "UPDATE {$this->table} SET {$fldName} = {$fldName}+1";
-    if ($criteria) $sql .= " " . $criteria->renderWhere(); 
+public function incrementCounter($criteria=null, $sort='ent_term', $start=0, $limit=0, $fldName='ent_counter'){
+
+    $sqlSelect = "SELECT ent_id FROM {$this->table}";
+    if ($criteria) $sqlSelect .= " " . $criteria->renderWhere(); 
+    if ($limit != 0) $sqlSelect .= " ORDER BY {$sort} LIMIT {$start},{$limit}";
+    //-------------------------------------------------
+    $sql = "UPDATE {$this->table} SET {$fldName} = {$fldName}+1"
+. " WHERE ent_id IN (SELECT ent_id FROM ({$sqlSelect})tmp)";    
+    $this->db->queryf($sql);
+
+
+/*
+UPDATE table_name SET name='test'
+WHERE id IN (
+    SELECT id FROM (
+        SELECT id FROM table_name 
+        ORDER BY id ASC  
+        LIMIT 0, 10
+    ) tmp
+exit ($sql);
+)
+*/
+}
+
+/* ******************************
+ * met à jour le compteur avev $value pour la catégorie $catId
+ * *********************** */
+public function RazCounters($catId, $newValue=0){
+    $sql = "UPDATE {$this->table} SET ent_counter = {$newValue} WHERE ent_cat_id={$catId}";
     $this->db->queryf($sql);
 }
 

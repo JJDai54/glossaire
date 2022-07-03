@@ -76,7 +76,7 @@ global $xoopsDB, $categoriesHandler;
     $catObj->setVar('cat_description', $catLexArr['description']);
     $catObj->setVar('cat_count_entries', $catLexArr['total']);
     $catObj->setVar('cat_', $catLexArr['weight']);
-	$catObj->setVar('cat_img_folder', \JJD\sanityseNameForFile($catLexArr['name']) . $suffix);
+	$catObj->setVar('cat_upload_folder', \JJD\sanityseNameForFile($catLexArr['name']) . $suffix);
         
 	$catObj->setVar('cat_date_creation', \JJD\getSqlDate());
 	$catObj->setVar('cat_date_update', \JJD\getSqlDate());

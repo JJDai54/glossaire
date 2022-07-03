@@ -34,6 +34,8 @@ $entId = Request::getInt('ent_id');
 $catIdSelect = Request::getInt('catIdSelect',0);
 $statusIdSelect = Request::getInt('statusIdSelect', GLOSSAIRE_STATUS_ALL);
 $sortIdSelect = Request::getInt('sortIdSelect', 0);
+$addNew = (Request::getCmd('submit_and_addnew', 'no') == 'no') ? false : true;
+
 $start = Request::getInt('start', 0);
 //$limit = Request::getInt('limit', $glossaireHelper->getConfig('adminpager'));
 $limit = $glossaireHelper->getConfig('adminpager');
@@ -159,5 +161,15 @@ switch ($op) {
         \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, $msg);
         break;
         
+    case 'razCounter':
+    case 'razcounter':
+        $entriesHandler->RazCounters($catIdSelect, 0);
+        $msg = _AM_GLOSSAIRE_ENTRIES_UPDATE_OK;         
+        \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, $msg);
+        break;
     }
+    
+    
+        $adminObject->addItemButton(_AM_GLOSSAIRE_RAZ_COUNTERS, "entries.php?op=&catIdSelect={$catIdSelect}", 'update');
+
 require __DIR__ . '/footer.php';

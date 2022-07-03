@@ -77,8 +77,7 @@ class Entries extends \XoopsObject
         $this->initVar('ent_file_name', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_file_path', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_urls', \XOBJ_DTYPE_OTHER);
-//         $this->initVar('ent_url1', \XOBJ_DTYPE_TXTBOX);
-//         $this->initVar('ent_url2', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('ent_email', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_date_creation', \XOBJ_DTYPE_OTHER);//XOBJ_DTYPE_LTIME
         $this->initVar('ent_date_update', \XOBJ_DTYPE_OTHER);//XOBJ_DTYPE_LTIME
         $this->initVar('ent_counter', \XOBJ_DTYPE_INT);
@@ -263,8 +262,8 @@ class Entries extends \XoopsObject
 
         //todo ajouter le telechargement d'un fichier
         // Form Text ent_file
-define('_AM_GLOSSAIRE_FILE_NAME', "Titre du fichier");        
-define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier à importer");        
+        
+        
         //-------------------------------------------------
         $entFileName = $this->isNew() ? '' : $this->getVar('ent_file_name');
         $entFilePath = $this->isNew() ? '' : $this->getVar('ent_file_path');
@@ -307,6 +306,12 @@ define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier à importer");
         $inpUrls = new \XoopsFormTextArea(_AM_GLOSSAIRE_ENTRY_URLS, 'ent_urls', $this->getVar('ent_urls'), 3, 120);  
         $inpUrls->setDescription(_AM_GLOSSAIRE_ENTRY_URLS_DESC); 
         $form->addElement($inpUrls);
+
+        
+        // Form Text ent_email
+        $inpEmail = new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_EMAIL, 'ent_email', 50, 80, $this->getVar('ent_email'));
+        $inpEmail->setDescription(_AM_GLOSSAIRE_ENTRY_EMAIL_DESC); 
+        $form->addElement($inpEmail);
         
         // Form Text entCounter
         //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_COUNTER, 'ent_counter', 50, 255, $this->getVar('ent_counter')));
@@ -327,8 +332,17 @@ define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier à importer");
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormHidden('start', $this->start));
         $form->addElement(new \XoopsFormHidden('limit', $this->limit));
-        $form->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));
-        $form->addElement(new \XoopsFormHidden('catIdSelect', $this->catIdSelect));
+        //$form->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));
+
+        $btnTray = new \XoopsFormElementTray  ('', '&nbsp;');
+        $btnTray->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
+        $btnAddNew = new \XoopsFormButton('', 'submit_and_addnew', _AM_GLOSSAIRE_SUBMIT_AND_ADDNEW,'submit');
+        $btnAddNew->setClass('btn btn-success');
+        $btnTray->addElement($btnAddNew);
+		$form->addElement($btnTray);
+        
+        
+        $form->addElement(new \XoopsFormHidden('catIdSelect', $catIdSelect));
         $form->addElement(new \XoopsFormHidden('statusIdSelect', $this->statusIdSelect));
         return $form;
         
@@ -435,29 +449,16 @@ define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier à importer");
         $inpReference = new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_REFERENCES, 'ent_reference', $editorConfigs);
         $inpReference->setDescription(_AM_GLOSSAIRE_ENTRY_REFERENCES_DESC);
         $form->addElement($inpReference);
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // Form Text ent_urls
         $inpUrls = new \XoopsFormTextArea(_AM_GLOSSAIRE_ENTRY_URLS, 'ent_urls', $this->getVar('ent_urls'), 3, 120);  
         $inpUrls->setDescription(_AM_GLOSSAIRE_ENTRY_URLS_DESC); 
         $form->addElement($inpUrls);
+        
+        // Form Text ent_email
+        $inpEmail = new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_EMAIL, 'ent_email', 50, 80, $this->getVar('ent_email'));
+        $inpEmail->setDescription(_AM_GLOSSAIRE_ENTRY_EMAIL_DESC); 
+        $form->addElement($inpEmail);
         
         // Form Text entCounter
         //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_COUNTER, 'ent_counter', 50, 255, $this->getVar('ent_counter')));
@@ -545,11 +546,15 @@ define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier à importer");
         //todo
         //$ret['file_name_1_fullname']        = $this->getVar('ent_file_name_1', 'e');
 
-        $ret['urls']             = $utility::build_urls($this->getVar('ent_urls'));
-//         $ret['url1']             = $this->getVar('ent_url1');
-//         $ret['url2']             = $this->getVar('ent_url2');
-//         $ret['date_creation']    = \formatTimestamp($this->getVar('ent_date_creation'), 's');
-//         $ret['date_update']      = \formatTimestamp($this->getVar('ent_date_update'), 's');
+        
+        if($this->getVar('ent_urls')){
+            $ret['urls']         = $utility::build_urls($this->getVar('ent_urls'));
+        }
+
+        if($this->getVar('ent_email')){
+            $ret['email']         = sprintf("<a href='mailto:%s'>Send Email</a>", $this->getVar('ent_email'));
+        }
+        
 		$ret['date_creation']          = \JJD\getDateSql2Str($this->getVar('ent_date_creation'));
 		$ret['date_update']            = \JJD\getDateSql2Str($this->getVar('ent_date_update'));
         

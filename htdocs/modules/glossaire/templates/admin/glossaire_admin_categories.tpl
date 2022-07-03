@@ -9,7 +9,7 @@
             <tr class='head'>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_ID}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_NAME}></th>
-                <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_IMG_FOLDER}></th>
+                <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_FOLDER}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_DESCRIPTION}></th>
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_TOTAL}></th> *}>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_WEIGHT}></th>
@@ -33,7 +33,7 @@
                     </a>
                 </td>
 
-                <td class='left'><{$category.img_folder}></td>
+                <td class='left'><{$category.upload_folder}></td>
                 <td class='left'><{$category.description_short}></td>
                 <{* <td class='center'><{$category.total}></td> *}>
 

@@ -47,6 +47,8 @@ use XoopsModules\Glossaire\Common;
         }
         */
         
+        $adminObject->addItemButton(_AM_GLOSSAIRE_RAZ_COUNTERS, "entries.php?op=razCounter&catIdSelect={$catIdSelect}", 'update');
+          
         $imgNotExist = $utility->cleanImagesNotExists($catIdSelect, 0);
         if($imgNotExist > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
           $caption = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES, $imgNotExist);

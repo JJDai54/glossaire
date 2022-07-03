@@ -305,7 +305,7 @@ public function getNewCategory($name, &$categoriesObj = null){
 global $utility;
     $categoriesObj = $this->create();
 	$categoriesObj->setVar('cat_name', $name);
-	$categoriesObj->setVar('cat_img_folder', \JJD\sanityseNameForFile($name));
+	$categoriesObj->setVar('cat_upload_folder', \JJD\sanityseNameForFile($name));
 	$categoriesObj->setVar('cat_weight',  $this->getMax('cat_weight')+10);
 	$categoriesObj->setVar('cat_date_creation', \JJD\getSqlDate());
 

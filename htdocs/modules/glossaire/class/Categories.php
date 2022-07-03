@@ -65,9 +65,10 @@ class Categories extends \XoopsObject
         $this->initVar('cat_letter_css_selected', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_letter_css_exist', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_letter_css_notexist', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('cat_img_folder', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_upload_folder', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_colors_set', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_is_acronym', \XOBJ_DTYPE_INT); 
+        $this->initVar('cat_br_after_term', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_count_entries', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_show_terms_index', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_date_creation', \XOBJ_DTYPE_OTHER); //XOBJ_DTYPE_LTIME
@@ -119,9 +120,11 @@ class Categories extends \XoopsObject
         // Form Text catName
         $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_NAME, 'cat_name', 50, 255, $this->getVar('cat_name')), true);
         
-        // Form Text cat_img_folder
-        //$form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CATEGORY_IMG_FOLDER, $this->getVar('cat_img_folder')));
-        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_IMG_FOLDER, 'cat_img_folder', 50, 255, $this->getVar('cat_img_folder')), false);
+        // Form Text cat_upload_folder
+        //$form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CATEGORY_UMLOAD_FOLDER, $this->getVar('cat_upload_folder')));
+        $inpFolder = new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_FOLDER, 'cat_upload_folder', 50, 255, $this->getVar('cat_upload_folder'));
+        $inpFolder->setDescription(_AM_GLOSSAIRE_CATEGORY_FOLDER_DESC);
+        $form->addElement($inpFolder, false);
         // Form Editor TextArea catDescription
         //$form->addElement(new \XoopsFormTextArea(\_AM_GLOSSAIRE_CATEGORY_DESCRIPTION, 'cat_description', $this->getVar('cat_description', 'e'), 4, 47));
         $editorConfigs = [];
@@ -182,6 +185,11 @@ class Categories extends \XoopsObject
         $inpMagnifySd->setDescription(\_AM_GLOSSAIRE_CATEGORY_MAGNIFY_SD_DESC);
         $form->addElement($inpMagnifySd);
         
+        // Form Text cat_br_after_term
+        $inpBrAfterTerm = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_CATEGORY_BR_AFTER_TERME, 'cat_br_after_term', $this->getVar('cat_br_after_term'));
+        $inpBrAfterTerm->setDescription(\_AM_GLOSSAIRE_CATEGORY_BR_AFTER_TERME_DESC);
+        $form->addElement($inpBrAfterTerm);
+        
         // Form Text cat_show_terms_index
         $inpMagnifySd = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_CATEGORY_SHOW_INDEX_TERMS, 'cat_show_terms_index', $this->getVar('cat_show_terms_index'));
         $inpMagnifySd->setDescription(\_AM_GLOSSAIRE_CATEGORY_SHOW_INDEX_TERMS_DESC);
@@ -240,17 +248,32 @@ class Categories extends \XoopsObject
      * @return array
      */
     public function getValuesCategories($keys = null, $format = null, $maxDepth = null)
-    {
-        $glossaireHelper  = \XoopsModules\Glossaire\Helper::getInstance();
+    {global $glossaireHelper;
+        //$glossaireHelper  = \XoopsModules\Glossaire\Helper::getInstance();
         $utility = new \XoopsModules\Glossaire\Utility();
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id']                = $this->getVar('cat_id');
         $ret['name']              = $this->getVar('cat_name');
         $ret['description']       = $this->getVar('cat_description', 'e');
-        $editorMaxchar = $glossaireHelper->getConfig('editor_maxchar');
+        if($this->getVar('cat_logourl') != ''){
+           //$ret['description_img'] = sprintf("<img src='%s/%s'>%s", $glossaireHelper->getModule()->getInfo('sysicons32'), $this->getVar('cat_logourl'), $this->getVar('cat_description', 'e'));
+           //$ret['description_img'] = sprintf("<div class='gls_imgTopLeft'><img src='%s/%s'>%s</div>", $glossaireHelper->getModule()->getInfo('sysicons32'), $this->getVar('cat_logourl'), $this->getVar('cat_description', 'e'));
+
+           $ret['description_img'] = sprintf("<img src='%s/%s' class='gls_logoTopLeft'>%s", $glossaireHelper->getModule()->getInfo('sysicons32'), $this->getVar('cat_logourl'), $this->getVar('cat_description', 'e'));
+        }else{
+            $ret['description_img'] = $this->getVar('cat_logourl') . $ret['description'];
+        }
+        $editorMaxchar = $glossaireHelper->getModule()->getInfo('editor_maxchar');
         $ret['description_short'] = $utility::truncateHtml($ret['description'], $editorMaxchar);
         $ret['weight']            = $this->getVar('cat_weight');
         $ret['logourl']           = $this->getVar('cat_logourl');
+        $ret['logourl']           = $this->getVar('cat_logourl');
+
+
+
+https://sages91.fr/Frameworks/moduleclasses/icons/32/alert.png
+
+
         
         $ret['alphabarre']          = $this->getVar('cat_alphabarre');
         $ret['alphabarre_mode']     = $this->getVar('cat_alphabarre_mode');
@@ -259,9 +282,10 @@ class Categories extends \XoopsObject
         $ret['letter_css_exist']    = $this->getVar('cat_letter_css_exist');
         $ret['letter_css_notexist'] = $this->getVar('cat_letter_css_notexist');
 
-        $ret['img_folder']        = $this->getVar('cat_img_folder');
+        $ret['upload_folder']        = $this->getVar('cat_upload_folder');
         $ret['colors_set']        = ($this->getVar('cat_colors_set')) ? $this->getVar('cat_colors_set') : "default";
         $ret['is_acronym']        = $this->getVar('cat_is_acronym');
+        $ret['br_after_term']     = $this->getVar('cat_br_after_term');
         $ret['show_terms_index']  = $this->getVar('cat_show_terms_index');
         $ret['count_entries']     = $this->getVar('cat_count_entries');
 //         $ret['date_creation']     = \formatTimestamp($this->getVar('cat_date_creation'), 'm');
@@ -295,9 +319,9 @@ class Categories extends \XoopsObject
     public function getPathUploads($subFolder='', $isUrl=false, $mode= 0777){
     
         if($subFolder !== '')
-            $folder = '/' . $this->getVar('cat_img_folder') . '/' . $subFolder;
+            $folder = '/' . $this->getVar('cat_upload_folder') . '/' . $subFolder;
         else
-            $folder = '/' . $this->getVar('cat_img_folder');
+            $folder = '/' . $this->getVar('cat_upload_folder');
         $fIndex  = XOOPS_UPLOAD_PATH . '/index.php';        
         //--------------------------------------------------
         $fullPath = GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH . $folder;

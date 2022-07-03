@@ -380,7 +380,7 @@ $modversion['config'][] = [
 unset($crGroups);
 
 // ------------------- alphabarre ------------------- //
-$modversion['config'][] = glossaire_getBreakLine('gls_break_alphabarre');
+$modversion['config'][] = glossaire_getBreakLine('alphabarre');
 
 $modversion['config'][] = [
     'name'        => 'alphabarre',
@@ -479,6 +479,19 @@ $modversion['config'][] = [
     'default'     => 1,
 ];
 $modversion['config'][] = [
+    'name'        => 'posButtonsActions',
+    'title'       => '\_MI_GLOSSAIRE_BTN_ACTION_POS',
+    'description' => '\_MI_GLOSSAIRE_BTN_ACTION_POS_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 1,
+    'options'     => [_MI_GLOSSAIRE_BTN_ACTION_POS_NONE    => 0,
+                      _MI_GLOSSAIRE_BTN_ACTION_POS_TOP     => 1, 
+                      _MI_GLOSSAIRE_BTN_ACTION_POS_BOTTOM  => 2, 
+                      _MI_GLOSSAIRE_BTN_ACTION_POS_ALL     => 3],
+];
+
+$modversion['config'][] = [
     'name' => 'displayTemplateName',
     'title'       => '_MI_GLOSSAIRE_SHOW_TPL_NAME',
     'description' => '_MI_GLOSSAIRE_SHOW_TPL_NAME_DESC',
@@ -495,49 +508,6 @@ $modversion['config'][] = [
     'default'     => 0];
 
 
-/*
-// Number column
-$modversion['config'][] = [
-    'name'        => 'numb_col',
-    'title'       => '\_MI_GLOSSAIRE_NUMB_COL',
-    'description' => '\_MI_GLOSSAIRE_NUMB_COL_DESC',
-    'formtype'    => 'select',
-    'valuetype'   => 'int',
-    'default'     => 1,
-    'options'     => [1 => '1', 2 => '2', 3 => '3', 4 => '4'],
-];
-
-// Divide by
-$modversion['config'][] = [
-    'name'        => 'divideby',
-    'title'       => '\_MI_GLOSSAIRE_DIVIDEBY',
-    'description' => '\_MI_GLOSSAIRE_DIVIDEBY_DESC',
-    'formtype'    => 'select',
-    'valuetype'   => 'int',
-    'default'     => 1,
-    'options'     => [1 => '1', 2 => '2', 3 => '3', 4 => '4'],
-];
-// Table type
-$modversion['config'][] = [
-    'name'        => 'table_type',
-    'title'       => '\_MI_GLOSSAIRE_TABLE_TYPE',
-    'description' => '\_MI_GLOSSAIRE_DIVIDEBY_DESC',
-    'formtype'    => 'select',
-    'valuetype'   => 'int',
-    'default'     => 'bordered',
-    'options'     => ['bordered' => 'bordered', 'striped' => 'striped', 'hover' => 'hover', 'condensed' => 'condensed'],
-];
-// Panel by
-$modversion['config'][] = [
-    'name'        => 'panel_type',
-    'title'       => '\_MI_GLOSSAIRE_PANEL_TYPE',
-    'description' => '\_MI_GLOSSAIRE_PANEL_TYPE_DESC',
-    'formtype'    => 'select',
-    'valuetype'   => 'text',
-    'default'     => 'default',
-    'options'     => ['default' => 'default', 'primary' => 'primary', 'success' => 'success', 'info' => 'info', 'warning' => 'warning', 'danger' => 'danger'],
-];
-*/
 
 $modversion['config'][] = glossaire_getBreakLine('extra');
 // Keywords
@@ -550,24 +520,6 @@ $modversion['config'][] = [
     'default'     => 'glossaire, categories, entries',
 ];
 
-// Paypal ID
-$modversion['config'][] = [
-    'name'        => 'donations',
-    'title'       => '\_MI_GLOSSAIRE_IDPAYPAL',
-    'description' => '\_MI_GLOSSAIRE_IDPAYPAL_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'textbox',
-    'default'     => 'XYZ123',
-];
-// Advertise
-$modversion['config'][] = [
-    'name'        => 'advertise',
-    'title'       => '\_MI_GLOSSAIRE_ADVERTISE',
-    'description' => '\_MI_GLOSSAIRE_ADVERTISE_DESC',
-    'formtype'    => 'textarea',
-    'valuetype'   => 'text',
-    'default'     => '',
-];
 // Bookmarks
 $modversion['config'][] = [
     'name'        => 'bookmarks',
@@ -576,24 +528,6 @@ $modversion['config'][] = [
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 0,
-];
-// Make Sample button visible?
-$modversion['config'][] = [
-    'name'        => 'displaySampleButton',
-    'title'       => '_GLOSSAIRE_SHOW_SAMPLE_BUTTON',
-    'description' => '_GLOSSAIRE_SHOW_SAMPLE_BUTTON_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 1,
-];
-// Maintained by
-$modversion['config'][] = [
-    'name'        => 'maintainedby',
-    'title'       => '\_MI_GLOSSAIRE_MAINTAINEDBY',
-    'description' => '\_MI_GLOSSAIRE_MAINTAINEDBY_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => 'https://www.frxoops.org/modules/newbb/',
 ];
 
 // ------------------- Notifications ------------------- //

@@ -33,8 +33,8 @@ require __DIR__ . '/header.php';
 $op = Request::getCmd('op', 'list');
 $catId  = Request::getInt('cat_id', -1);
 $catIdSelect = Request::getInt('catIdSelect',0);
-$gls_add_img = Request::getInt('gls_add_img',0);
-$gls_add_files = Request::getInt('gls_add_files',0);
+$gls_add_img = Request::getInt('gls_add_img',1);
+$gls_add_files = Request::getInt('gls_add_files',1);
 include_once GLOSSAIRE_PATH . "/include/import_export.php";
 
 // echo "<hr><pre>" . print_r($_GET, true) . "</pre><hr>";

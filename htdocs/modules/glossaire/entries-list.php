@@ -67,6 +67,8 @@ use JJD AS JJD;
         $GLOBALS['xoopsTpl']->assign('page2redirect', $page2redirect);
         $GLOBALS['xoopsTpl']->assign('searchMode', array(0=>'globalSearch', 1=>'list')[$glossaireHelper->getConfig('search_mode')]);
         $GLOBALS['xoopsTpl']->assign('showId', $glossaireHelper->getConfig('showId'));
+        $GLOBALS['xoopsTpl']->assign('posButtonsActions', $glossaireHelper->getConfig('posButtonsActions'));
+        $GLOBALS['xoopsTpl']->assign('cat_br_after_term', $catObj->getVar('cat_br_after_term'));
 
 //        $statusAccess = $categoriesHandler->getStatusAccess($catIdSelect);
 //        echo "<hr>===> : {$statusAccess}<hr>";
@@ -116,7 +118,7 @@ include_once('include/search.inc.php');
         $crEntries->setOrder('ASC');
        // ----------------------------------------------------------------     
         $entriesAll = $entriesHandler->getAll($crEntries);
-        $entriesHandler->incrementCounter($crEntries);
+        $entriesHandler->incrementCounter($crEntries, 'ent_term ASC, ent_id', $start, $limit);
         //----------------------------------------------------------------
         if ($entriesCount > 0) {
             $entries = [];

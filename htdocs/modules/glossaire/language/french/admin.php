@@ -156,7 +156,9 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_IMPORT_IN_NEW_CAT', "Importer dans une nouvelle catégorie");
 \define('_AM_GLOSSAIRE_ENTRY_IMAGE', "Image");
 \define('_AM_GLOSSAIRE_ENTRY_IMAGE_UPLOADS', "Image in %s :");
-\define('_AM_GLOSSAIRE_CATEGORY_IMG_FOLDER', "Dossier images");
+\define('_AM_GLOSSAIRE_CATEGORY_UMLOAD_FOLDER', "Dossier des fichiers");
+\define('_AM_GLOSSAIRE_CATEGORY_FOLDER', "Dossier");
+\define('_AM_GLOSSAIRE_CATEGORY_FOLDER_DESC', "Dossier de téléchargement des fichiers et images du glossaire dans le dossier \"uploads\"<br>Le nom du dossier ne doit pas contenir de caractères spcéciaux, accents, espaces, ...");
 \define('_AM_GLOSSAIRE_ENTRY_IMG_DESC', "Sélectionnez une image existante ou téléchargez une nouvelle image.<br>Laissez vide pour garder l'image existante.");
 \define('_AM_GLOSSAIRE_ENTRY_IMG_DESC2', "Sélectionnez une image dans votre environnement ou Laissez vide.");
 \define('_AM_GLOSSAIRE_CREATOR', "Créateur");
@@ -187,8 +189,17 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier");
 \define('_AM_GLOSSAIRE_DELETE_FILE', "Supprimer le fichier");
 \define('_AM_GLOSSAIRE_ENTRY_CURRENT_FILE', "Fichier actuel");
-\define('_AM_GLOSSAIRE_INCLUDE_FILES_DESC', "Ajouter les fichiers joints");
+\define('_AM_GLOSSAIRE_INCLUDE_FILES', "Fichiers joints");
 \define('_AM_GLOSSAIRE_INCLUDE_FILES_DESC', "Vous pouvez ajouter ou non les fichiers joints.");
 \define('_AM_GLOSSAIRE_FILES_JOINTS', "Joints");
+\define('_AM_GLOSSAIRE_SUBMIT_AND_ADDNEW', "Soumettre et ajouter");
+\define('_AM_GLOSSAIRE_ENTRY_EMAIL', "Courriel");
+\define('_AM_GLOSSAIRE_ENTRY_EMAIL_DESC', "Contact par courriel.");
+\define('_AM_GLOSSAIRE_FILE_NAME', "Titre du fichier");
+\define('_AM_GLOSSAIRE_CATEGORY_BR_AFTER_TERME', "Retour à la ligne après le terme");
+\define('_AM_GLOSSAIRE_CATEGORY_BR_AFTER_TERME_DESC', "Oui : les champs 'term' et 'short_def' seront sur deux lignes.<br><Non>les champs 'term' et 'short_def' seront sur la même ligne.");
+\define('_AM_GLOSSAIRE_RAZ_COUNTERS', "RAZ des compteurs");
+\define('_AM_GLOSSAIRE_ENTRIES_UPDATE_OK', "Mise à jour effectuée");
+
 
 // ---------------- End ----------------

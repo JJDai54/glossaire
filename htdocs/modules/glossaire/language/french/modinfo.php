@@ -41,7 +41,7 @@ require_once __DIR__ . '/common.php';
 \define('_MI_GLOSSAIRE_ADMIN_PAGER_DESC', "Nombre de lignes par page dans les listes de l'administration");
 //Utilisateur
 \define('_MI_GLOSSAIRE_USER_PAGER', "Nombre de lignes côté utilisateur");
-\define('_MI_GLOSSAIRE_USER_PAGER_DESC', "Nombre de lignes par page dans les liste pour les utilisateurs");
+\define('_MI_GLOSSAIRE_USER_PAGER_DESC', "Nombre de lignes par page dans les listes pour les utilisateurs");
 // sous-menu
 \define('_MI_GLOSSAIRE_SMNAME1', "Page d'index");
 \define('_MI_GLOSSAIRE_SMNAME2', "Catégories");
@@ -69,11 +69,11 @@ require_once __DIR__ . '/common.php';
 \define('_MI_GLOSSAIRE_ENTRIES_BLOCK_RANDOM', "Bloc d'entrées aléatoire");
 \define('_MI_GLOSSAIRE_ENTRIES_BLOCK_RANDOM_DESC', "Les entrées bloquent la description aléatoire");
 // Config
-\define('_MI_GLOSSAIRE_EDITOR_ADMIN', "Administrateur de l'éditeur");
+\define('_MI_GLOSSAIRE_EDITOR_ADMIN', "Éditeur de l'administrateur'");
 \define('_MI_GLOSSAIRE_EDITOR_ADMIN_DESC', "Sélectionnez l'éditeur qui doit être utilisé dans la zone d'administration pour les champs de zone de texte");
-\define('_MI_GLOSSAIRE_EDITOR_USER', "Utilisateur de l'éditeur");
+\define('_MI_GLOSSAIRE_EDITOR_USER', "Éditeur de l'utilisateur");
 \define('_MI_GLOSSAIRE_EDITOR_USER_DESC', "Sélectionnez l'éditeur qui doit être utilisé dans la zone utilisateur pour les champs de zone de texte");
-\define('_MI_GLOSSAIRE_EDITOR_MAXCHAR', "Text max caractères");
+\define('_MI_GLOSSAIRE_EDITOR_MAXCHAR', "Nombre maximum de caractères");
 \define('_MI_GLOSSAIRE_EDITOR_MAXCHAR_DESC', "Nombre maximum de caractères pour afficher le texte d'une zone de texte ou d'un champ d'éditeur dans la zone d'administration");
 \define('_MI_GLOSSAIRE_KEYWORDS', "Mots clés");
 \define('_MI_GLOSSAIRE_KEYWORDS_DESC', "Insérer ici les mots clés (séparés par des virgules)");
@@ -83,7 +83,7 @@ require_once __DIR__ . '/common.php';
 \define('_MI_GLOSSAIRE_MIMETYPES_IMAGE', "Image des types MIME");
 \define('_MI_GLOSSAIRE_MIMETYPES_IMAGE_DESC', "Définir les types MIME autorisés pour le téléchargement d'images");
 \define('_MI_GLOSSAIRE_MAXWIDTH_IMAGE', "Largeur max de l'image");
-\define('_MI_GLOSSAIRE_MAXWIDTH_IMAGE_DESC', "Définir la largeur maximale à laquelle les images téléchargées doivent être mises à l'échelle (en pixels)<br>0 signifie que les images conservent la taille d'origine. <br>Si une image est plus petite que la valeur maximale, alors l'image ne sera pas agrandi, il sera enregistré dans sa largeur d'origine.");
+\define('_MI_GLOSSAIRE_MAXWIDTH_IMAGE_DESC', "Définir la largeur maximale à laquelle les images téléchargées doivent être mises à l'échelle (en pixels)<br>0 signifie que les images conservent la taille d'origine. <br>Si une image est plus petite que la valeur maximale, alors l'image ne sera pas agrandie, il sera enregistré dans sa largeur d'origine.");
 \define('_MI_GLOSSAIRE_MAXHEIGHT_IMAGE', "Hauteur max image");
 \define('_MI_GLOSSAIRE_MAXHEIGHT_IMAGE_DESC', "Définir la hauteur maximale à laquelle les images téléchargées doivent être mises à l'échelle (en pixels)<br>0 signifie que les images conservent la taille d'origine. <br>Si une image est inférieure à la valeur maximale, alors l'image ne s'agrandira pas, il sera enregistré dans sa hauteur d'origine");
 \define('_MI_GLOSSAIRE_NUMB_COL', "Nombre de colonnes");
@@ -166,7 +166,7 @@ define('_MI_GLOSSAIRE_IMPORT', "Importation");
 \define('_MI_GLOSSAIRE_SHOW_ID_DESC', "Utilisé en mode développement, laisser de préférence 'False' en production");
 
 \define('_MI_GLOSSAIRE_SEARCH_MODE', "Mode de recherche");
-\define('_MI_GLOSSAIRE_SEARCH_MODE_DESC', "Module : Utilise la fonction de recherche du module<br>Globale : Utilise la fonction de rechecher de xoops");
+\define('_MI_GLOSSAIRE_SEARCH_MODE_DESC', "Module : Utilise la fonction de recherche du module<br>Globale : Utilise la fonction de recheche de xoops");
 \define('_MI_GLOSSAIRE_SEARCH_MODE_LOCAL', "Module");
 \define('_MI_GLOSSAIRE_SEARCH_MODE_GLOBAL', "Globale");
 
@@ -174,8 +174,9 @@ define('_MI_GLOSSAIRE_IMPORT', "Importation");
 \define('_MI_GLOSSAIRE_CONFIG_TITLE', "<center><div style='background-color:black;color:white;'>%s</div><center>");
 
 \define('_MI_GLOSSAIRE_ALPHABARRE_CSS', "<br>Indiquer le style CSS sans les accolades et sans oublier les ';'");
-\define('_MI_GLOSSAIRE_BREAK_ALPHABARRE_DESC', "<br>Barre constituée des lettres de l'aphabet pour la sélection dans le glossaire.");
-\define('_MI_GLOSSAIRE_BREAK_ALPHABARRE', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "ALPHABARRE - Barre de sélection" . _MI_GLOSSAIRE_BREAK_ALPHABARRE_DESC . _MI_GLOSSAIRE_ALPHABARRE_CSS));
+\define('_MI_GLOSSAIRE_BREAK_ALPHABARRE_DESC', "<br>Barre constituée des lettres de l'alphabet pour la sélection dans le glossaire.");
+\define('_MI_GLOSSAIRE_BREAK_ALPHABARRE_DEFAULT', "<br>Ce sont les valeurs par défaut modifiables pour chaque catégorie.");
+\define('_MI_GLOSSAIRE_BREAK_ALPHABARRE', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "ALPHABARRE - Barre de sélection" . _MI_GLOSSAIRE_BREAK_ALPHABARRE_DESC . _MI_GLOSSAIRE_ALPHABARRE_CSS . _MI_GLOSSAIRE_BREAK_ALPHABARRE_DEFAULT));
 
 \define('_MI_GLOSSAIRE_BREAK_IMAGE', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "Images"));
 \define('_MI_GLOSSAIRE_BREAK_FILE', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "Fichiers"));
@@ -185,18 +186,27 @@ define('_MI_GLOSSAIRE_IMPORT', "Importation");
 \define('_MI_GLOSSAIRE_BREAK_NOTIFICATION', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "NOTIFICATIONS") );
 
 \define('_MI_GLOSSAIRE_ALPHABARRE', "Barre de lettres");
-\define('_MI_GLOSSAIRE_ALPHABARRE_DESC', "Liste des lettres de la barre de sélection par initiale.<br>Utiliser le caractère \"#\" pour tous les chiffres.");
+\define('_MI_GLOSSAIRE_ALPHABARRE_DESC', "Liste des lettres de la barre de sélection par initiale.<br>Utiliser le caractère \"#\" pour une sélection sur tous les termes commençant par un chiffre.");
 \define('_MI_GLOSSAIRE_ALPHABARRE_MODE', "Afficher toutes les lettres");
-\define('_MI_GLOSSAIRE_ALPHABARRE_MODE_DESC', "<b>Non</b> : Affiche que les lettres existantes pour la sélection courante.<br><b>Oui</b> : Affiche la barre complète quelque soit la séléction.");
+\define('_MI_GLOSSAIRE_ALPHABARRE_MODE_DESC', "<b>Non</b> : Affiche que les lettres existantes pour la sélection courante.<br><b>Oui</b> : Affiche la barre complète quel que soit la sélection.");
 
 \define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT', "Style des lettres par défaut");
-\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT_DESC', "Style CSS des lettre par défaut.");
+\define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT_DESC', "Style CSS des lettres par défaut.");
 \define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED', "Style de la lettre sélectionnée");
 \define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED_DESC', "Style de la lettre sélectionnée.");
 \define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST', "Style des lettres existantes");
 \define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci existe");
 \define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST', "Style des lettres inexistantes");
 \define('_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC', "Style des lettres quand des définitions commençant par cette-ci n'existent pas.");
+
+\define('_MI_GLOSSAIRE_BTN_ACTION_POS', "Position des boutons d'action");
+\define('_MI_GLOSSAIRE_BTN_ACTION_POS_DESC', "Détermine pour chaque item la  position des boutons edit/delete/new/top/...");
+\define('_MI_GLOSSAIRE_BTN_ACTION_POS_NONE', "Aucun bouton (utiliser l'admin pour ces actions)");
+\define('_MI_GLOSSAIRE_BTN_ACTION_POS_TOP', "En haut à droite du terme");
+\define('_MI_GLOSSAIRE_BTN_ACTION_POS_BOTTOM', "En bas à droite de la fiche du terme");
+\define('_MI_GLOSSAIRE_BTN_ACTION_POS_ALL', "En haut à droite et en bas à droite");
+
+
 
 /*
 \define('', "");

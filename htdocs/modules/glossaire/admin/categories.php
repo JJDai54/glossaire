@@ -149,21 +149,21 @@ switch ($op) {
             $categoriesObj->setVar('cat_logourl', Request::getString('cat_logourl'));
         }
         //---------------------------------------------------
-        $oldImgFolder = $categoriesObj->getVar('cat_img_folder');
-        $newImgFolder = Request::getString('cat_img_folder', '');
+        $oldImgFolder = $categoriesObj->getVar('cat_upload_folder');
+        $newImgFolder = Request::getString('cat_upload_folder', '');
         if ($newImgFolder == ''){
             $newImgFolder = \JJD\sanityseNameForFile(Request::getString('cat_name', ''));
-            $categoriesObj->setVar('cat_img_folder', $newImgFolder);
+            $categoriesObj->setVar('cat_upload_folder', $newImgFolder);
         }elseif($newImgFolder != $oldImgFolder){
             $newImgFolder = \JJD\sanityseNameForFile($newImgFolder);
-            $categoriesObj->setVar('cat_img_folder', $newImgFolder);
+            $categoriesObj->setVar('cat_upload_folder', $newImgFolder);
         }else{
-            $categoriesObj->setVar('cat_img_folder', $oldImgFolder);
+            $categoriesObj->setVar('cat_upload_folder', $oldImgFolder);
         }
         
-//         if ($categoriesObj->getVar('cat_img_folder') == ''){
+//         if ($categoriesObj->getVar('cat_upload_folder') == ''){
 //             $imgFolder = \JJD\sanityseNameForFile($categoriesObj->getVar('cat_name'));
-//             $categoriesObj->setVar('cat_img_folder', $imgFolder);
+//             $categoriesObj->setVar('cat_upload_folder', $imgFolder);
 //         }else{
 //         }  
         
@@ -184,6 +184,7 @@ switch ($op) {
         //---------------------------------------------------
         $categoriesObj->setVar('cat_colors_set', Request::getString('cat_colors_set', ''));
         $categoriesObj->setVar('cat_is_acronym', Request::getInt('cat_is_acronym', 0));
+        $categoriesObj->setVar('cat_br_after_term', Request::getInt('cat_br_after_term', 0));
         $categoriesObj->setVar('cat_show_terms_index', Request::getInt('cat_show_terms_index', 1));
         $categoriesObj->setVar('cat_count_entries', $entriesHandler->getCountOnCategory($catId));
         
@@ -263,7 +264,7 @@ switch ($op) {
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
         $categoriesObj = $categoriesHandler->get($catId);
         $catName = $categoriesObj->getVar('cat_name');
-        //$imgFolder = $categoriesObj->getVar('cat_img_folder');
+        //$imgFolder = $categoriesObj->getVar('cat_upload_folder');
         $glsUploads = $categoriesObj->getPathUploads();
 //echo "<hr>===>" . GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $imgFolder . "<hr>";        
         if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {

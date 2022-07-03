@@ -104,4 +104,8 @@ Comme vous pouvez le voir, vous avez créé une page avec une liste de liens en 
 \define('_MA_GLOSSAIRE_REFERENCES', "Références");
 \define('_MA_GLOSSAIRE_ENTRY_SOUMETTRE', "Soumettre un terme");
 \define('_MA_GLOSSAIRE_FILE_LINKED', "Fichier joint");
+\define('_MA_GLOSSAIRE_EMAIL', "Courriel");
+\define('_MA_GLOSSAIRE_SEND_EMAIL', "Envoyer un courriel");
+\define('_MA_GLOSSAIRE_CONTACT', "Contact");
+
 // ---------------- End ----------------
