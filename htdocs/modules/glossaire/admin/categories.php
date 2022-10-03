@@ -297,5 +297,14 @@ switch ($op) {
         $categoriesHandler->updateWeight($catId, $action);
         \redirect_header('categories.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_AM_GLOSSAIRE_WEIGHT_UPDATE);        
         break;
+
+    case 'bascule_actif':
+        $catId = Request::getInt('catId', 0);
+        $newValue = Request::getInt('value', 0);
+        $sql = "UPDATE " . $xoopsDB->prefix("glossaire_categories") . " SET cat_active={$newValue} WHERE cat_id={$catId}";
+        $xoopsDB->queryf($sql);
+        \redirect_header("categories.php?op=list", 0, "");
+
+        break;
 }
 require __DIR__ . '/footer.php';

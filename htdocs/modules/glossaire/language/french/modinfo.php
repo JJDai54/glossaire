@@ -186,7 +186,7 @@ define('_MI_GLOSSAIRE_IMPORT', "Importation");
 \define('_MI_GLOSSAIRE_BREAK_NOTIFICATION', sprintf(_MI_GLOSSAIRE_CONFIG_TITLE, "NOTIFICATIONS") );
 
 \define('_MI_GLOSSAIRE_ALPHABARRE', "Barre de lettres");
-\define('_MI_GLOSSAIRE_ALPHABARRE_DESC', "Liste des lettres de la barre de sélection par initiale.<br>Utiliser le caractère \"#\" pour une sélection sur tous les termes commençant par un chiffre.");
+\define('_MI_GLOSSAIRE_ALPHABARRE_DESC', "Liste des lettres de la barre de sélection.<br>Caractères spéciaux :<br><b>\" # \"</b> : sélectionne tous les termes commençant par un chiffre.<br><b>\" * \"</b> : ajoute l'option  \"Tout\"<br><b>\" | \"</b> : ajoute un retour à la ligne pour séparer par exemple chiffres et lettres.");
 \define('_MI_GLOSSAIRE_ALPHABARRE_MODE', "Afficher toutes les lettres");
 \define('_MI_GLOSSAIRE_ALPHABARRE_MODE_DESC', "<b>Non</b> : Affiche que les lettres existantes pour la sélection courante.<br><b>Oui</b> : Affiche la barre complète quel que soit la sélection.");
 

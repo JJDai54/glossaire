@@ -1,4 +1,15 @@
-Ajout d'une list pour le tri dans l'admin des termes
+ajouter | pour des retours à la ligne dans la barre de lettre
+
+ajouter une gestion des mots clés
+
+tester la barre avec tous les chiffres
+
+
+
+ -------------------------
+fait :
+--------------------------
+Ajout d'une liste pour le tri dans l'admin des termes
 
 Ajout des fichiers joints dans l'export et l'import
 

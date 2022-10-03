@@ -191,31 +191,38 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $catObj=null)
     . ".letter-notexist{{$letter_css_notexist}}\n"
     ."</style>\n";
     //------------------------------------------------------
-    $letterLink = '*';
-    $letterVisible = _ALL;
-        if($letterLink==$oldLetter)
-            $lettersArr[] =  sprintf($linkOldRef, $letterVisible);
-        else
-            $lettersArr[] =  sprintf($linkRefOk, $letterLink, $letterVisible);
     
     //------------------------------------------------------
     for ($h = 0; $h < strlen($alphabarre); ++$h) {
         $letterVisible = $alphabarre[$h];
         $letterLink = ($letterVisible == GLOSSAIRE_CHIFFRES) ? '@' : $letterVisible;
 
-        if (array_search($letterVisible, $lettersfound)!==false){
+        if (array_search($letterVisible, $lettersfound) !== false){
             if($letterVisible==$oldLetter)
                 $lettersArr[] = sprintf($linkOldRef, $letterVisible); 
             else
                 $lettersArr[] = sprintf($linkRefOk, $letterLink, $letterVisible); 
+        }elseif ($letterVisible == '|'){
+            //ajout d'un retour a la ligne quand la lettre est un '|'     (barre verticale)
+            $lettersArr[] = '<br>';   
+        }elseif ($letterVisible == '*'){
+            //ajout de 'tout' quand la lettre est une '*'
+            $letterLink = '*';
+            $letterVisible = _ALL;
+                if($letterLink==$oldLetter)
+                    $lettersArr[] =  sprintf($linkOldRef, $letterVisible);
+                else
+                    $lettersArr[] =  sprintf($linkRefOk, $letterLink, $letterVisible);
+            
         }elseif ($alphabarre_mode == 1){
             $lettersArr[] = sprintf($linkNoRef, $letterVisible);
-        }
+        } // else{exit;}
 
     }
 
     return $style. "<span class='letter-default'>" . implode('', $lettersArr) . "</span>";
 }
+
 
     /**
      * @return new bool

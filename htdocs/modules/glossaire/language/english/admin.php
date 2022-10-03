@@ -102,6 +102,7 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_CLONE_FAIL', "Sorry, we failed in creating the new clone. Maybe you need to temporally set write permissions (CHMOD 777) to modules folder and try again.");
 // ---------------- Admin Permissions ----------------
 // Permissions
+\define('_AM_GLOSSAIRE_PERMISSIONS', "Permissions");
 \define('_AM_GLOSSAIRE_PERMISSIONS_GLOBAL', "Permissions global");
 \define('_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_DESC', "Permissions global to check type of.");
 \define('_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_4', "Permissions global to approve");
@@ -170,6 +171,10 @@ define ('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY', "Catégorie de Lexikon");
 define ('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY_DESC', "Sélectionez la catégorie du module Lexikon à importer");   
 \define('_AM_GLOSSAIRE_CLEAN_IMAGES', "Nettoyer les images: Il y a  %s image(s) inutilisé(s) et %s image(s) inexistante(s)");
 \define('_AM_GLOSSAIRE_CLEAN_IMAGES_OK', "Nettoyage des images : <br>%s image(s) ont été supprimées et %s définitions mises à jour<br>pour la catégorie #%s.");    
+
+\define('_AM_GLOSSAIRE_DESACTIVATE', "Désactiver");
+\define('_AM_GLOSSAIRE_ACTIVATE', "Activer");
+\define('_AM_GLOSSAIRE_CATEGORY_ACTIVE', "Actif");
 
 // ---------------- End ----------------
 

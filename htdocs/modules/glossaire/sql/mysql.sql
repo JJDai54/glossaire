@@ -17,17 +17,18 @@ CREATE TABLE `glossaire_categories` (
   `cat_description` TEXT NOT NULL ,
   `cat_weight` INT(10) NOT NULL DEFAULT '0',
   `cat_logourl` VARCHAR(255) NOT NULL DEFAULT '',
-  `cat_alphabarre` VARCHAR(255) NOT NULL DEFAULT ''
-  `cat_alphabarre_mode` INT(10) NOT NULL DEFAULT '1'
-  `cat_letter_css_default` VARCHAR(255) NOT NULL DEFAULT ''
-  `cat_letter_css_selected` VARCHAR(255) NOT NULL DEFAULT ''
-  `cat_letter_css_exist` VARCHAR(255) NOT NULL DEFAULT ''
-  `cat_letter_css_notexist` VARCHAR(255) NOT NULL DEFAULT ''
+  `cat_alphabarre` VARCHAR(255) NOT NULL DEFAULT '',
+  `cat_alphabarre_mode` INT(10) NOT NULL DEFAULT '1',
+  `cat_letter_css_default` VARCHAR(255) NOT NULL DEFAULT '',
+  `cat_letter_css_selected` VARCHAR(255) NOT NULL DEFAULT '',
+  `cat_letter_css_exist` VARCHAR(255) NOT NULL DEFAULT '',
+  `cat_letter_css_notexist` VARCHAR(255) NOT NULL DEFAULT '',
   `cat_upload_folder` VARCHAR(255) NOT NULL DEFAULT '',
   `cat_colors_set` VARCHAR(50) NOT NULL DEFAULT '',
   `cat_is_acronym` TINYINT(1) NOT NULL DEFAULT '0',   
   `cat_br_after_term` TINYINT(1) NOT NULL DEFAULT '0',   
   `cat_show_terms_index` TINYINT(1) NOT NULL DEFAULT '1',   
+  `cat_active TINYINT(1) NOT NULL DEFAULT '0',   
   `cat_count_entries` INT(11) NOT NULL DEFAULT '0',   
   `cat_date_creation` DATETIME(6) NOT NULL DEFAULT '0000-00-00 00:00:00.0000',
   `cat_date_update` DATETIME(6) NOT NULL DEFAULT '0000-00-00 00:00:00.00000',

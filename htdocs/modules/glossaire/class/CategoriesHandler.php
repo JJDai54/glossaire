@@ -251,6 +251,7 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         $ids = join(',', $tPerm);
         //------------------------------------------------
         $crAllCategories = new \CriteriaCompo();
+        $crAllCategories->add(new \Criteria('cat_active',"1",'='));
         $crAllCategories->add(new \Criteria('cat_id',"({$ids})",'IN'));
         $crAllCategories = $this->getCategoriesCriteria($crAllCategories, $start, $limit, $sort, $order);
 

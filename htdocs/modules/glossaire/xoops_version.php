@@ -268,6 +268,8 @@ while ($i * 1048576 <= $maxSize) {
     $optionMaxsize[$i . ' ' . _MI_GLOSSAIRE_SIZE_MB] = $i * 1048576;
     $i += $increment;
 }
+//echo "<hr><pre>" . print_r($optionMaxsize,true) . "</pre><hr>" ;
+
 // Uploads : maxsize of image
 $modversion['config'][] = [
     'name'        => 'maxsize_image',
@@ -275,7 +277,7 @@ $modversion['config'][] = [
     'description' => '\_MI_GLOSSAIRE_MAXSIZE_IMAGE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
-    'default'     => 3145728,
+    'default'     => $optionMaxsize['20 Mo'],
     'options'     => $optionMaxsize,
 ];
 // Uploads : mimetypes of image
@@ -315,7 +317,7 @@ $modversion['config'][] = [
     'description' => '\_MI_GLOSSAIRE_MAXSIZE_FILE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
-    'default'     => 3145728,
+    'default'     => $optionMaxsize['250 Mo'],
     'options'     => $optionMaxsize,
 ];
 
@@ -388,7 +390,7 @@ $modversion['config'][] = [
     'description' => '\_MI_GLOSSAIRE_ALPHABARRE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#',
+    'default'     => '*ABCDEFGHIJKLMNOPQRSTUVWXYZ#',
 ];
 
 $modversion['config'][] = [

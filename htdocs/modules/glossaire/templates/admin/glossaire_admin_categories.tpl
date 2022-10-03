@@ -9,6 +9,7 @@
             <tr class='head'>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_ID}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_NAME}></th>
+                <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_ACTIVE}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_FOLDER}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_DESCRIPTION}></th>
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_TOTAL}></th> *}>
@@ -32,13 +33,26 @@
                     <{$category.name}>
                     </a>
                 </td>
+                
+                <td class='center'>
+                
+                    <{if $category.active == 1}>
+                        <a href="categories.php?op=bascule_actif&catId=<{$category.id}>&value=0">
+                        <img src="<{$sysPathIcon16}>/on.png" title="<{$smarty.const._AM_GLOSSAIRE_DESACTIVATE}>">
+                        </a>
+                    <{else}>
+                        <a href="categories.php?op=bascule_actif&catId=<{$category.id}>&value=1">
+                        <img src="<{$sysPathIcon16}>/off.png" title="<{$smarty.const._AM_GLOSSAIRE_ACTIVATE}>">
+                        </a>
+                    <{/if}>
+                </td>
 
                 <td class='left'><{$category.upload_folder}></td>
                 <td class='left'><{$category.description_short}></td>
                 <{* <td class='center'><{$category.total}></td> *}>
 
                 <{* ---------------- Arrows Weight -------------------- *}>
-                <td class='center' <{$styleParent}> >
+                <td class='center width10' <{$styleParent}> >
                     <{if $smarty.foreach.catItem.first}>
                       <img src="<{$modPathIcon16}>/arrows/<{$fldImg}>/first-0.png" title="<{$smarty.const._AM_GLOSSAIRE_FIRST}>">
                       <img src="<{$modPathIcon16}>/arrows/<{$fldImg}>/up-0.png" title="<{$smarty.const._AM_GLOSSAIRE_UP}>">
@@ -74,7 +88,7 @@
                 </td>
                 <{* ---------------- /Arrows -------------------- *}>
 
-                <td class='center'><img src="<{xoModuleIcons32}><{$category.logourl}>" alt="categories" ></td>
+                <td class='center'><img src="<{xoModuleIcons32}><{$category.logourl}>" alt="" ></td>
                 <td class='center'><{$category.colors_set}></td>
                 
                 <td class='center'><{$category.count_entries}></td>

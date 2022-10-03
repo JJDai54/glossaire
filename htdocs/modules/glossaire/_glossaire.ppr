@@ -33,7 +33,7 @@ _glossaire
 			admin\index.php
 			admin\menu.php
 			admin\permissions.php
-		+assets
+		-assets
 			+css
 				-admin
 					assets\css\admin\index.php
@@ -158,7 +158,7 @@ _glossaire
 			include\update.php
 			include\xoops_version.inc.php
 		+language
-			-english
+			+english
 				-help
 					language\english\help\help.html
 					language\english\help\index.php
@@ -263,42 +263,38 @@ _glossaire
 		read-me.txt
 		xoops_version.php
 [Open project files]
-0=admin\entries-list.php
-1=language\french\admin.php
-2=class\EntriesHandler.php
-3=class\Entries.php
-4=admin\entries-delete.php
-5=admin\entries.php
-6=entries-list.php
-7=class\Utility.php
-8=class\Categories.php
+0=class\Categories.php
+1=class\Utility.php
+2=sql\mysql.sql
+3=templates\admin\glossaire_admin_categories.tpl
+4=admin\categories.php
+5=admin\header.php
+6=entries.php
+7=class\CategoriesHandler.php
 [Selected Project Files]
 Main=
-Selected=class\Utility.php
-[admin\entries-list.php]
-TopLine=30
-Caret=54,52
-[language\french\admin.php]
-TopLine=166
-Caret=41,202
-[class\EntriesHandler.php]
-TopLine=254
-Caret=1,276
-[class\Entries.php]
-TopLine=47
-Caret=1,1
-[admin\entries-delete.php]
-TopLine=1
-Caret=1,1
-[admin\entries.php]
-TopLine=144
-Caret=47,167
-[entries-list.php]
-TopLine=101
-Caret=77,121
-[class\Utility.php]
-TopLine=387
-Caret=61,417
+Selected=templates\admin\glossaire_admin_categories.tpl
 [class\Categories.php]
-TopLine=299
-Caret=1,319
+TopLine=264
+Caret=24,298
+[class\Utility.php]
+TopLine=304
+Caret=1,328
+[sql\mysql.sql]
+TopLine=1
+Caret=35,14
+[templates\admin\glossaire_admin_categories.tpl]
+TopLine=43
+Caret=42,55
+[admin\categories.php]
+TopLine=44
+Caret=66,55
+[admin\header.php]
+TopLine=48
+Caret=1,68
+[entries.php]
+TopLine=43
+Caret=53,72
+[class\CategoriesHandler.php]
+TopLine=228
+Caret=64,254

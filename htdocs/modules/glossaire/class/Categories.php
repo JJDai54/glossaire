@@ -71,6 +71,7 @@ class Categories extends \XoopsObject
         $this->initVar('cat_br_after_term', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_count_entries', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_show_terms_index', \XOBJ_DTYPE_INT); 
+        $this->initVar('cat_active', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_date_creation', \XOBJ_DTYPE_OTHER); //XOBJ_DTYPE_LTIME
         $this->initVar('cat_date_update', \XOBJ_DTYPE_OTHER); //XOBJ_DTYPE_LTIME
     }
@@ -164,14 +165,7 @@ class Categories extends \XoopsObject
         $fileSelectTray->addElement(new \XoopsFormLabel(''));
         $imageTray->addElement($fileSelectTray);
         $form->addElement($imageTray);
-        
-        // Form Text 
-        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE, 'cat_alphabarre', 150, 255, $this->getVar('cat_alphabarre')));
-        $form->addElement(new \XoopsFormRadioYN(\_MI_GLOSSAIRE_ALPHABARRE_MODE, 'cat_alphabarre_mode', $this->getVar('cat_alphabarre_mode')));
-        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT, 'cat_letter_css_default', 150, 255, $this->getVar('cat_letter_css_default')));
-        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED, 'cat_letter_css_selected', 150, 255, $this->getVar('cat_letter_css_selected')));
-        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST, 'cat_letter_css_exist', 150, 255, $this->getVar('cat_letter_css_exist')));
-        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST, 'cat_letter_css_notexist', 150, 255, $this->getVar('cat_letter_css_notexist')));
+
         
        // Form Text Date Select cat_colors_set
         //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_THEME, 'cat_colors_set', 50, 50, $this->getVar('cat_colors_set')));
@@ -202,6 +196,23 @@ class Categories extends \XoopsObject
 //         $catDate_update = $this->isNew() ? \time() : $this->getVar('cat_date_update');
 //         $form->addElement(new \XoopsFormDateTime(\_AM_GLOSSAIRE_CATEGORY_DATE_UPDATE, 'cat_date_update', '', $catDate_update));
         
+        //========================================================
+        $form->insertBreak('<center><div style="background:black;color:white;">' . _AM_GLOSSAIRE_ALPHABARRE . '</div></center>');
+        //========================================================
+        
+        // Form alphabarre 
+        $inpAlphabarre = new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE, 'cat_alphabarre', 150, 255, $this->getVar('cat_alphabarre'));
+        $inpAlphabarre->setDescription(_MI_GLOSSAIRE_ALPHABARRE_DESC);
+        $form->addElement($inpAlphabarre);
+        $form->addElement(new \XoopsFormRadioYN(\_MI_GLOSSAIRE_ALPHABARRE_MODE, 'cat_alphabarre_mode', $this->getVar('cat_alphabarre_mode')));
+        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT, 'cat_letter_css_default', 150, 255, $this->getVar('cat_letter_css_default')));
+        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED, 'cat_letter_css_selected', 150, 255, $this->getVar('cat_letter_css_selected')));
+        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST, 'cat_letter_css_exist', 150, 255, $this->getVar('cat_letter_css_exist')));
+        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST, 'cat_letter_css_notexist', 150, 255, $this->getVar('cat_letter_css_notexist')));
+
+        //========================================================
+        $form->insertBreak('<center><div style="background:black;color:white;">' . _AM_GLOSSAIRE_PERMISSIONS . '</div></center>');
+        //========================================================
         
         // Permissions
         $memberHandler = \xoops_getHandler('member');
@@ -263,17 +274,11 @@ class Categories extends \XoopsObject
         }else{
             $ret['description_img'] = $this->getVar('cat_logourl') . $ret['description'];
         }
+
         $editorMaxchar = $glossaireHelper->getModule()->getInfo('editor_maxchar');
         $ret['description_short'] = $utility::truncateHtml($ret['description'], $editorMaxchar);
         $ret['weight']            = $this->getVar('cat_weight');
         $ret['logourl']           = $this->getVar('cat_logourl');
-        $ret['logourl']           = $this->getVar('cat_logourl');
-
-
-
-https://sages91.fr/Frameworks/moduleclasses/icons/32/alert.png
-
-
         
         $ret['alphabarre']          = $this->getVar('cat_alphabarre');
         $ret['alphabarre_mode']     = $this->getVar('cat_alphabarre_mode');
@@ -290,6 +295,7 @@ https://sages91.fr/Frameworks/moduleclasses/icons/32/alert.png
         $ret['count_entries']     = $this->getVar('cat_count_entries');
 //         $ret['date_creation']     = \formatTimestamp($this->getVar('cat_date_creation'), 'm');
 //         $ret['date_update']    = \formatTimestamp($this->getVar('cat_date_update'), 'm');
+        $ret['active']            = $this->getVar('cat_active');
 		$ret['date_creation']     = \JJD\getDateSql2Str($this->getVar('cat_date_creation'));
 		$ret['date_update']       = \JJD\getDateSql2Str($this->getVar('cat_date_update'));
         

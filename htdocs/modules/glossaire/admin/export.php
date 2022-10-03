@@ -94,11 +94,11 @@ switch($op) {
   	    $form->addElement($inpCategory);
         
         $inpImgYN = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_INCLUDE_IMG, 'gls_add_img', $gls_add_img);
-        $inpImgYN->setExtra(_AM_GLOSSAIRE_INCLUDE_IMG_DESC);
+        $inpImgYN->setDescription(_AM_GLOSSAIRE_INCLUDE_IMG_DESC);
   	    $form->addElement($inpImgYN);
                   
-        $inpFileYN = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_INCLUDE_IMG, 'gls_add_files', $gls_add_files);
-        $inpFileYN->setExtra(_AM_GLOSSAIRE_INCLUDE_FILES_DESC);
+        $inpFileYN = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_INCLUDE_FILES, 'gls_add_files', $gls_add_files);
+        $inpFileYN->setDescription(_AM_GLOSSAIRE_INCLUDE_FILES_DESC);
   	    $form->addElement($inpFileYN);
 
 //         $inpQuiz = new \XoopsFormSelect(_AM_QUIZMAKER_QUIZ, 'quiz_id', $quizId);

@@ -102,6 +102,7 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_CLONE_FAIL', "Désolé, nous n'avons pas réussi à créer le nouveau clone. Peut-être avez-vous besoin de définir temporairement des autorisations d'écriture (CHMOD 777) sur le dossier des modules et de réessayer.");
 // ---------------- Admin Permissions ----------------
 // Permissions
+\define('_AM_GLOSSAIRE_PERMISSIONS', "Permissions");
 \define('_AM_GLOSSAIRE_PERMISSIONS_GLOBAL', "Permissions globales");
 \define('_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_DESC', "Permissions globales pour vérifier le type de.");
 \define('_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_4', "Permissions globales à approuver");
@@ -189,8 +190,8 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_ENTRY_FILE', "Fichier");
 \define('_AM_GLOSSAIRE_DELETE_FILE', "Supprimer le fichier");
 \define('_AM_GLOSSAIRE_ENTRY_CURRENT_FILE', "Fichier actuel");
-\define('_AM_GLOSSAIRE_INCLUDE_FILES', "Fichiers joints");
-\define('_AM_GLOSSAIRE_INCLUDE_FILES_DESC', "Vous pouvez ajouter ou non les fichiers joints.");
+\define('_AM_GLOSSAIRE_INCLUDE_FILES', "inclure les fichiers joints");
+\define('_AM_GLOSSAIRE_INCLUDE_FILES_DESC', "Si vous n'incluez pas les fichiers joints l'archives sera plus légère.");
 \define('_AM_GLOSSAIRE_FILES_JOINTS', "Joints");
 \define('_AM_GLOSSAIRE_SUBMIT_AND_ADDNEW', "Soumettre et ajouter");
 \define('_AM_GLOSSAIRE_ENTRY_EMAIL', "Courriel");
@@ -200,6 +201,15 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_CATEGORY_BR_AFTER_TERME_DESC', "Oui : les champs 'term' et 'short_def' seront sur deux lignes.<br><Non>les champs 'term' et 'short_def' seront sur la même ligne.");
 \define('_AM_GLOSSAIRE_RAZ_COUNTERS', "RAZ des compteurs");
 \define('_AM_GLOSSAIRE_ENTRIES_UPDATE_OK', "Mise à jour effectuée");
+\define('_AM_GLOSSAIRE_ALPHABARRE', "Barre de recherche par lettres");
 
+\define('_AM_GLOSSAIRE_DESACTIVATE', "Désactiver");
+\define('_AM_GLOSSAIRE_ACTIVATE', "Activer");
+\define('_AM_GLOSSAIRE_CATEGORY_ACTIVE', "Actif");
+
+// \define('_MI_GLOSSAIRE_ALPHABARRE_CARRACTERES_SPECIAUX', "Caractères spéciaux :<br><b>\" # \"</b> : sélectionne tous les termes commençant par un chiffre.<br><b>\" * \"</b> : ajoute l'option  \"Tout\"<br><b>\" | \"</b> : ajoute un retour à la ligne pour séparer par exemple chiffres et lettres.");
+// \define('_MI_GLOSSAIRE_ALPHABARRE_DESC', "Liste des lettres de la barre de sélection.<br>" . _MI_GLOSSAIRE_ALPHABARRE_CARRACTERES_SPECIAUX);
+// \define('_MI_GLOSSAIRE_ALPHABARRE_MODE', "Afficher toutes les lettres");
+// \define('_MI_GLOSSAIRE_ALPHABARRE_MODE_DESC', "<b>Non</b> : Affiche que les lettres existantes pour la sélection courante.<br><b>Oui</b> : Affiche la barre complète quel que soit la sélection.");
 
 // ---------------- End ----------------
