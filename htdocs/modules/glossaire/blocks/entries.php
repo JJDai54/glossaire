@@ -28,6 +28,7 @@ use XoopsModules\Glossaire\Helper;
 use XoopsModules\Glossaire\Constants;
 
 require_once \XOOPS_ROOT_PATH . '/modules/glossaire/include/common.php';
+include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 
 /**
  * Function show block
@@ -36,78 +37,100 @@ require_once \XOOPS_ROOT_PATH . '/modules/glossaire/include/common.php';
  */
 function b_glossaire_entries_show($options)
 {
-$dirname = "glossaire";
+//echo "<hr>===>options : <pre>". print_r($options, true) ."</pre><hr>";
+	$myts = MyTextSanitizer::getInstance();
+    $dirname = "glossaire";
     require_once \XOOPS_ROOT_PATH . "/modules/{$dirname}/class/Entries.php";
     $GLOBALS['xoopsTpl']->assign('glossaire_upload_url', \GLOSSAIRE_UPLOAD_URL);
     $GLOBALS['xoopsTpl']->assign('glossaire_url', \GLOSSAIRE_URL);
     $block       = [];
     $typeBlock   = $options[0];
-    $limit       = $options[1];
-    $lenghtTitle = $options[2];
-    $glossaireHelper      = Helper::getInstance();
-    $entriesHandler = $glossaireHelper->getHandler('Entries');
+	$limit       = $options[1];
+	$lenghtTitle = $options[2];
+	$catsIds = $options[3];
+    $tCats = explode(',', $catsIds);
+    if($tCats[0] == 0){
+        $nbCats = 0;
+    }else{
+        $nbCats = count($tCats);
+    }
+	$caption = $options[4];
+	//$desc = $options[5];
+    
+	array_shift($options);
+	array_shift($options);
+	array_shift($options);
+	array_shift($options);
+	//array_shift($options);
+//------------------------------------------------------------------
+	$glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
+	$entriesHandler = $glossaireHelper->getHandler('Entries');
     $categoriesHandler = $glossaireHelper->getHandler('Categories');
-    $crEntries = new \CriteriaCompo();
-    $crEntries->add(new \Criteria('ent_status', GLOSSAIRE_STATUS_APPROVED, '='));
-    $idsCat = implode(',', $categoriesHandler->getPermissions('view'));
-    $crEntries->add(new \Criteria('ent_cat_id',  "({$idsCat})" , 'IN'));
-            
-    \array_shift($options);
-    \array_shift($options);
-    \array_shift($options);
+    $cats = $categoriesHandler->getAll (null,null,false);
+//echo "<hr>===>cats : <pre>". print_r($cats, true) ."</pre><hr>";
+	$crEntries = new \CriteriaCompo();
+    if ($nbCats>0) 
+        $crEntries->add(new Criteria('ent_cat_id', "({$catsIds})", 'IN'));
+    
 
     switch ($typeBlock) {
         case 'last':
         default:
             // For the block: entries last
-            $crEntries->setSort('');
+            $crEntries->setSort('ent_cat_id');
             $crEntries->setOrder('DESC');
             break;
-        case 'new':
-            // For the block: entries new
-            // new since last week: 7 * 24 * 60 * 60 = 604800
-            $crEntries->add(new \Criteria('', \time() - 604800, '>='));
-            $crEntries->add(new \Criteria('', \time(), '<='));
-            $crEntries->setSort('');
-            $crEntries->setOrder('ASC');
-            break;
-        case 'hits':
-            // For the block: entries hits
-            $crEntries->setSort('ent_hits');
-            $crEntries->setOrder('DESC');
-            break;
-        case 'top':
-            // For the block: entries top
-            $crEntries->setSort('ent_top');
-            $crEntries->setOrder('ASC');
-            break;
+//         case 'new':
+//             // For the block: entries new
+//             // new since last week: 7 * 24 * 60 * 60 = 604800
+//             $crEntries->add(new \Criteria('', \time() - 604800, '>='));
+//             $crEntries->add(new \Criteria('', \time(), '<='));
+//             $crEntries->setSort('');
+//             $crEntries->setOrder('ASC');
+//             break;
+//         case 'hits':
+//             // For the block: entries hits
+//             $crEntries->setSort('ent_hits');
+//             $crEntries->setOrder('DESC');
+//             break;
+//         case 'top':
+//             // For the block: entries top
+//             $crEntries->setSort('ent_top');
+//             $crEntries->setOrder('ASC');
+//             break;
         case 'random':
             // For the block: entries random
             $crEntries->setSort('RAND()');
             break;
     }
+    
+    $block['options']['title'] = $caption;            
+    //$block['options']['desc'] = str_replace("\n", "<br>",$desc);            
+    $block['options']['theme'] = 'red';            
 
     $crEntries->setLimit($limit);
     $entriesAll = $entriesHandler->getAll($crEntries);
     unset($crEntries);
-    if (\count($entriesAll) > 0) {
-        foreach (\array_keys($entriesAll) as $i) {
-            $block[$i]['id'] = $entriesAll[$i]->getVar('ent_id');
-            $block[$i]['cat_id'] = $entriesAll[$i]->getVar('ent_cat_id');
-//            $block[$i]['uid'] = \XoopsUser::getUnameFromId($entriesAll[$i]->getVar('ent_uid'));
-            $block[$i]['term'] = \htmlspecialchars($entriesAll[$i]->getVar('ent_term'), ENT_QUOTES | ENT_HTML5);
-            $block[$i]['initiale'] = \htmlspecialchars($entriesAll[$i]->getVar('ent_initiale'), ENT_QUOTES | ENT_HTML5);
-            $block[$i]['shortdef'] = \htmlspecialchars($entriesAll[$i]->getVar('ent_shortdef'), ENT_QUOTES | ENT_HTML5);
-            //$block[$i]['shortdefMagnifed'] = \htmlspecialchars($entriesAll[$i]->getVar('shortdefMagnifed'), ENT_QUOTES | ENT_HTML5);
-            $block[$i]['definition'] = \strip_tags($entriesAll[$i]->getVar('ent_definition'));
-            $block[$i]['reference'] = \strip_tags($entriesAll[$i]->getVar('ent_reference'));
-            $block[$i]['urls'] = \htmlspecialchars($entriesAll[$i]->getVar('ent_urls'), ENT_QUOTES | ENT_HTML5);
-//             $block[$i]['url1'] = \htmlspecialchars($entriesAll[$i]->getVar('ent_url1'), ENT_QUOTES | ENT_HTML5);
-//             $block[$i]['url2'] = \htmlspecialchars($entriesAll[$i]->getVar('ent_url2'), ENT_QUOTES | ENT_HTML5);
-            $block[$i]['counter'] = $entriesAll[$i]->getVar('ent_counter');
-        }
-    }
+//echo "<hr>===>entries : <pre>". print_r($entriesAll, true) ."</pre><hr>";
+    
+	if (count($entriesAll) > 0) {
+		foreach(array_keys($entriesAll) as $i) {
+            $catId = $entriesAll[$i]->getVar('ent_cat_id');
+			$block['data'][$catId]['cat']['id'] = $catId;            
+			$block['data'][$catId]['cat']['name'] = $cats[$catId]['cat_name'];            
+			$block['data'][$catId]['cat']['theme'] = $cats[$catId]['cat_colors_set'];            
+            
+			$block['data'][$catId]['entries'][$i]['id'] = $entriesAll[$i]->getVar('ent_id');
+			$block['data'][$catId]['entries'][$i]['cat_id'] = $catId;
+			$block['data'][$catId]['entries'][$i]['term'] = $myts->htmlSpecialChars($entriesAll[$i]->getVar('ent_term'));
+			$block['data'][$catId]['entries'][$i]['shortdef'] = $myts->htmlSpecialChars($entriesAll[$i]->getVar('ent_shortdef'));
+            
+		}
+	}
 
+//echo "<hr>===>block : <pre>". print_r($block, true) ."</pre><hr>";
+
+\JJD\load_css('', false);	
     return $block;
 
 }
@@ -119,32 +142,64 @@ $dirname = "glossaire";
  */
 function b_glossaire_entries_edit($options)
 {
-    require_once \XOOPS_ROOT_PATH . '/modules/glossaire/class/Entries.php';
-    $glossaireHelper = Helper::getInstance();
-    $entriesHandler = $glossaireHelper->getHandler('Entries');
-    $GLOBALS['xoopsTpl']->assign('glossaire_upload_url', \GLOSSAIRE_UPLOAD_URL);
-    $form = \_MB_GLOSSAIRE_DISPLAY;
-    $form .= "<input type='hidden' name='options[0]' value='".$options[0]."' >";
-    $form .= "<input type='text' name='options[1]' size='5' maxlength='255' value='" . $options[1] . "' >&nbsp;<br>";
-    $form .= \_MB_GLOSSAIRE_TITLE_LENGTH . " : <input type='text' name='options[2]' size='5' maxlength='255' value='" . $options[2] . "' ><br><br>";
-    \array_shift($options);
-    \array_shift($options);
-    \array_shift($options);
+include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 
-    $crEntries = new \CriteriaCompo();
-    $crEntries->add(new \Criteria('ent_id', 0, '!='));
-    $crEntries->setSort('ent_id');
-    $crEntries->setOrder('ASC');
-    $entriesAll = $entriesHandler->getAll($crEntries);
-    unset($crEntries);
-    $form .= \_MB_GLOSSAIRE_ENTRIES_TO_DISPLAY . "<br><select name='options[]' multiple='multiple' size='5'>";
-    $form .= "<option value='0' " . (!\in_array(0, $options) && !\in_array('0', $options) ? '' : "selected='selected'") . '>' . \_MB_GLOSSAIRE_ALL_ENTRIES . '</option>';
-    foreach (\array_keys($entriesAll) as $i) {
-        $ent_id = $entriesAll[$i]->getVar('ent_id');
-        $form .= "<option value='" . $ent_id . "' " . (!\in_array($ent_id, $options) ? '' : "selected='selected'") . '>' . $entriesAll[$i]->getVar('ent_cat_id') . '</option>';
-    }
-    $form .= '</select>';
+    $form = new \XoopsThemeForm("glossaire_block", 'form', $action, 'post', true);
+	$form->setExtra('enctype="multipart/form-data"');
+            
+    //--------------------------------------------
+    $filterTray = new \XoopsFormElementTray(_CO_JJD_NB_QUIZ_2_list, '');    
+    $index = 0;    //last, random, ... //mettre les formHidden en dernier
+    $inpFilter = new \XoopsFormHidden("options[{$index}]", $options[$index]); 
+    $filterTray->addElement($inpFilter);
 
-    return $form;
 
+    
+    $index++ ; 
+    $inpNbItems = new \XoopsFormNumber('', "options[{$index}]", 5, 5, $options[$index]);
+    $inpNbItems->setMinMax(3, 25);
+    $filterTray->addElement($inpNbItems);
+    $form->addElement($filterTray);
+    //--------------------------------------------
+    $index++;    
+    $inpLgItems = new \XoopsFormNumber(_CO_JJD_NAME_LENGTH, "options[{$index}]", 5, 5, $options[$index]);
+    $inpLgItems->setMinMax(25, 120);
+    $form->addElement($inpLgItems);
+
+    $index++;   
+    $tCat = explode(',', $options[$index]); 
+	$catAll = b_glossaire_get_AllCategories();
+    $inpCat = new \XoopsFormSelect(_CO_JJD_CATEGORIES, "options[{$index}]", $tCat, $size = 5, true);
+    $inpCat->addOption(0, _CO_JJD_ALL_CAT);
+	foreach(array_keys($catAll) as $i) {
+        $inpCat->addOption($catAll[$i]->getVar('cat_id'), $catAll[$i]->getVar('cat_name'));
+	}
+    $form->addElement($inpCat);
+    
+    $index++;    
+    $inpCaption = new \XoopsFormText(_CO_JJD_BLOCK_TITLE ,  "options[{$index}]", 120, 120, $options[$index]);
+    $form->addElement($inpCaption);
+
+    return $form->render();
+
+}
+
+function b_glossaire_get_AllCategories()
+{
+
+    require_once \XOOPS_ROOT_PATH . '/modules/glossaire/class/Categories.php';
+    $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
+    $categoriesHandler = $glossaireHelper->getHandler('Categories');
+    return $categoriesHandler->getAllCategories();
+    
+}
+function b_glossaire_get_AllowedCategories()
+{
+
+    require_once \XOOPS_ROOT_PATH . '/modules/glossaire/class/categories.php';
+    $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
+    $categoriesHandler = $glossaireHelper->getHandler('Categories');
+    $catIds = $categoriesHandler->getIdsAllowed('view');
+    return $catIds;
+    
 }

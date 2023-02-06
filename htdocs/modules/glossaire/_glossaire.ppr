@@ -5,6 +5,7 @@ Compilator.CompileOnBackground=0
 Compilator.ProgSaveAll=0
 Compilator.ProgRunSelection=0
 Compilator.LogType=0
+Compilator.LogEncoding=0
 DefaultDir=J:\Xoops\modules-JJD\glossaire\projet\htdocs\modules\glossaire
 DefaultCP=0
 LogtoEnd=1
@@ -100,7 +101,7 @@ _glossaire
 				assets\js\highslide.js
 				assets\js\index.php
 			assets\index.php
-		-blocks
+		+blocks
 			blocks\categories.php
 			blocks\entries.php
 			blocks\index.php
@@ -137,7 +138,7 @@ _glossaire
 			config\icons.php
 			config\index.php
 			config\paths.php
-		+docs
+		-docs
 			docs\changelog.txt
 			docs\credits.txt
 			docs\index.php
@@ -146,7 +147,7 @@ _glossaire
 			docs\license.txt
 			docs\readme.txt
 			docs\todo.txt
-		+include
+		-include
 			include\common.php
 			include\functions.php
 			include\import_export.php
@@ -157,7 +158,7 @@ _glossaire
 			include\uninstall.php
 			include\update.php
 			include\xoops_version.inc.php
-		+language
+		-language
 			+english
 				-help
 					language\english\help\help.html
@@ -225,7 +226,7 @@ _glossaire
 				templates\admin\glossaire_admin_index.tpl
 				templates\admin\glossaire_admin_permissions.tpl
 				templates\admin\index.php
-			-blocks
+			+blocks
 				templates\blocks\glossaire_block_categories.tpl
 				templates\blocks\glossaire_block_entries.tpl
 				templates\blocks\index.php
@@ -263,38 +264,54 @@ _glossaire
 		read-me.txt
 		xoops_version.php
 [Open project files]
-0=class\Categories.php
-1=class\Utility.php
-2=sql\mysql.sql
-3=templates\admin\glossaire_admin_categories.tpl
-4=admin\categories.php
-5=admin\header.php
-6=entries.php
-7=class\CategoriesHandler.php
+0=sql\mysql.sql
+1=blocks\entries.php
+2=class\EntriesHandler.php
+3=class\CategoriesHandler.php
+4=xoops_version.php
+5=..\..\..\..\..\creaquiz\projet\htdocs\modules\creaquiz\templates\blocks\creaquiz_block_quiz.tpl
+6=templates\blocks\glossaire_block_entries.tpl
+7=entries.php
+8=blocks\categories.php
+9=templates\blocks\glossaire_block_categories.tpl
+10=class\Categories.php
+11=language\french\modinfo.php
 [Selected Project Files]
 Main=
-Selected=templates\admin\glossaire_admin_categories.tpl
-[class\Categories.php]
-TopLine=264
-Caret=24,298
-[class\Utility.php]
-TopLine=304
-Caret=1,328
+Selected=blocks\entries.php
 [sql\mysql.sql]
-TopLine=1
-Caret=35,14
-[templates\admin\glossaire_admin_categories.tpl]
-TopLine=43
-Caret=42,55
-[admin\categories.php]
-TopLine=44
-Caret=66,55
-[admin\header.php]
-TopLine=48
-Caret=1,68
-[entries.php]
-TopLine=43
-Caret=53,72
+TopLine=9
+Caret=18,27
+[blocks\entries.php]
+TopLine=156
+Caret=1,179
+[class\EntriesHandler.php]
+TopLine=99
+Caret=1,120
 [class\CategoriesHandler.php]
-TopLine=228
-Caret=64,254
+TopLine=229
+Caret=24,265
+[xoops_version.php]
+TopLine=153
+Caret=60,163
+[..\..\..\..\..\creaquiz\projet\htdocs\modules\creaquiz\templates\blocks\creaquiz_block_quiz.tpl]
+TopLine=1
+Caret=61,27
+[templates\blocks\glossaire_block_entries.tpl]
+TopLine=1
+Caret=65,13
+[entries.php]
+TopLine=17
+Caret=1,1
+[blocks\categories.php]
+TopLine=98
+Caret=29,117
+[templates\blocks\glossaire_block_categories.tpl]
+TopLine=1
+Caret=13,21
+[class\Categories.php]
+TopLine=247
+Caret=9,263
+[language\french\modinfo.php]
+TopLine=33
+Caret=1,55

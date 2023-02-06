@@ -19,17 +19,17 @@
 </div>
 *}>
 
-<div class="item-round-no <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;">
-    <span class="<{$colors_set}>-itemA"><b><{$entry.term}></b>
+<div class="item-round-no <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;">
+    <span class="<{$colors_set}>-item-a"><b><{$entry.term}></b>
     <{if $entry.shortdef}> : <{$entry.shortdefMagnifed}><{/if}>
     </span>
 </div>
 
-<div class="item-round-no <{$colors_set}>-itemBody" style="padding:12px;margin-top:-5px;">
+<div class="item-round-no <{$colors_set}>-item-body" style="padding:12px;margin-top:-5px;">
     <{$entry.definition}>
     <{if $entry.reference}><hr><{$entry.reference}><{/if}>
 </div>
-<div class="item-round-no <{$colors_set}>-itemFoot" style="padding:6px 12px 6px 12px;margin-top:-5px;">
+<div class="item-round-no <{$colors_set}>-item-foot" style="padding:6px 12px 6px 12px;margin-top:-5px;">
 <{*
     <{if $entry.url1}><a href='$entry.url1'><{$entry.url1}></a><{/if}>
     <{if $entry.url2}><a href='$entry.url1'><br><{$entry.url2}></a><{/if}>
@@ -39,7 +39,7 @@
 
 <{* Affichage de boutons image pour gérer l'entree *}>
 <{if $catPerms.submit}>
-  <div class="item-round-no <{$colors_set}>-itemHead" style="padding:6px;margin-top:-5px;text-align:right;">
+  <div class="item-round-no <{$colors_set}>-item-head" style="padding:6px;margin-top:-5px;text-align:right;">
     <a href='entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>''>
       <img src="<{xoModuleIcons16 edit.png}>" title="<{$smarty.const._EDIT}>"></a>
     <a href='entries.php?op=clone&ent_id_source=<{$entry.ent_id}>' title='<{$smarty.const._CLONE}>'>

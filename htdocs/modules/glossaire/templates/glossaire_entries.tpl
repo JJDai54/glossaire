@@ -22,16 +22,16 @@
 <{assign var="colors_set" value=$catSelected.colors_set}>
 <{if $nbCategories > 1}>
     <{include file="db:glossaire_categories_colors_set.tpl"}>
-    <div class="item-round-topleft-no <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;color:white;">
+    <div class="item-round-top-left-no <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;color:white;">
 <{else}>    
-    <div class="item-round-top <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;color:white;">
+    <div class="item-round-top <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;color:white;">
 <{/if}>
 
         <{if $catSelected.description_img}><{$catSelected.description_img}><{/if}>
 </div>
 <{*  ------------------------------------------------------------------ *}>
 
-<div class="item-round-no <{$colors_set}>-itemHead" style="padding:6px;margin-top:-5px;text-align:right;">
+<div class="item-round-no <{$colors_set}>-item-head" style="padding:6px;margin-top:-5px;text-align:right;">
  
 <style>
 .gls_btn_icon{
@@ -79,7 +79,7 @@
 </div> 
  
  
-<div class="item-round-no <{$colors_set}>-itemBody" style="padding:12px;margin-top:-5px;color:white;">      
+<div class="item-round-no <{$colors_set}>-item-body" style="padding:12px;margin-top:-5px;color:white;">      
     <center><{$alphaBarre}>
       <{if $pagenav|default:''}>
           <div class="pagenav pagenav-container"><{$pagenav}></div>
@@ -92,7 +92,7 @@
 </div> 
     
 <{if $entriesCount|default:0 > 0}>
-<div class="item-round-no <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;">
+<div class="item-round-no <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;">
 </div>
 
     <{foreach item=entry from=$entries name=entry}>
@@ -101,8 +101,8 @@
 
     <{* ------------- Barre de navigation  --------------------*}>
 <{/if}>
-    <div class="item-round-no <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;"></div>
-    <div class="item-round-bottom <{$colors_set}>-itemBody" style="padding:12px;margin-top:-5px;">
+    <div class="item-round-no <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;"></div>
+    <div class="item-round-bottom <{$colors_set}>-item-body" style="padding:12px;margin-top:-5px;">
     <center><{$alphaBarre}>
       <{if $pagenav|default:''}>
           <div class="pagenav pagenav-container"><{$pagenav}></div>
@@ -115,13 +115,13 @@
 
 <{else}>
     <{* ------------- Formulaire d'édition --------------------*}>
-    <div class="item-round-top <{$colors_set}>-itemHead" style="padding:12px;margin-top:-5px;">
+    <div class="item-round-top <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;">
         <{$cat_name}>
     </div>
-    <div class="item-round-no <{$colors_set}>-itemBody" style="padding:12px;margin-top:-5px;">
+    <div class="item-round-no <{$colors_set}>-item-body" style="padding:12px;margin-top:-5px;">
         <{$form|default:false}>
     </div>
-    <div class="item-round-bottom <{$colors_set}>-itemFoot" style="padding:12px;margin-top:-5px;"><center>...</center></div>
+    <div class="item-round-bottom <{$colors_set}>-item-foot" style="padding:12px;margin-top:-5px;"><center>...</center></div>
 <{/if}>
     
 <{if $error|default:''}>

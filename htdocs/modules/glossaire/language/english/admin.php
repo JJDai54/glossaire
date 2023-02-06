@@ -148,7 +148,7 @@ require_once __DIR__ . '/main.php';
 \define('_AM_GLOSSAIRE_IMPORT_FROM_GLOSSAIRE', "Import d'un export du module Gossaire ou un de ses clones");
 \define('_AM_GLOSSAIRE_IMPORT_FROM_LEXIKON', "Import du modulle Lexikon (Lexikon doit être installé)");
 \define('_AM_GLOSSAIRE_FILE', "Fichier à importer");
-\define('_AM_GLOSSAIRE_FILE_DESC', "Un nouveau quiz sera généré");
+\define('_AM_GLOSSAIRE_FILE_DESC', "Un nouveau entrie sera généré");
 \define('_AM_GLOSSAIRE_FILE_TO_LOAD', "Fichier à importer");
 \define('_AM_GLOSSAIRE_FILE_UPLOADSIZE', "Taile maximum des fichiers %s mo");
 \define('_AM_GLOSSAIRE_SELECT_CATEGORY_DESC', "Sélectionnez une catégorie de destintion pour ce nouveau glossaire.");

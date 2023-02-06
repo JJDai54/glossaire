@@ -83,9 +83,9 @@ $GLOBALS['xoopsTpl']->assign('showItem', $entId > 0);
               
 $bolFoot = true;
 switch ($op) {
+    default:
     case 'show':
     case 'list':
-    default:
 //         if (!$categoriesHandler->isCatAllowed($catIdSelect, 'view'))
 //             \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
         include_once "entries-list.php";

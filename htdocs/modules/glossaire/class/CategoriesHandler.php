@@ -180,7 +180,7 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
  }
 
 	/**
-     * Fonction qui liste les quiz qui respectent la permission demandée
+     * Fonction qui liste les entrie qui respectent la permission demandée
      * @param string   $permtype	Type de permission
      * @return array   $cat		    Liste des catégorie qui correspondent à la permission
      */
@@ -245,23 +245,24 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         return join(',', $tPerm);
     }
     
-	public function getAllAllowed($short_permtype = 'view', $criteria = null, $start = 0, $limit = 0, $sort='cat_weight,cat_name,cat_id', $order="ASC")
+	public function getAllAllowed($short_permtype = 'view', $criteria = null, $start = 0, $limit = 0, $sort='cat_weight,cat_name,cat_id', $order="ASC",$zzz=false)
     { 
         $tPerm = $this->getPermissions($short_permtype);
         $ids = join(',', $tPerm);
         //------------------------------------------------
-        $crAllCategories = new \CriteriaCompo();
-        $crAllCategories->add(new \Criteria('cat_active',"1",'='));
-        $crAllCategories->add(new \Criteria('cat_id',"({$ids})",'IN'));
-        $crAllCategories = $this->getCategoriesCriteria($crAllCategories, $start, $limit, $sort, $order);
+        if(!$criteria) $criteria = new \CriteriaCompo();
+        $criteria = new \CriteriaCompo();
+        $criteria->add(new \Criteria('cat_active',"1",'='));
+        $criteria->add(new \Criteria('cat_id',"({$ids})",'IN'));
+        $criteria = $this->getCategoriesCriteria($criteria, $start, $limit, $sort, $order);
 
         $catArr = array();
-        $categoriesAll = $this->getAll($crAllCategories);;
+        $categoriesAll = $this->getAll($criteria);;
         foreach (\array_keys($categoriesAll) as $i) {
             //$catArr[] = $categoriesAll[$i]->getValuesCategories();
             $catArr[$categoriesAll[$i]->getVar('cat_id')] = $categoriesAll[$i]->getValuesCategories();
         }
-
+        if ($zzz) exit;
         return $catArr;
 
     }

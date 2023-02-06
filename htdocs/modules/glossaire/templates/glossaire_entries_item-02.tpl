@@ -4,7 +4,7 @@
 <{/if}>
 <{*  ------------------------------------------------------------------ *}>
 
-<div name='entry-<{$entry.id}>' id='entry-<{$entry.id}>' class="item-round-no <{$colors_set}>-itemBody" style="padding:6px;margin-top:0px;">
+<div name='entry-<{$entry.id}>' id='entry-<{$entry.id}>' class="item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:0px;">
     <span class='limagei'><{if $showId}>[#<{$entry.id}>]-<{/if}><b><{$entry.term}></b></span>
         <{if $entry.shortdef}>
             <{if $cat_br_after_term}><br><{else}> : <{/if}>
@@ -32,7 +32,7 @@
 </div>
 
 <{* ---------- data de l'entrée -----------*}>
-<div class="item-round-no <{$colors_set}>-itemBody" style="padding:6px;margin-top:-5px;">
+<div class="item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:-5px;">
     <{if $entry.definition_img}>
         <{$entry.definition_img}>
     <{/if}>
@@ -73,7 +73,7 @@
 <{/if}>
 
 
-<div class="item-round-no <{$colors_set}>-itemBody" style="padding:1px;margin-top:0px;">
+<div class="item-round-no <{$colors_set}>-item-body" style="padding:1px;margin-top:0px;">
     <{if !$smarty.foreach.entry.last}><hr class='<{$colors_set}>-hr-style-two'><{else}><br><{/if}>
 </div>
 <{*  ------------------------------------------------------------------ *}>

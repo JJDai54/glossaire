@@ -159,14 +159,35 @@ if ($currdirname == $moduleDirName) {
 // ------------------- Blocks ------------------- //
 // Entries last
 $modversion['blocks'][] = [
+    'file'        => 'categories.php',
+    'name'        => '//' . \_MI_GLOSSAIRE_CATEGORIES_BLOCK,
+    'description' => \_MI_GLOSSAIRE_CATEGORIES_BLOCK_DESC,
+    'show_func'   => 'b_glossaire_categories_show',
+    'edit_func'   => 'b_glossaire_categories_edit',
+    'template'    => 'glossaire_block_categories.tpl',
+    'options'     => '5|80|0|Title', //nbItem|ldTitle|cats(0=all)|titl
+];
+// Entries last
+$modversion['blocks'][] = [
     'file'        => 'entries.php',
-    'name'        => \_MI_GLOSSAIRE_ENTRIES_BLOCK_LAST,
+    'name'        => '//' . \_MI_GLOSSAIRE_ENTRIES_BLOCK_LAST,
     'description' => \_MI_GLOSSAIRE_ENTRIES_BLOCK_LAST_DESC,
     'show_func'   => 'b_glossaire_entries_show',
     'edit_func'   => 'b_glossaire_entries_edit',
     'template'    => 'glossaire_block_entries.tpl',
     'options'     => 'last|5|25|0',
 ];
+// Entries random
+$modversion['blocks'][] = [
+    'file'        => 'entries.php',
+    'name'        => '//' . \_MI_GLOSSAIRE_ENTRIES_BLOCK_RANDOM,
+    'description' => \_MI_GLOSSAIRE_ENTRIES_BLOCK_RANDOM_DESC,
+    'show_func'   => 'b_glossaire_entries_show',
+    'edit_func'   => 'b_glossaire_entries_edit',
+    'template'    => 'glossaire_block_entries.tpl',
+    'options'     => 'random|5|25|0',
+];
+/*
 // Entries new
 $modversion['blocks'][] = [
     'file'        => 'entries.php',
@@ -197,16 +218,7 @@ $modversion['blocks'][] = [
     'template'    => 'glossaire_block_entries.tpl',
     'options'     => 'top|5|25|0',
 ];
-// Entries random
-$modversion['blocks'][] = [
-    'file'        => 'entries.php',
-    'name'        => \_MI_GLOSSAIRE_ENTRIES_BLOCK_RANDOM,
-    'description' => \_MI_GLOSSAIRE_ENTRIES_BLOCK_RANDOM_DESC,
-    'show_func'   => 'b_glossaire_entries_show',
-    'edit_func'   => 'b_glossaire_entries_edit',
-    'template'    => 'glossaire_block_entries.tpl',
-    'options'     => 'random|5|25|0',
-];
+*/
 // ------------------- Config ------------------- //
 // Editor Admin
 \xoops_load('xoopseditorhandler');

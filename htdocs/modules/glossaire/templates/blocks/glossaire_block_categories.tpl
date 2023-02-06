@@ -1,32 +1,36 @@
-<table class='table table-<{$table_type|default:false}>'>
-    <thead>
-        <tr class='head'>
-            <th>&nbsp;</th>
-            <th class='center'><{$smarty.const._MB_GLOSSAIRE_CAT_NAME}></th>
-            <th class='center'><{$smarty.const._MB_GLOSSAIRE_CAT_DESCRIPTION}></th>
-            <th class='center'><{$smarty.const._MB_GLOSSAIRE_CAT_TOTAL}></th>
-            <th class='center'><{$smarty.const._MB_GLOSSAIRE_CAT_WEIGHT}></th>
-            <th class='center'><{$smarty.const._MB_GLOSSAIRE_CAT_LOGOURL}></th>
-            <th class='center'><{$smarty.const._MB_GLOSSAIRE_CAT_DATE_CREATION}></th>
-            <th class='center'><{$smarty.const._MB_GLOSSAIRE_CAT_DATE_UPDATE}></th>
-        </tr>
-    </thead>
-    <{if count($block)}>
-    <tbody>
-        <{foreach item=category from=$block}>
-        <tr class='<{cycle values="odd, even"}>'>
-            <td class='center'><{$category.id}></td>
-            <td class='center'><{$category.name}></td>
-            <td class='center'><{$category.description}></td>
-            <td class='center'><{$category.total}></td>
-            <td class='center'><{$category.weight}></td>
-            <td class='center'><img src="<{xoModuleIcons32}><{$category.logourl}>" alt="categories" ></td>
-            <td class='center'><{$category.date_creation}></td>
-            <td class='center'><{$category.date_update}></td>
-            <td class='center'><a href='categories.php?op=show&amp;cat_id=<{$category.id}>' title='<{$smarty.const._MB_GLOSSAIRE_CATEGORY_GOTO}>'><{$smarty.const._MB_GLOSSAIRE_CATEGORY_GOTO}></a></td>
-        </tr>
-        <{/foreach}>
-    </tbody>
-    <{/if}>
-    <tfoot><tr><td>&nbsp;</td></tr></tfoot>
-</table>
+<style>
+.entrieTbl td{
+    padding: 8px 0px 8px 8px;
+    border:none;
+}
+</style>
+
+	<{if count($block) OR true}>
+        <div class="item-round-top <{$block.options.theme}>-item-head"><center><b>
+        <a href='modules/glossaire/index.php'><{$block.options.title}></a>
+        </b></center></div>
+<{*         <div class="item-round-none <{$block.options.theme}>-item-body"><center><{$block.options.desc}></center></div> *}>
+        
+  
+          <table class='entrieTbl' width='100%' style='border:none;'>
+        	<tbody>
+		<{foreach item=Cat from=$block.data key=cat_Id}>    
+
+           <{* ========================================================== *}>  
+    			<tr>
+            <td style='border:none;padding:0px;'>
+                    <div class="item-round-none <{$Cat.theme}>-item-body" style='padding:12px;'>
+                        <a href='modules/glossaire/entries.php?catIdSelect=<{$Cat.id}>' title=''><{$Cat.name}></a>
+                    </div>
+                </td>
+    		</tr>
+        
+            <{* <div class="item-round-bottom <{$Cat.theme}>-item-legend"><center>...</center></div> *}>
+
+    		<{/foreach}>
+        	</tbody>
+          </table>
+    
+            <div class="item-round-bottom <{$block.options.theme}>-item-legend"><center>...</center></div>
+	<{/if}>
+

@@ -260,7 +260,7 @@ class Categories extends \XoopsObject
      */
     public function getValuesCategories($keys = null, $format = null, $maxDepth = null)
     {global $glossaireHelper;
-        //$glossaireHelper  = \XoopsModules\Glossaire\Helper::getInstance();
+        $glossaireHelper  = \XoopsModules\Glossaire\Helper::getInstance();
         $utility = new \XoopsModules\Glossaire\Utility();
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id']                = $this->getVar('cat_id');
@@ -269,8 +269,11 @@ class Categories extends \XoopsObject
         if($this->getVar('cat_logourl') != ''){
            //$ret['description_img'] = sprintf("<img src='%s/%s'>%s", $glossaireHelper->getModule()->getInfo('sysicons32'), $this->getVar('cat_logourl'), $this->getVar('cat_description', 'e'));
            //$ret['description_img'] = sprintf("<div class='gls_imgTopLeft'><img src='%s/%s'>%s</div>", $glossaireHelper->getModule()->getInfo('sysicons32'), $this->getVar('cat_logourl'), $this->getVar('cat_description', 'e'));
-
+try{
            $ret['description_img'] = sprintf("<img src='%s/%s' class='gls_logoTopLeft'>%s", $glossaireHelper->getModule()->getInfo('sysicons32'), $this->getVar('cat_logourl'), $this->getVar('cat_description', 'e'));
+}finally {
+            $ret['description_img'] = '';
+}
         }else{
             $ret['description_img'] = $this->getVar('cat_logourl') . $ret['description'];
         }
