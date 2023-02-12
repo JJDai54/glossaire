@@ -508,7 +508,7 @@ class Entries extends \XoopsObject
         $ret['shortdefMagnifed'] = ($ret['is_acronym']) ? $utility->get_acronym($ret['shortdef']) : $ret['shortdef'];
         $ret['definition']       = $this->getVar('ent_definition', 'e');
         $editorMaxchar = $glossaireHelper->getConfig('editor_maxchar');
-        $ret['definition_short'] = $utility::truncateHtml($ret['definition'], $editorMaxchar);
+        $ret['definition_trunq'] = $utility::truncateHtml($ret['definition'], $editorMaxchar);
         $ret['image']            = $this->getVar('ent_image');
         
         $imgPath =  $categoriesObj->getPathUploads('images', false);
@@ -537,10 +537,10 @@ class Entries extends \XoopsObject
         $ret['file_path']        = $this->getVar('ent_file_path', 'e');
         $ret['file_ok'] = (is_readable($categoriesObj->getPathUploads('files', false) . '/' . $ret['file_path']));
         if($ret['file_ok']){
-            $link = "<a href='%s/%s' title=''>%s<a>";
+            $link = "<a href='%s/%s' title=''>%s</a>";
             $ret['file_link']    = sprintf($link, $categoriesObj->getPathUploads('files', true), $ret['file_path'], $ret['file_name']);
         }else{
-            $ret['file_link']    = '';
+            $ret['file_link']    = $ret['file_name'];
         }
 
         //todo
@@ -596,7 +596,7 @@ function delete_image($catImgFolder){
     $this->setVar('ent_image', '');
 //exit ($fImg);
 }
-function delete_file($catFilegFolder){
+function delete_file($catFileFolder){
 
     $entFilePath = $this->getVar('ent_file_path');
     //$f = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . "/{$catImgFolder}/{$entImage}")  

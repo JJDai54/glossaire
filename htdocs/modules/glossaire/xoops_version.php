@@ -43,7 +43,9 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
     'name'                => \_MI_GLOSSAIRE_NAME,
-    'version'             => 1.0,
+    'version'             => 1.2,
+    'release'             => '2023-02-12',
+    'module_status'       => 'Beta 2',
     'description'         => \_MI_GLOSSAIRE_DESC,
     'author'              => 'XOOPS Development Team',
     'author_mail'         => 'jjdelalandre@orange.fr',
@@ -75,8 +77,6 @@ $modversion = [
     'support_name'        => 'Support Forum',
     'module_website_url'  => 'github.com/JJDai54',
     'module_website_name' => 'JJDai Project',
-    'release'             => '01-06-2022',
-    'module_status'       => 'Beta 1',
     'system_menu'         => 1,
     'hasAdmin'            => 1,
     'hasMain'             => 1,
@@ -289,7 +289,7 @@ $modversion['config'][] = [
     'description' => '\_MI_GLOSSAIRE_MAXSIZE_IMAGE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
-    'default'     => $optionMaxsize['20 Mo'],
+    'default'     => $optionMaxsize['100 Mo'],
     'options'     => $optionMaxsize,
 ];
 // Uploads : mimetypes of image
@@ -308,7 +308,7 @@ $modversion['config'][] = [
     'description' => '\_MI_GLOSSAIRE_MAXWIDTH_IMAGE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 800,
+    'default'     => 500,
 ];
 $modversion['config'][] = [
     'name'        => 'maxheight_image',
@@ -316,7 +316,7 @@ $modversion['config'][] = [
     'description' => '\_MI_GLOSSAIRE_MAXHEIGHT_IMAGE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 800,
+    'default'     => 500,
 ];
 
 // ------------------- fichiers ------------------- //

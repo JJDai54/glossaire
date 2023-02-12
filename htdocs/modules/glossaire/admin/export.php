@@ -107,7 +107,9 @@ switch($op) {
 //   	    $form->addElement($inpQuiz);
         
         //-----------------------------------------------$caption, $name, $value = '', $type = 'button'
-		$form->addElement(new \XoopsFormButton('', _SUBMIT, _AM_GLOSSAIRE_EXPORTER, 'submit'));
+        $btnSubmit = new \XoopsFormButton(_AM_GLOSSAIRE_EXPORT_AVERTISSEMENT, _SUBMIT, _AM_GLOSSAIRE_EXPORTER, 'submit');
+        $btnSubmit->setDescription(_AM_GLOSSAIRE_EXPORT_AVERTISSEMENT_DESC);
+		$form->addElement($btnSubmit);
 //echo $form->render()  ;      
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());        
         

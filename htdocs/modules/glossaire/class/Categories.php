@@ -58,7 +58,7 @@ class Categories extends \XoopsObject
         $this->initVar('cat_name', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_description', \XOBJ_DTYPE_OTHER);
         $this->initVar('cat_weight', \XOBJ_DTYPE_INT);
-        $this->initVar('cat_logourl', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_logo', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_alphabarre', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_alphabarre_mode', \XOBJ_DTYPE_INT);
         $this->initVar('cat_letter_css_default', \XOBJ_DTYPE_TXTBOX);
@@ -120,7 +120,7 @@ class Categories extends \XoopsObject
         
         // Form Text catName
         $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_NAME, 'cat_name', 50, 255, $this->getVar('cat_name')), true);
-        
+
         // Form Text cat_upload_folder
         //$form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CATEGORY_UMLOAD_FOLDER, $this->getVar('cat_upload_folder')));
         $inpFolder = new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_FOLDER, 'cat_upload_folder', 50, 255, $this->getVar('cat_upload_folder'));
@@ -145,26 +145,19 @@ class Categories extends \XoopsObject
         
         // Form Text catWeight
         $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_WEIGHT, 'cat_weight', 50, 255, $this->getVar('cat_weight')));
+        
         // Form Frameworks Images Files catLogourl
         // Form Frameworks Images catLogourl: Select Uploaded Image
-        $getCatLogourl = $this->getVar('cat_logourl');
-        $catLogourl = $getCatLogourl ?: 'blank.gif';
-        $imageDirectory = '/Frameworks/moduleclasses/icons/32';
-        $imageTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_CATEGORY_LOGOURL, '<br>');
-        $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_GLOSSAIRE_CATEGORY_LOGOURL_UPLOADS, ".{$imageDirectory}/"), 'cat_logourl', $catLogourl, 5);
-        $imageArray = \XoopsLists::getImgListAsArray( \XOOPS_ROOT_PATH . $imageDirectory );
-        foreach ($imageArray as $image1) {
-            $imageSelect->addOption(($image1), $image1);
-        }
-        $imageSelect->setExtra("onchange='showImgSelected(\"imglabel_cat_logourl\", \"cat_logourl\", \"" . $imageDirectory . '", "", "' . \XOOPS_URL . "\")'");
-        $imageTray->addElement($imageSelect, false);
-        $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . \XOOPS_URL . '/' . $imageDirectory . '/' . $catLogourl . "' id='imglabel_cat_logourl' alt='' style='max-width:100px' >"));
-        // Form Frameworks Images catLogourl: Upload new image
-        $fileSelectTray = new \XoopsFormElementTray('', '<br>');
-        $fileSelectTray->addElement(new \XoopsFormFile(\_AM_GLOSSAIRE_FORM_UPLOAD_NEW, 'cat_logourl', $glossaireHelper->getConfig('maxsize_image')));
-        $fileSelectTray->addElement(new \XoopsFormLabel(''));
-        $imageTray->addElement($fileSelectTray);
-        $form->addElement($imageTray);
+        //$imageDirectory = '/Frameworks/moduleclasses/icons/32';
+        //$imageDirectory = GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH . "/" . $this->getVar('cat_upload_folder') . '/logo';
+        $logo_url = $this->getPathUploads('logo', true) . "/" . $this->getVar('cat_logo');
+        
+        $labLogo = new \XoopsFormLabel('', "<img src='{$logo_url}' alt='' style='max-width:100px' >");        
+                                
+        $logoTray = new \XoopsFormElementTray(_AM_GLOSSAIRE_CATEGORY_LOGO, '<br>');
+        $logoTray->addElement($labLogo);
+        $logoTray->addElement(new \XoopsFormFile('', 'cat_logo', $glossaireHelper->getConfig('maxsize_image')));
+        $form->addElement($logoTray);
 
         
        // Form Text Date Select cat_colors_set
@@ -266,22 +259,22 @@ class Categories extends \XoopsObject
         $ret['id']                = $this->getVar('cat_id');
         $ret['name']              = $this->getVar('cat_name');
         $ret['description']       = $this->getVar('cat_description', 'e');
-        if($this->getVar('cat_logourl') != ''){
-           //$ret['description_img'] = sprintf("<img src='%s/%s'>%s", $glossaireHelper->getModule()->getInfo('sysicons32'), $this->getVar('cat_logourl'), $this->getVar('cat_description', 'e'));
-           //$ret['description_img'] = sprintf("<div class='gls_imgTopLeft'><img src='%s/%s'>%s</div>", $glossaireHelper->getModule()->getInfo('sysicons32'), $this->getVar('cat_logourl'), $this->getVar('cat_description', 'e'));
-try{
-           $ret['description_img'] = sprintf("<img src='%s/%s' class='gls_logoTopLeft'>%s", $glossaireHelper->getModule()->getInfo('sysicons32'), $this->getVar('cat_logourl'), $this->getVar('cat_description', 'e'));
-}finally {
-            $ret['description_img'] = '';
-}
+ 
+        if($this->getVar('cat_logo') != ''){
+            $logo_url = $this->getPathUploads("logo", true) . '/' . $this->getVar('cat_logo') ;
+            $ret['description_img'] = sprintf("<img src='%s' class='gls_logoTopLeft'>%s", $logo_url, $this->getVar('cat_description', 'e'));            
         }else{
-            $ret['description_img'] = $this->getVar('cat_logourl') . $ret['description'];
-        }
+            $logo_url = '';
+            $ret['description_img'] = $this->getVar('cat_logo') . $ret['description'];
+        } 
+        $ret['logo_url'] = $logo_url;
+        
+        
 
         $editorMaxchar = $glossaireHelper->getModule()->getInfo('editor_maxchar');
         $ret['description_short'] = $utility::truncateHtml($ret['description'], $editorMaxchar);
         $ret['weight']            = $this->getVar('cat_weight');
-        $ret['logourl']           = $this->getVar('cat_logourl');
+        $ret['logo']              = $this->getVar('cat_logo');
         
         $ret['alphabarre']          = $this->getVar('cat_alphabarre');
         $ret['alphabarre_mode']     = $this->getVar('cat_alphabarre_mode');
@@ -319,6 +312,25 @@ try{
         }
         return $ret;
     }
+    
+    /**
+     * cré les dossier de stockage des images et fichiers de la catégories
+     *
+     * @return string fullPath
+     */
+    public function createFolders($catFolder){
+        //verifie si le dossier existe déjà
+        $fldArr = array($catFolder,"{$catFolder}/logo","{$catFolder}/images","{$catFolder}/files");
+        
+        for($h=0;$h<count($fldArr);$h++){
+            $fullName = GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH.'/'. $fldArr[$h];
+            if(!is_dir($fullName)) mkdir($fullName, $mode = 0777);
+            \JJD\FSO\addHtmlIndex2folder($fullName);
+        }
+//exit(GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH.'/'. $catFolder) ;       
+        return true;
+    }
+    
     
     /**
      * Returns chemin de stockage des images et fichiers de la catégories

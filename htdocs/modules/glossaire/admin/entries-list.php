@@ -27,7 +27,6 @@ use Xmf\Request;
 use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
-
         //$categoriesHandler = $glossaireHelper->getHandler('Categories');
         $catList = $categoriesHandler->getList();
         if (count($catList) == 0) \redirect_header('categories.php', 5, _AM_GLOSSAIRE_NO_CATEGORIES1);
@@ -49,16 +48,26 @@ use XoopsModules\Glossaire\Common;
         
         $adminObject->addItemButton(_AM_GLOSSAIRE_RAZ_COUNTERS, "entries.php?op=razCounter&catIdSelect={$catIdSelect}", 'update');
           
-        $imgNotExist = $utility->cleanImagesNotExists($catIdSelect, 0);
-        if($imgNotExist > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
-          $caption = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES, $imgNotExist);
-          $adminObject->addItemButton($caption, "entries.php?op=CleanImagesNotExists&catIdSelect={$catIdSelect}", 'update');
+        $params = array('op'          => 'cleanCatFolders',
+                        'folder'      => 'images',
+                        'fldPath'     => 'ent_image',
+                        'fldName'     => '',
+                        'catIdSelect' => $catIdSelect);        
+        $stat = $utility->cleanCatFolders($catIdSelect, $params['fldPath'], $params['fldName'], $params['folder'], 0, 0);
+        if($stat[0] > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
+          $caption = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES, $stat[1], $stat[2]);
+          $adminObject->addItemButton($caption, \JJD\array2urlParams($params, '', 'entries.php?'), 'update');
         }
         
-        $img2delete = $utility->cleanFolderImages($catIdSelect, 0);
-        if($img2delete > 0 ){ //il il i a des images a supprimée
-          $caption = sprintf(_AM_GLOSSAIRE_CLEAN_FOLDER_IMAGES, $img2delete);
-          $adminObject->addItemButton($caption, "entries.php?op=cleanFolderImages&catIdSelect={$catIdSelect}", 'update');
+        $params = array('op'          => 'cleanCatFolders',
+                        'folder'      => 'files',
+                        'fldPath'     => 'ent_file_path',
+                        'fldName'     => 'ent_file_name',
+                        'catIdSelect' => $catIdSelect);        
+        $stat = $utility->cleanCatFolders($catIdSelect, $params['fldPath'], $params['fldName'], $params['folder'], 0, 0);
+        if($stat[0] > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
+          $caption = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_FILES, $stat[1], $stat[2]);
+          $adminObject->addItemButton($caption, \JJD\array2urlParams($params, '', 'entries.php?'), 'update');
         }
         
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));

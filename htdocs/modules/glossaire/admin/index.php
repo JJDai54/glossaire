@@ -64,7 +64,7 @@ if ($glossaireHelper->getConfig('displaySampleButton')) {
     require_once \dirname(__DIR__) . '/testdata/index.php';
     $adminObject->addItemButton(\constant('_CO_GLOSSAIRE_ADD_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=load', 'add');
     $adminObject->addItemButton(\constant('_CO_GLOSSAIRE_SAVE_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=save', 'add');
-//    $adminObject->addItemButton(\constant('CO_GLOSSAIRE_EXPORT_SCHEMA'), '__DIR__ . /../../testdata/index.php?op=exportschema', 'add');
+//    $adminObject->addItemButton(\constant('_CO_GLOSSAIRE_EXPORT_SCHEMA'), '__DIR__ . /../../testdata/index.php?op=exportschema', 'add');
     $adminObject->displayButton('left');
 }
 $GLOBALS['xoopsTpl']->assign('index', $adminObject->displayIndex());

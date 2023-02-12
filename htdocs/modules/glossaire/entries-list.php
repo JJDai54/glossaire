@@ -27,17 +27,14 @@ use Xmf\Request;
 use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
-//use colorSet AS colorSet;
-include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 use JJD AS JJD;
-
 
 //         include_once "entries-list.php";
 //         break;
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_ENTRIES_LIST];
 //Utility::include_highslide(array('allowMultipleInstances'=>false));        
-//exit('include_highslide');    
+    
         \JJD\include_highslide(array('allowMultipleInstances'=>false));    
         // --------------------------------------------
         // categories avec une listbox
@@ -54,7 +51,6 @@ use JJD AS JJD;
         // categories avec des onglets
         \JJD\load_css();
         $GLOBALS['xoopsTpl']->assign('catPerms', $catPerms);
-        
         //----------------------------------------------------------
         $GLOBALS['xoopsTpl']->assign('categories', $catList);
         
@@ -140,8 +136,8 @@ include_once('include/search.inc.php');
             }
             $GLOBALS['xoopsTpl']->assign('table_type', $glossaireHelper->getConfig('table_type'));
             $GLOBALS['xoopsTpl']->assign('panel_type', $glossaireHelper->getConfig('panel_type'));
-            $GLOBALS['xoopsTpl']->assign('divideby', $glossaireHelper->getConfig('divideby'));
-            $GLOBALS['xoopsTpl']->assign('numb_col', $glossaireHelper->getConfig('numb_col'));
+            $GLOBALS['xoopsTpl']->assign('divideby',   $glossaireHelper->getConfig('divideby'));
+            $GLOBALS['xoopsTpl']->assign('numb_col',   $glossaireHelper->getConfig('numb_col'));
             if ('show' == $op && '' != $entCat_id) {
                 $GLOBALS['xoopsTpl']->assign('xoops_pagetitle', \strip_tags($entCat_id . ' - ' . $GLOBALS['xoopsModule']->getVar('name')));
             }

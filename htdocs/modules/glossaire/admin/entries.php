@@ -50,7 +50,7 @@ foreach ($gepeto as $key=>$v){
     $gp .= "&{$key}={$v}";
 }
 
-echo "===>gp : {$gp}<br>";
+//echo "===>gp : {$gp}<br>";
 
 // $gp=array_merge($_GET, $_POST);
 // 
@@ -64,7 +64,7 @@ $GLOBALS['xoopsTpl']->assign('start', $start);
 $GLOBALS['xoopsTpl']->assign('statusIdSelect', $statusIdSelect);
 $utility = new \XoopsModules\Glossaire\Utility();
 
-switch ($op) {
+switch (strtolower($op)) {
     case 'list':
     default:
         include_once "entries-list.php";
@@ -124,7 +124,6 @@ switch ($op) {
         include_once "entries-delete.php";
         break;
         
-    case 'changeStatus':
     case 'changestatus':
         //$entriesHandler->changeStatus($entId);
         $entriesHandler->incrementeField($entId, 'ent_status', 3);
@@ -132,7 +131,6 @@ switch ($op) {
         break;
         
         
-    case 'incrementField':
     case 'incrementfield':
         //$entriesHandler->changeStatus($entId);
         $fldName = Request::getString('field', $glossaireHelper->getConfig('adminpager'));
@@ -140,28 +138,16 @@ switch ($op) {
         \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, \_AM_GLOSSAIRE_FORM_OK);
         break;
         
-    case 'cleanEntriesImages':
-    case 'cleanentriesimages':
-        $nbImgCleaned = $utility->cleanEntriesImages($catIdSelect, 1);     
-        $msg = sprintf(_AM_GLOSSAIRE_CLEAN_IMAGES_OK, $nbImgCleaned[1], $nbImgCleaned[2], $catIdSelect);         
+    case 'cleancatfolders':
+        $fldPath =  Request::getString('fldPath', '');
+        $fldName =  Request::getString('fldName', '');
+        $folder  =  Request::getString('folder', '');
+        $stat = $utility->cleanCatFolders($catIdSelect, $fldPath, $fldName, $folder, 1, 1);     
+        $msg = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES_OK, $stat[1], $stat[2], $catIdSelect);    
+        //exit("<hr>{$folder} - {$fldName} - {$msg}<hr>" );
         \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, $msg);
         break;
 
-    case 'cleanFolderImages':
-    case 'cleanfolderimages':
-        $nbImagesDeleted = $utility->cleanFolderImages($catIdSelect, 1);
-        $msg = sprintf(_AM_GLOSSAIRE_IMAGES_DELETED, $nbImagesDeleted);         
-        \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, $msg);
-        break;
-
-    case 'CleanImagesNotExists':
-    case 'cleanimagesnotexists':
-        $nbImagesDeletedEntriesUpdated = $utility->cleanImagesNotExists($catIdSelect, 1);
-        $msg = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES_UPDATE, $nbImagesDeletedEntriesUpdated);         
-        \redirect_header("entries.php?op=list&catIdSelect={$catIdSelect}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, $msg);
-        break;
-        
-    case 'razCounter':
     case 'razcounter':
         $entriesHandler->RazCounters($catIdSelect, 0);
         $msg = _AM_GLOSSAIRE_ENTRIES_UPDATE_OK;         

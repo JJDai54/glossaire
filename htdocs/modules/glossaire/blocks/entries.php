@@ -27,9 +27,6 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Helper;
 use XoopsModules\Glossaire\Constants;
 
-require_once \XOOPS_ROOT_PATH . '/modules/glossaire/include/common.php';
-include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
-
 /**
  * Function show block
  * @param  $options
@@ -41,8 +38,8 @@ function b_glossaire_entries_show($options)
 	$myts = MyTextSanitizer::getInstance();
     $dirname = "glossaire";
     require_once \XOOPS_ROOT_PATH . "/modules/{$dirname}/class/Entries.php";
-    $GLOBALS['xoopsTpl']->assign('glossaire_upload_url', \GLOSSAIRE_UPLOAD_URL);
-    $GLOBALS['xoopsTpl']->assign('glossaire_url', \GLOSSAIRE_URL);
+    //$GLOBALS['xoopsTpl']->assign('glossaire_upload_url', \GLOSSAIRE_UPLOAD_URL);
+    //$GLOBALS['xoopsTpl']->assign('glossaire_url', \GLOSSAIRE_URL);
     $block       = [];
     $typeBlock   = $options[0];
 	$limit       = $options[1];
@@ -142,7 +139,6 @@ function b_glossaire_entries_show($options)
  */
 function b_glossaire_entries_edit($options)
 {
-include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 
     $form = new \XoopsThemeForm("glossaire_block", 'form', $action, 'post', true);
 	$form->setExtra('enctype="multipart/form-data"');

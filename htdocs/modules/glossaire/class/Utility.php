@@ -279,11 +279,9 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
      * @param $str
      *
      * @return string
-     */
-    public static function get_acronym2($exp)
+    public static function get_acronym2_old($exp)
     { 
         $i = mb_strpos($exp, ";", 0);
-        
         if($i === false) $i = mb_strpos($exp, ";", 0);
 
         //echo "<hr>{$str} | {$exp} | i={$i}<hr>";
@@ -296,7 +294,34 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
         }
         return $exp;
     }
+     */
+     
+    /**
+     * @param $str
+     *
+     * @return string
+     */
+
+    public static function get_acronym2($exp)
+    {   
+    $newExp = '';    
     
+        for ($h=0; $h < mb_strlen($exp); $h++){
+            $car = mb_substr ($exp, $h, 1, "UTF-8");        
+            if($car === '/'){
+                $h++;
+                $car = mb_substr ($exp, $h, 1, "UTF-8");        
+                $newExp .= sprintf("<b>%s</b>" , $car);            
+            }elseif(ctype_upper($car)){
+                $newExp .= sprintf("<b>%s</b>" ,$car);            
+            }elseif(mb_strpos("ÀÂÄÉÈÊËÎÏÔÖÙÛÜÑÇ", $car) !== false){
+                $newExp .= sprintf("<b>%s</b>" ,$car);            
+            }else{
+                $newExp .=  $car;
+            }        
+        }
+        return $newExp;
+    }    
     /**
      * @param $str
      *
@@ -356,122 +381,75 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
 
 /* ***********************
 @ purgerFolderImg : compte ou supprime les images inutilisés
-@ $action : 0 = Compte - 1 = suppression
+@ $actionForEnr : 0 = Compte - 1 = update entries
+@ $actionForImg : 0 = Compte - 1 = delete files
 ************************** */
-function cleanEntriesImages($catId, $action = 0){
+function cleanCatFolders($catId, $fldPath, $fldName,  $subFolder, $actionForEnr = 0, $actionForFiles = 0){
 global $categoriesHandler, $entriesHandler, $xoopsList;
+
 //if(!$categoriesHandler)return;
     if($catId == 0)return 0;
-
+//echo "<hr>dossier : {$subFolder} - {$fldPath}<hr>";    
+    //------------------------------------------------------------------
+    //recherche ans la table les enregistrements n'ayant pas de fichier associer dans le dossier
     $catObj = $categoriesHandler->get($catId);
-    $dirname = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $catObj->getVar('cat_upload_folder');
-
-    $criteria = new \Criteria('ent_cat_id', $catId, '=');
-    $allEntries = $entriesHandler->getAllEntries($criteria);
-    $imgUsed = array();
-$nbImgNotExists = 0;    
-    foreach($allEntries AS $entry){
-        $img = $entry->getVar('ent_image');
-        $imgUsed[$img] = $img;
-        $f = $dirname . '/' . $img;
-        if (!is_readable($f) && $img != '' ){
-            if ($action == 1) {
-              $entry->setVar('ent_image', '');
-              $entriesHandler->insert($entry);
-            }
-            $nbImgNotExists++;
-        }
-    }
-// ----------------------------------------------- 
-xoops_load('XoopsLists');
- //$xoopsList = new \XoopsList();
-
-    //$listImg = $xoopsList->getImgListAsArray($dirname);
-    $listImg = \XoopsLists::getImgListAsArray($dirname);
-//echo "<hr>{$dirname}<hr>";    
-    $nbImgDeleted = 0;
-    foreach($listImg as $key=>$img){
-        if (!array_key_exists($key, $imgUsed)){
-            if ($action == 1) unlink($dirname . '/' . $key);
-            $nbImgDeleted++;
-        }
-    }
-
-    return array($nbImgDeleted + $nbImgNotExists, $nbImgDeleted, $nbImgNotExists);
-   }
-   
-/* ***********************
-@ purgerFolderImg : compte ou supprime les images qui n'existe pas
-@ $action : 0 = Compte - 1 = suppression
-************************** */
-function cleanImagesNotExists($catId, $action = 0){
-global $categoriesHandler, $entriesHandler, $xoopsList;
-//if(!$categoriesHandler)return;
-    if($catId == 0)return 0;
-
-    $catObj = $categoriesHandler->get($catId);
-    if(!$catObj) return 0;
-    $dirname =  $catObj->getPathUploads($subFolder='images');
-
-    $criteria = new \Criteria('ent_cat_id', $catId, '=');
+    //$catFolder = GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH . '/' . $catObj->getVar('cat_upload_folder'). "/{$subFolder}" ;
+    $catFolder = $catObj->getPathUploads($subFolder) ;
+//echo "===>dossier : {$catFolder}<br>";    
+    
+    $criteria = new \CriteriaCompo();
+    $criteria->add(new \Criteria('ent_cat_id', $catId, '='));
+    $criteria->add(new \Criteria('', 0, '<>',null,"length({$fldPath})"),"AND");
+         
     $allEntries = $entriesHandler->getAllEntries($criteria);
     $imgUsed = array();
     $nbImgNotExists = 0;    
     
     foreach($allEntries AS $entry){
-        $img = $entry->getVar('ent_image');
-        $f = $dirname . '/' . $img;
+        $img = $entry->getVar($fldPath);
+        $imgUsed[$img] = $img;
+        $f = $catFolder . '/' . $img;
         if (!is_readable($f) && $img != '' ){
-        //echo "{$action} - {$f}<br>";
-            if ($action == 1) {
-              $entry->setVar('ent_image', '');
+            if ($actionForEnr == 1) {
+              $entry->setVar($fldPath, '');
+              //et une petite verue
+              if ($fldPath != '') $entry->setVar($fldName, '');
               $entriesHandler->insert($entry);
+//        echo "cleanEntriesImages : nbImgNotExists = {$nbImgNotExists} / " . count($imgUsed) . $f . '<br>';
             }
             $nbImgNotExists++;
         }
     }
-// ----------------------------------------------- 
+ 
+    //------------------------------------------------------------------
+    //recherche dans le dossie les fichiers non référencé dans la table
+    
+    
 
-    return $nbImgNotExists;
-   }
-   
-/* ***********************
-@ purgerFolderImg : compte ou supprime les images inutilisés
-@ $action : 0 = Compte - 1 = suppression
-************************** */
-function cleanFolderImages($catId, $action = 0){
-global $categoriesHandler, $entriesHandler, $xoopsList;
-//if(!$categoriesHandler)return;
-    if($catId == 0)return 0;
+    //$dirname = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $catObj->getVar('cat_upload_folder');
 
-    $catObj = $categoriesHandler->get($catId);
-    if(!$catObj) return 0;
-
-    $dirname = GLOSSAIRE_UPLOAD_IMG_FOLDER_PATH . '/' . $catObj->getVar('cat_upload_folder');
-
-    $criteria = new \Criteria('ent_cat_id', $catId, '=');
-    $allEntries = $entriesHandler->getAllEntries($criteria);
-    $imgUsed = array();
-
-    foreach($allEntries AS $entry){
-        $img = $entry->getVar('ent_image');
-        $imgUsed[$img] = $img;
-    }
 // ----------------------------------------------- 
 xoops_load('XoopsLists');
  //$xoopsList = new \XoopsList();
 
-    //$listImg = $xoopsList->getImgListAsArray($dirname);
-    $listImg = \XoopsLists::getImgListAsArray($dirname);
-//echo "<hr>{$dirname}<hr>";    
-    $nbImgDeleted = 0;
+    //$listImg = $xoopsList->getImgListAsArray($catFolder);
+    $listImg = \XoopsLists::getFileListAsArray($catFolder);
+    $nbImg2Delete = 0;
     foreach($listImg as $key=>$img){
         if (!array_key_exists($key, $imgUsed)){
-            if ($action == 1) unlink($dirname . '/' . $key);
-            $nbImgDeleted++;
+            $f = $catFolder . '/' . $key;
+            if ($actionForFiles == 1) {
+              unlink($f);
+//        echo "===>Fichiers supprimé : {$f}<br>";
+            }
+            $nbImg2Delete++;
+//        echo "Fichiers non référencés dans la table : {$nbImg2Delete} / " . count($listImg) . " - {$catFolder}/{$key}<br>";
         }
     }
 
-    return $nbImgDeleted;
+    return array($nbImgNotExists + $nbImg2Delete, $nbImgNotExists, $nbImg2Delete);
    }
+   
+   
+
 } // ----- FIN DE La CLASS -----

@@ -36,40 +36,40 @@ trait ServerStats
         //        $query = $GLOBALS['xoopsDB']->query($sql);
         //        list($meta) = $GLOBALS['xoopsDB']->fetchRow($query);
         $html .= '<fieldset>';
-        $html .= "<legend style='font-weight: bold; color: #900;'>" . \constant('CO_GLOSSAIRE_IMAGEINFO') . '</legend>';
+        $html .= "<legend style='font-weight: bold; color: #900;'>" . \constant('_CO_GLOSSAIRE_IMAGEINFO') . '</legend>';
         $html .= "<div style='padding: 8px;'>";
-        //        $html .= '<div>' . \constant('CO_GLOSSAIRE_METAVERSION') . $meta . "</div>";
+        //        $html .= '<div>' . \constant('_CO_GLOSSAIRE_METAVERSION') . $meta . "</div>";
         //        $html .= "<br>";
         //        $html .= "<br>";
-        $html .= '<div>' . \constant('CO_GLOSSAIRE_SPHPINI') . '</div>';
+        $html .= '<div>' . \constant('_CO_GLOSSAIRE_SPHPINI') . '</div>';
         $html .= '<ul>';
 
-        $gdlib = \function_exists('gd_info') ? '<span style="color: #008000;">' . \constant('CO_GLOSSAIRE_GDON') . '</span>' : '<span style="color: #ff0000;">' . \constant('CO_GLOSSAIRE_GDOFF') . '</span>';
-        $html  .= '<li>' . \constant('CO_GLOSSAIRE_GDLIBSTATUS') . $gdlib;
+        $gdlib = \function_exists('gd_info') ? '<span style="color: #008000;">' . \constant('_CO_GLOSSAIRE_GDON') . '</span>' : '<span style="color: #ff0000;">' . \constant('_CO_GLOSSAIRE_GDOFF') . '</span>';
+        $html  .= '<li>' . \constant('_CO_GLOSSAIRE_GDLIBSTATUS') . $gdlib;
         if (\function_exists('gd_info')) {
             if (true === ($gdlib = gd_info())) {
-                $html .= '<li>' . \constant('CO_GLOSSAIRE_GDLIBVERSION') . '<b>' . $gdlib['GD Version'] . '</b>';
+                $html .= '<li>' . \constant('_CO_GLOSSAIRE_GDLIBVERSION') . '<b>' . $gdlib['GD Version'] . '</b>';
             }
         }
 
-        //    $safemode = \ini_get('safe_mode') ? \constant('CO_GLOSSAIRE_ON') . \constant('CO_GLOSSAIRE_SAFEMODEPROBLEMS : \constant('CO_GLOSSAIRE_OFF');
-        //    $html .= '<li>' . \constant('CO_GLOSSAIRE_SAFEMODESTATUS . $safemode;
+        //    $safemode = \ini_get('safe_mode') ? \constant('_CO_GLOSSAIRE_ON') . \constant('_CO_GLOSSAIRE_SAFEMODEPROBLEMS : \constant('_CO_GLOSSAIRE_OFF');
+        //    $html .= '<li>' . \constant('_CO_GLOSSAIRE_SAFEMODESTATUS . $safemode;
 
-        //    $registerglobals = (!\ini_get('register_globals')) ? "<span style=\"color: #008000;\">" . \constant('CO_GLOSSAIRE_OFF') . '</span>' : "<span style=\"color: #ff0000;\">" . \constant('CO_GLOSSAIRE_ON') . '</span>';
-        //    $html .= '<li>' . \constant('CO_GLOSSAIRE_REGISTERGLOBALS . $registerglobals;
+        //    $registerglobals = (!\ini_get('register_globals')) ? "<span style=\"color: #008000;\">" . \constant('_CO_GLOSSAIRE_OFF') . '</span>' : "<span style=\"color: #ff0000;\">" . \constant('_CO_GLOSSAIRE_ON') . '</span>';
+        //    $html .= '<li>' . \constant('_CO_GLOSSAIRE_REGISTERGLOBALS . $registerglobals;
 
-        $downloads = \ini_get('file_uploads') ? '<span style="color: #008000;">' . \constant('CO_GLOSSAIRE_ON') . '</span>' : '<span style="color: #ff0000;">' . \constant('CO_GLOSSAIRE_OFF') . '</span>';
-        $html      .= '<li>' . \constant('CO_GLOSSAIRE_SERVERUPLOADSTATUS') . $downloads;
+        $downloads = \ini_get('file_uploads') ? '<span style="color: #008000;">' . \constant('_CO_GLOSSAIRE_ON') . '</span>' : '<span style="color: #ff0000;">' . \constant('_CO_GLOSSAIRE_OFF') . '</span>';
+        $html      .= '<li>' . \constant('_CO_GLOSSAIRE_SERVERUPLOADSTATUS') . $downloads;
 
-        $html .= '<li>' . \constant('CO_GLOSSAIRE_MAXUPLOADSIZE') . ' <b><span style="color: #0000ff;">' . \ini_get('upload_max_filesize') . '</span></b>';
-        $html .= '<li>' . \constant('CO_GLOSSAIRE_MAXPOSTSIZE') . ' <b><span style="color: #0000ff;">' . \ini_get('post_max_size') . '</span></b>';
-        $html .= '<li>' . \constant('CO_GLOSSAIRE_MEMORYLIMIT') . ' <b><span style="color: #0000ff;">' . \ini_get('memory_limit') . '</span></b>';
+        $html .= '<li>' . \constant('_CO_GLOSSAIRE_MAXUPLOADSIZE') . ' <b><span style="color: #0000ff;">' . \ini_get('upload_max_filesize') . '</span></b>';
+        $html .= '<li>' . \constant('_CO_GLOSSAIRE_MAXPOSTSIZE') . ' <b><span style="color: #0000ff;">' . \ini_get('post_max_size') . '</span></b>';
+        $html .= '<li>' . \constant('_CO_GLOSSAIRE_MEMORYLIMIT') . ' <b><span style="color: #0000ff;">' . \ini_get('memory_limit') . '</span></b>';
         $html .= '</ul>';
         $html .= '<ul>';
-        $html .= '<li>' . \constant('CO_GLOSSAIRE_SERVERPATH') . ' <b>' . \XOOPS_ROOT_PATH . '</b>';
+        $html .= '<li>' . \constant('_CO_GLOSSAIRE_SERVERPATH') . ' <b>' . \XOOPS_ROOT_PATH . '</b>';
         $html .= '</ul>';
         $html .= '<br>';
-        $html .= \constant('CO_GLOSSAIRE_UPLOADPATHDSC') . '';
+        $html .= \constant('_CO_GLOSSAIRE_UPLOADPATHDSC') . '';
         $html .= '</div>';
         $html .= '</fieldset><br>';
 

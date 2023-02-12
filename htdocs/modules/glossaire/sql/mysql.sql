@@ -12,33 +12,30 @@
 #
 
 CREATE TABLE `glossaire_categories` (
-  `cat_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `cat_name` VARCHAR(255) NOT NULL DEFAULT '',
-  `cat_description` TEXT NOT NULL ,
-  `cat_weight` INT(10) NOT NULL DEFAULT '0',
-  `cat_logourl` VARCHAR(255) NOT NULL DEFAULT '',
-  `cat_alphabarre` VARCHAR(255) NOT NULL DEFAULT '',
-  `cat_alphabarre_mode` INT(10) NOT NULL DEFAULT '1',
-  `cat_letter_css_default` VARCHAR(255) NOT NULL DEFAULT '',
-  `cat_letter_css_selected` VARCHAR(255) NOT NULL DEFAULT '',
-  `cat_letter_css_exist` VARCHAR(255) NOT NULL DEFAULT '',
-  `cat_letter_css_notexist` VARCHAR(255) NOT NULL DEFAULT '',
-  `cat_upload_folder` VARCHAR(255) NOT NULL DEFAULT '',
-  `cat_colors_set` VARCHAR(50) NOT NULL DEFAULT '',
-  `cat_is_acronym` TINYINT(1) NOT NULL DEFAULT '0',   
-  `cat_br_after_term` TINYINT(1) NOT NULL DEFAULT '0',   
-  `cat_show_terms_index` TINYINT(1) NOT NULL DEFAULT '1',   
-  `cat_active TINYINT(1) NOT NULL DEFAULT '0',   
-  `cat_count_entries` INT(11) NOT NULL DEFAULT '0',   
-  `cat_date_creation` DATETIME(6) NOT NULL DEFAULT '0000-00-00 00:00:00.0000',
-  `cat_date_update` DATETIME(6) NOT NULL DEFAULT '0000-00-00 00:00:00.00000',
+  `cat_id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `cat_pid` int(11) NOT NULL DEFAULT '0',
+  `cat_name` varchar(255) NOT NULL DEFAULT '',
+  `cat_description` text NOT NULL,
+  `cat_weight` int(10) NOT NULL DEFAULT '0',
+  `cat_logo` varchar(80) NOT NULL DEFAULT '',
+  `cat_alphabarre` varchar(255) NOT NULL,
+  `cat_alphabarre_mode` tinyint(1) NOT NULL DEFAULT '1',
+  `cat_letter_css_default` varchar(255) NOT NULL,
+  `cat_letter_css_selected` varchar(255) NOT NULL,
+  `cat_letter_css_exist` varchar(255) NOT NULL,
+  `cat_letter_css_notexist` varchar(255) NOT NULL,
+  `cat_upload_folder` varchar(255) NOT NULL DEFAULT '',
+  `cat_colors_set` varchar(50) NOT NULL DEFAULT '',
+  `cat_is_acronym` tinyint(1) NOT NULL DEFAULT '0',
+  `cat_br_after_term` tinyint(4) NOT NULL DEFAULT '0',
+  `cat_show_terms_index` tinyint(1) NOT NULL DEFAULT '1',
+  `cat_count_entries` int(11) NOT NULL DEFAULT '0',
+  `cat_active` tinyint(1) NOT NULL DEFAULT '0',
+  `cat_date_creation` datetime(6) NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `cat_date_update` datetime(6) NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`cat_id`),
  UNIQUE KEY `cat_upload_folder` (`cat_upload_folder`)  
 ) ENGINE=InnoDB;
-
-
-
-
 
 
 #
@@ -46,25 +43,25 @@ CREATE TABLE `glossaire_categories` (
 #
 
 CREATE TABLE `glossaire_entries` (
-  `ent_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `ent_cat_id` INT(10) NOT NULL DEFAULT '0',
-  `ent_creator` VARCHAR(80) NOT NULL DEFAULT '',
-  `ent_term` VARCHAR(255) NOT NULL DEFAULT '',
-  `ent_initiale` VARCHAR(5) NOT NULL DEFAULT '',
-  `ent_shortdef` VARCHAR(255) NOT NULL DEFAULT '',
-  `ent_is_acronym` TINYINT(1) NOT NULL DEFAULT '0',   
-  `ent_image` VARCHAR(255) NOT NULL DEFAULT '',
-  `ent_definition` TEXT NOT NULL ,
-  `ent_reference` TEXT NOT NULL ,
-  `ent_file_name` VARCHAR(80) NOT NULL DEFAULT '',
-  `ent_file_path` VARCHAR(80) NOT NULL DEFAULT '',
-  `ent_urls`  TEXT NOT NULL,
-  `ent_email` VARCHAR(80) NOT NULL DEFAULT '',
-  `ent_date_creation` DATETIME(6) NOT NULL DEFAULT '0000-00-00 00:00:00.00000',
-  `ent_date_update` DATETIME(6) NOT NULL DEFAULT '0000-00-00 00:00:00.00000',
-  `ent_counter` INT(10) NOT NULL DEFAULT '0',
-  `ent_status` TINYINT(1) NOT NULL DEFAULT '0',
-  `ent_flag` INT(10) NOT NULL DEFAULT '0',
+  `ent_id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ent_cat_id` int(10) NOT NULL DEFAULT '0',
+  `ent_creator` varchar(80) NOT NULL DEFAULT '',
+  `ent_term` varchar(255) NOT NULL DEFAULT '',
+  `ent_initiale` varchar(5) NOT NULL DEFAULT '',
+  `ent_shortdef` varchar(255) NOT NULL DEFAULT '',
+  `ent_is_acronym` tinyint(1) NOT NULL DEFAULT '0',
+  `ent_image` varchar(255) NOT NULL DEFAULT '',
+  `ent_definition` text NOT NULL,
+  `ent_reference` text NOT NULL,
+  `ent_file_name` varchar(80) NOT NULL,
+  `ent_file_path` varchar(80) NOT NULL,
+  `ent_urls` text NOT NULL,
+  `ent_email` varchar(80) NOT NULL,
+  `ent_counter` int(10) NOT NULL DEFAULT '0',
+  `ent_status` tinyint(1) NOT NULL DEFAULT '0',
+  `ent_flag` int(10) NOT NULL DEFAULT '0',
+  `ent_date_creation` datetime(6) NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ent_date_update` datetime(6) NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`ent_id`)
 ) ENGINE=InnoDB;
 

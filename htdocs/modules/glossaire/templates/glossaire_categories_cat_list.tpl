@@ -5,38 +5,23 @@
 <{*  ------------------------------------------------------------------ *}>
 <div class='panel-body'>
 <span class='col-sm-2'><{$category.name}></span>
-
 <span class='col-sm-3 justify'><{$category.description}></span>
-
 <span class='col-sm-2'><{$category.total}></span>
-
 <span class='col-sm-2'><{$category.weight}></span>
-
-<span class='col-sm-3'><img src='<{$xoops_icons32_url|default:false}>/<{$category.logourl}>' alt='categories' ></span>
-
+<span class='col-sm-3'><img src='<{$xoops_icons32_url|default:false}>/<{$category.logo}>' alt='categories' ></span>
 <span class='col-sm-2'><{$category.date_creation}></span>
-
 <span class='col-sm-2'><{$category.date_update}></span>
-
 </div>
 
 <div class='panel-body'>
 <span class='col-sm-2'><{$entry.uid}></span>
-
 <span class='col-sm-2'><{$entry.term}></span>
-
 <span class='col-sm-2'><{$entry.shortdef}></span>
-
 <span class='col-sm-3 justify'><{$entry.definition}></span>
-
 <span class='col-sm-3 justify'><{$entry.reference}></span>
-
 <span class='col-sm-2'><{$entry.url1}></span>
-
 <span class='col-sm-2'><{$entry.url2}></span>
-
 <span class='col-sm-2'><{$entry.date_creation}></span>
-
 </div>
 
 

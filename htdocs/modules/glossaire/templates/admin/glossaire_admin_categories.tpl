@@ -14,12 +14,12 @@
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_DESCRIPTION}></th>
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_TOTAL}></th> *}>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_WEIGHT}></th>
-                <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_LOGOURL}></th>
+                <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_LOGO}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_COLOR_SET}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_ENTRIES}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_DATE_CREATION}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_DATE_UPDATE}></th>
-                <th class="center width5"><{$smarty.const._AM_GLOSSAIRE_FORM_ACTION}></th>
+                <th class="center width5"><{$smarty.const._AM_GLOSSAIRE_FORM_ACTIONS}></th>
             </tr>
         </thead>
         <{if $categories_count|default:''}>
@@ -88,13 +88,15 @@
                 </td>
                 <{* ---------------- /Arrows -------------------- *}>
 
-                <td class='center'><img src="<{xoModuleIcons32}><{$category.logourl}>" alt="" ></td>
+                <td class='center'><img src="<{$category.logo_url}>" alt="<{$category.logo}>" style='max-width:80px;JJD   CdS91700cd40b
+                '></td>
                 <td class='center'><{$category.colors_set}></td>
                 
                 <td class='center'><{$category.count_entries}></td>
                 <td class='center'><{$category.date_creation}></td>
                 <td class='center'><{$category.date_update}></td>
                 <td class="center  width5">
+                    <a href="entries.php?op=list&catIdSelect=<{$category.id}>&tart=0&limit=<{$limit}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 inserttable.png}>" alt="<{$smarty.const._GLOSSAIRE_ENTRIES}>" ></a>                
                     <a href="categories.php?op=edit&amp;cat_id=<{$category.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}> categories" ></a>
                     <a href="categories.php?op=clone&amp;cat_id_source=<{$category.id}>" title="<{$smarty.const._CLONE}>"><img src="<{xoModuleIcons16 editcopy.png}>" alt="<{$smarty.const._CLONE}> categories" ></a>
                     <a href="categories.php?op=delete&amp;cat_id=<{$category.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}> categories" ></a>

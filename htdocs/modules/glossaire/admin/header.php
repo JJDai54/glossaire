@@ -48,6 +48,7 @@ if (!isset($xoopsTpl) || !\is_object($xoopsTpl)) {
 // Load languages
 \xoops_loadLanguage('admin');
 \xoops_loadLanguage('modinfo');
+\xoops_loadLanguage('common', 'glossaire');
 
 // Local admin menu class
 if (\file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) {
@@ -56,12 +57,12 @@ if (\file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) 
     \redirect_header('../../../admin.php', 5, \_AM_MODULEADMIN_MISSING);
 }
 
-//include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 
 xoops_cp_header();
 $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
 
-$xoTheme->addScript(XOOPS_URL . '/Frameworks/trierTableauHTML/trierTableau.js');
+//$xoTheme->addScript(XOOPS_URL . '/Frameworks/trierTableauHTML/trierTableau.js');
+\jjd\load_trierTableauHTML();
 //$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/Frameworks/trierTableauHTML/trierTableau.js');
 
 // System icons path

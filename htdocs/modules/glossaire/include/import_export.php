@@ -39,6 +39,10 @@
 function export_glossaire($catId, $gls_add_img = false, $gls_add_files=false)
 {
     global $xoopsConfig, $xoopsDB, $utility, $categoriesHandler, $xoopsFolder;
+
+    //nettoyage du dossier a exporter pour alléger l'archive compressee
+    $stat = $utility->cleanCatFolders($catId, 'ent_image', '', 'images', 1, 1);        
+    $stat = $utility->cleanCatFolders($catId, 'ent_file_path', 'ent_file_name', 'files', 1, 1);        
     
     // --- Dossier de destination
     $catObj = $categoriesHandler->get($catId);
@@ -53,7 +57,7 @@ function export_glossaire($catId, $gls_add_img = false, $gls_add_files=false)
     //--------------------------------------------------------------
     $uploadsPath = $catObj->getPathUploads();
     //echo "===>uploadsPath : {$uploadsPath}<br>";
-    export_categories ($catId, $pathGlossaire, GLOSSAIRE_DIRNAME);    
+    export_categories ($catId, $pathGlossaire, GLOSSAIRE_DIRNAME, $uploadsPath);    
     export_entries    ($catId, $pathGlossaire, GLOSSAIRE_DIRNAME, $uploadsPath, $gls_add_img, $gls_add_files);    
     
     
@@ -71,17 +75,24 @@ function export_glossaire($catId, $gls_add_img = false, $gls_add_files=false)
 /**************************************************************
  * 
  * ************************************************************/
-function export_categories($catId, $pathExport, $moduleName){
+function export_categories($catId, $pathExport, $moduleName, $uploadsPath=''){
+    global $xoopsFolder;
     $criteria = new \CriteriaCompo(new \Criteria('cat_id',$catId,'='));
     $tbl = 'categories';
     \Xmf\Database\TableLoad::saveTableToYamlFile("{$moduleName}_{$tbl}", $pathExport . $tbl . '.yml', $criteria);
+    
+    //----------------------------------------------------
+    $options = array('from' => $uploadsPath . '/logo', 
+                     'to'   => $pathExport . "/logo",
+                     'mode' => 0777);
+    $xoopsFolder->copy($options);
 }
 
 /**************************************************************
  * 
  * ************************************************************/
 function export_entries($catId, $pathExport, $moduleName, $uploadsPath='',$gls_add_img, $gls_add_files){
-    global $xoopsConfig, $xoopsDB, $utility, $categoriesHandler, $xoopsFolder;
+    global $xoopsFolder;
     
     $criteria = new \CriteriaCompo(new \Criteria('ent_cat_id',$catId,'='));
     $tbl = 'entries';
@@ -123,9 +134,18 @@ function import_glossaire($pathImport, $catId)
     }else{
         $categoriesObj = import_category($pathImport);
         $catId = $categoriesObj->getVar("cat_id");
+        //-----------------------------------------
+        // Importation des logos
+        //-----------------------------------------
+        $glsUploads = $categoriesObj->getPathUploads();
+        if (is_readable($pathImport . '/logo')){
+        $xoopsFolder->copy(array('from' => $pathImport . '/logo', 
+                                 'to'   => $glsUploads . '/logo',
+                                 'mode' => 0777));
+        }
     }
     //---------------------------------------------------------
-     $glsUploads = $categoriesObj->getPathUploads();
+     if(!$glsUploads) $glsUploads = $categoriesObj->getPathUploads();
 //     echo ("<hr>===>catId = {$catId}<hr>");
      import_entries($pathImport, $catId, $glsUploads);
 
@@ -198,11 +218,11 @@ global $categoriesHandler;
     
     $categoriesObj = $categoriesHandler->create();
 //    echo "new cat : " . ((is_null($categoriesObj)) ? 'non': 'oui');
-	$categoriesObj->setVar('cat_id', 0);    
+	//$categoriesObj->setVar('cat_id', 0);    
 	$categoriesObj->setVar('cat_name',        $data['cat_name'] . $suffix);    
 	$categoriesObj->setVar('cat_description', $data['cat_description']);    
 	$categoriesObj->setVar('cat_weight',      $data['cat_weight']);    
-	$categoriesObj->setVar('cat_logourl',     $data['cat_logourl']);  
+	$categoriesObj->setVar('cat_logo',        $data['cat_logo']);  
     
 	$categoriesObj->setVar('cat_alphabarre',     $data['cat_alphabarre']);  
 	$categoriesObj->setVar('cat_alphabarre_mode',     $data['cat_alphabarre_mode']);  

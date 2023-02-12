@@ -5,7 +5,6 @@ Compilator.CompileOnBackground=0
 Compilator.ProgSaveAll=0
 Compilator.ProgRunSelection=0
 Compilator.LogType=0
-Compilator.LogEncoding=0
 DefaultDir=J:\Xoops\modules-JJD\glossaire\projet\htdocs\modules\glossaire
 DefaultCP=0
 LogtoEnd=1
@@ -34,6 +33,9 @@ _glossaire
 			admin\index.php
 			admin\menu.php
 			admin\permissions.php
+			admin\categories-list.php
+			admin\categories-new.php
+			admin\categories-save.php
 		-assets
 			+css
 				-admin
@@ -138,7 +140,7 @@ _glossaire
 			config\icons.php
 			config\index.php
 			config\paths.php
-		-docs
+		+docs
 			docs\changelog.txt
 			docs\credits.txt
 			docs\index.php
@@ -147,7 +149,7 @@ _glossaire
 			docs\license.txt
 			docs\readme.txt
 			docs\todo.txt
-		-include
+		+include
 			include\common.php
 			include\functions.php
 			include\import_export.php
@@ -158,7 +160,7 @@ _glossaire
 			include\uninstall.php
 			include\update.php
 			include\xoops_version.inc.php
-		-language
+		+language
 			+english
 				-help
 					language\english\help\help.html
@@ -245,10 +247,9 @@ _glossaire
 			templates\glossaire_header.tpl
 			templates\glossaire_index.tpl
 			templates\index.php
-		-testdata
+		+testdata
 			-english
 			-french
-				testdata\french\Sigles_et_Acronymes_de_Sante(19).zip
 			-images
 				testdata\images\blank.gif
 				testdata\images\blank.png
@@ -265,53 +266,41 @@ _glossaire
 		xoops_version.php
 [Open project files]
 0=sql\mysql.sql
-1=blocks\entries.php
-2=class\EntriesHandler.php
-3=class\CategoriesHandler.php
-4=xoops_version.php
-5=..\..\..\..\..\creaquiz\projet\htdocs\modules\creaquiz\templates\blocks\creaquiz_block_quiz.tpl
-6=templates\blocks\glossaire_block_entries.tpl
-7=entries.php
-8=blocks\categories.php
-9=templates\blocks\glossaire_block_categories.tpl
-10=class\Categories.php
-11=language\french\modinfo.php
+1=admin\import.php
+2=class\Utility.php
+3=include\import_export.php
+4=class\Categories.php
+5=entries.php
+6=testdata\index.php
+7=templates\admin\glossaire_admin_categories.tpl
+8=xoops_version.php
 [Selected Project Files]
 Main=
-Selected=blocks\entries.php
+Selected=xoops_version.php
 [sql\mysql.sql]
-TopLine=9
-Caret=18,27
-[blocks\entries.php]
-TopLine=156
-Caret=1,179
-[class\EntriesHandler.php]
-TopLine=99
-Caret=1,120
-[class\CategoriesHandler.php]
-TopLine=229
-Caret=24,265
-[xoops_version.php]
-TopLine=153
-Caret=60,163
-[..\..\..\..\..\creaquiz\projet\htdocs\modules\creaquiz\templates\blocks\creaquiz_block_quiz.tpl]
+TopLine=5
+Caret=52,15
+[admin\import.php]
+TopLine=30
+Caret=34,33
+[class\Utility.php]
 TopLine=1
-Caret=61,27
-[templates\blocks\glossaire_block_entries.tpl]
-TopLine=1
-Caret=65,13
-[entries.php]
-TopLine=17
 Caret=1,1
-[blocks\categories.php]
-TopLine=98
-Caret=29,117
-[templates\blocks\glossaire_block_categories.tpl]
-TopLine=1
-Caret=13,21
+[include\import_export.php]
+TopLine=127
+Caret=10,148
 [class\Categories.php]
-TopLine=247
-Caret=9,263
-[language\french\modinfo.php]
-TopLine=33
-Caret=1,55
+TopLine=23
+Caret=33,61
+[entries.php]
+TopLine=58
+Caret=20,75
+[testdata\index.php]
+TopLine=136
+Caret=1,153
+[templates\admin\glossaire_admin_categories.tpl]
+TopLine=60
+Caret=66,91
+[xoops_version.php]
+TopLine=1
+Caret=38,35

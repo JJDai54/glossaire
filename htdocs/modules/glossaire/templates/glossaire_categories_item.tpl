@@ -4,7 +4,6 @@
 <{/if}>
 <{*  ------------------------------------------------------------------ *}>
 
-<{*  ------------------------------------------------------------------ *}>
 <{if $smarty.const.GLOSSAIRE_SHOW_TPL_NAME==1}>
 <{assign var=tplHierarchie value=$tplHierarchie-1}>
 <div style="text-align: center; background-color: grey;"><span style="color: yellow;">Template [<{$tplHierarchie}>]: <{$smarty.template}></span></div>

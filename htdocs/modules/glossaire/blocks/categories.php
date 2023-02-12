@@ -27,9 +27,6 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Helper;
 use XoopsModules\Glossaire\Constants;
 
-require_once \XOOPS_ROOT_PATH . '/modules/glossaire/include/common.php';
-include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
-
 /**
  * Function show block
  * @param  $options
@@ -40,8 +37,8 @@ function b_glossaire_categories_show($options)
 //echo "<hr>===>options : <pre>". print_r($options, true) ."</pre><hr>";
 	$myts = MyTextSanitizer::getInstance();
     $dirname = "glossaire";
-    $GLOBALS['xoopsTpl']->assign('glossaire_upload_url', \GLOSSAIRE_UPLOAD_URL);
-    $GLOBALS['xoopsTpl']->assign('glossaire_url', \GLOSSAIRE_URL);
+    //$GLOBALS['xoopsTpl']->assign('glossaire_upload_url', \GLOSSAIRE_UPLOAD_URL);
+    //$GLOBALS['xoopsTpl']->assign('glossaire_url', \GLOSSAIRE_URL);
     $block       = [];
     $h=0;
 	$limit       = $options[$h++];

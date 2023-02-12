@@ -35,7 +35,7 @@
                 <{* <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_FLAG}></th> *}>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_DATE_CREATION}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_ENTRY_DATE_UPDATE}></th>
-                <th class="center width5"><{$smarty.const._AM_GLOSSAIRE_FORM_ACTION}></th>
+                <th class="center width5"><{$smarty.const._AM_GLOSSAIRE_FORM_ACTIONS}></th>
             </tr>
         </thead>
         <{if $entries_count|default:''}>
@@ -75,7 +75,7 @@
                     <{/if}>
                 <{$entry.shortdefMagnifed}>
                 </td>
-                <{* <td class='left'><{$entry.definition_short}></td> *}>
+                <{* <td class='left'><{$entry.definition_trunq}></td> *}>
                 <{* <td class='center'><{$entry.reference_short}></td> *}>
                 <{* <td class='center'><{$entry.url1}></td> *}>
                 <{* <td class='center'><{$entry.url2}></td> *}>

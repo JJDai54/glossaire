@@ -233,7 +233,7 @@ switch($op) {
   	    $formSelf->addElement($inpCategory);
 
         //----------------------------------------------- 
-		$formSelf->addElement(new \XoopsFormButton('', _SUBMIT, _AM_GLOSSAIRE_IMPORTER, 'submit'));
+		$formSelf->addElement(new \XoopsFormButton('', "submit_file", _AM_GLOSSAIRE_IMPORTER, 'submit'));
 //echo $formSelf->render()  ;      
 		$GLOBALS['xoopsTpl']->assign('form_self', $formSelf->render());        
   
@@ -263,7 +263,7 @@ xoops_load('XoopsLists');
   	    $formFtp->addElement($inpCategory);
 
         //----------------------------------------------- 
-		$formFtp->addElement(new \XoopsFormButton('', _SUBMIT, _AM_GLOSSAIRE_IMPORTER, 'submit'));
+		$formFtp->addElement(new \XoopsFormButton('', "submit_ftp", _AM_GLOSSAIRE_IMPORTER, 'submit'));
 //echo $formImport->render()  ;      
 		$GLOBALS['xoopsTpl']->assign('form_ftp', $formFtp->render());   
              
@@ -289,7 +289,7 @@ xoops_load('XoopsLists');
         // ----- Listes de selection pour filtrage -----  
   	    $formLexikon->addElement($inpCategory);
 
-		$formLexikon->addElement(new \XoopsFormButton('', _SUBMIT, _AM_GLOSSAIRE_IMPORTER, 'submit'));
+		$formLexikon->addElement(new \XoopsFormButton('', "submit_lexicon", _AM_GLOSSAIRE_IMPORTER, 'submit'));
 		$GLOBALS['xoopsTpl']->assign('form_lexikon', $formLexikon->render());        
 
 
