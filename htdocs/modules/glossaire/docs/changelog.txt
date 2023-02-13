@@ -1,0 +1,26 @@
+==============================================================
+1.0 [2022/06/12 16:25:12] jjdelalandre@orange.fr
+==============================================================
+ - Original release glossaire (JJDai Development Team)
+ 
+Ce module pemet de gérer des Glossaire ou Lexiques. Il prend en charge
+    les catégories avec colorations différenciées
+    L'exportation des défintions par cétégories y compris les images des définitions
+    L'importation dans une nouvelle categorie ou une existante d'une catégorie exportée par ce module ou un de ses clones. Les images sont également importées si elles existent.
+    Lexikon : L'importation dans une nouvelle categorie ou une existante d'une catégorie du module "Lexikon"
+    Le clonage sans conflit
+
+Chaque défitnion comprend :
+    un terme
+    Une définition courte avec prise en chage d'une mise en forme pour les acronymes
+    Une définition
+    une zone de références : Sources, Adresse, téléphone et toute information utile
+    0 ou plusieurs URLs (voir aussi)
+    Une logo pour chaque définition
+    un fichier joint
+    un Status : Inactif, Proposé, Soumis
+    courriel pour le contact 
+
+Conception :
+
+La structure du module a été réalisée grace au module "moduleBuilder" https://github.com/XoopsModules25x/modulebuilder
