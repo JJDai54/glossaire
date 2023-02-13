@@ -27,6 +27,7 @@ CREATE TABLE `glossaire_categories` (
   `cat_upload_folder` varchar(255) NOT NULL DEFAULT '',
   `cat_colors_set` varchar(50) NOT NULL DEFAULT '',
   `cat_is_acronym` tinyint(1) NOT NULL DEFAULT '0',
+  `cat_sanityse_email` tinyint(1) NOT NULL DEFAULT '0',
   `cat_br_after_term` tinyint(4) NOT NULL DEFAULT '0',
   `cat_show_terms_index` tinyint(1) NOT NULL DEFAULT '1',
   `cat_count_entries` int(11) NOT NULL DEFAULT '0',
