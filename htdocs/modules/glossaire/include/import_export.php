@@ -233,6 +233,7 @@ global $categoriesHandler;
 	$categoriesObj->setVar('cat_upload_folder',  $data['cat_upload_folder'] . $suffix);    
 	$categoriesObj->setVar('cat_colors_set',  $data['cat_colors_set']);    
 	$categoriesObj->setVar('cat_is_acronym',  $data['cat_is_acronym']);    
+	$categoriesObj->setVar('cat_replace_arobase',  $data['cat_replace_arobase']);    
 	$categoriesObj->setVar('cat_br_after_term',  $data['cat_br_after_term']);    
 	$categoriesObj->setVar('cat_show_terms_index', $data['cat_show_terms_index']);    
 	$categoriesObj->setVar('cat_count_entries',   $data['cat_count_entries']);    

@@ -68,6 +68,7 @@ class Categories extends \XoopsObject
         $this->initVar('cat_upload_folder', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_colors_set', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_is_acronym', \XOBJ_DTYPE_INT); 
+        $this->initVar('cat_replace_arobase', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_br_after_term', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_count_entries', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_show_terms_index', \XOBJ_DTYPE_INT); 
@@ -172,15 +173,20 @@ class Categories extends \XoopsObject
         $inpMagnifySd->setDescription(\_AM_GLOSSAIRE_CATEGORY_MAGNIFY_SD_DESC);
         $form->addElement($inpMagnifySd);
         
+        // Form Text cat_replace_arobase
+        $inpReplaceArobase = new \XoopsFormText(\_AM_GLOSSAIRE_REPLACE_AROBASE, 'cat_replace_arobase', 5, 5, $this->getVar('cat_replace_arobase'));
+        $inpReplaceArobase->setDescription(\_AM_GLOSSAIRE_REPLACE_AROBASE_DESC);
+        $form->addElement($inpReplaceArobase);
+        
         // Form Text cat_br_after_term
         $inpBrAfterTerm = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_CATEGORY_BR_AFTER_TERME, 'cat_br_after_term', $this->getVar('cat_br_after_term'));
         $inpBrAfterTerm->setDescription(\_AM_GLOSSAIRE_CATEGORY_BR_AFTER_TERME_DESC);
         $form->addElement($inpBrAfterTerm);
         
         // Form Text cat_show_terms_index
-        $inpMagnifySd = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_CATEGORY_SHOW_INDEX_TERMS, 'cat_show_terms_index', $this->getVar('cat_show_terms_index'));
-        $inpMagnifySd->setDescription(\_AM_GLOSSAIRE_CATEGORY_SHOW_INDEX_TERMS_DESC);
-        $form->addElement($inpMagnifySd);
+        $inpShowIndex = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_CATEGORY_SHOW_INDEX_TERMS, 'cat_show_terms_index', $this->getVar('cat_show_terms_index'));
+        $inpShowIndex->setDescription(\_AM_GLOSSAIRE_CATEGORY_SHOW_INDEX_TERMS_DESC);
+        $form->addElement($inpShowIndex);
         
 //         // Form Text Date Select catDate_creation
 //         $catDate_creation = $this->isNew() ? \time() : $this->getVar('cat_date_creation');
@@ -284,8 +290,9 @@ class Categories extends \XoopsObject
         $ret['letter_css_notexist'] = $this->getVar('cat_letter_css_notexist');
 
         $ret['upload_folder']        = $this->getVar('cat_upload_folder');
-        $ret['colors_set']        = ($this->getVar('cat_colors_set')) ? $this->getVar('cat_colors_set') : "default";
-        $ret['is_acronym']        = $this->getVar('cat_is_acronym');
+        $ret['colors_set']           = ($this->getVar('cat_colors_set')) ? $this->getVar('cat_colors_set') : "default";
+        $ret['is_acronym']           = $this->getVar('cat_is_acronym');
+        $ret['cat_replace_arobase']  = $this->getVar('cat_replace_arobase');
         $ret['br_after_term']     = $this->getVar('cat_br_after_term');
         $ret['show_terms_index']  = $this->getVar('cat_show_terms_index');
         $ret['count_entries']     = $this->getVar('cat_count_entries');

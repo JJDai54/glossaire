@@ -148,4 +148,7 @@ define('_MI_GLOSSAIRE_UPLOAD_GROUPS_DESC', "Which groups have permissions to upl
 define('_MI_GLOSSAIRE_USER_PAGER', "User pager");
 define('_MI_GLOSSAIRE_USER_PAGER_DESC', "User per page list");
 
+define('_MI_GLOSSAIRE_REPLACE_AROBASE', "Caractère de remplacement pour l'arobase");
+define('_MI_GLOSSAIRE_REPLACE_AROBASE_DESC', "Permet de bloquer les accès directs au courriels sur les pages");
+
 ?>

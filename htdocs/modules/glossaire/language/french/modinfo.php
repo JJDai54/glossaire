@@ -147,5 +147,9 @@ define('_MI_GLOSSAIRE_UPLOAD_GROUPS', "Autorisations de groupe de téléchargeme
 define('_MI_GLOSSAIRE_UPLOAD_GROUPS_DESC', "Quels sont les groupes autorisés à télécharger des fichiers ?");
 define('_MI_GLOSSAIRE_USER_PAGER', "Nombre de lignes côté utilisateur");
 define('_MI_GLOSSAIRE_USER_PAGER_DESC', "Nombre de lignes par page dans les listes pour les utilisateurs");
+define('_MI_GLOSSAIRE_USER_PAGER_DESC', "");
+define('_MI_GLOSSAIRE_REPLACE_AROBASE', "Caractère de remplacement pour l'arobase");
+define('_MI_GLOSSAIRE_REPLACE_AROBASE_DESC', "Permet de bloquer les accès directs au courriels sur les pages");
+
 
 ?>

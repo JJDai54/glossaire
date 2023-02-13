@@ -552,8 +552,14 @@ class Entries extends \XoopsObject
         }
 
         if($this->getVar('ent_email')){
-            $ret['email']         = sprintf("<a href='mailto:%s'>Send Email</a>", $this->getVar('ent_email'));
-        }
+            if($categoriesObj->getVar('cat_replace_arobase')){
+                //$ret['email']         = str_replace('@', $categoriesObj->getVar('cat_replace_arobase'), $this->getVar('ent_email'));         
+                $email = str_replace('@', $categoriesObj->getVar('cat_replace_arobase'), $this->getVar('ent_email'));         
+                $ret['email']         = sprintf("<a href='mailto:%s'>{$email}</a>", $email);
+            }else{
+                $ret['email']         = sprintf("<a href='mailto:%s'>{$this->getVar('ent_email')}</a>", $this->getVar('ent_email'));
+            }
+        }           
         
 		$ret['date_creation']          = \JJD\getDateSql2Str($this->getVar('ent_date_creation'));
 		$ret['date_update']            = \JJD\getDateSql2Str($this->getVar('ent_date_update'));

@@ -450,6 +450,14 @@ $modversion['config'][] = [
     'default'     => 'color: #bfc9ca;',
 ];
 
+$modversion['config'][] = [
+    'name'        => 'replace_arobase',
+    'title'       => '\_MI_GLOSSAIRE_REPLACE_AROBASE',
+    'description' => '\_MI_GLOSSAIRE_REPLACE_AROBASE_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '[@]',
+];
 
 // ------------------- interface ------------------- //
 $modversion['config'][] = glossaire_getBreakLine('interface');

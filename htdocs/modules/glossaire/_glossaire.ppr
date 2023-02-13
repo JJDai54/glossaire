@@ -21,6 +21,9 @@ _glossaire
 		+admin
 			admin\about.php
 			admin\categories.php
+			admin\categories-list.php
+			admin\categories-new.php
+			admin\categories-save.php
 			admin\clone.php
 			admin\entries.php
 			admin\entries-delete.php
@@ -34,9 +37,6 @@ _glossaire
 			admin\index.php
 			admin\menu.php
 			admin\permissions.php
-			admin\categories-list.php
-			admin\categories-new.php
-			admin\categories-save.php
 		-assets
 			+css
 				-admin
@@ -108,8 +108,8 @@ _glossaire
 			blocks\categories.php
 			blocks\entries.php
 			blocks\index.php
-		-class
-			+Common
+		+class
+			-Common
 				class\Common\Breadcrumb.php
 				class\Common\Configurator.php
 				class\Common\DirectoryChecker.php
@@ -266,38 +266,34 @@ _glossaire
 		read-me.txt
 		xoops_version.php
 [Open project files]
-0=class\Common\Configurator.php
-1=config\config.php
-2=docs\changelog.txt
-3=docs\todo.txt
-4=docs\credits.txt
-5=docs\install.txt
-6=header.php
-7=sql\mysql.sql
+0=sql\mysql.sql
+1=include\import_export.php
+2=class\Entries.php
+3=class\Categories.php
+4=admin\categories-save.php
+5=admin\categories-new.php
+6=language\french\admin.php
 [Selected Project Files]
 Main=
-Selected=sql\mysql.sql
-[class\Common\Configurator.php]
-TopLine=1
-Caret=1,1
-[config\config.php]
-TopLine=17
-Caret=9,29
-[docs\changelog.txt]
-TopLine=1
-Caret=30,22
-[docs\todo.txt]
-TopLine=1
-Caret=1,1
-[docs\credits.txt]
-TopLine=1
-Caret=1,5
-[docs\install.txt]
-TopLine=1
-Caret=21,2
-[header.php]
-TopLine=11
-Caret=111,43
+Selected=class\Entries.php
 [sql\mysql.sql]
 TopLine=1
-Caret=34,30
+Caret=15,30
+[include\import_export.php]
+TopLine=208
+Caret=45,236
+[class\Entries.php]
+TopLine=528
+Caret=71,560
+[class\Categories.php]
+TopLine=148
+Caret=49,177
+[admin\categories-save.php]
+TopLine=92
+Caret=26,122
+[admin\categories-new.php]
+TopLine=23
+Caret=48,47
+[language\french\admin.php]
+TopLine=144
+Caret=43,178
