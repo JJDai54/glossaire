@@ -1,33 +1,3 @@
-ALTER TABLE `x251_glossaire_categories` CHANGE `cat_logourl` `cat_logo` VARCHAR(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT ''; 
-
-
-        // Form Text catWeight
-        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_WEIGHT, 'cat_weight', 50, 255, $this->getVar('cat_weight')));
-        
-        // Form Frameworks Images Files catLogourl
-        // Form Frameworks Images catLogourl: Select Uploaded Image
-        $getCatLogourl = $this->getVar('cat_logo');
-        $catLogourl = $getCatLogourl ?: 'blank.gif';
-        //$imageDirectory = '/Frameworks/moduleclasses/icons/32';
-        $imageDirectory = GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH . "/" . $this->getVar('cat_upload_folder');
-        $logo = new \XoopsFormLabel('', "<br><img src='" . \XOOPS_URL . "/{$imageDirectory}/{$catLogourl}" . "' id='imglabel_cat_logourl' alt='' style='max-width:100px' >");        
-        
-//         $imageTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_CATEGORY_LOGO, '<br>');
-//         $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_GLOSSAIRE_CATEGORY_LOGO_UPLOADS, ".{$imageDirectory}/"), 'cat_logo', $catLogourl, 5);
-//         $imageArray = \XoopsLists::getImgListAsArray( \XOOPS_ROOT_PATH . $imageDirectory );
-//         foreach ($imageArray as $image1) {
-//             $imageSelect->addOption(($image1), $image1);
-//         }
-//         $imageSelect->setExtra("onchange='showImgSelected(\"imglabel_cat_logourl\", \"cat_logo\", \"" . $imageDirectory . '", "", "' . \XOOPS_URL . "\")'");
-//         $imageTray->addElement($imageSelect, false);
-//        $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='" . \XOOPS_URL . '/' . $imageDirectory . '/' . $catLogourl . "' id='imglabel_cat_logourl' alt='' style='max-width:100px' >"));
-        // Form Frameworks Images catLogourl: Upload new image
-        $logoTray = new \XoopsFormElementTray(_AM_GLOSSAIRE_CATEGORY_LOGO, '<br>');
-        $logoTray->addElement(new \XoopsFormFile('', 'cat_logo', $glossaireHelper->getConfig('maxsize_image')));
-        $logoTray->addElement($logo);
-        $form->addElement($logoTray);
-
-
 
 ajouter | pour des retours à la ligne dans la barre de lettre
 

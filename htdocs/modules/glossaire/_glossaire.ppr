@@ -108,7 +108,7 @@ _glossaire
 			blocks\categories.php
 			blocks\entries.php
 			blocks\index.php
-		+class
+		-class
 			+Common
 				class\Common\Breadcrumb.php
 				class\Common\Configurator.php
@@ -268,12 +268,32 @@ _glossaire
 [Open project files]
 0=class\Common\Configurator.php
 1=config\config.php
+2=docs\changelog.txt
+3=docs\todo.txt
+4=docs\credits.txt
+5=docs\install.txt
+6=header.php
 [Selected Project Files]
 Main=
-Selected=config\config.php
+Selected=header.php
 [class\Common\Configurator.php]
 TopLine=1
 Caret=1,1
 [config\config.php]
 TopLine=17
-Caret=62,53
+Caret=9,29
+[docs\changelog.txt]
+TopLine=1
+Caret=21,20
+[docs\todo.txt]
+TopLine=1
+Caret=1,1
+[docs\credits.txt]
+TopLine=1
+Caret=1,5
+[docs\install.txt]
+TopLine=1
+Caret=21,2
+[header.php]
+TopLine=11
+Caret=39,52
