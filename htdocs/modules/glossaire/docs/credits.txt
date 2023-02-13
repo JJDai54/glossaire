@@ -1,8 +1,0 @@
-Read Me First
-=============
-
-Originally created by JJdai - jjdelalandre@orange.fr.
-
-Contributors: Goffy (German Xoops) (modulebuilder)
-
-Included ideas for Logo Generator from Trabis (Publisher module) and Suin (Koins module)
