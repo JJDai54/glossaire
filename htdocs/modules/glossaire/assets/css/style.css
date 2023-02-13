@@ -1,0 +1,165 @@
+@charset "UTF-8";
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/**
+ * Glossaire module for xoops
+ *
+ * @copyright      2021 XOOPS Project (https://xoops.org)
+ * @license        GPL 2.0 or later
+ * @package        glossaire
+ * @since          1.0
+ * @min_xoops      2.5.10
+ * @author         XOOPS Development Team - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
+ */
+ul.menu {
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+ul.menu > li {
+    display: inline-block;
+}
+
+ul.menu > li + li:before {  
+    content: "|\a0";
+}
+
+.printOnly {
+    display: none;
+}
+
+img {
+    max-width: 300px;
+}
+
+.limagei {
+	/* list-style-image: url(../../images/faq.png); */
+	margin-left: 15px;
+    color:rgb(0,153,255);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.gls_seealso {
+	/* list-style-image: url(../../images/faq.png); */
+
+	margin-left: 15px;
+    color:rgb(0,153,255);
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
+.img_glossaire {
+ float: left;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 20px 20px 0px;
+}
+
+.gls_button{
+    float:right;
+    margin-left:3px;
+    margin-right:3px;
+}
+.gls_buttonTop{
+    margin-left:12px;
+}
+
+.gls_logoTopLeft {
+float: left;
+width: 32px; /* largeur en pixel de ta photo */
+height:32px; /* hauteur en pixel de ta photo */
+margin-right:10px; /* marge en pixel à droite de la photo */
+} 
+
+/*
+ * Default Admin Theme
+ *
+ * @copyright       (c) 2000-2015 XOOPS Project (www.xoops.org)
+ * @license         http://www.fsf.org/copyleft/gpl.html GNU public license 3.0
+ * @package         themes
+ * @since           2.5.x
+ * @author          Xoops Design Theme <http://www.xoops.org/>
+ * @maintained      Xoops Design Theme <http://www.xoops.org/>
+ *
+*/
+#xo-pagenav {
+    margin: 7px 0;
+    text-align: center;
+    font-size: 1.05em;
+}
+
+#xo-pagenav a {
+    margin: 2px;
+    background-color: #D3D2D6;
+    padding: 4px 8px 4px 8px;
+    color: #405A80;
+    font-size: 1em;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 0 20px 10px -10px rgba(255, 255, 255, 0.3) inset;
+    -moz-box-shadow : 0 20px 10px -10px rgba( 255, 255, 255, 0.3) inset;
+    -webkit-box-shadow : 0 20px 10px -10px rgba( 255, 255, 255, 0.3) inset;
+    cursor: pointer;
+}
+
+#xo-pagenav a:hover {
+    background-color: #E6EBFF;
+    padding: 4px 8px 4px 8px;
+    color: inherit;
+    cursor: pointer;
+}
+
+.xo-pagact {
+    margin: 2px 5px 2px 5px;
+    background-color: #E6EBFF;
+    padding: 4px;
+    color: #405A80;
+    font-size: 1em;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 0 20px 10px -10px rgba(255, 255, 255, 0.3) inset;
+    -moz-box-shadow : 0 20px 10px -10px rgba( 255, 255, 255, 0.3) inset;
+    -webkit-box-shadow : 0 20px 10px -10px rgba( 255, 255, 255, 0.3) inset;
+    cursor: pointer;
+}
+
+.xo-counterpage,.xo-pagarrow {
+    margin: 0;
+    padding: 4px;
+    color: #405A80;
+    background-color: #D3D2D6;
+    border: 1px solid #ccc;
+}
+
+.xo-counterpage:hover {
+
+}
+
+.xo-pagarrow {
+    letter-spacing: 0.2em;
+}
+
+.pagenav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+   
+
+
+
