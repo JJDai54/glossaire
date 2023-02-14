@@ -174,4 +174,7 @@ define('_AM_GLOSSAIRE_TOTAL', "Total");
 define('_AM_GLOSSAIRE_UP', "Monter");
 define('_AM_GLOSSAIRE_WEIGHT_UPDATE', "Le poids a �t� mis � jour");
 
+define('_AM_GLOSSAIRE_REPLACE_AROBASE', "Remplacer l'arobase");
+define('_AM_GLOSSAIRE_REPLACE_AROBASE_DESC', "Permet de bloquer les accès directs au courriels sur les pages.<br>exemple : [@]");
+
 ?>

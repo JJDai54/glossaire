@@ -25,7 +25,7 @@ declare(strict_types=1);
 require \dirname(__DIR__, 3) . '/include/cp_header.php';
 require_once \dirname(__DIR__) . '/include/common.php';
 //require_once \dirname(__DIR__) . '/include/functions-colors-set.php';
-include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
+include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/back_office.php");
 
 $sysPathIcon16   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
 $sysPathIcon32   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
