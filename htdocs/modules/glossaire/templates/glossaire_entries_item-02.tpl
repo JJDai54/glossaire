@@ -4,13 +4,26 @@
 <{/if}>
 <{*  ------------------------------------------------------------------ *}>
 
-<div name='entry-<{$entry.id}>' id='entry-<{$entry.id}>' class="item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:0px;">
-    <span class='limagei'><{if $showId}>[#<{$entry.id}>]-<{/if}><b><{$entry.term}></b></span>
+<div name='entry-<{$entry.id}>' id='entry-<{$entry.id}>' class="gls_title item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:0px;">
+    <{* 
+        <h2><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2> 
         <{if $entry.shortdef}>
             <{if $cat_br_after_term}><br><{else}> : <{/if}>
             <{$entry.shortdefMagnifed}>
         <{/if}>
-
+    
+    *}>
+    <{if $cat_br_after_term}>
+        <h2><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
+        <{if $entry.shortdef}>             
+            <h3><{$entry.shortdefMagnifed}></h3>
+        <{/if}>
+    <{else}> 
+        <h2 style='float:left;'><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
+        <{if $entry.shortdef}>          
+            <h3  > : <{$entry.shortdefMagnifed}></h3>
+        <{/if}>
+    <{/if}>
 
 <{* ---------- Affichage de boutons image pour gérer l'entree -----------*}>
 <{if ($posButtonsActions & 1)>0}>
@@ -32,7 +45,7 @@
 </div>
 
 <{* ---------- data de l'entrée -----------*}>
-<div class="item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:-5px;">
+<div class="item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:-5px;float:none;">
     <{if $entry.definition_img}>
         <{$entry.definition_img}>
     <{/if}>

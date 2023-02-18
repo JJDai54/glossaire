@@ -26,7 +26,7 @@ declare(strict_types=1);
 require \dirname(__DIR__, 2) . '/mainfile.php';
 require_once __DIR__ . '/include/common.php';
 //require __DIR__ . '/include/functions-colors-set.php';
-require_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
+require_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/front_office.php");
 
 $moduleDirName = \basename(__DIR__);
 // Breadcrumbs
