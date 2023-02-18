@@ -216,9 +216,9 @@ global $_POST, $_FILES;
         if ($entriesHandler->insert($entriesObj)) {
 //exit('ok');
           if ($addNew)
-            \redirect_header("entries.php?op=new&catIdSelect={$catId}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, \_AM_GLOSSAIRE_FORM_OK);
+            \redirect_header("entries.php?op=new&catIdSelect={$catId}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}&letter={$letter}" , 2, \_AM_GLOSSAIRE_FORM_OK);
           else
-            \redirect_header("entries.php?op=list&catIdSelect={$catId}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}" , 2, \_AM_GLOSSAIRE_FORM_OK);
+            \redirect_header("entries.php?op=list&catIdSelect={$catId}&start={$start}&limit={$limit}&statusIdSelect={$statusIdSelect}&letter={$letter}#entry-{$entId}" , 2, \_AM_GLOSSAIRE_FORM_OK);
         }
 //exit('non');
         // Get Form

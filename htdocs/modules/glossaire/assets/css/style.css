@@ -41,13 +41,6 @@ img {
     max-width: 300px;
 }
 
-.limagei {
-	/* list-style-image: url(../../images/faq.png); */
-	margin-left: 15px;
-    color:rgb(0,153,255);
-    font-size: 0.5em;
-    font-weight: bold;
-}
 .gls_title h1{
 	/* list-style-image: url(../../images/faq.png); */
 	margin-top: 0px;

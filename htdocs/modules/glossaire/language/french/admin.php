@@ -123,7 +123,7 @@ define('_AM_GLOSSAIRE_FORM_ACTIONS', "Actions");
 define('_AM_GLOSSAIRE_FORM_DELETE', "Effacer");
 define('_AM_GLOSSAIRE_FORM_DELETE_OK', "Supprimé avec succès");
 define('_AM_GLOSSAIRE_FORM_OK', "Sauvegardé avec succès");
-define('_AM_GLOSSAIRE_FORM_SURE_DELETE', "Êtes-vous sûr de supprimer : <b><span style='color : Red;'>%s </span></b>");
+define('_AM_GLOSSAIRE_FORM_SURE_DELETE', "Êtes-vous sûr de supprimer : <b><span style='color : Red;'>[%s] %s</span></b>");
 define('_AM_GLOSSAIRE_FORM_UPLOAD', "Télécharger le fichier");
 define('_AM_GLOSSAIRE_FORM_UPLOAD_NEW', "Télécharger un nouveau fichier : ");
 define('_AM_GLOSSAIRE_FORM_UPLOAD_SIZE', "Taille maximale du fichier : ");
@@ -176,4 +176,6 @@ define('_AM_GLOSSAIRE_WEIGHT_UPDATE', "Le poids a été mis à jour");
 
 define('_AM_GLOSSAIRE_REPLACE_AROBASE', "Remplacer l'arobase");
 define('_AM_GLOSSAIRE_REPLACE_AROBASE_DESC', "Permet de bloquer les accès directs au courriels sur les pages.<br>exemple : [@]");
+define('_AM_GLOSSAIRE_ENTRIES', "Entrées");
+
 ?>

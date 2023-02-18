@@ -4,7 +4,7 @@
 <{/if}>
 <{*  ------------------------------------------------------------------ *}>
 
-<div name='entry-<{$entry.id}>' id='entry-<{$entry.id}>' class="gls_title item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:0px;">
+<div name='entry-<{$entry.id}>' id='entry-<{$entry.id}>' class="gls_title item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:0px; c">
     <{* 
         <h2><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2> 
         <{if $entry.shortdef}>
@@ -21,7 +21,7 @@
     <{else}> 
         <h2 style='float:left;'><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
         <{if $entry.shortdef}>          
-            <h3  > : <{$entry.shortdefMagnifed}></h3>
+            <h3> : <{$entry.shortdefMagnifed}></h3>
         <{/if}>
     <{/if}>
 
@@ -38,7 +38,7 @@
            <img src="<{xoModuleIcons16 add.png}>" class='gls_button' title="<{$smarty.const._ADD}>"></a>
         <a href='entries.php?op=clone&ent_id_source=<{$entry.ent_id}>' title='<{$smarty.const._CLONE}>'>
            <img src="<{xoModuleIcons16 editcopy.png}>" class='gls_button' title="<{$smarty.const._CLONE}>"></a>
-        <a href='entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>''>
+        <a href='entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>&letter=<{$letter}>'>
           <img src="<{xoModuleIcons16 edit.png}>" class='gls_button' title="<{$smarty.const._EDIT}>"></a>
     <{/if}>
 <{/if}>

@@ -266,11 +266,13 @@ xoops_load('XoopsLists');
 		$formFtp->addElement(new \XoopsFormButton('', "submit_ftp", _AM_GLOSSAIRE_IMPORTER, 'submit'));
 //echo $formImport->render()  ;      
 		$GLOBALS['xoopsTpl']->assign('form_ftp', $formFtp->render());   
+
              
         // /////////////////////////////////////////////////////////
         // ////////  form pour import de lexikon            ////////
         // /////////////////////////////////////////////////////////
         // Title
+/*     =============== verifier d'abord si le module est installé 
 		$title = _AM_GLOSSAIRE_IMPORT_FROM_LEXIKON;        
 		$formLexikon = new \XoopsThemeForm($title, 'form_import', 'import.php', 'post', true);
 		$formLexikon->setExtra('enctype="multipart/form-data"');
@@ -291,6 +293,7 @@ xoops_load('XoopsLists');
 
 		$formLexikon->addElement(new \XoopsFormButton('', "submit_lexicon", _AM_GLOSSAIRE_IMPORTER, 'submit'));
 		$GLOBALS['xoopsTpl']->assign('form_lexikon', $formLexikon->render());        
+*/
 
 
 

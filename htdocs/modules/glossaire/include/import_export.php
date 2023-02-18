@@ -91,7 +91,7 @@ function export_categories($catId, $pathExport, $moduleName, $uploadsPath=''){
 /**************************************************************
  * 
  * ************************************************************/
-function export_entries($catId, $pathExport, $moduleName, $uploadsPath='',$gls_add_img, $gls_add_files){
+function export_entries($catId, $pathExport, $moduleName, $uploadsPath,$gls_add_img, $gls_add_files){
     global $xoopsFolder;
     
     $criteria = new \CriteriaCompo(new \Criteria('ent_cat_id',$catId,'='));

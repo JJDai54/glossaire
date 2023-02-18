@@ -3,24 +3,24 @@
 ==============================================================
  - Original release glossaire (JJDai Development Team)
  
-Ce module pemet de gérer des Glossaire ou Lexiques. Il prend en charge
-    les catégories avec colorations différenciées
-    L'exportation des défintions par cétégories y compris les images des définitions
-    L'importation dans une nouvelle categorie ou une existante d'une catégorie exportée par ce module ou un de ses clones. Les images sont également importées si elles existent.
-    Lexikon : L'importation dans une nouvelle categorie ou une existante d'une catégorie du module "Lexikon"
+Ce module pemet de gÃ©rer des Glossaire ou Lexiques. Il prend en charge
+    les catÃ©gories avec colorations diffÃ©renciÃ©es
+    L'exportation des dÃ©fintions par cÃ©tÃ©gories y compris les images des dÃ©finitions
+    L'importation dans une nouvelle categorie ou une existante d'une catÃ©gorie exportÃ©e par ce module ou un de ses clones. Les images sont Ã©galement importÃ©es si elles existent.
+    Lexikon : L'importation dans une nouvelle categorie ou une existante d'une catÃ©gorie du module "Lexikon"
     Le clonage sans conflit
 
-Chaque défitnion comprend :
+Chaque dÃ©fitnion comprend :
     un terme
-    Une définition courte avec prise en chage d'une mise en forme pour les acronymes
-    Une définition
-    une zone de références : Sources, Adresse, téléphone et toute information utile
+    Une dÃ©finition courte avec prise en chage d'une mise en forme pour les acronymes
+    Une dÃ©finition
+    une zone de rÃ©fÃ©rences : Sources, Adresse, tÃ©lÃ©phone et toute information utile
     0 ou plusieurs URLs (voir aussi)
-    Une logo pour chaque définition
+    Une logo pour chaque dÃ©finition
     un fichier joint
-    un Status : Inactif, Proposé, Soumis
+    un Status : Inactif, ProposÃ©, Soumis
     courriel pour le contact 
 
 Conception :
 
-La structure du module a été réalisée grace au module "moduleBuilder" https://github.com/XoopsModules25x/modulebuilder
+La structure du module a Ã©tÃ© rÃ©alisÃ©e grace au module "moduleBuilder" https://github.com/XoopsModules25x/modulebuilder

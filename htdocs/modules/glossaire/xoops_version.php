@@ -288,8 +288,8 @@ $modversion['config'][] = [
     'title'       => '\_MI_GLOSSAIRE_MAXSIZE_IMAGE',
     'description' => '\_MI_GLOSSAIRE_MAXSIZE_IMAGE_DESC',
     'formtype'    => 'select',
-    'valuetype'   => 'int',
-    'default'     => $optionMaxsize['100 Mo'],
+    'valuetype'   => 'int',         
+    'default'     => 104857600, //$optionMaxsize['100 Mo'],   
     'options'     => $optionMaxsize,
 ];
 // Uploads : mimetypes of image
@@ -329,7 +329,7 @@ $modversion['config'][] = [
     'description' => '\_MI_GLOSSAIRE_MAXSIZE_FILE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
-    'default'     => $optionMaxsize['250 Mo'],
+    'default'     => 262144000, //$optionMaxsize['250 Mo'], 
     'options'     => $optionMaxsize,
 ];
 

@@ -32,8 +32,8 @@ CREATE TABLE `glossaire_categories` (
   `cat_show_terms_index` tinyint(1) NOT NULL DEFAULT '1',
   `cat_count_entries` int(11) NOT NULL DEFAULT '0',
   `cat_active` tinyint(1) NOT NULL DEFAULT '0',
-  `cat_date_creation` datetime(6) NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `cat_date_update` datetime(6) NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `cat_date_creation` datetime(6) NOT NULL DEFAULT '1970-01-01 00:00:00',
+  `cat_date_update` datetime(6) NOT NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`cat_id`),
  UNIQUE KEY `cat_upload_folder` (`cat_upload_folder`)  
 ) ENGINE=InnoDB;
@@ -61,8 +61,8 @@ CREATE TABLE `glossaire_entries` (
   `ent_counter` int(10) NOT NULL DEFAULT '0',
   `ent_status` tinyint(1) NOT NULL DEFAULT '0',
   `ent_flag` int(10) NOT NULL DEFAULT '0',
-  `ent_date_creation` datetime(6) NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `ent_date_update` datetime(6) NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ent_date_creation` datetime(6) NOT NULL DEFAULT '1970-01-01 00:00:00',
+  `ent_date_update` datetime(6) NOT NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`ent_id`)
 ) ENGINE=InnoDB;
 

@@ -113,7 +113,7 @@ switch (strtolower($op)) {
             $xoopsconfirm = new Common\XoopsConfirm(
                 ['ok' => 1, 'cat_id' => $catId, 'start' => $start, 'limit' => $limit, 'op' => 'delete'],
                 $_SERVER['REQUEST_URI'],
-                \sprintf(\_AM_GLOSSAIRE_FORM_SURE_DELETE, $categoriesObj->getVar('cat_name')));
+                \sprintf(\_AM_GLOSSAIRE_FORM_SURE_DELETE, $categoriesObj->getVar('cat_id'), $categoriesObj->getVar('cat_name')));
             $form = $xoopsconfirm->getFormXoopsConfirm();
             $GLOBALS['xoopsTpl']->assign('form', $form->render());
         }

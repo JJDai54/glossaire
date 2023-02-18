@@ -182,9 +182,9 @@ class Entries extends \XoopsObject
         $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_SHORTDEF, 'ent_shortdef', 120, 255, $this->getVar('ent_shortdef')));
         
         // Form Text ent_is_acronym
-          $inpMagnifySd = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_ENTRY_MAGNIFY_SD, 'ent_is_acronym', $this->getVar('ent_is_acronym'));
-          $inpMagnifySd->setDescription(\_AM_GLOSSAIRE_ENTRY_MAGNIFY_SD_DESC);
-          $form->addElement($inpMagnifySd);
+        $inpMagnifySd = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_ENTRY_MAGNIFY_SD, 'ent_is_acronym', $this->getVar('ent_is_acronym'));
+        $inpMagnifySd->setDescription(\_AM_GLOSSAIRE_ENTRY_MAGNIFY_SD_DESC);
+        $form->addElement($inpMagnifySd);
         
         //-------------------------------------------------
         $entImage = $this->isNew() ? '' : $this->getVar('ent_image');
@@ -228,43 +228,39 @@ class Entries extends \XoopsObject
         //-------------------------------------------------
             
         // Form Editor DhtmlTextArea entDefinition
-        $editorConfigs = [];
         if ($isAdmin) {
             $editor = $glossaireHelper->getConfig('editor_admin');
         } else {
             $editor = $glossaireHelper->getConfig('editor_user');
         }
-        $editorConfigs['name'] = 'ent_definition';
-        $editorConfigs['value'] = $this->getVar('ent_definition', 'e');
-        $editorConfigs['rows'] = 5;
-        $editorConfigs['cols'] = 40;
-        $editorConfigs['width'] = '100%';
-        $editorConfigs['height'] = '400px';
-        $editorConfigs['editor'] = $editor;
-        $form->addElement(new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_DEFINITION, 'ent_definition', $editorConfigs));
+        
+        $editorConfigs1 = [];
+        $editorConfigs1['name'] = 'ent_definition';
+        $editorConfigs1['value'] = $this->getVar('ent_definition', 'e');
+        $editorConfigs1['rows'] = 10;
+        $editorConfigs1['cols'] = 40;
+        $editorConfigs1['width'] = '100%';
+        $editorConfigs1['height'] = '400px';
+        $editorConfigs1['editor'] = $editor;
+        $inpDefinition = new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_DEFINITION, 'ent_definition', $editorConfigs1);
+        //$inpDefinition->setDescription(_AM_GLOSSAIRE_ENTRY_DEFINITION_DESC);
+        $form->addElement($inpDefinition);
+        
         // Form Editor DhtmlTextArea entReference
-        $editorConfigs = [];
-        if ($isAdmin) {
-            $editor = $glossaireHelper->getConfig('editor_admin');
-        } else {
-            $editor = $glossaireHelper->getConfig('editor_user');
-        }
-        $editorConfigs['name'] = 'ent_reference';
-        $editorConfigs['value'] = $this->getVar('ent_reference', 'e');
-        $editorConfigs['rows'] = 5;
-        $editorConfigs['cols'] = 40;
-        $editorConfigs['width'] = '100%';
-        $editorConfigs['height'] = '400px';
-        $editorConfigs['editor'] = $editor;
-        $inpReference = new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_REFERENCES, 'ent_reference', $editorConfigs);
+        $editorConfigs2 = [];
+        $editorConfigs2['name'] = 'ent_reference';
+        $editorConfigs2['value'] = $this->getVar('ent_reference', 'e');
+        $editorConfigs2['rows'] = 5;
+        $editorConfigs2['cols'] = 40;
+        $editorConfigs2['width'] = '100%';
+        $editorConfigs2['height'] = '200px';
+        $editorConfigs2['editor'] = $editor;
+        $inpReference = new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_REFERENCES, 'ent_reference', $editorConfigs2);
         $inpReference->setDescription(_AM_GLOSSAIRE_ENTRY_REFERENCES_DESC);
         $form->addElement($inpReference);
 
-        //todo ajouter le telechargement d'un fichier
-        // Form Text ent_file
-        
-        
         //-------------------------------------------------
+        // Form Text ent_file
         $entFileName = $this->isNew() ? '' : $this->getVar('ent_file_name');
         $entFilePath = $this->isNew() ? '' : $this->getVar('ent_file_path');
         $form->addElement(new \XoopsFormHidden('ent_file_name', $entFileName));        

@@ -46,7 +46,7 @@ use XoopsModules\Glossaire\Common;
         $xoopsconfirm = new Common\XoopsConfirm(
             ['ok' => 1, 'ent_id' => $entId, 'catIdSelect' => $catIdSelect, 'start' => $start, 'limit' => $limit, 'statusIdSelect' => $statusIdSelect, 'op' => 'delete'],
             $_SERVER['REQUEST_URI'],
-            \sprintf(\_AM_GLOSSAIRE_FORM_SURE_DELETE, $entriesObj->getVar('ent_cat_id')));
+            \sprintf(\_AM_GLOSSAIRE_FORM_SURE_DELETE, $entriesObj->getVar('ent_id'), $entriesObj->getVar('ent_term')));
         $form = $xoopsconfirm->getFormXoopsConfirm();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
     }

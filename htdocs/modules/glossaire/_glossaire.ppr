@@ -26,8 +26,11 @@ _glossaire
 			admin\categories-save.php
 			admin\clone.php
 			admin\entries.php
+			admin\entries-clone.php
 			admin\entries-delete.php
+			admin\entries-edit.php
 			admin\entries-list.php
+			admin\entries-new.php
 			admin\entries-save.php
 			admin\export.php
 			admin\feedback.php
@@ -141,7 +144,7 @@ _glossaire
 			config\icons.php
 			config\index.php
 			config\paths.php
-		-docs
+		+docs
 			docs\changelog.txt
 			docs\credits.txt
 			docs\index.php
@@ -265,54 +268,30 @@ _glossaire
 		read-me.txt
 		xoops_version.php
 [Open project files]
-0=admin\header.php
-1=header.php
-2=index.php
-3=entries-list.php
-4=templates\glossaire_entries.tpl
-5=class\Categories.php
-6=class\Entries.php
-7=class\Utility.php
-8=templates\glossaire_entries_terms_links.tpl
-9=templates\glossaire_entries_item-02.tpl
-10=assets\css\style.css
-11=templates\glossaire_categories_colors_set.tpl
+0=admin\entries-delete.php
+1=admin\categories.php
+2=entries-list.php
+3=index.php
+4=entries.php
+5=sql\mysql.sql
 [Selected Project Files]
 Main=
-Selected=assets\css\style.css
-[admin\header.php]
-TopLine=1
-Caret=49,28
-[header.php]
-TopLine=5
-Caret=25,37
-[index.php]
-TopLine=15
-Caret=1,1
+Selected=sql\mysql.sql
+[admin\entries-delete.php]
+TopLine=23
+Caret=53,49
+[admin\categories.php]
+TopLine=103
+Caret=89,116
 [entries-list.php]
-TopLine=81
-Caret=1,129
-[templates\glossaire_entries.tpl]
-TopLine=77
-Caret=35,89
-[class\Categories.php]
-TopLine=278
-Caret=72,297
-[class\Entries.php]
+TopLine=140
+Caret=1,1
+[index.php]
 TopLine=1
 Caret=1,1
-[class\Utility.php]
-TopLine=340
-Caret=1,353
-[templates\glossaire_entries_terms_links.tpl]
-TopLine=57
-Caret=54,62
-[templates\glossaire_entries_item-02.tpl]
-TopLine=1
-Caret=150,7
-[assets\css\style.css]
-TopLine=49
-Caret=15,70
-[templates\glossaire_categories_colors_set.tpl]
-TopLine=1
-Caret=23,7
+[entries.php]
+TopLine=34
+Caret=31,55
+[sql\mysql.sql]
+TopLine=45
+Caret=70,65

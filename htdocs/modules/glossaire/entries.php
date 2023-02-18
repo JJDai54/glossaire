@@ -52,6 +52,7 @@ $page2redirect = "entries.php";
 
 $GLOBALS['xoopsTpl']->assign('start', $start);
 $GLOBALS['xoopsTpl']->assign('limit', $limit);
+$GLOBALS['xoopsTpl']->assign('letter', $letter);
 
 // Define Stylesheet
 $GLOBALS['xoTheme']->addStylesheet($style, null);
@@ -82,7 +83,7 @@ $GLOBALS['xoopsTpl']->assign('showItem', $entId > 0);
 //echo "<hr>perms<pre>" . print_r($catPerms, true) . "</pre><hr>";
               
 $bolFoot = true;
-switch ($op) {
+switch (strtolower($op)) {
     default:
     case 'show':
     case 'list':
@@ -115,14 +116,8 @@ switch ($op) {
             $form = $entriesObj->getFormEntriesLight(false, true);
         }
         \JJD\load_css();
-        //$catObj = $categoriesHandler->get($catIdSelect);
-echo ($catObj) ? "<hr>OUI<hr>" : "<hr>NON<hr>"; 
         $GLOBALS['xoopsTpl']->assign('colors_set', $catObj->getVar('cat_colors_set'));
         $GLOBALS['xoopsTpl']->assign('cat_name', $catObj->getVar('cat_name'));
-
-        //$GLOBALS['xoopsTpl']->assign('catArr', $catArr);
-        
-echo "<hr>{$catIdSelect} : cat_colors_set : " . $catObj->getVar('cat_colors_set') . "<hr>";
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
         
@@ -177,40 +172,7 @@ echo "<hr>{$catIdSelect} : cat_colors_set : " . $catObj->getVar('cat_colors_set'
 //             \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
         include_once 'admin/entries-delete';
         break;
-        // Breadcrumbs
-        $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_ENTRY_DELETE];
-        // Check params
-        if (0 == $entId) {
-            \redirect_header("{$page2redirect}?op=list", 3, \_MA_GLOSSAIRE_INVALID_PARAM);
-        }
-        $entriesObj = $entriesHandler->get($entId);
-        $entCat_id = $entriesObj->getVar('ent_cat_id');
-        if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
-            if (!$GLOBALS['xoopsSecurity']->check()) {
-                \redirect_header($page2redirect, 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
-            }
-            if ($entriesHandler->delete($entriesObj)) {
-                // Event delete notification
-                $tags = [];
-                $tags['ITEM_NAME'] = $entCat_id;
-                $notificationHandler = \xoops_getHandler('notification');
-                $notificationHandler->triggerEvent('global', 0, 'global_delete', $tags);
-                $notificationHandler->triggerEvent('entries', $entId, 'entry_delete', $tags);
-                \redirect_header($page2redirect, 3, \_MA_GLOSSAIRE_FORM_DELETE_OK);
-            } else {
-                $GLOBALS['xoopsTpl']->assign('error', $entriesObj->getHtmlErrors());
-            }
-        } else {
-            $xoopsconfirm = new Common\XoopsConfirm( 
-                ['ok' => 1, 'ent_id' => $entId, 'start' => $start, 'limit' => $limit, 'exp2search' => $exp2search, 'op' => 'delete'],
-                $_SERVER['REQUEST_URI'],
-                \sprintf(\_MA_GLOSSAIRE_FORM_SURE_DELETE, $entriesObj->getVar('ent_cat_id')));
-            $form = $xoopsconfirm->getFormXoopsConfirm();
-            $GLOBALS['xoopsTpl']->assign('form', $form->render());
-        }
-        break;
 
-    case 'globalSearch':
     case 'globalsearch':
         $exp2search = str_replace(",|; ", "+", $exp2search);
         $andor = "OR";
