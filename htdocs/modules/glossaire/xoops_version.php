@@ -45,7 +45,7 @@ $modversion = [
     'name'                => \_MI_GLOSSAIRE_NAME,
     'version'             => 1.2,
     'release'             => '2023-02-12',
-    'module_status'       => 'Beta 2',
+    'module_status'       => 'Beta 3',
     'description'         => \_MI_GLOSSAIRE_DESC,
     'author'              => 'XOOPS Development Team',
     'author_mail'         => 'jjdelalandre@orange.fr',
@@ -259,6 +259,12 @@ $modversion['config'][] = [
 require_once __DIR__ . '/include/xoops_version.inc.php';
 $iniPostMaxSize       = glossaireReturnBytes(\ini_get('post_max_size'));
 $iniUploadMaxFileSize = glossaireReturnBytes(\ini_get('upload_max_filesize'));
+
+/*
+$iniPostMaxSize       = 314572800;
+$iniUploadMaxFileSize = 314572800;
+*/
+
 $maxSize              = min($iniPostMaxSize, $iniUploadMaxFileSize);
 
 if ($maxSize > 10000  * 1048576) $increment = 500;

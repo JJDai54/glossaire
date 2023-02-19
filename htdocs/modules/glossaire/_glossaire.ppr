@@ -164,7 +164,7 @@ _glossaire
 			include\uninstall.php
 			include\update.php
 			include\xoops_version.inc.php
-		-language
+		+language
 			+english
 				-help
 					language\english\help\help.html
@@ -268,30 +268,22 @@ _glossaire
 		read-me.txt
 		xoops_version.php
 [Open project files]
-0=admin\entries-delete.php
-1=admin\categories.php
-2=entries-list.php
-3=index.php
-4=entries.php
-5=sql\mysql.sql
+0=xoops_version.php
+1=admin\import.php
+2=language\french\modinfo.php
+3=language\english\modinfo.php
 [Selected Project Files]
 Main=
-Selected=sql\mysql.sql
-[admin\entries-delete.php]
-TopLine=23
-Caret=53,49
-[admin\categories.php]
-TopLine=103
-Caret=89,116
-[entries-list.php]
+Selected=language\english\modinfo.php
+[xoops_version.php]
+TopLine=25
+Caret=37,48
+[admin\import.php]
+TopLine=269
+Caret=15,283
+[language\french\modinfo.php]
 TopLine=140
-Caret=1,1
-[index.php]
-TopLine=1
-Caret=1,1
-[entries.php]
-TopLine=34
-Caret=31,55
-[sql\mysql.sql]
-TopLine=45
-Caret=70,65
+Caret=70,155
+[language\english\modinfo.php]
+TopLine=133
+Caret=80,157
