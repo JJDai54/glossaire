@@ -50,7 +50,7 @@
         <span class='gls_seealso'><{$smarty.const._MA_GLOSSAIRE_SEEALSO}> : </span><br>
         <{$entry.urls}>
     <{/if}>
-    <{if $entry.email <>''}>
+    <{if $entry.email}>
         <span class='gls_seealso'><{$smarty.const._MA_GLOSSAIRE_CONTACT}> : </span> : <{$entry.email}>
     <{/if}>
     <{if $entry.file_name}>

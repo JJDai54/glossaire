@@ -277,13 +277,10 @@ _glossaire
 5=entries-list.php
 6=entries.php
 7=templates\glossaire_categories_colors_set.tpl
-8=J:\Xoops\modules-JJD\glossaire\module_to_gitHub.bat
-9=J:\Xoops\modules-JJD\copie_module_to_ghitHub.bat
-10=J:\Xoops\modules-JJD\copie_module_from_wamp.bat
-11=J:\Xoops\modules-JJD\glossaire\module_from_wamp.bat
+8=templates\glossaire_entries_item-02.tpl
 [Selected Project Files]
 Main=
-Selected=J:\Xoops\modules-JJD\copie_module_from_wamp.bat
+Selected=templates\glossaire_entries_item-02.tpl
 [xoops_version.php]
 TopLine=25
 Caret=37,48
@@ -308,15 +305,6 @@ Caret=1,84
 [templates\glossaire_categories_colors_set.tpl]
 TopLine=1
 Caret=1,8
-[J:\Xoops\modules-JJD\glossaire\module_to_gitHub.bat]
-TopLine=1
-Caret=1,1
-[J:\Xoops\modules-JJD\copie_module_to_ghitHub.bat]
-TopLine=5
-Caret=1,1
-[J:\Xoops\modules-JJD\copie_module_from_wamp.bat]
-TopLine=1
-Caret=51,20
-[J:\Xoops\modules-JJD\glossaire\module_from_wamp.bat]
-TopLine=1
-Caret=6,13
+[templates\glossaire_entries_item-02.tpl]
+TopLine=21
+Caret=22,53
