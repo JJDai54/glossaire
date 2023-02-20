@@ -21,7 +21,7 @@
 <{* Affichage de boutons image pour gérer l entree *}>
 <{if $catPerms.submit}>
   <div class="item-round-no <{$colors_set}>-item-head" style="padding:6px;margin-top:-5px;text-align:right;">
-    <a href='entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>''>
+    <a href='entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>'>
       <img src="<{xoModuleIcons16 edit.png}>" title="<{$smarty.const._EDIT}>"></a>
     <a href='entries.php?op=clone&ent_id_source=<{$entry.ent_id}>' title='<{$smarty.const._CLONE}>'>
        <img src="<{xoModuleIcons16 editcopy.png}>" title="<{$smarty.const._CLONE}>"></a>
