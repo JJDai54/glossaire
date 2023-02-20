@@ -278,12 +278,13 @@ _glossaire
 6=entries.php
 7=templates\glossaire_categories_colors_set.tpl
 8=templates\glossaire_entries_item-02.tpl
+9=templates\glossaire_entries_terms_links.tpl
 [Selected Project Files]
 Main=
-Selected=templates\glossaire_entries_item-02.tpl
+Selected=templates\glossaire_categories_colors_set.tpl
 [xoops_version.php]
-TopLine=25
-Caret=37,48
+TopLine=83
+Caret=71,112
 [admin\import.php]
 TopLine=269
 Caret=15,283
@@ -304,7 +305,10 @@ TopLine=69
 Caret=1,84
 [templates\glossaire_categories_colors_set.tpl]
 TopLine=1
-Caret=1,8
+Caret=1,14
 [templates\glossaire_entries_item-02.tpl]
-TopLine=21
+TopLine=27
 Caret=22,53
+[templates\glossaire_entries_terms_links.tpl]
+TopLine=17
+Caret=1,7

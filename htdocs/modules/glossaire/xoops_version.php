@@ -109,7 +109,7 @@ $modversion['templates'] = [
     ['file' => 'glossaire_entries_list.tpl', 'description' => ''],
     ['file' => 'glossaire_entries_item-01.tpl', 'description' => ''],
     ['file' => 'glossaire_entries_item-02.tpl', 'description' => ''],
-    ['file' => 'glossaire_entries_terms_links.tpl', 'description' => 'Liste des termes avec liens sur la définition'],
+    ['file' => 'glossaire_entries_terms_links.tpl', 'description' => ''],
     ['file' => 'glossaire_breadcrumbs.tpl', 'description' => ''],
     ['file' => 'glossaire_search.tpl', 'description' => ''],
     ['file' => 'glossaire_footer.tpl', 'description' => ''],

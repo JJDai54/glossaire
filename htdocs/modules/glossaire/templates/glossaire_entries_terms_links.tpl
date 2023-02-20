@@ -8,7 +8,7 @@
   <{foreach item=entry from=$entries name=entriesList}>
     <{if $smarty.foreach.entriesList.first}>|<{/if}>
     <span style='margin:0px 12px 0px 0px;'>
-    <a href="#entry-<{$entry.id}>" title="" alt=""  >
+    <a href="#entry-<{$entry.id}>" title="" alt="" >
         <{$entry.term}> 
     </a></span>|
   <{/foreach}>
