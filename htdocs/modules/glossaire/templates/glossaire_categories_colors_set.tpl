@@ -5,13 +5,6 @@
 <{*  ------------------------------------------------------------------ *}>
 
 <div class='gls_title fwj-contenair-onglets' style='margin-bottom:-5px'>
-    <{if $showBtnAllCategorys}>
-      <div class="fwj-onglets">
-        <a href="<{$smarty.const.GLOSSAIRE_URL}><{$page2redirect}>" >
-          <{$smarty.const._ALL}>
-        </a>
-      </div>
-    <{/if}>
 
     <{foreach item=category from=$categories name=lpCat}>&nbsp;&nbsp;
           <div class="fwj-onglets <{$category.colors_set}>-item-legend" >

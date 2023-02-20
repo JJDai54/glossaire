@@ -33,6 +33,7 @@ use JJD AS JJD;
 //         break;
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_ENTRIES_LIST];
+        $xoTheme->addScript(XOOPS_URL . '/modules/glossaire/assets/js/scroll.js');        
 //Utility::include_highslide(array('allowMultipleInstances'=>false));        
     
         \JJD\include_highslide(array('allowMultipleInstances'=>false));    

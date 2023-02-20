@@ -40,7 +40,7 @@ _glossaire
 			admin\index.php
 			admin\menu.php
 			admin\permissions.php
-		-assets
+		+assets
 			+css
 				-admin
 					assets\css\admin\index.php
@@ -102,10 +102,11 @@ _glossaire
 				assets\images\blank.png
 				assets\images\index.php
 				assets\images\logoModule.png
-			-js
+			+js
 				assets\js\functions.js
 				assets\js\highslide.js
 				assets\js\index.php
+				assets\js\scroll.js
 			assets\index.php
 		+blocks
 			blocks\categories.php
@@ -272,9 +273,17 @@ _glossaire
 1=admin\import.php
 2=language\french\modinfo.php
 3=language\english\modinfo.php
+4=assets\js\scroll.js
+5=entries-list.php
+6=entries.php
+7=templates\glossaire_categories_colors_set.tpl
+8=J:\Xoops\modules-JJD\glossaire\module_to_gitHub.bat
+9=J:\Xoops\modules-JJD\copie_module_to_ghitHub.bat
+10=J:\Xoops\modules-JJD\copie_module_from_wamp.bat
+11=J:\Xoops\modules-JJD\glossaire\module_from_wamp.bat
 [Selected Project Files]
 Main=
-Selected=language\english\modinfo.php
+Selected=J:\Xoops\modules-JJD\copie_module_from_wamp.bat
 [xoops_version.php]
 TopLine=25
 Caret=37,48
@@ -287,3 +296,27 @@ Caret=70,155
 [language\english\modinfo.php]
 TopLine=133
 Caret=80,157
+[assets\js\scroll.js]
+TopLine=1
+Caret=1,2
+[entries-list.php]
+TopLine=9
+Caret=1,36
+[entries.php]
+TopLine=69
+Caret=1,84
+[templates\glossaire_categories_colors_set.tpl]
+TopLine=1
+Caret=1,8
+[J:\Xoops\modules-JJD\glossaire\module_to_gitHub.bat]
+TopLine=1
+Caret=1,1
+[J:\Xoops\modules-JJD\copie_module_to_ghitHub.bat]
+TopLine=5
+Caret=1,1
+[J:\Xoops\modules-JJD\copie_module_from_wamp.bat]
+TopLine=1
+Caret=51,20
+[J:\Xoops\modules-JJD\glossaire\module_from_wamp.bat]
+TopLine=1
+Caret=6,13

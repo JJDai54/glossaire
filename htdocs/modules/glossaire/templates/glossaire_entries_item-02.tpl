@@ -17,7 +17,7 @@
         <{/if}>
     <{/if}>
 
-<{* ---------- Affichage de boutons image pour gerer l'entree -----------*}>
+<{* ---------- Affichage de boutons image pour gerer l entree -----------*}>
 <{if ($posButtonsActions & 1) > 0}>
     <a href='#haut_de_page'>
       <img src="<{xoModuleIcons16 ASC.png}>" class='gls_button gls_buttonTop' title="<{$smarty.const._MA_GLOSSAIRE_TOP}>"></a>
@@ -36,7 +36,7 @@
 <{/if}>
 </div>
 
-<{* ---------- data de l'entree -----------*}>
+<{* ---------- data de l entree -----------*}>
 <div class="item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:-5px;float:none;">
     <{if $entry.definition_img}>
         <{$entry.definition_img}>
@@ -59,7 +59,7 @@
     <{/if}>
 </div>
 
-<{* ---------- Affichage des boutons image pour gerer l'entree -----------*}>
+<{* ---------- Affichage des boutons image pour gerer l entree -----------*}>
 <{if ($posButtonsActions & 2)>0}>
     <a href='#haut_de_page'>
       <img src="<{xoModuleIcons16 ASC.png}>" class='gls_button gls_buttonTop' title="<{$smarty.const._MA_GLOSSAIRE_TOP}>"></a>
