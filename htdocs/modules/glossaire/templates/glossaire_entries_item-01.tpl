@@ -18,7 +18,7 @@
     <{if $entry.urls}><{$entry.urls}><{/if}>
 </div>
 
-<{* Affichage de boutons image pour gérer l entree *}>
+<{* Affichage de boutons image pour gerer l entree *}>
 <{if $catPerms.submit}>
   <div class="item-round-no <{$colors_set}>-item-head" style="padding:6px;margin-top:-5px;text-align:right;">
     <a href="entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>">

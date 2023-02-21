@@ -278,9 +278,11 @@ _glossaire
 5=xoops_version.php
 6=admin\import.php
 7=templates\admin\glossaire_admin_import.tpl
+8=templates\glossaire_entries_item-01.tpl
+9=templates\glossaire_entries.tpl
 [Selected Project Files]
 Main=
-Selected=templates\admin\glossaire_admin_import.tpl
+Selected=xoops_version.php
 [admin\export.php]
 TopLine=35
 Caret=8,66
@@ -297,7 +299,7 @@ Caret=1,206
 TopLine=1
 Caret=28,2
 [xoops_version.php]
-TopLine=15
+TopLine=27
 Caret=37,48
 [admin\import.php]
 TopLine=283
@@ -305,3 +307,9 @@ Caret=60,300
 [templates\admin\glossaire_admin_import.tpl]
 TopLine=1
 Caret=1,22
+[templates\glossaire_entries_item-01.tpl]
+TopLine=1
+Caret=39,21
+[templates\glossaire_entries.tpl]
+TopLine=117
+Caret=31,131

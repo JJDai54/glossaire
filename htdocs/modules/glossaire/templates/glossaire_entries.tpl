@@ -116,7 +116,7 @@
 </div>
 
 <{else}>
-    <{* ------------- Formulaire d édition --------------------*}>
+    <{* ------------- Formulaire d edition --------------------*}>
     <div class="item-round-top <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;">
         <{$cat_name}>
     </div>
