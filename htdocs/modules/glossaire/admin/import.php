@@ -20,7 +20,7 @@ declare(strict_types=1);
  * @package        glossaire
  * @since          1.0
  * @min_xoops      2.5.10
- * @author         XOOPS Development Team - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
+ * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
  */
 
 use Xmf\Request;
@@ -276,26 +276,28 @@ xoops_load('XoopsLists');
         $moduleLexikon  = $module_handler->getByDirname('lexikon');
         //$moduleId = $module->mid();
         if($moduleLexikon){
-		$title = _AM_GLOSSAIRE_IMPORT_FROM_LEXIKON;        
-		$formLexikon = new \XoopsThemeForm($title, 'form_import', 'import.php', 'post', true);
-		$formLexikon->setExtra('enctype="multipart/form-data"');
-		// To Save
-		$formLexikon->addElement(new \XoopsFormHidden('op', 'import_lexikon'));
-		$formLexikon->addElement(new \XoopsFormHidden('sender', ''));
-
-        // ----- Listes de selection des categories de Lexikon -----  
-        $catListLexikon = getCatListFromLexikon();
-        if ($catIdLexikon == 0) $catIdLexikon = array_key_first($catListLexikon);
-        $inpcatLexikon = new \XoopsFormSelect(_AM_GLOSSAIRE_SELECT_LEX_CATEGORY, 'catIdLexikon', $catIdLexikon);
-        $inpcatLexikon->addOptionArray($catListLexikon);
-        $inpcatLexikon->setDescription(_AM_GLOSSAIRE_SELECT_LEX_CATEGORY_DESC);
-  	    $formLexikon->addElement($inpcatLexikon);
-        
-        // ----- Listes de selection pour filtrage -----  
-  	    $formLexikon->addElement($inpCategory);
-
-		$formLexikon->addElement(new \XoopsFormButton('', "submit_lexicon", _AM_GLOSSAIRE_IMPORTER, 'submit'));
-		$GLOBALS['xoopsTpl']->assign('form_lexikon', $formLexikon->render());        
+            $title = _AM_GLOSSAIRE_IMPORT_FROM_LEXIKON;        
+            $formLexikon = new \XoopsThemeForm($title, 'form_import', 'import.php', 'post', true);
+            $formLexikon->setExtra('enctype="multipart/form-data"');
+            // To Save
+            $formLexikon->addElement(new \XoopsFormHidden('op', 'import_lexikon'));
+            $formLexikon->addElement(new \XoopsFormHidden('sender', ''));
+            
+            // ----- Listes de selection des categories de Lexikon -----  
+            $catListLexikon = getCatListFromLexikon();
+            if ($catIdLexikon == 0) $catIdLexikon = array_key_first($catListLexikon);
+            $inpcatLexikon = new \XoopsFormSelect(_AM_GLOSSAIRE_SELECT_LEX_CATEGORY, 'catIdLexikon', $catIdLexikon);
+            $inpcatLexikon->addOptionArray($catListLexikon);
+            $inpcatLexikon->setDescription(_AM_GLOSSAIRE_SELECT_LEX_CATEGORY_DESC);
+            $formLexikon->addElement($inpcatLexikon);
+            
+            // ----- Listes de selection pour filtrage -----  
+            $formLexikon->addElement($inpCategory);
+            
+            $formLexikon->addElement(new \XoopsFormButton('', "submit_lexicon", _AM_GLOSSAIRE_IMPORTER, 'submit'));
+            $GLOBALS['xoopsTpl']->assign('form_lexikon', $formLexikon->render());        
+        } else{
+            $GLOBALS['xoopsTpl']->assign('form_lexikon', "");        
         }
 /*     =============== verifier d'abord si le module est installé 
 */

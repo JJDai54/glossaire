@@ -7,20 +7,20 @@
 
 	<{if count($block) OR true}>
         <div class="item-round-top <{$block.options.theme}>-item-head"><center><b>
-        <a href='modules/glossaire/index.php'><{$block.options.title}></a>
+        <a href="modules/glossaire/index.php"><{$block.options.title}></a>
         </b></center></div>
 <{*         <div class="item-round-none <{$block.options.theme}>-item-body"><center><{$block.options.desc}></center></div> *}>
         
   
-          <table class='entrieTbl' width='100%' style='border:none;'>
+          <table class="entrieTbl" width="100%" style="border:none;">
         	<tbody>
 		<{foreach item=Cat from=$block.data key=cat_Id}>    
 
            <{* ========================================================== *}>  
     			<tr>
-            <td style='border:none;padding:0px;'>
-                    <div class="item-round-none <{$Cat.theme}>-item-body" style='padding:12px;'>
-                        <a href='modules/glossaire/entries.php?catIdSelect=<{$Cat.id}>' title=''><{$Cat.name}></a>
+            <td style="border:none;padding:0px;">
+                    <div class="item-round-none <{$Cat.theme}>-item-body" style="padding:12px;">
+                        <a href="modules/glossaire/entries.php?catIdSelect=<{$Cat.id}>" title=""><{$Cat.name}></a>
                     </div>
                 </td>
     		</tr>

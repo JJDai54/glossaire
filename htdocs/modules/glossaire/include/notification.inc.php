@@ -20,7 +20,7 @@ declare(strict_types=1);
  * @package        glossaire
  * @since          1.0
  * @min_xoops      2.5.10
- * @author         XOOPS Development Team - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
+ * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
  */
 
 /**

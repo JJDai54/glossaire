@@ -20,7 +20,7 @@ declare(strict_types=1);
  * @package        glossaire
  * @since          1.0
  * @min_xoops      2.5.10
- * @author         XOOPS Development Team - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
+ * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
  */
 
 use Xmf\Request;
@@ -41,17 +41,19 @@ include_once GLOSSAIRE_PATH . "/include/import_export.php";
 // echo "<hr><pre>" . print_r($_POST, true) . "</pre><hr>";
 
 $utility = new \XoopsModules\Glossaire\Utility();  
+//$xoTheme->addScript(XOOPS_URL . '/modules/glossaire/assets/js/import-export.js');        
+                                                             
 ////////////////////////////////////////////////////////////////////////
 switch($op) {
 	case 'export_ok':
+        $download = true;
         //$outZipUrl = $entriesHandler->export($catIdSelect);
         $outZipUrl = export_glossaire($catIdSelect, $gls_add_img, $gls_add_files);
         
 		$templateMain = 'glossaire_admin_export.tpl';
 		$GLOBALS['xoopsTpl']->assign('download', 1);        
 		$GLOBALS['xoopsTpl']->assign('href', $outZipUrl);        
-		$GLOBALS['xoopsTpl']->assign('delai', 2000);        
-		$GLOBALS['xoopsTpl']->assign('name', $name);        
+		$GLOBALS['xoopsTpl']->assign('name', ' ===> Package');        
 
         
 //      IMPORTANT : Pas de break ni de redirectheader pour continuer avec le formulaire de depart
@@ -61,6 +63,7 @@ switch($op) {
     case 'export':
     case 'list':
 	default:
+		if (!isset($download))  $GLOBALS['xoopsTpl']->assign('download', 0);        
         $catList = $categoriesHandler->getList();
         if (count($catList) == 0) \redirect_header('categories.php', 5, _AM_GLOSSAIRE_NO_CATEGORIES2);
                 

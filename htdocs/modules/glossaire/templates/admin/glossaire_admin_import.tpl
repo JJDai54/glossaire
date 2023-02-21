@@ -1,10 +1,6 @@
-<{*
-<{include file='db:quizmaker_header.tpl' }>
-*}>
 
 <!-- Header -->
-<{include file='db:glossaire_admin_header.tpl' }>
-
+<{include file="db:glossaire_admin_header.tpl" }>
 
 <{if $form_self}>
 	<{$form_self}>
@@ -18,17 +14,12 @@
 	<{$form_lexikon}>
 <{/if}>
 
-
-
+<{* 
 <{if $error}>
 	<div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
-
-
-
-
-
+*}> 
 
 <!-- Footer -->
-<{include file='db:glossaire_admin_footer.tpl' }>
+<{include file="db:glossaire_admin_footer.tpl" }>
 

@@ -1,15 +1,15 @@
 <!-- Header -->
-<{include file='db:glossaire_admin_header.tpl' }>
+<{include file="db:glossaire_admin_header.tpl" }>
 
-<{if $form|default:''}>
+<{if $form|default:""}>
     <{$form|default:false}>
 <{/if}>
-<{if $result|default:''}>
+<{if $result|default:""}>
     <{$result|default:false}>
 <{/if}>
-<{if $error|default:''}>
+<{if $error|default:""}>
     <div class="errorMsg"><strong><{$error|default:false}></strong></div>
 <{/if}>
 
 <!-- Footer -->
-<{include file='db:glossaire_admin_footer.tpl' }>
+<{include file="db:glossaire_admin_footer.tpl" }>

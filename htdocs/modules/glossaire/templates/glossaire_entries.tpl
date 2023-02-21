@@ -5,13 +5,13 @@
 
 
 <{*  ------------------------------------------------------------------ *}>
-<{include file='db:glossaire_header.tpl' }>
+<{include file="db:glossaire_header.tpl" }>
 
 <{if !$form}>
 
-<div class='table-responsive'>
+<div class="table-responsive">
 <{if $catIdSelect}>
-<form name='select_filter' id='select_filter' action='entries.php' method='post' onsubmit='return xoopsFormValidate_form();' enctype=''>
+<form name="select_filter" id="select_filter" action="entries.php" method="post" onsubmit="return xoopsFormValidate_form();" enctype="">
 <input type="hidden" name="op" value="list" />
 <input type="hidden" name="sender" value="0" />
 <{* <{$smarty.const._CO_GLOSSAIRE_CATEGORY}> : <{$catIdSelect}> *}>
@@ -22,9 +22,9 @@
     <{assign var="colors_set" value=$catSelected.colors_set}>
     <{if $nbCategories > 1}>
         <{include file="db:glossaire_categories_colors_set.tpl"}>
-        <{assign var=itemBegin value='item-round-top-left-no'}>
+        <{assign var=itemBegin value="item-round-top-left-no"}>
     <{else}>    
-        <{assign var=itemBegin value='item-round-top'}>
+        <{assign var=itemBegin value="item-round-top"}>
     <{/if}>
         <{if $catSelected.description_img}>
             <div class="<{$itemBegin}> <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;color:white;">
@@ -49,29 +49,29 @@
 }
 </style>
  
-<div style='float: left;color:black;'> 
-  <form name='gls_search' id='gls_search' action='entries.php' method='post' enctype=''>
+<div style="float: left;color:black;"> 
+  <form name="gls_search" id="gls_search" action="entries.php" method="post" enctype="">
     <input type="hidden" name="op" value="<{$searchMode}>" />
     <input type="hidden" name="start" value="0" />
     <input type="hidden" name="letter" value="+" />
     <input type="hidden" name="exp2search" value="<{$exp2search}>" />
     <input type="hidden" name="catIdSelect" value="<{$catIdSelect}>" />
     
-    <input type="text" id="exp2search" name="exp2search" required  minlength="4" maxlength="30" size="30" value='<{$exp2search}>'>  
+    <input type="text" id="exp2search" name="exp2search" required  minlength="4" maxlength="30" size="30" value="<{$exp2search}>">  
     <button  type="submit" class="gls_btn_icon">
-        <img src="<{xoModuleIcons16 search.png}>" title="<{$smarty.const._SEARCH}>" class='gls_btn_img'><{$smarty.const._MA_GLOSSAIRE_ENTRY_SEARCH}>
+        <img src="<{xoModuleIcons16 search.png}>" title="<{$smarty.const._SEARCH}>" class="gls_btn_img"><{$smarty.const._MA_GLOSSAIRE_ENTRY_SEARCH}>
     </button>
   </form>
 </div>
 
 <{if $catPerms.approve OR $catPerms.submit}>
-  <div style='color:black;'> 
-    <form name='gls_addnew' id='gls_addnew' action='entries.php' method='post' enctype=''>
+  <div style="color:black;"> 
+    <form name="gls_addnew" id="gls_addnew" action="entries.php" method="post" enctype="">
       <input type="hidden" name="op" value="<{if $catPerms.approve}>new<{else}>new_light<{/if}>" />         
       <input type="hidden" name="catIdSelect" value="<{$catIdSelect}>" />
       <{* <input type="hidden" name="statusAccess" value="<{$statusAccess}>" /> *}>
-      <button  type="submit" class="gls_btn_icon" style='width:250px;' onclick="">
-          <img src="<{xoModuleIcons16 add.png}>" title="<{$smarty.const._ADD}>" class='gls_btn_img'>
+      <button  type="submit" class="gls_btn_icon" style="width:250px;" onclick="">
+          <img src="<{xoModuleIcons16 add.png}>" title="<{$smarty.const._ADD}>" class="gls_btn_img">
           <{if $catPerms.approve}><{$smarty.const._MA_GLOSSAIRE_ENTRY_NEW}><{elseif $catPerms.submit}><{$smarty.const._MA_GLOSSAIRE_ENTRY_SOUMETTRE}><{/if}>
       </button>
     </form>
@@ -83,13 +83,13 @@
  
 <div class="item-round-no <{$colors_set}>-item-body" style="padding:12px;margin-top:-5px;color:white;">      
     <center><{$alphaBarre}>
-      <{if $pagenav|default:''}>
+      <{if $pagenav|default:""}>
           <div class="pagenav pagenav-container"><{$pagenav}></div>
       <{/if}>
     </center>
 
 <{if $catSelected.show_terms_index}>    
-    <{include file='db:glossaire_entries_terms_links.tpl' }>
+    <{include file="db:glossaire_entries_terms_links.tpl" }>
 <{/if}>
 </div> 
     
@@ -98,7 +98,7 @@
 </div>
 
     <{foreach item=entry from=$entries name=entry}>
-            <{include file='db:glossaire_entries_item-02.tpl' }>
+            <{include file="db:glossaire_entries_item-02.tpl" }>
     <{/foreach}>
 
     <{* ------------- Barre de navigation  --------------------*}>
@@ -106,7 +106,7 @@
     <div class="item-round-no <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;"></div>
     <div class="item-round-bottom <{$colors_set}>-item-body" style="padding:12px;margin-top:-5px;">
     <center><{$alphaBarre}>
-      <{if $pagenav|default:''}>
+      <{if $pagenav|default:""}>
           <div class="pagenav pagenav-container"><{$pagenav}></div>
       <{/if}>
     </center>
@@ -116,7 +116,7 @@
 </div>
 
 <{else}>
-    <{* ------------- Formulaire d'édition --------------------*}>
+    <{* ------------- Formulaire d édition --------------------*}>
     <div class="item-round-top <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;">
         <{$cat_name}>
     </div>
@@ -126,11 +126,11 @@
     <div class="item-round-bottom <{$colors_set}>-item-foot" style="padding:12px;margin-top:-5px;"><center>...</center></div>
 <{/if}>
     
-<{if $error|default:''}>
+<{if $error|default:""}>
       <{$error|default:false}>
 <{/if}>
 
-<{include file='db:glossaire_footer.tpl' }>
+<{include file="db:glossaire_footer.tpl" }>
 
 <{*  ------------------------------------------------------------------ *}>
 <{if $smarty.const.GLOSSAIRE_SHOW_TPL_NAME==1}>

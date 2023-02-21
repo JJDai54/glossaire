@@ -20,7 +20,7 @@ declare(strict_types=1);
  * @package        glossaire
  * @since          1.0
  * @min_xoops      2.5.10
- * @author         XOOPS Development Team - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
+ * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
  */
 
 
@@ -45,13 +45,13 @@ $modversion = [
     'name'                => \_MI_GLOSSAIRE_NAME,
     'version'             => 1.2,
     'release'             => '2023-02-12',
-    'module_status'       => 'Beta 3',
+    'module_status'       => 'Beta 4',
     'description'         => \_MI_GLOSSAIRE_DESC,
-    'author'              => 'XOOPS Development Team',
+    'author'              => 'Jean-Jacques Delalandre',
     'author_mail'         => 'jjdelalandre@orange.fr',
     'author_website_url'  => 'jubile.fr',
     'author_website_name' => 'XOOPS Project',
-    'credits'             => 'XOOPS Development Team',
+    'credits'             => 'XOOPS Development Team (JJDai)',
     'license'             => 'GPL 2.0 or later',
     'license_url'         => 'https://www.gnu.org/licenses/gpl-3.0.en.html',
     'help'                => 'page=help',

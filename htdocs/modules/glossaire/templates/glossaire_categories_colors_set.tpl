@@ -1,4 +1,4 @@
-<div class='gls_title fwj-contenair-onglets' style='margin-bottom:-5px'>
+<div class="gls_title fwj-contenair-onglets" style="margin-bottom:-5px">
 
     <{foreach item=category from=$categories name=lpCat}>&nbsp;&nbsp;
           <div class="fwj-onglets <{$category.colors_set}>-item-legend" >
