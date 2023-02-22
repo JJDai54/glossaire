@@ -140,9 +140,9 @@ define('_MI_GLOSSAIRE_SHOW_TPL_NAME_DESC', "Option à utiliser pour le développ
 define('_MI_GLOSSAIRE_SIZE_MB', "Mo");
 define('_MI_GLOSSAIRE_SMNAME1', "Page d'index");
 define('_MI_GLOSSAIRE_SMNAME2', "Catégories");
-define('_MI_GLOSSAIRE_SMNAME3', "Soumettre les catégories");
-define('_MI_GLOSSAIRE_SMNAME4', "Entrée");
-define('_MI_GLOSSAIRE_SMNAME5', "Soumettre les entrées");
+define('_MI_GLOSSAIRE_SMNAME3', "Soumettre une catégorie");
+define('_MI_GLOSSAIRE_SMNAME4', "Définitions");
+define('_MI_GLOSSAIRE_SMNAME5', "Soumettre une définition");
 define('_MI_GLOSSAIRE_UPLOAD_GROUPS', "Autorisations de groupe de téléchargement");
 define('_MI_GLOSSAIRE_UPLOAD_GROUPS_DESC', "Quels sont les groupes autorisés à télécharger des fichiers ?");
 define('_MI_GLOSSAIRE_USER_PAGER', "Nombre de lignes côté utilisateur");

@@ -283,9 +283,11 @@ _glossaire
 9=class\CategoriesHandler.php
 10=class\Categories.php
 11=language\french\common.php
+12=xoops_version.php
+13=language\french\modinfo.php
 [Selected Project Files]
 Main=
-Selected=templates\glossaire_categories_item.tpl
+Selected=language\french\modinfo.php
 [categories.php]
 TopLine=74
 Caret=13,86
@@ -322,3 +324,9 @@ Caret=115,216
 [language\french\common.php]
 TopLine=36
 Caret=39,60
+[xoops_version.php]
+TopLine=123
+Caret=1,140
+[language\french\modinfo.php]
+TopLine=129
+Caret=46,144

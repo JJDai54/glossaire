@@ -131,12 +131,12 @@ $modversion['search'] = [
 // ------------------- Menu ------------------- //
 $currdirname  = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
 if ($currdirname == $moduleDirName) {
+/*
     $modversion['sub'][] = [
         'name' => \_MI_GLOSSAIRE_SMNAME1,
         'url'  => 'index.php',
     ];
-    /*
-    */
+*/
     // Sub categories
     $modversion['sub'][] = [
         'name' => \_MI_GLOSSAIRE_SMNAME2,
