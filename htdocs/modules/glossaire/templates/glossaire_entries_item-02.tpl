@@ -39,7 +39,7 @@
 <{* ---------- data de l entree -----------*}>
 <div class="item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:-5px;float:none;">
     <{if $entry.definition_img}>
-        <{$entry.definition_img}>
+        <div style="margin:0px 15px 0px 15px;"><{$entry.definition_img}></div>
     <{/if}>
     <{if $entry.reference}>
         <span class="gls_seealso"><{$smarty.const._MA_GLOSSAIRE_REFERENCES}> : </span><br>

@@ -40,7 +40,7 @@ define('_AM_GLOSSAIRE_CATEGORY_DESCRIPTION', "Description");
 define('_AM_GLOSSAIRE_CATEGORY_EDIT', "Modifier la catégorie");
 define('_AM_GLOSSAIRE_CATEGORY_ENTRIES', "Entrées");
 define('_AM_GLOSSAIRE_CATEGORY_FOLDER', "Dossier");
-define('_AM_GLOSSAIRE_CATEGORY_FOLDER_DESC', "Dossier de téléchargement des fichiers et images du glossaire dans le dossier \"uploads\"<br>Le nom du dossier ne doit pas contenir de caractères spcéciaux, accents, espaces, ...");
+define('_AM_GLOSSAIRE_CATEGORY_FOLDER_DESC', "Dossier de téléchargement des fichiers et images du glossaire dans le dossier \"uploads\"<br>Le nom du dossier ne doit pas contenir de caractères spcéciaux, accents, espaces, ...<br>Si laissé vide , le nom du dossier reprend le nom du glossaire");
 define('_AM_GLOSSAIRE_CATEGORY_ID', "Identifiant");
 define('_AM_GLOSSAIRE_CATEGORY_LOGO', "Logo");
 define('_AM_GLOSSAIRE_CATEGORY_MAGNIFY_SD', "Magnifier");

@@ -41,8 +41,17 @@ $start = Request::getInt('start', 0);
 $limit = $glossaireHelper->getConfig('adminpager');
 if ($limit == 0) $limit = $glossaireHelper->getConfig('adminpager');
 
-
+// utilise notamment par pagenav
+$gepeto = ['catIdSelect'     => Request::getInt('catIdSelect'),
+           'statusIdSelect'  => Request::getInt('statusIdSelect',GLOSSAIRE_STATUS_ALL),
+           'sortIdSelect'    => Request::getInt('sortIdSelect',0)
+           ];
+$gp = '';
+foreach ($gepeto as $key=>$v){
+    $gp .= "&{$key}={$v}";
+}
 //echo "===>gp : {$gp}<br>";
+
 
 // $gp=array_merge($_GET, $_POST);
 // 
