@@ -41,7 +41,7 @@ use JJD AS JJD;
         // categories avec une listbox
         //$categoriesHandler = $glossaireHelper->getHandler('Categories');
         /*
-        $catList = $categoriesHandler->getListAllowed();
+        $catList = $categoriesHandler->getListAllowed(view);
         if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
         $inpCategory = new \XoopsFormSelect(\_AM_GLOSSAIRE_ENTRY_CAT_ID, 'catIdSelect', $catIdSelect);
         $inpCategory->addOptionArray($catList);

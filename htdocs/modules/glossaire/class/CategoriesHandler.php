@@ -195,7 +195,7 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         $groups = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
         $gpermHandler = xoops_getHandler('groupperm');
         $tPerm = $gpermHandler->getItemIds($permtype, $groups, $moduleHandler->getVar('mid'));
-
+//echoArray($tPerm);
         return $tPerm;
     }
 	/**
@@ -225,8 +225,9 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      * @param string   $permtype	Type de permission
      * @return array   $cat		    Liste des catégorie qui correspondent à la permission
      */
-	public function getListAllowed($short_permtype = 'view', $criteria = null, $sorted='cat_weight,cat_name,cat_id', $order="ASC")
+	public function getListAllowed($short_permtype, $criteria, $sorted='cat_weight,cat_name,cat_id', $order="ASC")
     {
+        if (!$short_permtype)  $short_permtype = 'view';
         $tPerm = $this->getPermissions($short_permtype);
         $ids = join(',', $tPerm);
         //------------------------------------------------
@@ -236,6 +237,23 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         if ($order  != '') $criteria->setOrder($order);
 
         $allEnrAllowed = parent::getList($criteria);
+        return $allEnrAllowed;
+    }
+    
+	public function getAllCatAllowed($short_permtype, $criteria, $sorted='cat_weight,cat_name,cat_id', $order="ASC")
+    {
+        if (!$short_permtype)  $short_permtype = 'view';
+        $tPerm = $this->getPermissions($short_permtype);
+        $ids = join(',', $tPerm);
+        //------------------------------------------------
+        if (is_null($criteria)) $criteria = new \CriteriaCompo();
+        $criteria->add(new \Criteria('cat_active',"1",'='));
+        $criteria->add(new \Criteria('cat_id',"({$ids})",'IN'));
+        if ($sorted != '') $criteria->setSort($sorted);
+        if ($order  != '') $criteria->setOrder($order);
+
+        $allEnrAllowed = $this->getAll($criteria);
+        
         return $allEnrAllowed;
     }
 
@@ -265,6 +283,16 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         if ($zzz) exit;
         return $catArr;
 
+    }
+    
+	public function getAlPermsByCatId(&$categoriesAll){
+        foreach (\array_keys($categoriesAll) as $i) {
+            $catId = $categoriesAll[$i]->getVar('cat_id');
+            $tPerms[$catId] = $categoriesAll[$i]->getPerms();
+            $tPerms[$catId]['name'] = $categoriesAll[$i]->getVar('cat_name');
+        }
+//echoArray($tPerms);
+        return $tPerms; 
     }
 
 	/**

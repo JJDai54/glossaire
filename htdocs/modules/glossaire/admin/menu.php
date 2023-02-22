@@ -64,7 +64,7 @@ $adminmenu[] = [
 $adminmenu[] = [
     'title' => \_MI_GLOSSAIRE_ADMENU5,
     'link' => 'admin/clone.php',
-    'icon' => $sysPathIcon32.'/clone.png',
+    'icon' => 'assets/icons/32/clone.png',
 ];
 $adminmenu[] = [
     'title' => \_MI_GLOSSAIRE_ADMENU6,

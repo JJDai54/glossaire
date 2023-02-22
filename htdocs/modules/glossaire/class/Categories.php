@@ -212,6 +212,10 @@ class Categories extends \XoopsObject
         //========================================================
         $form->insertBreak('<center><div style="background:black;color:white;">' . _AM_GLOSSAIRE_PERMISSIONS . '</div></center>');
         //========================================================
+        // Form Text cat_active
+        $inpActive = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_CATEGORY_ACTIVE, 'cat_active', $this->getVar('cat_active'));
+        $inpActive->setDescription(\_AM_GLOSSAIRE_CATEGORY_ACTIVE_DESC);
+        $form->addElement($inpActive);
         
         // Permissions
         $memberHandler = \xoops_getHandler('member');
@@ -408,6 +412,7 @@ class Categories extends \XoopsObject
 //         $allPerms['approve'] = ($allPerms['approve']) ? "Ok" : "Pas Ok";
         
         return $allPerms;
-    }
+    }                                 
+        
 
 }

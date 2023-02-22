@@ -29,7 +29,7 @@ define('_AM_GLOSSAIRE_ADD_CATEGORY', "Ajouter une nouvelle catégorie");
 define('_AM_GLOSSAIRE_ADD_ENTRY', "Ajouter une nouvelle entrée");
 define('_AM_GLOSSAIRE_ALPHABARRE', "Barre de recherche par lettres");
 define('_AM_GLOSSAIRE_CATEGORY', "Catégorie");
-define('_AM_GLOSSAIRE_CATEGORY_ACTIVE', "Actif");
+define('_AM_GLOSSAIRE_CATEGORY_ACTIVE', "Active");
 define('_AM_GLOSSAIRE_CATEGORY_ADD', "Ajouter une catégorie");
 define('_AM_GLOSSAIRE_CATEGORY_BR_AFTER_TERME', "Retour à la ligne après le terme");
 define('_AM_GLOSSAIRE_CATEGORY_BR_AFTER_TERME_DESC', "Oui : les champs 'term' et 'short_def' seront sur deux lignes.<br><Non>les champs 'term' et 'short_def' seront sur la même ligne.");
@@ -177,5 +177,8 @@ define('_AM_GLOSSAIRE_WEIGHT_UPDATE', "Le poids a été mis à jour");
 define('_AM_GLOSSAIRE_REPLACE_AROBASE', "Remplacer l'arobase");
 define('_AM_GLOSSAIRE_REPLACE_AROBASE_DESC', "Permet de bloquer les accès directs au courriels sur les pages.<br>exemple : [@]");
 define('_AM_GLOSSAIRE_ENTRIES', "Entrées");
+define('_AM_GLOSSAIRE_CATEGORY_ACTIVE_DESC', "<span style='color:red;'>Si faux la catégorie ne sera pas visible dans l'interface utilisateur.</span>");          
+
+
 
 ?>

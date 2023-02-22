@@ -52,4 +52,10 @@ define('_MA_GLOSSAIRE_SUBMIT', "Soumettre une entrée");
 define('_MA_GLOSSAIRE_TITLE', "Glossaire");
 define('_MA_GLOSSAIRE_TOP', "Haut de page");
 
+define('_MA_GLOSSAIRE_CATEGORIES_LIST', "Catégories");
+define('_MA_GLOSSAIRE_CATEGORIES_DESC', "Catégories de glossaires");
+define('_MA_GLOSSAIRE_CATEGORY_ADD', "Nouvelle catégories");
+define('_MA_GLOSSAIRE_CATEGORY_EDIT', "Editer la catégorie");
+define('_MA_GLOSSAIRE_CATEGORY_CLONE', "Cloner la catégorie");
+define('_MA_GLOSSAIRE_CATEGORY_DELETE', "Supprimer la catégorie");
 ?>

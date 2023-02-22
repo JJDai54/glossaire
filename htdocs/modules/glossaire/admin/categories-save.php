@@ -48,6 +48,7 @@ use XoopsModules\Glossaire\Common;
     $categoriesObj->setVar('cat_description', Request::getText('cat_description', ''));
     $categoriesObj->setVar('cat_weight', Request::getInt('cat_weight', 0));
     $categoriesObj->setVar('cat_date_update', \JJD\getSqlDate());
+    $categoriesObj->setVar('cat_active', Request::getInt('cat_active', 0));
 
 
     //---------------------------------------------------------

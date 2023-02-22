@@ -50,3 +50,4 @@ $modPathIcon32 = $GLOBALS['xoopsModule']->getInfo('modicons16');
 \xoops_loadLanguage('main');
 \xoops_loadLanguage('modinfo');
 \xoops_loadLanguage('admin','glossaire'); // a remplcer par des constantes dans common.php
+\xoops_loadLanguage('common', 'glossaire');

@@ -56,4 +56,7 @@ define('_CO_GLOSSAIRE_SPHPINI', "<span style='font-weight: bold;'>Information ex
 define('_CO_GLOSSAIRE_STATUS', "Statut");
 define('_CO_GLOSSAIRE_UPLOADPATHDSC', "Remarque. Le chemin de téléchargement *DOIT* contenir le chemin complet du serveur de votre dossier de téléchargement.");
 
+\define('CO_GLOSSAIRE_DELETE_CONFIRM', "<span style='color:red;'>Confirmez-vous la suppression ?<br>Toutes les définitions de cette catégories seront supprimées.</span>");
+\define('CO_GLOSSAIRE_DELETE_LABEL', '');
+
 ?>

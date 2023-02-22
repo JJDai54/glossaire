@@ -45,7 +45,7 @@ $modversion = [
     'name'                => \_MI_GLOSSAIRE_NAME,
     'version'             => 1.2,
     'release'             => '2023-02-12',
-    'module_status'       => 'Beta 5',
+    'module_status'       => 'Beta 6',
     'description'         => \_MI_GLOSSAIRE_DESC,
     'author'              => 'Jean-Jacques Delalandre',
     'author_mail'         => 'jjdelalandre@orange.fr',
@@ -135,6 +135,8 @@ if ($currdirname == $moduleDirName) {
         'name' => \_MI_GLOSSAIRE_SMNAME1,
         'url'  => 'index.php',
     ];
+    /*
+    */
     // Sub categories
     $modversion['sub'][] = [
         'name' => \_MI_GLOSSAIRE_SMNAME2,

@@ -10,22 +10,19 @@
     <table class="table table-<{$table_type|default:false}>">
         <thead>
             <tr class="head">
-                <th colspan="<{$divideby|default:false}>"><{$smarty.const._MA_GLOSSAIRE_CATEGORIES_TITLE}></th>
+                <th ><{$smarty.const._MA_GLOSSAIRE_CATEGORIES_TITLE}></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
                 <{foreach item=category from=$categories name=category}>
+            <tr>
                 <td>
                     <div class="panel panel-<{$panel_type|default:false}>">
                         <{include file="db:glossaire_categories_item.tpl" }>
                     </div>
                 </td>
-                <{if $smarty.foreach.category.iteration is div by $divideby}>
-                    </tr><tr>
-                <{/if}>
-                <{/foreach}>
             </tr>
+                <{/foreach}>
         </tbody>
         <tfoot><tr><td>&nbsp;</td></tr></tfoot>
     </table>
