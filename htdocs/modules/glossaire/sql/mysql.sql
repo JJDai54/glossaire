@@ -12,17 +12,16 @@
 #
 
 CREATE TABLE `glossaire_categories` (
-  `cat_id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `cat_pid` int(11) NOT NULL DEFAULT '0',
+  `cat_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `cat_pid` int NOT NULL DEFAULT '0',
   `cat_name` varchar(255) NOT NULL DEFAULT '',
   `cat_description` text NOT NULL,
-  `cat_definition_css` varchar(255) NOT NULL,
-  `cat_weight` int(10) NOT NULL DEFAULT '0',
+  `cat_weight` int NOT NULL DEFAULT '0',
   `cat_logo` varchar(80) NOT NULL DEFAULT '',
-  `cat_term_css` varchar(255) NOT NULL,
-  `cat_shortdef_css` varchar(255) NOT NULL,
-  `cat_definition_css` varchar(255) NOT NULL,
-  `cat_lines_per_page` tinyint(1) NOT NULL DEFAULT '10',
+  `cat_term_css` varchar(255) DEFAULT NULL,
+  `cat_shortdef_css` varchar(255) DEFAULT NULL,
+  `cat_definition_css` varchar(255) DEFAULT NULL,
+  `cat_lines_per_page` tinyint NOT NULL DEFAULT '10',
   `cat_alphabarre` varchar(255) NOT NULL,
   `cat_alphabarre_mode` tinyint(1) NOT NULL DEFAULT '1',
   `cat_letter_css_default` varchar(255) NOT NULL,
@@ -33,13 +32,13 @@ CREATE TABLE `glossaire_categories` (
   `cat_colors_set` varchar(50) NOT NULL DEFAULT '',
   `cat_is_acronym` tinyint(1) NOT NULL DEFAULT '0',
   `cat_replace_arobase` varchar(5) NOT NULL DEFAULT '',
-  `cat_br_after_term` tinyint(4) NOT NULL DEFAULT '0',
+  `cat_br_after_term` tinyint NOT NULL DEFAULT '0',
   `cat_show_terms_index` tinyint(1) NOT NULL DEFAULT '1',
-  `cat_count_entries` int(11) NOT NULL DEFAULT '0',
+  `cat_count_entries` int NOT NULL DEFAULT '0',
   `cat_active` tinyint(1) NOT NULL DEFAULT '0',
-  `cat_date_creation` datetime(6) NOT NULL DEFAULT '1970-01-01 00:00:00',
-  `cat_date_update` datetime(6) NOT NULL DEFAULT '1970-01-01 00:00:00',
-  PRIMARY KEY (`cat_id`),
+  `cat_date_creation` datetime(6) NOT NULL DEFAULT '1970-01-01 00:00:00.000000',
+  `cat_date_update` datetime(6) NOT NULL DEFAULT '1970-01-01 00:00:00.000000',
+ PRIMARY KEY (`cat_id`),
  UNIQUE KEY `cat_upload_folder` (`cat_upload_folder`)  
 ) ENGINE=InnoDB;
 

@@ -1,7 +1,7 @@
 Ajout des chqamps CSS
 ALTER TABLE `x251_glossaire_categories` ADD `cat_term_css` VARCHAR(255) NULL DEFAULT NULL AFTER `cat_logo`, ADD `cat_shortdef_css` VARCHAR(255) NULL DEFAULT NULL AFTER `cat_term_css`, ADD `cat_definition_css` VARCHAR(255) NULL DEFAULT NULL AFTER `cat_shortdef_css`; 
 
-
+ALTER TABLE `x251_glossaire_categories` ADD `cat_lines_per_page` TINYINT NOT NULL DEFAULT '10' AFTER `cat_definition_css`; 
 
 ajouter | pour des retours à la ligne dans la barre de lettre
 

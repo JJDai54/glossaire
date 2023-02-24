@@ -290,8 +290,8 @@ _glossaire
 Main=
 Selected=sql\mysql.sql
 [sql\mysql.sql]
-TopLine=13
-Caret=35,17
+TopLine=8
+Caret=1,41
 [include\import_export.php]
 TopLine=217
 Caret=1,230
@@ -315,7 +315,7 @@ TopLine=26
 Caret=39,45
 [docs\todo.txt]
 TopLine=1
-Caret=1,2
+Caret=124,4
 [templates\glossaire_entries_item-02.tpl]
 TopLine=1
 Caret=74,7
