@@ -53,12 +53,15 @@ class Categories extends \XoopsObject
      * @param null
      */
     public function __construct()
-    {
+{
         $this->initVar('cat_id', \XOBJ_DTYPE_INT);
         $this->initVar('cat_name', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_description', \XOBJ_DTYPE_OTHER);
         $this->initVar('cat_weight', \XOBJ_DTYPE_INT);
         $this->initVar('cat_logo', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_term_css', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_shortdef_css', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_definition_css', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_alphabarre', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_alphabarre_mode', \XOBJ_DTYPE_INT);
         $this->initVar('cat_letter_css_default', \XOBJ_DTYPE_TXTBOX);
@@ -76,6 +79,10 @@ class Categories extends \XoopsObject
         $this->initVar('cat_date_creation', \XOBJ_DTYPE_OTHER); //XOBJ_DTYPE_LTIME
         $this->initVar('cat_date_update', \XOBJ_DTYPE_OTHER); //XOBJ_DTYPE_LTIME
     }
+ 
+
+
+
 
     /**
      * @static function &getInstance
@@ -108,6 +115,8 @@ class Categories extends \XoopsObject
     public function getFormCategories($action = false)
     {
         $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
+        $styleBreakLine = '<center><div style="background:black;color:white;">%s</div></center>';
+        
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
         }
@@ -196,7 +205,23 @@ class Categories extends \XoopsObject
 //         $form->addElement(new \XoopsFormDateTime(\_AM_GLOSSAIRE_CATEGORY_DATE_UPDATE, 'cat_date_update', '', $catDate_update));
         
         //========================================================
-        $form->insertBreak('<center><div style="background:black;color:white;">' . _AM_GLOSSAIRE_ALPHABARRE . '</div></center>');
+        $form->insertBreak(sprintf($styleBreakLine, _AM_GLOSSAIRE_CSS_DESC));
+        //========================================================
+        // Form Text cat_term_css
+        $inpTermCss = new \XoopsFormText(\_AM_GLOSSAIRE_TERM_CSS, 'cat_term_css', 120, 255, $this->getVar('cat_term_css'));
+        $form->addElement($inpTermCss);
+        
+        // Form Text cat_shortdef_css
+        $inoShortdefCss = new \XoopsFormText(\_AM_GLOSSAIRE_SHORDDEF_CSS, 'cat_shortdef_css', 120, 255, $this->getVar('cat_shortdef_css'));
+        $form->addElement($inoShortdefCss);
+        
+        // Form Text cat_definition_css
+        $inpDefinitionCss = new \XoopsFormText(\_AM_GLOSSAIRE_DEFINITION_CSS, 'cat_definition_css', 120, 255, $this->getVar('cat_definition_css'));
+        $form->addElement($inpDefinitionCss);
+
+
+        //========================================================
+        $form->insertBreak(sprintf($styleBreakLine, _AM_GLOSSAIRE_ALPHABARRE));
         //========================================================
         
         // Form alphabarre 
@@ -210,7 +235,7 @@ class Categories extends \XoopsObject
         $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST, 'cat_letter_css_notexist', 150, 255, $this->getVar('cat_letter_css_notexist')));
 
         //========================================================
-        $form->insertBreak('<center><div style="background:black;color:white;">' . _AM_GLOSSAIRE_PERMISSIONS . '</div></center>');
+        $form->insertBreak(sprintf($styleBreakLine, _AM_GLOSSAIRE_PERMISSIONS));
         //========================================================
         // Form Text cat_active
         $inpActive = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_CATEGORY_ACTIVE, 'cat_active', $this->getVar('cat_active'));
@@ -276,7 +301,7 @@ class Categories extends \XoopsObject
         }else{
             $logo_url = '';
             $ret['description_img'] = $this->getVar('cat_logo') . $ret['description'];
-        } 
+        }
         $ret['logo_url'] = $logo_url;
         
         
@@ -285,6 +310,10 @@ class Categories extends \XoopsObject
         $ret['description_short'] = $utility::truncateHtml($ret['description'], $editorMaxchar);
         $ret['weight']            = $this->getVar('cat_weight');
         $ret['logo']              = $this->getVar('cat_logo');
+
+       $ret['term_css']       = $this->getVar('cat_term_css') . ((substr($this->getVar('cat_term_css') ,-1,0)!=';') ? ";" : ''); 
+       $ret['shortdef_css']   = $this->getVar('cat_shortdef_css') . ((substr($this->getVar('cat_shortdef_css') ,-1,0)!=';') ? ";" : ''); 
+       $ret['definition_css'] = $this->getVar('cat_definition_css') . ((substr($this->getVar('cat_definition_css') ,-1,0)!=';') ? ";" : ''); 
         
         $ret['alphabarre']          = $this->getVar('cat_alphabarre');
         $ret['alphabarre_mode']     = $this->getVar('cat_alphabarre_mode');
@@ -296,7 +325,7 @@ class Categories extends \XoopsObject
         $ret['upload_folder']        = $this->getVar('cat_upload_folder');
         $ret['colors_set']           = ($this->getVar('cat_colors_set')) ? $this->getVar('cat_colors_set') : "default";
         $ret['is_acronym']           = $this->getVar('cat_is_acronym');
-        $ret['cat_replace_arobase']  = $this->getVar('cat_replace_arobase');
+        $ret['cat_replace_arobase']  = $this->getVar('cat_replace_arobase');     
         $ret['br_after_term']     = $this->getVar('cat_br_after_term');
         $ret['show_terms_index']  = $this->getVar('cat_show_terms_index');
         $ret['count_entries']     = $this->getVar('cat_count_entries');

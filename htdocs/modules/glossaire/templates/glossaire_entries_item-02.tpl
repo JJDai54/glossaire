@@ -6,14 +6,14 @@
 
 <div name="entry-<{$entry.id}>" id="entry-<{$entry.id}>" class="gls_title item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:0px; c">
     <{if $cat_br_after_term}>
-        <h2><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
+        <h2 style="<{$catArr.term_css}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
         <{if $entry.shortdef}>             
-            <h3><{$entry.shortdefMagnifed}></h3>
+            <h3 style="<{$catArr.shortdef_css}>"><{$entry.shortdefMagnifed}></h3>
         <{/if}>
     <{else}> 
-        <h2 style="float:left;"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
+        <h2 style="float:left;<{$catArr.term_css}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
         <{if $entry.shortdef}>          
-            <h3> : <{$entry.shortdefMagnifed}></h3>
+            <h3 style="<{$catArr.shortdef_css}>">&nbsp;:&nbsp;<{$entry.shortdefMagnifed}></h3>
         <{/if}>
     <{/if}>
 
@@ -39,7 +39,10 @@
 <{* ---------- data de l entree -----------*}>
 <div class="item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:-5px;float:none;">
     <{if $entry.definition_img}>
-        <div style="margin:0px 15px 0px 15px;"><{$entry.definition_img}></div>
+        <div style="<{$catArr.definition_css}>;">
+            <{$entry.definition_img}>
+        </div>
+        
     <{/if}>
     <{if $entry.reference}>
         <span class="gls_seealso"><{$smarty.const._MA_GLOSSAIRE_REFERENCES}> : </span><br>

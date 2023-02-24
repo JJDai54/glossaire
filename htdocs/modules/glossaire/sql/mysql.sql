@@ -22,6 +22,7 @@ CREATE TABLE `glossaire_categories` (
   `cat_term_css` varchar(255) NOT NULL,
   `cat_shortdef_css` varchar(255) NOT NULL,
   `cat_definition_css` varchar(255) NOT NULL,
+  `cat_lines_per_page` tinyint(1) NOT NULL DEFAULT '10',
   `cat_alphabarre` varchar(255) NOT NULL,
   `cat_alphabarre_mode` tinyint(1) NOT NULL DEFAULT '1',
   `cat_letter_css_default` varchar(255) NOT NULL,
@@ -41,7 +42,6 @@ CREATE TABLE `glossaire_categories` (
   PRIMARY KEY (`cat_id`),
  UNIQUE KEY `cat_upload_folder` (`cat_upload_folder`)  
 ) ENGINE=InnoDB;
-
 
 #
 # Structure table for `glossaire_entries` 14

@@ -54,6 +54,7 @@ use JJD AS JJD;
         $GLOBALS['xoopsTpl']->assign('catPerms', $catPerms);
         //----------------------------------------------------------
         $GLOBALS['xoopsTpl']->assign('categories', $catList);
+        $GLOBALS['xoopsTpl']->assign('catArr', $catArr);
         
         //Categorie selectionnée, utilisée notamment pour colorset
         $GLOBALS['xoopsTpl']->assign('catSelected', $catList[$catIdSelect]);

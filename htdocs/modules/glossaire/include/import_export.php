@@ -223,20 +223,24 @@ global $categoriesHandler;
 	$categoriesObj->setVar('cat_description', $data['cat_description']);    
 	$categoriesObj->setVar('cat_weight',      $data['cat_weight']);    
 	$categoriesObj->setVar('cat_logo',        $data['cat_logo']);  
+
+	if (isset($data['cat_term_css'])) $categoriesObj->setVar('cat_term_css',         $data['cat_term_css']);  
+	if (isset($data['cat_shortdef_css'])) $categoriesObj->setVar('cat_shortdef_css',     $data['cat_shortdef_css']);  
+	if (isset($data['cat_definition_css'])) $categoriesObj->setVar('cat_definition_css',   $data['cat_definition_css']);  
+	if (isset($data['cat_replace_arobase'])) $categoriesObj->setVar('cat_replace_arobase',  $data['cat_replace_arobase']);    
     
-	$categoriesObj->setVar('cat_alphabarre',     $data['cat_alphabarre']);  
-	$categoriesObj->setVar('cat_alphabarre_mode',     $data['cat_alphabarre_mode']);  
-	$categoriesObj->setVar('cat_letter_css_default',     $data['cat_letter_css_default']);  
-	$categoriesObj->setVar('cat_letter_css_selected',     $data['cat_letter_css_selected']);  
-	$categoriesObj->setVar('cat_letter_css_exist',     $data['cat_letter_css_exist']);  
-	$categoriesObj->setVar('cat_letter_css_notexist',     $data['cat_letter_css_notexist']);  
+	$categoriesObj->setVar('cat_alphabarre',       $data['cat_alphabarre']);  
+	$categoriesObj->setVar('cat_alphabarre_mode',  $data['cat_alphabarre_mode']);  
+	$categoriesObj->setVar('cat_letter_css_default',  $data['cat_letter_css_default']);  
+	$categoriesObj->setVar('cat_letter_css_selected', $data['cat_letter_css_selected']);  
+	$categoriesObj->setVar('cat_letter_css_exist',    $data['cat_letter_css_exist']);  
+	$categoriesObj->setVar('cat_letter_css_notexist', $data['cat_letter_css_notexist']);  
 	$categoriesObj->setVar('cat_upload_folder',  $data['cat_upload_folder'] . $suffix);    
-	$categoriesObj->setVar('cat_colors_set',  $data['cat_colors_set']);    
-	$categoriesObj->setVar('cat_is_acronym',  $data['cat_is_acronym']);    
-	$categoriesObj->setVar('cat_replace_arobase',  $data['cat_replace_arobase']);    
-	$categoriesObj->setVar('cat_br_after_term',  $data['cat_br_after_term']);    
+	$categoriesObj->setVar('cat_colors_set',     $data['cat_colors_set']);    
+	$categoriesObj->setVar('cat_is_acronym',     $data['cat_is_acronym']);    
+	$categoriesObj->setVar('cat_br_after_term',    $data['cat_br_after_term']);    
 	$categoriesObj->setVar('cat_show_terms_index', $data['cat_show_terms_index']);    
-	$categoriesObj->setVar('cat_count_entries',   $data['cat_count_entries']);    
+	$categoriesObj->setVar('cat_count_entries',    $data['cat_count_entries']);    
 	$categoriesObj->setVar('cat_date_creation',    $data['cat_date_creation']);    
 	$categoriesObj->setVar('cat_date_update', date("Y-m-d H:i:00.00000"));
     

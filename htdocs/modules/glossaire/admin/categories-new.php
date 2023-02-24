@@ -45,6 +45,10 @@ use XoopsModules\Glossaire\Common;
     $categoriesObj->setVar('cat_letter_css_exist',      $glossaireHelper->getConfig('letter_css_exist'));
     $categoriesObj->setVar('cat_letter_css_notexist',   $glossaireHelper->getConfig('letter_css_notexist'));
     $categoriesObj->setVar('cat_replace_arobase',       $glossaireHelper->getConfig('replace_arobase'));
+// cat_term_css
+// cat_shortdef_css
+// cat_definition_css
+
     
     $form = $categoriesObj->getFormCategories();
     $GLOBALS['xoopsTpl']->assign('form', $form->render());

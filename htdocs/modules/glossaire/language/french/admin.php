@@ -179,6 +179,9 @@ define('_AM_GLOSSAIRE_REPLACE_AROBASE_DESC', "Permet de bloquer les accès direc
 define('_AM_GLOSSAIRE_ENTRIES', "Entrées");
 define('_AM_GLOSSAIRE_CATEGORY_ACTIVE_DESC', "<span style='color:red;'>Si faux la catégorie ne sera pas visible dans l'interface utilisateur.</span>");          
 
+define('_AM_GLOSSAIRE_TERM_CSS', "Style du terme");
+define('_AM_GLOSSAIRE_SHORDDEF_CSS', "Style de la définition courte");
+define('_AM_GLOSSAIRE_DEFINITION_CSS', "Style de la définition");
+define('_AM_GLOSSAIRE_CSS_DESC', "Permet d'ajouter ou modifier le style  des entrées pour les champs qui suivent.<br>exemple : margin:0px 50px 0px 50px;text-align:center;color:blue;font-style: italic;>");
 
-
-?>
+?>        

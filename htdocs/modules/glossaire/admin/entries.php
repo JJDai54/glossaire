@@ -61,7 +61,7 @@ foreach ($gepeto as $key=>$v){
 
 //if (!$limit)$limit=15;
 $GLOBALS['xoopsTpl']->assign('start', $start);
-//$GLOBALS['xoopsTpl']->assign('limit', $limit);
+$GLOBALS['xoopsTpl']->assign('limit', $limit);
 $GLOBALS['xoopsTpl']->assign('statusIdSelect', $statusIdSelect);
 $utility = new \XoopsModules\Glossaire\Utility();
 

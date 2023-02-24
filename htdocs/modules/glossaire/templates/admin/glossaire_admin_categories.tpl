@@ -4,7 +4,7 @@
 <{assign var="styleParent" value=""}>
 
 <{if $categories_list|default:""}>
-    <table class="table table-bordered">
+    <table id="categories_list" name="categories_list"class="table table-bordered">
         <thead>
             <tr class="head">
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_ID}></th>
@@ -118,6 +118,11 @@
 <{if $error|default:""}>
     <div class="errorMsg"><strong><{$error|default:false}></strong></div>
 <{/if}>
+
+<script>
+tth_set_value("last_asc", true);
+tth_trierTableau("categories_list", 6);  
+</script>
 
 <!-- Footer -->
 <{include file="db:glossaire_admin_footer.tpl" }>
