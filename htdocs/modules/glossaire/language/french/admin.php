@@ -183,5 +183,7 @@ define('_AM_GLOSSAIRE_TERM_CSS', "Style du terme");
 define('_AM_GLOSSAIRE_SHORDDEF_CSS', "Style de la définition courte");
 define('_AM_GLOSSAIRE_DEFINITION_CSS', "Style de la définition");
 define('_AM_GLOSSAIRE_CSS_DESC', "Permet d'ajouter ou modifier le style  des entrées pour les champs qui suivent.<br>exemple : margin:0px 50px 0px 50px;text-align:center;color:blue;font-style: italic;>");
+define('_MA_GLOSSAIRE_USER_PAGER', "Nombre de lignes par page");
+define('_MA_GLOSSAIRE_USER_PAGER_DESC', "Nombre de lignes par page dans les listes pour les utilisateurs");
 
 ?>        

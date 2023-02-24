@@ -62,6 +62,7 @@ class Categories extends \XoopsObject
         $this->initVar('cat_term_css', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_shortdef_css', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_definition_css', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('cat_userpager', \XOBJ_DTYPE_INT);
         $this->initVar('cat_alphabarre', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_alphabarre_mode', \XOBJ_DTYPE_INT);
         $this->initVar('cat_letter_css_default', \XOBJ_DTYPE_TXTBOX);
@@ -223,7 +224,13 @@ class Categories extends \XoopsObject
         //========================================================
         $form->insertBreak(sprintf($styleBreakLine, _AM_GLOSSAIRE_ALPHABARRE));
         //========================================================
-        
+ 
+        // Form  cat_userpager
+        $inpUserpager = new \XoopsFormNumber(_MI_GLOSSAIRE_USER_PAGER, "cat_userpager", 5, 5,  $this->getVar('cat_userpager'));
+        $inpUserpager->setDescription(_MI_GLOSSAIRE_USER_PAGER_DESC);
+        $inpUserpager->setMinMax(5, 100);
+        $form->addElement($inpUserpager);
+
         // Form alphabarre 
         $inpAlphabarre = new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE, 'cat_alphabarre', 150, 255, $this->getVar('cat_alphabarre'));
         $inpAlphabarre->setDescription(_MI_GLOSSAIRE_ALPHABARRE_DESC);
@@ -315,6 +322,7 @@ class Categories extends \XoopsObject
        $ret['shortdef_css']   = $this->getVar('cat_shortdef_css') . ((substr($this->getVar('cat_shortdef_css') ,-1,0)!=';') ? ";" : ''); 
        $ret['definition_css'] = $this->getVar('cat_definition_css') . ((substr($this->getVar('cat_definition_css') ,-1,0)!=';') ? ";" : ''); 
         
+        $ret['userpager']           = $this->getVar('cat_userpager');
         $ret['alphabarre']          = $this->getVar('cat_alphabarre');
         $ret['alphabarre_mode']     = $this->getVar('cat_alphabarre_mode');
         $ret['letter_css_default']  = $this->getVar('cat_letter_css_default');

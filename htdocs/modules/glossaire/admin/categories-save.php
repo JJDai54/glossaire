@@ -101,6 +101,7 @@ use XoopsModules\Glossaire\Common;
     $categoriesObj->setVar('cat_definition_css', Request::getString('cat_definition_css', ''));
 
     //---------------------------------------------------
+    $categoriesObj->setVar('cat_userpager',             (Request::getInt('cat_userpager', "")!='') ? Request::getInt('cat_userpager', 10) : $glossaireHelper->getConfig('userpager'));
     $categoriesObj->setVar('cat_alphabarre',            (Request::getString('cat_alphabarre', "")!='') ? Request::getString('cat_alphabarre', "") : $glossaireHelper->getConfig('alphabarre'));
     $categoriesObj->setVar('cat_alphabarre_mode',       (Request::getInt('cat_alphabarre_mode', "")!='') ? Request::getInt('cat_alphabarre_mode', "") : $glossaireHelper->getConfig('alphabarre_mode'));
     $categoriesObj->setVar('cat_letter_css_default',    (Request::getString('cat_letter_css_default', "")!='') ? Request::getString('cat_letter_css_default', "") : $glossaireHelper->getConfig('letter_css_default'));

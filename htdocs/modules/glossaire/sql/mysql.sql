@@ -21,7 +21,7 @@ CREATE TABLE `glossaire_categories` (
   `cat_term_css` varchar(255) DEFAULT NULL,
   `cat_shortdef_css` varchar(255) DEFAULT NULL,
   `cat_definition_css` varchar(255) DEFAULT NULL,
-  `cat_lines_per_page` tinyint NOT NULL DEFAULT '10',
+  `cat_userpager` tinyint NOT NULL DEFAULT '10',
   `cat_alphabarre` varchar(255) NOT NULL,
   `cat_alphabarre_mode` tinyint(1) NOT NULL DEFAULT '1',
   `cat_letter_css_default` varchar(255) NOT NULL,

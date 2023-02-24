@@ -38,6 +38,7 @@ use XoopsModules\Glossaire\Common;
     $categoriesObj = $categoriesHandler->create();
     $categoriesObj->setVar('cat_weight', $categoriesHandler->getMax('cat_weight')+10);
     
+    $categoriesObj->setVar('cat_userpager',             $glossaireHelper->getConfig('userpager'));
     $categoriesObj->setVar('cat_alphabarre',            $glossaireHelper->getConfig('alphabarre'));
     $categoriesObj->setVar('cat_alphabarre_mode',       $glossaireHelper->getConfig('alphabarre_mode'));
     $categoriesObj->setVar('cat_letter_css_default',    $glossaireHelper->getConfig('letter_css_default'));
