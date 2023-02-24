@@ -54,7 +54,6 @@ use JJD AS JJD;
         $GLOBALS['xoopsTpl']->assign('catPerms', $catPerms);
         //----------------------------------------------------------
         $GLOBALS['xoopsTpl']->assign('categories', $catList);
-        $GLOBALS['xoopsTpl']->assign('catArr', $catArr);
         
         //Categorie selectionnée, utilisée notamment pour colorset
         $GLOBALS['xoopsTpl']->assign('catSelected', $catList[$catIdSelect]);
@@ -106,6 +105,7 @@ use JJD AS JJD;
             $crEntries->add(new \Criteria('ent_initiale',$letter, "="));
         }
         $entriesCount = $entriesHandler->getCount($crEntries);
+        
 //echo "<hr>crEntries<br>"    . $crEntries->renderWhere() . "<hr>";     
         $GLOBALS['xoopsTpl']->assign('entriesCount', $entriesCount);
         if (0 === $entId) {
@@ -119,6 +119,7 @@ use JJD AS JJD;
         $entriesHandler->incrementCounter($crEntries, 'ent_term ASC, ent_id', $start, $limit);
         //----------------------------------------------------------------
         if ($entriesCount > 0) {
+            
             $entries = [];
             $entCat_id = '';
             // Get All Entries
@@ -129,13 +130,23 @@ use JJD AS JJD;
                 $keywords[$i] = $entCat_id;
             }
             $GLOBALS['xoopsTpl']->assign('entries', $entries);
-            unset($entries);
             // Display Navigation
             if ($entriesCount > $limit) {
                 require_once \XOOPS_ROOT_PATH . '/class/pagenav.php';
                 $pagenav = new \XoopsPageNav($entriesCount, $limit, $start, 'start', "op=list&catIdSelect={$catIdSelect}&limit={$limit}&letter={$letter}&exp2search={$exp2search}" );
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
+            
+            if($catArr['show_terms_index'] > 0){
+              $catArr['nbEntriesByCol'] = intval((count($entries) +($catArr['show_terms_index'] -1))/$catArr['show_terms_index'] );
+              $catArr['colWidth'] = intval(100 / $catArr['show_terms_index']);
+            }else{
+              $catArr['nbEntriesByCol'] = 0;
+              $catArr['colWidth'] = 0;
+            }
+            
+        $GLOBALS['xoopsTpl']->assign('catArr', $catArr);
+            unset($entries);
             $GLOBALS['xoopsTpl']->assign('table_type', $glossaireHelper->getConfig('table_type'));
             $GLOBALS['xoopsTpl']->assign('panel_type', $glossaireHelper->getConfig('panel_type'));
             $GLOBALS['xoopsTpl']->assign('divideby',   $glossaireHelper->getConfig('divideby'));

@@ -230,7 +230,7 @@ global $categoriesHandler;
 	if (isset($data['cat_replace_arobase'])) $categoriesObj->setVar('cat_replace_arobase',  $data['cat_replace_arobase']);    
     
     
-	if (isset($data['cat_userpager'])) $categoriesObj->setVar('cat_userpager',  $data['cat_userpager']) else $categoriesObj->setVar(10);    
+	if (isset($data['cat_userpager'])) $categoriesObj->setVar('cat_userpager',  $data['cat_userpager']); else $categoriesObj->setVar(10);    
 	$categoriesObj->setVar('cat_alphabarre',       $data['cat_alphabarre']);  
 	$categoriesObj->setVar('cat_alphabarre_mode',  $data['cat_alphabarre_mode']);  
 	$categoriesObj->setVar('cat_letter_css_default',  $data['cat_letter_css_default']);  

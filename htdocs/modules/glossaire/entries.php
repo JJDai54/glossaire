@@ -38,8 +38,8 @@ $op    = Request::getCmd('op', 'list');
 $entId = Request::getInt('ent_id', 0);
 $catIdSelect = Request::getInt('catIdSelect',0);
 $start = Request::getInt('start', 0);
-$limit = Request::getInt('limit', $glossaireHelper->getConfig('userpager'));
-if (!$limit)$limit=15;
+//$limit = Request::getInt('limit', $glossaireHelper->getConfig('userpager'));
+//if (!$limit)$limit=15;
 $letter= Request::getString('letter', '*');
 if ($letter=='@') $letter = GLOSSAIRE_CHIFFRES;
 $exp2search  = Request::getString('exp2search', '');
@@ -51,7 +51,7 @@ $sender  = Request::getString('sender', '');
 $page2redirect = "entries.php";
 
 $GLOBALS['xoopsTpl']->assign('start', $start);
-$GLOBALS['xoopsTpl']->assign('limit', $limit);
+//$GLOBALS['xoopsTpl']->assign('limit', $limit);
 $GLOBALS['xoopsTpl']->assign('letter', $letter);
 
 // Define Stylesheet
@@ -79,8 +79,11 @@ $GLOBALS['xoopsTpl']->assign('showItem', $entId > 0);
         $catObj = $categoriesHandler->get($catIdSelect);
         $catArr = $catObj->getValuesCategories();
         $catPerms = $catObj->getPerms();
-
+        $limit = ($catObj->getVar('cat_userpager')) ? $catObj->getVar('cat_userpager') :  $glossaireHelper->getConfig('userpager');
+        $GLOBALS['xoopsTpl']->assign('limit', $limit);
+//echo "<he>===> Limit = {$limit}<hr>";
 //echo "<hr>perms<pre>" . print_r($catPerms, true) . "</pre><hr>";
+//echo "<hr>cat<pre>" . print_r($catArr, true) . "</pre><hr>";
               
 $bolFoot = true;
 switch (strtolower($op)) {

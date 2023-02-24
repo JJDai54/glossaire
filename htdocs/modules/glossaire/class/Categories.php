@@ -193,10 +193,6 @@ class Categories extends \XoopsObject
         $inpBrAfterTerm->setDescription(\_AM_GLOSSAIRE_CATEGORY_BR_AFTER_TERME_DESC);
         $form->addElement($inpBrAfterTerm);
         
-        // Form Text cat_show_terms_index
-        $inpShowIndex = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_CATEGORY_SHOW_INDEX_TERMS, 'cat_show_terms_index', $this->getVar('cat_show_terms_index'));
-        $inpShowIndex->setDescription(\_AM_GLOSSAIRE_CATEGORY_SHOW_INDEX_TERMS_DESC);
-        $form->addElement($inpShowIndex);
         
 //         // Form Text Date Select catDate_creation
 //         $catDate_creation = $this->isNew() ? \time() : $this->getVar('cat_date_creation');
@@ -230,6 +226,13 @@ class Categories extends \XoopsObject
         $inpUserpager->setDescription(_MI_GLOSSAIRE_USER_PAGER_DESC);
         $inpUserpager->setMinMax(5, 100);
         $form->addElement($inpUserpager);
+        
+        // Form  cat_show_terms_index
+        $inpColsIndex = new \XoopsFormNumber(_AM_GLOSSAIRE_NB_COLUMNS_INDEX, "cat_show_terms_index", 5, 5,  $this->getVar('cat_show_terms_index'));
+        $inpColsIndex->setDescription(_AM_GLOSSAIRE_NB_COLUMNS_INDEX_DESC);
+        $inpColsIndex->setMinMax(-1, 5);
+        $form->addElement($inpColsIndex);
+
 
         // Form alphabarre 
         $inpAlphabarre = new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE, 'cat_alphabarre', 150, 255, $this->getVar('cat_alphabarre'));
