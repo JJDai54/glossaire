@@ -1,18 +1,30 @@
+
 ==============================================================
-1.0 [2022/06/12 16:25:12] jjdelalandre@orange.fr
+1.4 beta 1 [2023/02/25 16:25:12] jjdelalandre@orange.fr
+==============================================================
+Transfert des style de la barre de lettre de la table catégorie dans un fichier CSS par catégorie
+ajout d'un fichier category-modelle.cc par défaut
+divers correction dont les apostrophe dans les commentaire smarty
+Transfert des javascript des templates dans des fichier ".js' quand c'est possible
+"
+==============================================================
+1.0 beta 1 [2022/06/12 16:25:12] jjdelalandre@orange.fr
 ==============================================================
  - Original release glossaire (JJDai Development Team)
  
 Ce module pemet de gérer des Glossaire ou Lexiques. Il prend en charge
     les catégories avec colorations différenciées
     L'exportation des défintions par cétégories y compris les images des définitions
-    L'importation dans une nouvelle categorie ou une existante d'une catégorie exportée par ce module ou un de ses clones. Les images sont également importées si elles existent.
+    L'importation dans une nouvelle categorie ou une existante d'une catégorie exportée par ce module ou un de ses clones. 
+    Les images sont également importées si elles existent.
+    Une feille de style par catégorie popur la barre de lettre et les éléments des entrées
     Lexikon : L'importation dans une nouvelle categorie ou une existante d'une catégorie du module "Lexikon"
-    Le clonage sans conflit
-
+    Le clonage 
+    
 Chaque défitnion comprend :
     un terme
     Une définition courte avec prise en chage d'une mise en forme pour les acronymes
+    Cette mise en forme permet de mettre en gras les majuscule et caractères préfixé par un "/"
     Une définition
     une zone de références : Sources, Adresse, téléphone et toute information utile
     0 ou plusieurs URLs (voir aussi)
@@ -22,5 +34,4 @@ Chaque défitnion comprend :
     courriel pour le contact 
 
 Conception :
-
 La structure du module a été réalisée grace au module "moduleBuilder" https://github.com/XoopsModules25x/modulebuilder

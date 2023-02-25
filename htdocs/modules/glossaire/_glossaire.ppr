@@ -18,7 +18,7 @@ Extensions=*.*
 [Project tree]
 _glossaire
 	+glossaire
-		+admin
+		-admin
 			admin\about.php
 			admin\categories.php
 			admin\categories-list.php
@@ -45,10 +45,10 @@ _glossaire
 				-admin
 					assets\css\admin\index.php
 					assets\css\admin\style.css
+				assets\css\category-modele.css
 				assets\css\import-export.css
 				assets\css\index.php
 				assets\css\style.css
-				assets\css\category-modele.css
 			+icons
 				-16
 					-arrows
@@ -115,7 +115,7 @@ _glossaire
 			blocks\entries.php
 			blocks\index.php
 		+class
-			+Common
+			-Common
 				class\Common\Breadcrumb.php
 				class\Common\Configurator.php
 				class\Common\DirectoryChecker.php
@@ -226,6 +226,7 @@ _glossaire
 			+admin
 				templates\admin\glossaire_admin_about.tpl
 				templates\admin\glossaire_admin_categories.tpl
+				templates\admin\glossaire_admin_categories_css.tpl
 				templates\admin\glossaire_admin_clone.tpl
 				templates\admin\glossaire_admin_entries.tpl
 				templates\admin\glossaire_admin_export.tpl
@@ -235,7 +236,6 @@ _glossaire
 				templates\admin\glossaire_admin_index.tpl
 				templates\admin\glossaire_admin_permissions.tpl
 				templates\admin\index.php
-				templates\admin\glossaire_admin_categories_css.tpl
 			+blocks
 				templates\blocks\glossaire_block_categories.tpl
 				templates\blocks\glossaire_block_entries.tpl
@@ -263,6 +263,8 @@ _glossaire
 				testdata\images\blank.png
 			testdata\index.php
 		.scrutinizer.yml
+		categories.php
+		categories-new.php
 		entries.php
 		entries-list.php
 		footer.php
@@ -271,69 +273,27 @@ _glossaire
 		notification_update.php
 		read-me.txt
 		xoops_version.php
-		categories.php
-		categories-new.php
 [Open project files]
-0=sql\mysql.sql
-1=class\Categories.php
-2=include\common.php
-3=assets\css\style.css
-4=admin\categories.php
-5=include\import_export.php
-6=admin\import.php
-7=assets\css\category-modele.css
-8=language\french\admin.php
-9=categories-new.php
-10=class\EntriesHandler.php
-11=admin\categories-save.php
-12=admin\categories-new.php
-13=entries-list.php
-14=entries.php
+0=assets\css\category-modele.css
+1=sql\mysql.sql
+2=language\french\admin.php
+3=class\Categories.php
+4=class\EntriesHandler.php
 [Selected Project Files]
 Main=
-Selected=sql\mysql.sql
-[sql\mysql.sql]
-TopLine=11
-Caret=1,21
-[class\Categories.php]
-TopLine=477
-Caret=1,495
-[include\common.php]
-TopLine=69
-Caret=55,78
-[assets\css\style.css]
-TopLine=17
-Caret=1,39
-[admin\categories.php]
-TopLine=79
-Caret=42,99
-[include\import_export.php]
-TopLine=234
-Caret=1,132
-[admin\import.php]
-TopLine=138
-Caret=1,156
+Selected=class\Categories.php
 [assets\css\category-modele.css]
-TopLine=1
-Caret=1,1
+TopLine=23
+Caret=1,63
+[sql\mysql.sql]
+TopLine=41
+Caret=1,67
 [language\french\admin.php]
-TopLine=177
-Caret=76,200
-[categories-new.php]
-TopLine=26
-Caret=1,44
+TopLine=193
+Caret=1,208
+[class\Categories.php]
+TopLine=104
+Caret=27,123
 [class\EntriesHandler.php]
-TopLine=157
-Caret=27,186
-[admin\categories-save.php]
-TopLine=86
-Caret=1,104
-[admin\categories-new.php]
-TopLine=26
-Caret=1,44
-[entries-list.php]
-TopLine=61
-Caret=117,101
-[entries.php]
-TopLine=51
-Caret=16,80
+TopLine=163
+Caret=3,181

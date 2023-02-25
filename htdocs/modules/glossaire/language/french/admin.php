@@ -194,13 +194,18 @@ define('_AM_GLOSSAIRE_STYLES_GLS_ENT_TERM', "Style du terme");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_SHORTDEF', "Style de la définition courte");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DEFINITION', "Style de la définition");
 
-define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_DEFAULT', "Style des lettres par défaut");
-define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EXIST', "Style des lettres existantes");
-define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_SELECED', "Style de la lettre sélectionée");
-define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EMPTY', "Style des lettres absentes");
-
-
-
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_DEFAULT', "Lettres par défaut");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EXIST', "Lettres existantes");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_SELECED', "Lettre sélectionée");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EMPTY', "Lettres absentes");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_CREATOR', "Créateur");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_REFERENCE', "Réféences");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_FILE_NAME', "Fichier joint");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_URLS', "URL à visiter");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_EMAIL', "Courriel");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DATE_CREATION', "Date de création");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DATE_UPDATE', "Date de mise à jour");
+   
 
 
 ?>        

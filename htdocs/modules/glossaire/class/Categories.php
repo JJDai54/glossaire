@@ -120,10 +120,11 @@ class Categories extends \XoopsObject
 
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
-        $form = new \XoopsThemeForm(\_AM_GLOSSAIRE_CATEGORY_EDIT_CSS, 'form', $action, 'post', true);
+        $title = sprintf("%s<br>%s", $this->getVar('cat_name'), \_AM_GLOSSAIRE_CATEGORY_EDIT_CSS);
+        $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         //-------------------------------------------------
-        $cssArr = $this->load_css_as_array(true);
+        //$cssArr = $this->load_css_as_array(true);
         $cssArr = $this->load_css_as_array();
         //echoArray($cssArr);
         $h = 0;
@@ -132,6 +133,7 @@ class Categories extends \XoopsObject
             $cssTray = new \XoopsFormElementTray(constant($constName), '<br>');
         
             $inpStyle = new \XoopsFormTextArea('', "css[{$cssName}]", $cssClass, 5, 50);
+            $inpStyle->setExtra("style='width:400px;'");
             $cssTray->addElement($inpStyle, false);
         
 /*
@@ -494,7 +496,6 @@ class Categories extends \XoopsObject
      
 	public function load_css_as_array($likeStyle = false)
     {
-    global $categoriesHandler;
         //copie du fichier csz modele si il n'existe paq déjà
         $this->copy_css_category_modele();
         $cssCatFille = $this->getCssFileName();   
@@ -510,7 +511,17 @@ class Categories extends \XoopsObject
 */        
         $content = file_get_contents($cssCatFille);
         $cssArr = $this->parseCss($content);
-        
+
+        //-----------------------------------------------------
+        //complete avec les nouveau style fevitni dans le modèle        
+        $modCssModele = GLOSSAIRE_PATH . "/assets/css/category-modele.css";
+        $ModContent = file_get_contents($modCssModele);
+        $modCssArr = $this->parseCss($ModContent);
+        $cssArr = array_merge($modCssArr, $cssArr);  
+//         echoArray($modCssArr,'modele'); 
+//         echoArray($cssArr,'categorie'); 
+        //-----------------------------------------------------
+        //renvoie une ligne avec uniquement les attribut et valeur        
         if($likeStyle){
             $tStyle = array();
             forEach($cssArr as $cssName=>$cssClass){
@@ -522,7 +533,8 @@ class Categories extends \XoopsObject
 //echoArray($tStyle);                   
             return $tStyle;
         }else{
-            return $this->parseCss($content);
+            //renvoi un taébleau associatif 'class => style'
+            return $cssArr;
         }
         
     }

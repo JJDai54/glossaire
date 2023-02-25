@@ -178,7 +178,7 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $catArr)
         $lettersfound = array();
     //---------------------------------------------
     $lettersArr = array();
-echoArray($catArr['css']);
+//echoArray($catArr['css']);
     $style="<style>\n"
     . ".letter-default span{{$catArr['css']['gls_letter_default']}}\n"
     . ".letter-selected{{$catArr['css']['gls_letter_seleced']}}\n"
