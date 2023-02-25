@@ -18,7 +18,7 @@ Extensions=*.*
 [Project tree]
 _glossaire
 	+glossaire
-		-admin
+		+admin
 			admin\about.php
 			admin\categories.php
 			admin\categories-list.php
@@ -40,7 +40,7 @@ _glossaire
 			admin\index.php
 			admin\menu.php
 			admin\permissions.php
-		-assets
+		+assets
 			+css
 				-admin
 					assets\css\admin\index.php
@@ -48,6 +48,7 @@ _glossaire
 				assets\css\import-export.css
 				assets\css\index.php
 				assets\css\style.css
+				assets\css\category-modele.css
 			+icons
 				-16
 					-arrows
@@ -114,7 +115,7 @@ _glossaire
 			blocks\entries.php
 			blocks\index.php
 		+class
-			-Common
+			+Common
 				class\Common\Breadcrumb.php
 				class\Common\Configurator.php
 				class\Common\DirectoryChecker.php
@@ -234,6 +235,7 @@ _glossaire
 				templates\admin\glossaire_admin_index.tpl
 				templates\admin\glossaire_admin_permissions.tpl
 				templates\admin\index.php
+				templates\admin\glossaire_admin_categories_css.tpl
 			+blocks
 				templates\blocks\glossaire_block_categories.tpl
 				templates\blocks\glossaire_block_entries.tpl
@@ -272,62 +274,58 @@ _glossaire
 		categories.php
 		categories-new.php
 [Open project files]
-0=sql\mysql.sql
-1=xoops_version.php
-2=include\import_export.php
-3=class\Categories.php
-4=docs\todo.txt
-5=templates\glossaire_entries_item-02.tpl
-6=templates\glossaire_entries.tpl
-7=entries.php
-8=entries-list.php
-9=assets\css\style.css
-10=categories.php
-11=templates\glossaire_entries_terms_links.tpl
-12=J:\Xoops\modules-JJD\glossaire\projet\Nouveau1.tpl
-13=language\french\admin.php
+0=class\Categories.php
+1=include\common.php
+2=assets\css\style.css
+3=admin\categories.php
+4=admin\categories-save.php
+5=templates\admin\glossaire_admin_categories_css.tpl
+6=language\french\admin.php
+7=entries-list.php
+8=entries.php
+9=templates\glossaire_entries_item-02.tpl
+10=sql\mysql.sql
+11=docs\todo.txt
+12=..\..\uploads\glossaire\data\Fables-61228\glossaire-category.css
 [Selected Project Files]
 Main=
-Selected=include\import_export.php
-[sql\mysql.sql]
-TopLine=12
-Caret=24,36
-[xoops_version.php]
-TopLine=537
-Caret=32,495
-[include\import_export.php]
-TopLine=218
-Caret=102,233
+Selected=templates\glossaire_entries_item-02.tpl
 [class\Categories.php]
-TopLine=209
-Caret=76,231
-[docs\todo.txt]
+TopLine=44
+Caret=1,62
+[include\common.php]
+TopLine=69
+Caret=55,78
+[assets\css\style.css]
+TopLine=17
+Caret=1,39
+[admin\categories.php]
+TopLine=93
+Caret=130,110
+[admin\categories-save.php]
+TopLine=81
+Caret=1,99
+[templates\admin\glossaire_admin_categories_css.tpl]
 TopLine=1
-Caret=124,4
+Caret=8,4
+[language\french\admin.php]
+TopLine=186
+Caret=37,193
+[entries-list.php]
+TopLine=107
+Caret=1,121
+[entries.php]
+TopLine=63
+Caret=16,79
 [templates\glossaire_entries_item-02.tpl]
 TopLine=1
-Caret=74,7
-[templates\glossaire_entries.tpl]
-TopLine=48
-Caret=6,67
-[entries.php]
-TopLine=65
-Caret=16,80
-[entries-list.php]
-TopLine=120
-Caret=1,141
-[assets\css\style.css]
-TopLine=38
-Caret=24,56
-[categories.php]
-TopLine=47
+Caret=42,14
+[sql\mysql.sql]
+TopLine=11
+Caret=22,24
+[docs\todo.txt]
+TopLine=1
 Caret=1,1
-[templates\glossaire_entries_terms_links.tpl]
+[..\..\uploads\glossaire\data\Fables-61228\glossaire-category.css]
 TopLine=1
-Caret=34,7
-[J:\Xoops\modules-JJD\glossaire\projet\Nouveau1.tpl]
-TopLine=1
-Caret=1,16
-[language\french\admin.php]
-TopLine=31
-Caret=193,50
+Caret=8,4

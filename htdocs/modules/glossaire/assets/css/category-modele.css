@@ -1,0 +1,19 @@
+.gls_ent_term{
+  font-size: 0.2em;
+  color:green;
+  margin-left:12px;
+} 
+ 
+.gls_ent_shortdef{
+    font-style: italic;
+}
+ 
+ 
+.gls_ent_definition{
+  margin:0px 50px 0px 50px;
+  text-align:center;
+  color:blue;
+  font-style: italic;
+}
+ 
+ 

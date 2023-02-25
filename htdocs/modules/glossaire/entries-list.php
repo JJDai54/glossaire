@@ -35,7 +35,6 @@ use JJD AS JJD;
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_ENTRIES_LIST];
         $xoTheme->addScript(XOOPS_URL . '/modules/glossaire/assets/js/scroll.js');        
 //Utility::include_highslide(array('allowMultipleInstances'=>false));        
-    
         \JJD\include_highslide(array('allowMultipleInstances'=>false));    
         // --------------------------------------------
         // categories avec une listbox
@@ -119,13 +118,15 @@ use JJD AS JJD;
         $entriesHandler->incrementCounter($crEntries, 'ent_term ASC, ent_id', $start, $limit);
         //----------------------------------------------------------------
         if ($entriesCount > 0) {
+           $GLOBALS['xoTheme']->addStylesheet($catObj->getCssFileName(true), null);        
             
             $entries = [];
             $entCat_id = '';
             // Get All Entries
             foreach (\array_keys($entriesAll) as $i) {
                 //$entries[$i] = $entriesAll[$i]->getValuesEntries();
-                $entries[$i] = $entriesAll[$i]->getValuesEntries(null, null, null, $categoriesObj);
+
+                $entries[$i] = $entriesAll[$i]->getValuesEntries(null, null, null, $catObj);
                 $entCat_id = $entriesAll[$i]->getVar('ent_cat_id');
                 $keywords[$i] = $entCat_id;
             }

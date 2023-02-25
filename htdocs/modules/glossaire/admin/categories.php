@@ -87,6 +87,30 @@ switch (strtolower($op)) {
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
         
+    case 'edit_css':
+        $templateMain = 'glossaire_admin_categories_css.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
+        $adminObject->addItemButton(\_AM_GLOSSAIRE_LIST_CATEGORIES, 'categories.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+        // Get Form
+        $categoriesObj = $categoriesHandler->get($catId);
+        $categoriesObj->start = $start;
+        $categoriesObj->limit = $limit;
+        $form = $categoriesObj->getFormCategoriesCss();
+        $GLOBALS['xoopsTpl']->assign('form', $form->render());    
+        break;
+        
+    case 'save_css':
+        //echoArray($_POST);
+        $categoriesObj = $categoriesHandler->get($catId);
+        $cssArr =  Request::getArray('css');       
+        $categoriesObj->save_css($cssArr);
+    //exit("{$op} - {$catId}");
+    //    $cssArr = $categoriesObj->load_css_as_array();
+        \redirect_header('categories.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, \_AM_GLOSSAIRE_CATEGORY_CSS_OK);    
+        break;
+        
+                
     case 'delete':
         $templateMain = 'glossaire_admin_categories.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
@@ -132,6 +156,9 @@ switch (strtolower($op)) {
         $xoopsDB->queryf($sql);
         \redirect_header("categories.php?op=list", 0, "");
 
+        break;
+        
+    case 'save_css':
         break;
 }
 require __DIR__ . '/footer.php';

@@ -96,9 +96,6 @@ use XoopsModules\Glossaire\Common;
     } else {
         $categoriesObj->setVar('cat_logo', Request::getString('cat_logo'));
     }
-    $categoriesObj->setVar('cat_term_css', Request::getString('cat_term_css', ''));
-    $categoriesObj->setVar('cat_shortdef_css', Request::getString('cat_shortdef_css', ''));
-    $categoriesObj->setVar('cat_definition_css', Request::getString('cat_definition_css', ''));
 
     //---------------------------------------------------
     $categoriesObj->setVar('cat_userpager',             (Request::getInt('cat_userpager', "")!='') ? Request::getInt('cat_userpager', 10) : $glossaireHelper->getConfig('userpager'));

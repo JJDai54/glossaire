@@ -224,9 +224,6 @@ global $categoriesHandler;
 	$categoriesObj->setVar('cat_weight',      $data['cat_weight']);    
 	$categoriesObj->setVar('cat_logo',        $data['cat_logo']);  
 
-	if (isset($data['cat_term_css'])) $categoriesObj->setVar('cat_term_css',         $data['cat_term_css']);  
-	if (isset($data['cat_shortdef_css'])) $categoriesObj->setVar('cat_shortdef_css',     $data['cat_shortdef_css']);  
-	if (isset($data['cat_definition_css'])) $categoriesObj->setVar('cat_definition_css',   $data['cat_definition_css']);  
 	if (isset($data['cat_replace_arobase'])) $categoriesObj->setVar('cat_replace_arobase',  $data['cat_replace_arobase']);    
     
     

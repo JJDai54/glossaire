@@ -185,5 +185,18 @@ define('_AM_GLOSSAIRE_DEFINITION_CSS', "Style de la définition");
 define('_AM_GLOSSAIRE_CSS_DESC', "Permet d'ajouter ou modifier le style  des entrées pour les champs qui suivent.<br>exemple : margin:0px 50px 0px 50px;text-align:center;color:blue;font-style: italic;>");
 define('_MA_GLOSSAIRE_USER_PAGER', "Nombre de lignes par page");
 define('_MA_GLOSSAIRE_USER_PAGER_DESC', "Nombre de lignes par page dans les listes pour les utilisateurs");
+define('_AM_GLOSSAIRE_EDIT_CSS', "Edit CSS");
+define('_AM_GLOSSAIRE_CLASS_NAME', "Nom de la classe");
+define('_AM_GLOSSAIRE_CATEGORY_EDIT_CSS', "Edition des styles pour cette catégorie");
+
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_TERM', "Style du terme");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_SHORTDEF', "Style de la définition courte");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DEFINITION', "Style de la définition");
+define('_AM_GLOSSAIRE_CATEGORY_CSS_OK', "Enregistrement du fichier CSS ok");
+
+
+
+
+
 
 ?>        

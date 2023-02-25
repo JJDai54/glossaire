@@ -93,6 +93,7 @@ $modversion['templates'] = [
     ['file' => 'glossaire_admin_header.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'glossaire_admin_index.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'glossaire_admin_categories.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'glossaire_admin_categories_css.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'glossaire_admin_entries.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'glossaire_admin_permissions.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'glossaire_admin_clone.tpl', 'description' => '', 'type' => 'admin'],

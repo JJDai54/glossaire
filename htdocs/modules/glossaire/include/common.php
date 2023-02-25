@@ -75,6 +75,7 @@ require_once \XOOPS_ROOT_PATH . '/class/xoopsrequest.php';
 require_once \GLOSSAIRE_PATH . '/include/functions.php';
 
 //--------- a mettre dans xoops_version.php
+define('GLOSSAIRE_CATEGORY_CSS_NAME_FILE', "glossaire-category.css"); 
 
 $row=1;
 define('GLOSSAIRE_COL_ADM_ENTRIES_ID', $row++);

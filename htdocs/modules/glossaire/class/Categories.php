@@ -59,9 +59,6 @@ class Categories extends \XoopsObject
         $this->initVar('cat_description', \XOBJ_DTYPE_OTHER);
         $this->initVar('cat_weight', \XOBJ_DTYPE_INT);
         $this->initVar('cat_logo', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('cat_term_css', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('cat_shortdef_css', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('cat_definition_css', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_userpager', \XOBJ_DTYPE_INT);
         $this->initVar('cat_alphabarre', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_alphabarre_mode', \XOBJ_DTYPE_INT);
@@ -96,7 +93,8 @@ class Categories extends \XoopsObject
         if (!$instance) {
             $instance = new self();
         }
-    }
+    }  
+
 
     /**
      * The new inserted $Id
@@ -107,6 +105,60 @@ class Categories extends \XoopsObject
         $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
         return $newInsertedId;
     }
+
+
+    /**
+     * The the CSS of the categorie
+     * @return inserted id
+     */
+    public function getFormCategoriesCss($action = false)
+    {
+        $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
+        $styleBreakLine = '<center><div style="background:black;color:white;">%s</div></center>';
+        
+        if (!$action) {
+            $action = $_SERVER['REQUEST_URI'];
+        }
+        $isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+        // Title
+
+        // Get Theme Form
+        \xoops_load('XoopsFormLoader');
+        $form = new \XoopsThemeForm(\_AM_GLOSSAIRE_CATEGORY_EDIT_CSS, 'form', $action, 'post', true);
+        $form->setExtra('enctype="multipart/form-data"');
+        //-------------------------------------------------
+        $cssArr = $this->load_css_as_array();
+        //echoArray($cssArr);
+        $h = 0;
+        foreach($cssArr as $cssName=>$cssClass){
+            $constName = "_AM_GLOSSAIRE_STYLES_" . strtoupper(substr($cssName,1));            
+            $cssTray = new \XoopsFormElementTray(constant($constName), '<br>');
+        
+            $inpStyle = new \XoopsFormTextArea('', "css[{$cssName}]", $cssClass, 5, 50);
+            $cssTray->addElement($inpStyle, false);
+        
+/*
+            $form->addElement(new \XoopsFormHidden("css[{$h}][name]", $cssName));
+
+            //$cssTray->setDescription(constant($constName));
+             
+            $cssTray->addElement(new \XoopsFormLabel('', $cssName));
+            
+            $inpStyle = new \XoopsFormTextArea('', "css[{$h}][style]", $cssClass, 5, 50);
+            $cssTray->addElement($inpStyle, false);
+ */        
+       
+            $form->addElement($cssTray, false);
+            $h++;
+        }        
+        //-------------------------------------------------
+        $form->addElement(new \XoopsFormHidden('op', 'save_css'));
+        $form->addElement(new \XoopsFormHidden('start', $this->start));
+        $form->addElement(new \XoopsFormHidden('limit', $this->limit));
+        $form->addElement(new \XoopsFormButtonTray('', \_SUBMIT, 'submit', '', false));
+
+        return $form;
+}
 
     /**
      * @public function getForm
@@ -194,29 +246,6 @@ class Categories extends \XoopsObject
         $form->addElement($inpBrAfterTerm);
         
         
-//         // Form Text Date Select catDate_creation
-//         $catDate_creation = $this->isNew() ? \time() : $this->getVar('cat_date_creation');
-//         $form->addElement(new \XoopsFormDateTime(\_AM_GLOSSAIRE_CATEGORY_DATE_CREATION, 'cat_date_creation', '', $catDate_creation));
-//         // Form Text Date Select catDate_update
-//         $catDate_update = $this->isNew() ? \time() : $this->getVar('cat_date_update');
-//         $form->addElement(new \XoopsFormDateTime(\_AM_GLOSSAIRE_CATEGORY_DATE_UPDATE, 'cat_date_update', '', $catDate_update));
-        
-        //========================================================
-        $form->insertBreak(sprintf($styleBreakLine, _AM_GLOSSAIRE_CSS_DESC));
-        //========================================================
-        // Form Text cat_term_css
-        $inpTermCss = new \XoopsFormText(\_AM_GLOSSAIRE_TERM_CSS, 'cat_term_css', 120, 255, $this->getVar('cat_term_css'));
-        $form->addElement($inpTermCss);
-        
-        // Form Text cat_shortdef_css
-        $inoShortdefCss = new \XoopsFormText(\_AM_GLOSSAIRE_SHORDDEF_CSS, 'cat_shortdef_css', 120, 255, $this->getVar('cat_shortdef_css'));
-        $form->addElement($inoShortdefCss);
-        
-        // Form Text cat_definition_css
-        $inpDefinitionCss = new \XoopsFormText(\_AM_GLOSSAIRE_DEFINITION_CSS, 'cat_definition_css', 120, 255, $this->getVar('cat_definition_css'));
-        $form->addElement($inpDefinitionCss);
-
-
         //========================================================
         $form->insertBreak(sprintf($styleBreakLine, _AM_GLOSSAIRE_ALPHABARRE));
         //========================================================
@@ -321,10 +350,6 @@ class Categories extends \XoopsObject
         $ret['weight']            = $this->getVar('cat_weight');
         $ret['logo']              = $this->getVar('cat_logo');
 
-       $ret['term_css']       = $this->getVar('cat_term_css') . ((substr($this->getVar('cat_term_css') ,-1,0)!=';') ? ";" : ''); 
-       $ret['shortdef_css']   = $this->getVar('cat_shortdef_css') . ((substr($this->getVar('cat_shortdef_css') ,-1,0)!=';') ? ";" : ''); 
-       $ret['definition_css'] = $this->getVar('cat_definition_css') . ((substr($this->getVar('cat_definition_css') ,-1,0)!=';') ? ";" : ''); 
-        
         $ret['userpager']           = $this->getVar('cat_userpager');
         $ret['alphabarre']          = $this->getVar('cat_alphabarre');
         $ret['alphabarre_mode']     = $this->getVar('cat_alphabarre_mode');
@@ -454,5 +479,128 @@ class Categories extends \XoopsObject
         return $allPerms;
     }                                 
         
+	/**
+     */
+	public function getCssFileName($isUrl = false){
+        return $this->getPathUploads('', $isUrl) . "/" . GLOSSAIRE_CATEGORY_CSS_NAME_FILE;
+    }
+	/**
+     */
+	public function load_css_as_array()
+    {
+    global $categoriesHandler;
+        $cssCatFille = $this->getCssFileName();
+        echo $cssCatFille  . "<br>";
+        if (!file_exists($cssCatFille)){
+            $cssModele = GLOSSAIRE_PATH . "/assets/css/category-modele.css";
+            echo  $cssModele . "<br>";
+            copy($cssModele, $cssCatFille);            
+            //\JJD\FSO\saveTexte2File($fullName, $content, $mod = 0777){
+        }
+        $content = file_get_contents($cssCatFille);
+        return $this->parseCss($content);
+    }
+        
+/* *******************************
+
+********************************** */
+Function parseCss(&$content)
+{   
+    // recherche la premiere classe qui commence par un "." 
+    $j = strpos($content, ".");
+    $cssArr = array();
+    
+    While (True) {
+        //echo "<br>---------------------------------<br>";
+        $m = $j;  //stock la position courante pour recupérer le nom de la class plus loin
+        $i = strpos($content, "{" , $j); //recherche de la premiere "{"
+        If ($i === false) break;         // si pas trouvé c'est la fin du fichier CSS
+        $j = strpos($content, "}", $i);  // recherche "}"      
+        
+        //echo  "i-j-delta : {$i}-{$j}-" . $j-$i;        
+        $cssClass = substr($content, $i + 1, $j - $i - 1); //extraction des styles de la classe        
+        $h = strpos($cssClass, "\n");  //recherche un retour à la ligne de debut pour le supprimer si besoin      
+        If ($h === 1)  $cssClass = substr($cssClass, strlen("\n")); //suppression du retour à la ligne de début
+        //---------------------------------------------
+
+        // pour controle
+        //$temp = str_replace("\n","<br>", $cssClass);
+        //echo "<br>===>{$temp}<br>";
+
+        //------------------------------------------
+        //$cssName = substr($content, $m, $i-$m); //extrait le nom de la classe
+        $temp = substr($content, $m, $i-$m); //extrait le nom de la classe
+        //$temp = strrev(substr($content, $j, $j-$i));
+        $cssName = trim(str_replace(array("}","\n"), "", $temp));
+        //echo "temp = {$j}{$j} : |{$cssName}|<br>";
+
+        $cssArr[$cssName] = $cssClass; 
+      
+    }    
+    //echoArray($cssArr);
+    return $cssArr;
+}
+
+    
+	public function save_css($cssArr)
+    {
+    echoArray($cssArr);
+        $t = array();
+        $t[] = "/* ***   " . $this->getVar('cat_name') . "   *** */\n\n";
+        foreach($cssArr as $cssName=>$cssClass)  {
+            $t[] = $cssName . "{";
+            $t[] = $cssClass . "}\n\n";
+        
+        }
+        $content = implode("", $t);
+        $cssCatFille = $this->getCssFileName();
+        echo $cssCatFille  . "<br>";
+        echo $content  . "<br>";
+        \JJD\FSO\saveTexte2File($cssCatFille, $content, 0777);
+    }
 
 }
+
+
+
+
+
+
+
+
+/**********************************************
+ *
+ **********************************************/
+function  get_css_color($dirname = null, $addEmpty=false){
+global $helper;
+    if (substr($dirname , -4) == ".css"){
+      $fileName = $dirname;
+    }else{
+      $fileName = get_css_path($dirname) . "/style-item-color.css";
+    }
+    //if (is_null($fileName)) $fileName = JJD_PATH_CSS . "/style-item-color.css";
+//echo "<hr>get_css_color - fileName : {$fileName}<hr>";    
+    $content = file_get_contents ($fileName);
+//echo $content . "<br>";
+//echo "<br>{$fileName}<br>{$content}<br>";
+    $tLines = explode("\n" , $content);
+//echo "nbLines = " . count($tLines) . "<pre>" . print_r($tLines, true) . "</pre>";
+//echo "nbLines = " . count($tLines) ;
+//  echo "<pre>" . print_r($tLines, true) . "</pre>";
+
+    //$tColors = array(XFORMS_DEFAULT => XFORMS_DEFAULT);
+    $tColors = array();
+    if ($addEmpty) $tColors[''] = '';
+    foreach($tLines as $line){
+      if(strlen($line)>0 && $line[0] == "."){
+        $t = explode("-", $line);
+        $color = substr($t[0],1);
+        if (!array_key_exists($color, $tColors)){
+            $tColors[$color] = $color;
+        }
+      }
+    }
+
+    return $tColors;
+}
+
