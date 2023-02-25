@@ -127,6 +127,7 @@ class Categories extends \XoopsObject
         $form = new \XoopsThemeForm(\_AM_GLOSSAIRE_CATEGORY_EDIT_CSS, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         //-------------------------------------------------
+        $cssArr = $this->load_css_as_array(true);
         $cssArr = $this->load_css_as_array();
         //echoArray($cssArr);
         $h = 0;
@@ -370,6 +371,7 @@ class Categories extends \XoopsObject
         $ret['active']            = $this->getVar('cat_active');
 		$ret['date_creation']     = \JJD\getDateSql2Str($this->getVar('cat_date_creation'));
 		$ret['date_update']       = \JJD\getDateSql2Str($this->getVar('cat_date_update'));
+		$ret['css'] = $this->load_css_as_array(true);
         
         return $ret;
     }
@@ -486,19 +488,35 @@ class Categories extends \XoopsObject
     }
 	/**
      */
-	public function load_css_as_array()
+	public function load_css_as_array($likeStyle = false)
     {
     global $categoriesHandler;
         $cssCatFille = $this->getCssFileName();
-        echo $cssCatFille  . "<br>";
+        //echo $cssCatFille  . "<br>";
         if (!file_exists($cssCatFille)){
             $cssModele = GLOSSAIRE_PATH . "/assets/css/category-modele.css";
-            echo  $cssModele . "<br>";
+            //echo  $cssModele . "<br>";
             copy($cssModele, $cssCatFille);            
             //\JJD\FSO\saveTexte2File($fullName, $content, $mod = 0777){
         }
+        
         $content = file_get_contents($cssCatFille);
-        return $this->parseCss($content);
+        $cssArr = $this->parseCss($content);
+        
+        if($likeStyle){
+            $tStyle = array();
+            forEach($cssArr as $cssName=>$cssClass){
+               $content = str_replace("\n","",$cssClass);
+               $t = explode(";", $cssClass);  
+               for($h=0; $h < count($t); $h++) $t[$h] = trim($t[$h]);
+               $tStyle[substr($cssName,1)] = implode(';', $t);
+            }
+//echoArray($tStyle);                   
+            return $tStyle;
+        }else{
+            return $this->parseCss($content);
+        }
+        
     }
         
 /* *******************************
@@ -544,7 +562,7 @@ Function parseCss(&$content)
     
 	public function save_css($cssArr)
     {
-    echoArray($cssArr);
+//    echoArray($cssArr);
         $t = array();
         $t[] = "/* ***   " . $this->getVar('cat_name') . "   *** */\n\n";
         foreach($cssArr as $cssName=>$cssClass)  {
@@ -554,53 +572,10 @@ Function parseCss(&$content)
         }
         $content = implode("", $t);
         $cssCatFille = $this->getCssFileName();
-        echo $cssCatFille  . "<br>";
-        echo $content  . "<br>";
+        //echo $cssCatFille  . "<br>";
+        //echo $content  . "<br>";
         \JJD\FSO\saveTexte2File($cssCatFille, $content, 0777);
     }
 
-}
-
-
-
-
-
-
-
-
-/**********************************************
- *
- **********************************************/
-function  get_css_color($dirname = null, $addEmpty=false){
-global $helper;
-    if (substr($dirname , -4) == ".css"){
-      $fileName = $dirname;
-    }else{
-      $fileName = get_css_path($dirname) . "/style-item-color.css";
-    }
-    //if (is_null($fileName)) $fileName = JJD_PATH_CSS . "/style-item-color.css";
-//echo "<hr>get_css_color - fileName : {$fileName}<hr>";    
-    $content = file_get_contents ($fileName);
-//echo $content . "<br>";
-//echo "<br>{$fileName}<br>{$content}<br>";
-    $tLines = explode("\n" , $content);
-//echo "nbLines = " . count($tLines) . "<pre>" . print_r($tLines, true) . "</pre>";
-//echo "nbLines = " . count($tLines) ;
-//  echo "<pre>" . print_r($tLines, true) . "</pre>";
-
-    //$tColors = array(XFORMS_DEFAULT => XFORMS_DEFAULT);
-    $tColors = array();
-    if ($addEmpty) $tColors[''] = '';
-    foreach($tLines as $line){
-      if(strlen($line)>0 && $line[0] == "."){
-        $t = explode("-", $line);
-        $color = substr($t[0],1);
-        if (!array_key_exists($color, $tColors)){
-            $tColors[$color] = $color;
-        }
-      }
-    }
-
-    return $tColors;
 }
 

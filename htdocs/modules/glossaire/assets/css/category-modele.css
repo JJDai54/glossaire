@@ -1,7 +1,7 @@
 .gls_ent_term{
-  font-size: 0.2em;
+  font-size: 1.2em;
   color:green;
-  margin-left:12px;
+  padding-left:12px;
 } 
  
 .gls_ent_shortdef{
@@ -10,7 +10,7 @@
  
  
 .gls_ent_definition{
-  margin:0px 50px 0px 50px;
+  padding:0px 50px 0px 50px;
   text-align:center;
   color:blue;
   font-style: italic;

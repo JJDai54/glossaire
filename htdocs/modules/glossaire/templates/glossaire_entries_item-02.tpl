@@ -6,14 +6,14 @@
 
 <div name="entry-<{$entry.id}>" id="entry-<{$entry.id}>" class="gls_title gls_ent_term item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:0px; c">
     <{if $cat_br_after_term}>
-        <h2 class="gls_ent_term" style='color:red;'><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
+        <h2 style="<{$catArr.css.gls_ent_term}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
         <{if $entry.shortdef}>             
-            <h3 class="gls_ent_shortdef">><{$entry.shortdefMagnifed}></h3>
+            <h3  style="<{$catArr.css.gls_ent_shortdef}>"><{$entry.shortdefMagnifed}></h3>
         <{/if}>
     <{else}> 
-        <h2  class="gls_ent_term" style="float:left;<{$catArr.term_css}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
+        <h2   style="<{$catArr.css.gls_ent_term}>float:left;<{$catArr.term_css}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
         <{if $entry.shortdef}>          
-            <h3 "class="gls_ent_shortdef">&nbsp;:&nbsp;<{$entry.shortdefMagnifed}></h3>
+            <h3  style="<{$catArr.css.gls_ent_shortdef}>">&nbsp;:&nbsp;<{$entry.shortdefMagnifed}></h3>
         <{/if}>
     <{/if}>
 
@@ -39,7 +39,7 @@
 <{* ---------- data de l entree -----------*}>
 <div class="item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:-5px;float:none;">
     <{if $entry.definition_img}>
-        <div class="gls_ent_definition">
+        <div  style="<{$catArr.css.gls_ent_definition}>">
             <{$entry.definition_img}>
         </div>
         
