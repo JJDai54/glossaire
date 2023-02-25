@@ -98,7 +98,7 @@ use JJD AS JJD;
 
     //url = XOOPS_URL . "/modules/glossaire/op=list&catId={$catId}&letter=%s";        &exp2search={$exp2search}
         $url = "{$page2redirect}?op=list&catIdSelect={$catIdSelect}&start=0&limit={$limit}&letter=%s&exp2search={$exp2search}";
-        $GLOBALS['xoopsTpl']->assign('alphaBarre', $entriesHandler->getAlphaBarre($crEntries, $url, $letter, $catObj));
+        $GLOBALS['xoopsTpl']->assign('alphaBarre', $entriesHandler->getAlphaBarre($crEntries, $url, $letter, $catArr));
 
         if (strpos($glossaireHelper->getConfig('alphabarre'), $letter) !== false && $letter !='*'){
             $crEntries->add(new \Criteria('ent_initiale',$letter, "="));
@@ -118,7 +118,7 @@ use JJD AS JJD;
         $entriesHandler->incrementCounter($crEntries, 'ent_term ASC, ent_id', $start, $limit);
         //----------------------------------------------------------------
         if ($entriesCount > 0) {
-           $GLOBALS['xoTheme']->addStylesheet($catObj->getCssFileName(true), null);        
+//           $GLOBALS['xoTheme']->addStylesheet($catObj->getCssFileName(true), null);        
             
             $entries = [];
             $entCat_id = '';

@@ -41,10 +41,6 @@ use XoopsModules\Glossaire\Common;
     $categoriesObj->setVar('userpager',                 $glossaireHelper->getConfig('userpager'));
     $categoriesObj->setVar('cat_alphabarre',            $glossaireHelper->getConfig('alphabarre'));
     $categoriesObj->setVar('cat_alphabarre_mode',       $glossaireHelper->getConfig('alphabarre_mode'));
-    $categoriesObj->setVar('cat_letter_css_default',    $glossaireHelper->getConfig('letter_css_default'));
-    $categoriesObj->setVar('cat_letter_css_selected',   $glossaireHelper->getConfig('letter_css_selected'));
-    $categoriesObj->setVar('cat_letter_css_exist',      $glossaireHelper->getConfig('letter_css_exist'));
-    $categoriesObj->setVar('cat_letter_css_notexist',   $glossaireHelper->getConfig('letter_css_notexist'));
     $categoriesObj->setVar('cat_replace_arobase',       $glossaireHelper->getConfig('replace_arobase'));
 
     $form = $categoriesObj->getFormCategories();

@@ -60,7 +60,11 @@ function export_glossaire($catId, $gls_add_img = false, $gls_add_files=false)
     export_categories ($catId, $pathGlossaire, GLOSSAIRE_DIRNAME, $uploadsPath);    
     export_entries    ($catId, $pathGlossaire, GLOSSAIRE_DIRNAME, $uploadsPath, $gls_add_img, $gls_add_files);    
     
-    
+    // copie du fichier CSS
+	$cssFrom = $catObj->getCssFileName();
+    //echo "<hr>{$cssFrom}<br>" . $pathGlossaire . "/" . GLOSSAIRE_CATEGORY_CSS_NAME_FILE .  "<hr>";
+    copy($cssFrom, $pathGlossaire . "/" . GLOSSAIRE_CATEGORY_CSS_NAME_FILE); 
+   
     \JJD\FSO\addHtmlIndex2folder($pathExport, true);    
     //----------------------------------------------------
     
@@ -141,8 +145,15 @@ function import_glossaire($pathImport, $catId)
         if (is_readable($pathImport . '/logo')){
         $xoopsFolder->copy(array('from' => $pathImport . '/logo', 
                                  'to'   => $glsUploads . '/logo',
-                                 'mode' => 0777));
+                                 'mode' => 0777));   
         }
+        // copie du fichier CSS
+        $cssFrom = $pathImport .  "/" . GLOSSAIRE_CATEGORY_CSS_NAME_FILE;
+        //echo "<hr>{$cssFrom}<br>" . $pathGlossaire . "/" . GLOSSAIRE_CATEGORY_CSS_NAME_FILE .  "<hr>";
+        copy($cssFrom, $categoriesObj->getCssFileName());       
+        
+        
+        
     }
     //---------------------------------------------------------
      if(!$glsUploads) $glsUploads = $categoriesObj->getPathUploads();
@@ -230,10 +241,6 @@ global $categoriesHandler;
 	if (isset($data['cat_userpager'])) $categoriesObj->setVar('cat_userpager',  $data['cat_userpager']); else $categoriesObj->setVar(10);    
 	$categoriesObj->setVar('cat_alphabarre',       $data['cat_alphabarre']);  
 	$categoriesObj->setVar('cat_alphabarre_mode',  $data['cat_alphabarre_mode']);  
-	$categoriesObj->setVar('cat_letter_css_default',  $data['cat_letter_css_default']);  
-	$categoriesObj->setVar('cat_letter_css_selected', $data['cat_letter_css_selected']);  
-	$categoriesObj->setVar('cat_letter_css_exist',    $data['cat_letter_css_exist']);  
-	$categoriesObj->setVar('cat_letter_css_notexist', $data['cat_letter_css_notexist']);  
 	$categoriesObj->setVar('cat_upload_folder',  $data['cat_upload_folder'] . $suffix);    
 	$categoriesObj->setVar('cat_colors_set',     $data['cat_colors_set']);    
 	$categoriesObj->setVar('cat_is_acronym',     $data['cat_is_acronym']);    

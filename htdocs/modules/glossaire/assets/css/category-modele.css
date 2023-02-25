@@ -1,3 +1,22 @@
+.gls_letter_default{
+    font-size:1.5em;
+    margin-left:3px;
+    margin-right:3px;
+}
+.gls_letter_exist{
+    font-weight:bold;
+}
+.gls_letter_seleced{
+    font-weight:bold;
+    color:red;
+    text-decoration: underline;
+    underline red;
+}
+.gls_letter_empty{
+    color: #bfc9ca;
+}
+
+
 .gls_ent_term{
   font-size: 1.2em;
   color:green;

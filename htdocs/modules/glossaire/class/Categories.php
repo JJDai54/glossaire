@@ -62,10 +62,6 @@ class Categories extends \XoopsObject
         $this->initVar('cat_userpager', \XOBJ_DTYPE_INT);
         $this->initVar('cat_alphabarre', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_alphabarre_mode', \XOBJ_DTYPE_INT);
-        $this->initVar('cat_letter_css_default', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('cat_letter_css_selected', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('cat_letter_css_exist', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('cat_letter_css_notexist', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_upload_folder', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_colors_set', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('cat_is_acronym', \XOBJ_DTYPE_INT); 
@@ -269,10 +265,6 @@ class Categories extends \XoopsObject
         $inpAlphabarre->setDescription(_MI_GLOSSAIRE_ALPHABARRE_DESC);
         $form->addElement($inpAlphabarre);
         $form->addElement(new \XoopsFormRadioYN(\_MI_GLOSSAIRE_ALPHABARRE_MODE, 'cat_alphabarre_mode', $this->getVar('cat_alphabarre_mode')));
-        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT, 'cat_letter_css_default', 150, 255, $this->getVar('cat_letter_css_default')));
-        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED, 'cat_letter_css_selected', 150, 255, $this->getVar('cat_letter_css_selected')));
-        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST, 'cat_letter_css_exist', 150, 255, $this->getVar('cat_letter_css_exist')));
-        $form->addElement(new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST, 'cat_letter_css_notexist', 150, 255, $this->getVar('cat_letter_css_notexist')));
 
         //========================================================
         $form->insertBreak(sprintf($styleBreakLine, _AM_GLOSSAIRE_PERMISSIONS));
@@ -354,10 +346,6 @@ class Categories extends \XoopsObject
         $ret['userpager']           = $this->getVar('cat_userpager');
         $ret['alphabarre']          = $this->getVar('cat_alphabarre');
         $ret['alphabarre_mode']     = $this->getVar('cat_alphabarre_mode');
-        $ret['letter_css_default']  = $this->getVar('cat_letter_css_default');
-        $ret['letter_css_selected'] = $this->getVar('cat_letter_css_selected');
-        $ret['letter_css_exist']    = $this->getVar('cat_letter_css_exist');
-        $ret['letter_css_notexist'] = $this->getVar('cat_letter_css_notexist');
 
         $ret['upload_folder']        = $this->getVar('cat_upload_folder');
         $ret['colors_set']           = ($this->getVar('cat_colors_set')) ? $this->getVar('cat_colors_set') : "default";
@@ -488,7 +476,8 @@ class Categories extends \XoopsObject
     }
 	/**
      */
-	public function load_css_as_array($likeStyle = false)
+     
+	public function copy_css_category_modele()
     {
     global $categoriesHandler;
         $cssCatFille = $this->getCssFileName();
@@ -500,6 +489,25 @@ class Categories extends \XoopsObject
             //\JJD\FSO\saveTexte2File($fullName, $content, $mod = 0777){
         }
         
+    }
+     
+     
+	public function load_css_as_array($likeStyle = false)
+    {
+    global $categoriesHandler;
+        //copie du fichier csz modele si il n'existe paq déjà
+        $this->copy_css_category_modele();
+        $cssCatFille = $this->getCssFileName();   
+/*
+        
+        //echo $cssCatFille  . "<br>";
+        if (!file_exists($cssCatFille)){
+            $cssModele = GLOSSAIRE_PATH . "/assets/css/category-modele.css";
+            //echo  $cssModele . "<br>";
+            copy($cssModele, $cssCatFille);            
+            //\JJD\FSO\saveTexte2File($fullName, $content, $mod = 0777){
+        }
+*/        
         $content = file_get_contents($cssCatFille);
         $cssArr = $this->parseCss($content);
         

@@ -18,18 +18,12 @@ CREATE TABLE `glossaire_categories` (
   `cat_description` text NOT NULL,
   `cat_weight` int NOT NULL DEFAULT '0',
   `cat_logo` varchar(80) NOT NULL DEFAULT '',
-  
   `cat_term_css` varchar(255) DEFAULT NULL,
   `cat_shortdef_css` varchar(255) DEFAULT NULL,
   `cat_definition_css` varchar(255) DEFAULT NULL,
-  
   `cat_userpager` tinyint NOT NULL DEFAULT '10',
   `cat_alphabarre` varchar(255) NOT NULL,
   `cat_alphabarre_mode` tinyint(1) NOT NULL DEFAULT '1',
-  `cat_letter_css_default` varchar(255) NOT NULL,
-  `cat_letter_css_selected` varchar(255) NOT NULL,
-  `cat_letter_css_exist` varchar(255) NOT NULL,
-  `cat_letter_css_notexist` varchar(255) NOT NULL,
   `cat_upload_folder` varchar(255) NOT NULL DEFAULT '',
   `cat_colors_set` varchar(50) NOT NULL DEFAULT '',
   `cat_is_acronym` tinyint(1) NOT NULL DEFAULT '0',

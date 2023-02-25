@@ -189,11 +189,15 @@ define('_AM_GLOSSAIRE_EDIT_CSS', "Edit CSS");
 define('_AM_GLOSSAIRE_CLASS_NAME', "Nom de la classe");
 define('_AM_GLOSSAIRE_CATEGORY_EDIT_CSS', "Edition des styles pour cette catégorie");
 
+define('_AM_GLOSSAIRE_CATEGORY_CSS_OK', "Enregistrement du fichier CSS ok");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_TERM', "Style du terme");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_SHORTDEF', "Style de la définition courte");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DEFINITION', "Style de la définition");
-define('_AM_GLOSSAIRE_CATEGORY_CSS_OK', "Enregistrement du fichier CSS ok");
 
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_DEFAULT', "Style des lettres par défaut");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EXIST', "Style des lettres existantes");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_SELECED', "Style de la lettre sélectionée");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EMPTY', "Style des lettres absentes");
 
 
 

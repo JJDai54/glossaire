@@ -146,25 +146,20 @@ class EntriesHandler extends \XoopsPersistableObjectHandler
     /**
      * @return array
      */
-public function getAlphaBarre($criteria, $url, $oldLetter, $catObj=null)
+public function getAlphaBarre($criteria, $url, $oldLetter, $catArr)
 {
     global $glossaireHelper;
-    
+/*
     if($catObj){
         $alphabarre          = $catObj->getVar('cat_alphabarre');
         $alphabarre_mode     = $catObj->getVar('cat_alphabarre_mode');
-        $letter_css_default  = $catObj->getVar('cat_letter_css_default');
-        $letter_css_selected = $catObj->getVar('cat_letter_css_selected');
-        $letter_css_exist    = $catObj->getVar('cat_letter_css_exist');
-        $letter_css_notexist = $catObj->getVar('cat_letter_css_notexist');
     }else{
         $alphabarre          = $glossaireHelper->getConfig('alphabarre');
         $alphabarre_mode     = $glossaireHelper->getConfig('alphabarre_mode');
-        $letter_css_default  = $glossaireHelper->getConfig('letter_css_default');
-        $letter_css_selected = $glossaireHelper->getConfig('letter_css_selected');
-        $letter_css_exist    = $glossaireHelper->getConfig('letter_css_exist');
-        $letter_css_notexist = $glossaireHelper->getConfig('letter_css_notexist');
     }
+*/    
+        $alphabarre      = $catArr['cat_alphabarre'];
+        $alphabarre_mode = $catArr['cat_alphabarre_mode'];
     
     $linkRefOk  = "<b><a href='{$url}' title='' alt=''><span class='letter-exist'>%s</span></a></b>";
     //$linkNoRef  = "<span>%s</span>";
@@ -183,15 +178,17 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $catObj=null)
         $lettersfound = array();
     //---------------------------------------------
     $lettersArr = array();
-
+echoArray($catArr['css']);
     $style="<style>\n"
-    . ".letter-default span{{$letter_css_default}}\n"
-    . ".letter-selected{{$letter_css_selected}}\n"
-    . ".letter-exist{{$letter_css_exist}}\n"
-    . ".letter-notexist{{$letter_css_notexist}}\n"
+    . ".letter-default span{{$catArr['css']['gls_letter_default']}}\n"
+    . ".letter-selected{{$catArr['css']['gls_letter_seleced']}}\n"
+    . ".letter-exist{{$catArr['css']['gls_letter_exist']}}\n"
+    . ".letter-notexist{{V['css']['gls_letter_empty']}}\n"
     ."</style>\n";
     //------------------------------------------------------
-    
+$temp = str_replace('<', '[', $style);    
+$temp = str_replace('>', ']', $temp);    
+echo "<hr><pre><code>{$temp}</code></pre><hr>";    
     //------------------------------------------------------
     for ($h = 0; $h < strlen($alphabarre); ++$h) {
         $letterVisible = $alphabarre[$h];
@@ -234,7 +231,7 @@ function changeStatus($entId, $newStatus = null){
            . " WHERE ent_id={$entId};";
     }else{
       $sql = "UPDATE " . $this->table 
-           . " SET ent_status=${$newStatus}"
+           . " SET ent_status={$newStatus}"
            . " WHERE ent_id={$entId};";
     }
     $ret = $this->db->queryf($sql);
@@ -251,7 +248,7 @@ function incrementeField($entId, $fldName, $modMax = 2, $newStatus = null){
            . " WHERE ent_id={$entId};";
     }else{
       $sql = "UPDATE " . $this->table 
-           . " SET {$fldName}=${$newStatus}"
+           . " SET {$fldName}={$newStatus}"
            . " WHERE ent_id={$entId};";
     }
     $ret = $this->db->queryf($sql);

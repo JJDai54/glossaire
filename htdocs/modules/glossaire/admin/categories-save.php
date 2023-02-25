@@ -101,10 +101,6 @@ use XoopsModules\Glossaire\Common;
     $categoriesObj->setVar('cat_userpager',             (Request::getInt('cat_userpager', "")!='') ? Request::getInt('cat_userpager', 10) : $glossaireHelper->getConfig('userpager'));
     $categoriesObj->setVar('cat_alphabarre',            (Request::getString('cat_alphabarre', "")!='') ? Request::getString('cat_alphabarre', "") : $glossaireHelper->getConfig('alphabarre'));
     $categoriesObj->setVar('cat_alphabarre_mode',       (Request::getInt('cat_alphabarre_mode', "")!='') ? Request::getInt('cat_alphabarre_mode', "") : $glossaireHelper->getConfig('alphabarre_mode'));
-    $categoriesObj->setVar('cat_letter_css_default',    (Request::getString('cat_letter_css_default', "")!='') ? Request::getString('cat_letter_css_default', "") : $glossaireHelper->getConfig('letter_css_default'));
-    $categoriesObj->setVar('cat_letter_css_selected',   (Request::getString('cat_letter_css_selected', "")!='') ? Request::getString('cat_letter_css_selected', "") : $glossaireHelper->getConfig('letter_css_selected'));
-    $categoriesObj->setVar('cat_letter_css_exist',      (Request::getString('cat_letter_css_exist', "")!='') ? Request::getString('cat_letter_css_exist', "") : $glossaireHelper->getConfig('letter_css_exist'));
-    $categoriesObj->setVar('cat_letter_css_notexist',   (Request::getString('cat_letter_css_notexist', "")!='') ? Request::getString('cat_letter_css_notexist', "") : $glossaireHelper->getConfig('letter_css_notexist'));
 
     //---------------------------------------------------
     $categoriesObj->setVar('cat_colors_set', Request::getString('cat_colors_set', ''));
