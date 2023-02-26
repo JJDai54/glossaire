@@ -62,9 +62,9 @@ class XoopsConfirm
     public function getFormXoopsConfirm()
     {
         //in order to be accessable from user and admin area this should be place in language common.php
-        if (!\defined('CO_GLOSSAIRE_DELETE_CONFIRM')) {
-            \define('CO_GLOSSAIRE_DELETE_CONFIRM', 'Confirm delete');
-            \define('CO_GLOSSAIRE_DELETE_LABEL', 'Do you really want to delete:');
+        if (!\defined('_CO_GLOSSAIRE_DELETE_CONFIRM')) {
+//             \define('_CO_GLOSSAIRE_DELETE_CONFIRM', 'Confirm delete');
+//             \define('_CO_GLOSSAIRE_DELETE_LABEL', 'Do you really want to delete:');
         }
 
         // Get Theme Form
@@ -72,11 +72,11 @@ class XoopsConfirm
             $this->action = \Xmf\Request::getString('REQUEST_URI', '', 'SERVER');
         }
         if ('' === $this->title) {
-            $this->title = CO_GLOSSAIRE_DELETE_CONFIRM;
+            $this->title = _CO_GLOSSAIRE_DELETE_CONFIRM;
         }
         if ('' === $this->label) {
 
-            $this->label = CO_GLOSSAIRE_DELETE_LABEL;
+            $this->label = _CO_GLOSSAIRE_DELETE_LABEL;
         }
 
         \xoops_load('XoopsFormLoader');

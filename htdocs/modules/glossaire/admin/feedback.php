@@ -60,12 +60,12 @@ switch ($op) {
         $fb_content = Request::getText('fb_content', '');
         $fb_content = \str_replace(["\r\n", "\n", "\r"], '<br>', $fb_content); //clean line break from dhtmltextarea
 
-        $title       = \constant('_GLOSSAIRE_FB_SEND_FOR') . $GLOBALS['xoopsModule']->getVar('dirname');
-        $body        = \constant('_GLOSSAIRE_FB_NAME') . ': ' . $your_name . '<br>';
-        $body        .= \constant('_GLOSSAIRE_FB_MAIL') . ': ' . $your_mail . '<br>';
-        $body        .= \constant('_GLOSSAIRE_FB_SITE') . ': ' . $your_site . '<br>';
-        $body        .= \constant('_GLOSSAIRE_FB_TYPE') . ': ' . $fb_type . '<br><br>';
-        $body        .= \constant('_GLOSSAIRE_FB_TYPE_CONTENT') . ':<br>';
+        $title       = \constant('_FB_GLOSSAIRE_SEND_FOR') . $GLOBALS['xoopsModule']->getVar('dirname');
+        $body        = \constant('_FB_GLOSSAIRE_NAME') . ': ' . $your_name . '<br>';
+        $body        .= \constant('_FB_GLOSSAIRE_MAIL') . ': ' . $your_mail . '<br>';
+        $body        .= \constant('_FB_GLOSSAIRE_SITE') . ': ' . $your_site . '<br>';
+        $body        .= \constant('_FB_GLOSSAIRE_TYPE') . ': ' . $fb_type . '<br><br>';
+        $body        .= \constant('_FB_GLOSSAIRE_TYPE_CONTENT') . ':<br>';
         $body        .= $fb_content;
         $xoopsMailer = xoops_getMailer();
         $xoopsMailer->useMail();
@@ -77,7 +77,7 @@ switch ($op) {
         $xoopsMailer->setBody($body);
         $ret = $xoopsMailer->send();
         if ($ret) {
-            \redirect_header('index.php', 3, \constant('_GLOSSAIRE_FB_SEND_SUCCESS'));
+            \redirect_header('index.php', 3, \constant('_FB_GLOSSAIRE_SEND_SUCCESS'));
         }
 
         // show form with content again
@@ -87,7 +87,7 @@ switch ($op) {
         $feedback->type    = $fb_type;
         $feedback->content = $fb_content;
         echo '<div style="text-align:center;width: 80%; padding: 10px; border: 2px solid #ff0000; color: #ff0000; margin-right:auto;margin-left:auto;">
-            <h3>' . \constant('_GLOSSAIRE_FB_SEND_ERROR') . '</h3>
+            <h3>' . \constant('_FB_GLOSSAIRE_SEND_ERROR') . '</h3>
             </div>';
         $form = $feedback->getFormFeedback();
         $form->display();

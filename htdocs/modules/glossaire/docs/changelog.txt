@@ -3,10 +3,12 @@
 1.4 beta 1 [2023/02/25 16:25:12] jjdelalandre@orange.fr
 ==============================================================
 Transfert des style de la barre de lettre de la table catégorie dans un fichier CSS par catégorie
-ajout d'un fichier category-modelle.cc par défaut
-divers correction dont les apostrophe dans les commentaire smarty
+Ajout d'un fichier category-modelle.cc par défaut
+Divers correction dont les apostrophe dans les commentaire smarty
 Transfert des javascript des templates dans des fichier ".js' quand c'est possible
-"
+Complettion des constantes de langues english
+Suppression des constantes de langues inutilisées
+
 ==============================================================
 1.0 beta 1 [2022/06/12 16:25:12] jjdelalandre@orange.fr
 ==============================================================

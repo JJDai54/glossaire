@@ -225,7 +225,7 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      * @param string   $permtype	Type de permission
      * @return array   $cat		    Liste des catégorie qui correspondent à la permission
      */
-	public function getListAllowed($short_permtype, $criteria, $sorted='cat_weight,cat_name,cat_id', $order="ASC")
+	public function getListAllowed($short_permtype, $criteria=null, $sorted='cat_weight,cat_name,cat_id', $order="ASC")
     {
         if (!$short_permtype)  $short_permtype = 'view';
         $tPerm = $this->getPermissions($short_permtype);

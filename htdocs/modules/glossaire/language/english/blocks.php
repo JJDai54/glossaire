@@ -26,10 +26,10 @@ defined( 'XOOPS_ROOT_PATH' ) or die( 'Accès restreint' );
 define('_MB_GLOSSAIRE_ENT_CAT_ID', "Cat_id");
 define('_MB_GLOSSAIRE_ENT_COUNTER', "Counter");
 define('_MB_GLOSSAIRE_ENT_DEFINITION', "Definition");
+define('_MB_GLOSSAIRE_ENTRY_GOTO', "Goto Entry");
 define('_MB_GLOSSAIRE_ENT_REFERENCE', "Reference");
 define('_MB_GLOSSAIRE_ENT_SHORTDEF', "Shortdef");
 define('_MB_GLOSSAIRE_ENT_TERM', "Term");
 define('_MB_GLOSSAIRE_ENT_UID', "Uid");
-define('_MB_GLOSSAIRE_ENTRY_GOTO', "Goto Entry");
 
 ?>

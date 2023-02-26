@@ -67,29 +67,29 @@ class ModuleFeedback extends \XoopsObject
         $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
-        $form = new \XoopsThemeForm(\constant('_GLOSSAIRE_FB_FORM_TITLE'), 'formfeedback', 'feedback.php', 'post', true);
+        $form = new \XoopsThemeForm(\constant('_FB_GLOSSAIRE_FORM_TITLE'), 'formfeedback', 'feedback.php', 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
 
-        $recipient = new \XoopsFormText(\constant('_GLOSSAIRE_FB_RECIPIENT'), 'recipient', 50, 255, $GLOBALS['xoopsModule']->getInfo('author_mail'));
+        $recipient = new \XoopsFormText(\constant('_FB_GLOSSAIRE_RECIPIENT'), 'recipient', 50, 255, $GLOBALS['xoopsModule']->getInfo('author_mail'));
         $recipient->setExtra('disabled="disabled"');
         $form->addElement($recipient);
-        $your_name = new \XoopsFormText(\constant('_GLOSSAIRE_FB_NAME'), 'your_name', 50, 255, $this->name);
-        $your_name->setExtra('placeholder="' . \constant('_GLOSSAIRE_FB_NAME_PLACEHOLER') . '"');
+        $your_name = new \XoopsFormText(\constant('_FB_GLOSSAIRE_NAME'), 'your_name', 50, 255, $this->name);
+        $your_name->setExtra('placeholder="' . \constant('_FB_GLOSSAIRE_NAME_PLACEHOLER') . '"');
         $form->addElement($your_name);
-        $your_site = new \XoopsFormText(\constant('_GLOSSAIRE_FB_SITE'), 'your_site', 50, 255, $this->site);
-        $your_site->setExtra('placeholder="' . \constant('_GLOSSAIRE_FB_SITE_PLACEHOLER') . '"');
+        $your_site = new \XoopsFormText(\constant('_FB_GLOSSAIRE_SITE'), 'your_site', 50, 255, $this->site);
+        $your_site->setExtra('placeholder="' . \constant('_FB_GLOSSAIRE_SITE_PLACEHOLER') . '"');
         $form->addElement($your_site);
-        $your_mail = new \XoopsFormText(\constant('_GLOSSAIRE_FB_MAIL'), 'your_mail', 50, 255, $this->email);
-        $your_mail->setExtra('placeholder="' . \constant('_GLOSSAIRE_FB_MAIL_PLACEHOLER') . '"');
+        $your_mail = new \XoopsFormText(\constant('_FB_GLOSSAIRE_MAIL'), 'your_mail', 50, 255, $this->email);
+        $your_mail->setExtra('placeholder="' . \constant('_FB_GLOSSAIRE_MAIL_PLACEHOLER') . '"');
         $form->addElement($your_mail);
 
-        $fbtypeSelect = new \XoopsFormSelect(\constant('_GLOSSAIRE_FB_TYPE'), 'fb_type', $this->type);
+        $fbtypeSelect = new \XoopsFormSelect(\constant('_FB_GLOSSAIRE_TYPE'), 'fb_type', $this->type);
         $fbtypeSelect->addOption('', '');
-        $fbtypeSelect->addOption(\constant('_GLOSSAIRE_FB_TYPE_SUGGESTION'), \constant('_GLOSSAIRE_FB_TYPE_SUGGESTION'));
-        $fbtypeSelect->addOption(\constant('_GLOSSAIRE_FB_TYPE_BUGS'), \constant('_GLOSSAIRE_FB_TYPE_BUGS'));
-        $fbtypeSelect->addOption(\constant('_GLOSSAIRE_FB_TYPE_TESTIMONIAL'), \constant('_GLOSSAIRE_FB_TYPE_TESTIMONIAL'));
-        $fbtypeSelect->addOption(\constant('_GLOSSAIRE_FB_TYPE_FEATURES'), \constant('_GLOSSAIRE_FB_TYPE_FEATURES'));
-        $fbtypeSelect->addOption(\constant('_GLOSSAIRE_FB_TYPE_OTHERS'), \constant('_GLOSSAIRE_FB_TYPE_OTHERS'));
+        $fbtypeSelect->addOption(\constant('_FB_GLOSSAIRE_TYPE_SUGGESTION'), \constant('_FB_GLOSSAIRE_TYPE_SUGGESTION'));
+        $fbtypeSelect->addOption(\constant('_FB_GLOSSAIRE_TYPE_BUGS'), \constant('_FB_GLOSSAIRE_TYPE_BUGS'));
+        $fbtypeSelect->addOption(\constant('_FB_GLOSSAIRE_TYPE_TESTIMONIAL'), \constant('_FB_GLOSSAIRE_TYPE_TESTIMONIAL'));
+        $fbtypeSelect->addOption(\constant('_FB_GLOSSAIRE_TYPE_FEATURES'), \constant('_FB_GLOSSAIRE_TYPE_FEATURES'));
+        $fbtypeSelect->addOption(\constant('_FB_GLOSSAIRE_TYPE_OTHERS'), \constant('_FB_GLOSSAIRE_TYPE_OTHERS'));
         $form->addElement($fbtypeSelect, true);
 
         $editorConfigs           = [];
@@ -104,7 +104,7 @@ class ModuleFeedback extends \XoopsObject
         $configHandler           = \xoops_getHandler('config');
         $config                  = &$configHandler->getConfigsByCat(0, $module->getVar('mid'));
         $editorConfigs['editor'] = $config['general_editor'];
-        $editor                  = new \XoopsFormEditor(\constant('_GLOSSAIRE_FB_TYPE_CONTENT'), 'fb_content', $editorConfigs);
+        $editor                  = new \XoopsFormEditor(\constant('_FB_GLOSSAIRE_TYPE_CONTENT'), 'fb_content', $editorConfigs);
         $form->addElement($editor, true);
 
         $form->addElement(new \XoopsFormHidden('op', 'send'));
