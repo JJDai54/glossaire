@@ -1,73 +1,72 @@
-.gls_letter_default{
+/* ***   Sigles et Acronymes   *** */
+
+.gls_letter_default{    
     font-size:1.5em;
     margin-left:3px;
     margin-right:3px;
 }
-.gls_letter_exist{
+
+.gls_letter_exist{    
     font-weight:bold;
 }
-.gls_letter_seleced{
+
+.gls_letter_seleced{    
     font-weight:bold;
     color:red;
     text-decoration: underline;
     underline red;
 }
-.gls_letter_empty{
+
+.gls_letter_empty{    
     color: #bfc9ca;
 }
 
-
-.gls_ent_term{
+.gls_ent_index_table{
+  border: 0px solid red;
   font-size: 1.2em;
-  color:green;
   padding-left:12px;
-} 
- 
-.gls_ent_shortdef{
-    font-style: italic;
+  vertical-align: top;  
 }
- 
- 
-.gls_ent_definition{
-  padding:0px 50px 0px 50px;
-  text-align:center;
+
+.gls_ent_index_div{
+  font-size: 1.2em;
+  padding-left:12px;
+}
+
+.gls_ent_term{  font-size: 1.2em;
+  padding-left:12px;
+}
+
+.gls_ent_shortdef{    font-style: italic;
+    padding : 15px 25px 0px 25px;
+}
+
+.gls_ent_definition{  padding:0px 50px 0px 50px;
   color:blue;
-  font-style: italic;
 }
- 
+
 .gls_ent_creator{
+    padding : 15px 25px 0px 25px;
 }
 
-.gls_ent_reference  {
-}
-
-
-.gls_ent_file_name {
-}
-
-
-.gls_ent_urls    {
+.gls_ent_reference{
+    padding : 15px 25px 0px 25px;
 }
 
 
-.gls_ent_email    {
+.gls_ent_files_joins{
+    padding : 15px 25px 0px 25px;
 }
 
-
-.gls_ent_date_creation {
+.gls_ent_urls{
+    padding : 15px 25px 0px 25px;
 }
 
-
-.gls_ent_date_update {
+.gls_ent_email{
+    padding : 15px 25px 0px 25px;
 }
 
+.gls_ent_date_creation{}
 
+.gls_ent_date_update{}
 
-
-
-
-
-
-
-
- 

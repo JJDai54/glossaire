@@ -43,9 +43,9 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
     'name'                => \_MI_GLOSSAIRE_NAME,
-    'version'             => 1.4,
+    'version'             => 1.6,
     'release'             => '2023-02-28',
-    'module_status'       => 'Beta 3',
+    'module_status'       => 'Beta 1',
     'description'         => \_MI_GLOSSAIRE_DESC,
     'author'              => 'Jean-Jacques Delalandre',
     'author_mail'         => 'jjdelalandre@orange.fr',

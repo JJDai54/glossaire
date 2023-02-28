@@ -14,7 +14,7 @@
         <h2   style="<{$catArr.css.gls_ent_term}>float:left;<{$catArr.term_css}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
         <{if $entry.shortdef}>          
             <h3  style="<{$catArr.css.gls_ent_shortdef}>">&nbsp;:&nbsp;<{$entry.shortdefMagnifed}></h3>
-        <{/if}>
+        <{/if}>                  
     <{/if}>
 
 <{* ---------- Affichage de boutons image pour gerer l entree -----------*}>
@@ -42,23 +42,26 @@
         <div  style="<{$catArr.css.gls_ent_definition}>">
             <{$entry.definition_img}>
         </div>
-        
     <{/if}>
     <{if $entry.reference}>
-        <span class="gls_seealso"><{$smarty.const._MA_GLOSSAIRE_REFERENCES}> : </span><br>
-        <{$entry.reference}>
+        <span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_REFERENCES}> : </span><br>
+        <span style="<{$catArr.css.gls_ent_reference}>"><{$entry.reference}></span><br>
     <{/if}>
-
     <{if $entry.urls}>
-        <span class="gls_seealso"><{$smarty.const._MA_GLOSSAIRE_SEEALSO}> : </span><br>
-        <{$entry.urls}>
+        <span  class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_SEEALSO}> : </span>
+        <span style="<{$catArr.css.gls_ent_urls}>"><{$entry.urls}></span>
     <{/if}>
     <{if $entry.email}>
-        <span class="gls_seealso"><{$smarty.const._MA_GLOSSAIRE_CONTACT}> : </span> : <{$entry.email}>
+        <br><br><span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_CONTACT}> : </span>
+        <span style="<{$catArr.css.gls_ent_email}>"><{$entry.email}></span><br>
     <{/if}>
     <{if $entry.file_name}>
-        <br><br><span class="gls_seealso"><{$smarty.const._MA_GLOSSAIRE_FILE_LINKED}> : </span><br>
-        <{$entry.file_link}>
+        <br><br><span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_FILE_LINKED}> : </span><br>
+        <span style="<{$catArr.css.gls_ent_files_joins}>"><{$entry.file_link}></span><br>
+    <{/if}>
+    <{if $entry.creator}>
+        <br><span class="gls_subtitle"><{$smarty.const._AM_GLOSSAIRE_CREATOR}> : </span>
+        <span style="<{$catArr.css.gls_ent_creator}>"><{$entry.creator}></span><br>
     <{/if}>
 </div>
 

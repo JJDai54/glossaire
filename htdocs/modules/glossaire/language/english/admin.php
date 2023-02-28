@@ -140,7 +140,7 @@ define('_AM_GLOSSAIRE_ADD_CATEGORY', "Add New Category");
 define('_AM_GLOSSAIRE_FORM_SURE_DELETE', "Are you sure to delete: <b><span style='color : Red;'>[%s] %s</span></b>");
 define('_AM_GLOSSAIRE_FORM_DELETE', "Clear");
 define('_AM_GLOSSAIRE_ENTRY_COUNTER', "Counter");
-define('_AM_GLOSSAIRE_CREATOR', "Creator");
+define('_AM_GLOSSAIRE_CREATOR', "Author");
 define('_AM_GLOSSAIRE_ENTRY_DEFINITION', "Definition");
 define('_AM_GLOSSAIRE_DOWN', "Down");
 define('_AM_GLOSSAIRE_CATEGORY_DESCRIPTION', "Description");
@@ -186,12 +186,15 @@ define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EXIST', "Lettres existantes");
 define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_SELECED', "Lettre sélectionée");
 define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EMPTY', "Lettres absentes");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_CREATOR', "Créateur");
-define('_AM_GLOSSAIRE_STYLES_GLS_ENT_REFERENCE', "Réféences");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_REFERENCE', "Références");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_FILE_NAME', "Fichier joint");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_URLS', "URL à visiter");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_EMAIL', "Courriel");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DATE_CREATION', "Date de création");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DATE_UPDATE', "Date de mise à jour");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_INDEX_TABLE', "Index des termes en colonnes");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_INDEX_DIV', "Index des termes en liste");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_FILES_JOINS', "Fichiers joints");
 
 
 ?>

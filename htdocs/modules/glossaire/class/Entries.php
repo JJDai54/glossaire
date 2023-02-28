@@ -167,18 +167,20 @@ class Entries extends \XoopsObject
         //en cas d'import d'une autre base le uid n'a pas de sens
         //$entUid = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('ent_uid');
         //$form->addElement(new \XoopsFormSelectUser(\_AM_GLOSSAIRE_ENTRY_UID, 'ent_uid', false, $entUid));
+        // Form Text entTerm
+        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_TERM, 'ent_term', 50, 255, $this->getVar('ent_term')), true);
+        // Form Text entShortdef
+        //---------------------------------------------------------------------     
         if($this->isNew()){
             $entUid = $GLOBALS['xoopsUser']->uid();
             $creator = \XoopsUser::getUnameFromId($entUid);
         }else{
             $creator = $this->getVar('ent_creator');
         }
-        $form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CREATOR, $creator));
-        $form->addElement(new \XoopsFormHidden('ent_creator', $creator));   
-             
-        // Form Text entTerm
-        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_TERM, 'ent_term', 50, 255, $this->getVar('ent_term')), true);
-        // Form Text entShortdef
+        //$form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CREATOR, $creator));
+        //$form->addElement(new \XoopsFormHidden('ent_creator', $creator));   
+        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CREATOR, 'ent_creator', 50, 50, $creator), false);
+        //---------------------------------------------------------------------     
         $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_SHORTDEF, 'ent_shortdef', 120, 255, $this->getVar('ent_shortdef')));
         
         // Form Text ent_is_acronym

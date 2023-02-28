@@ -106,7 +106,7 @@ $sql = "INSERT INTO " . $xoopsDB->prefix('glossaire_entries')
 . "(ent_cat_id,ent_term,ent_initiale,ent_definition,ent_creator,ent_urls,ent_counter,ent_is_acronym,ent_status,ent_date_creation,ent_date_update) "
 . " SELECT {$catIdSelect},term,init,definition,'{$creator}',url,counter,0,2,'{$date_creation}','{$date_update}'"
 . " FROM " . $xoopsDB->prefix('lxentries') . " WHERE categoryID = {$catIdLexikon};";
-echo $sql . "<hr>";
+//echo $sql . "<hr>";
     $ret = $xoopsDB->query($sql);
 }
 $upload_size = $glossaireHelper->getConfig('maxsize_file');

@@ -188,7 +188,7 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $catArr)
     //------------------------------------------------------
 $temp = str_replace('<', '[', $style);    
 $temp = str_replace('>', ']', $temp);    
-echo "<hr><pre><code>{$temp}</code></pre><hr>";    
+//echo "<hr><pre><code>{$temp}</code></pre><hr>";    
     //------------------------------------------------------
     for ($h = 0; $h < strlen($alphabarre); ++$h) {
         $letterVisible = $alphabarre[$h];

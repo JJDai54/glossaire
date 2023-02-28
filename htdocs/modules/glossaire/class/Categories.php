@@ -130,23 +130,12 @@ class Categories extends \XoopsObject
         $h = 0;
         foreach($cssArr as $cssName=>$cssClass){
             $constName = "_AM_GLOSSAIRE_STYLES_" . strtoupper(substr($cssName,1));            
-            $cssTray = new \XoopsFormElementTray(constant($constName), '<br>');
+            $cssTray = new \XoopsFormElementTray(constant($constName) . " - <span style='color:red;'>[{$cssName}]</span>", '<br>');
         
             $inpStyle = new \XoopsFormTextArea('', "css[{$cssName}]", $cssClass, 5, 50);
             $inpStyle->setExtra("style='width:400px;'");
             $cssTray->addElement($inpStyle, false);
         
-/*
-            $form->addElement(new \XoopsFormHidden("css[{$h}][name]", $cssName));
-
-            //$cssTray->setDescription(constant($constName));
-             
-            $cssTray->addElement(new \XoopsFormLabel('', $cssName));
-            
-            $inpStyle = new \XoopsFormTextArea('', "css[{$h}][style]", $cssClass, 5, 50);
-            $cssTray->addElement($inpStyle, false);
- */        
-       
             $form->addElement($cssTray, false);
             $h++;
         }        
@@ -470,7 +459,8 @@ class Categories extends \XoopsObject
         
         return $allPerms;
     }                                 
-        
+     
+     /* ***************** gestion des CSS par categorie ********************/   
 	/**
      */
 	public function getCssFileName($isUrl = false){
@@ -494,6 +484,18 @@ class Categories extends \XoopsObject
     }
      
      
+	public function css_trim_content($content, $newSep = '')
+    {
+        $content = str_replace("\n","",$content);
+        $t = explode(";", $content);  
+        for($h=0; $h < count($t); $h++) 
+            if (trim($t[$h]))        
+            $t[$h] = trim($t[$h]) . ';';
+
+        return  implode($newSep, $t);
+    }
+    
+    
 	public function load_css_as_array($likeStyle = false)
     {
         //copie du fichier csz modele si il n'existe paq déjà
@@ -522,19 +524,26 @@ class Categories extends \XoopsObject
 //         echoArray($cssArr,'categorie'); 
         //-----------------------------------------------------
         //renvoie une ligne avec uniquement les attribut et valeur        
-        if($likeStyle){
             $tStyle = array();
-            forEach($cssArr as $cssName=>$cssClass){
-               $content = str_replace("\n","",$cssClass);
-               $t = explode(";", $cssClass);  
+        if($likeStyle){
+            forEach($cssArr as $cssName=>$attributs){
+            /*
+               $content = str_replace("\n","",$attrinuts);
+               $t = explode(";", $attrinuts);  
                for($h=0; $h < count($t); $h++) $t[$h] = trim($t[$h]);
                $tStyle[substr($cssName,1)] = implode(';', $t);
+            */
+               $tStyle[substr($cssName,1)] = $this->css_trim_content($attributs);
             }
 //echoArray($tStyle);                   
             return $tStyle;
         }else{
+            forEach($cssArr as $cssName=>$attributs){
+               //$tStyle[substr($cssName,1)] = $this->css_trim_content($attributs, "\n");
+               $tStyle[$cssName] = $this->css_trim_content($attributs, "\n");
+            }
             //renvoi un taébleau associatif 'class => style'
-            return $cssArr;
+            return $tStyle;
         }
         
     }
