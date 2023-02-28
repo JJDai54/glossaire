@@ -6,13 +6,17 @@
 
 <{if $catArr.show_terms_index > 0}>
 
-<table width='100%'>
+<hr class='<{$colors_set}>-hr-style-two'>   
+<table width='100%' style="<{$catArr.css.gls_ent_index_table}>">
     <tr>
-      <td width='<{$catArr.colWidth}>%'>
+      <td width='<{$catArr.colWidth}>%'  style="<{$catArr.css.gls_ent_index_table}>">
       
         <{foreach item=entry from=$entries  name=entriesList}>
           <{if $smarty.foreach.entriesList.index > 0}>
-            <{if $smarty.foreach.entriesList.index % $catArr.nbEntriesByCol == 0}></td><td width='<{$catArr.colWidth}>%'><{/if}>
+            <{if $smarty.foreach.entriesList.index % $catArr.nbEntriesByCol == 0}>
+                </td>
+                <td width='<{$catArr.colWidth}>%'  style="<{$catArr.css.gls_ent_index_table}>">
+            <{/if}>
           <{/if}>
           <span style='margin:0px 12px 0px 0px;'>
           <a href="#entry-<{$entry.id}>" title="" alt="" >
@@ -22,8 +26,9 @@
       </td>
     </tr>
 </table>
+<hr class='<{$colors_set}>-hr-style-two'>   
 
-
+  
 <{else}>
 
 <hr class='<{$colors_set}>-hr-style-two'>   

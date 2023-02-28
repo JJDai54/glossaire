@@ -150,4 +150,12 @@ define('_MI_GLOSSAIRE_ALPHABARRE_MODE', "Show all letters");
 define('_MI_GLOSSAIRE_USER_PAGER', "User pager");
 define('_MI_GLOSSAIRE_USER_PAGER_DESC', "User per page list");
 
+$BreaklineStyle = '<div style="background:black;color:white;"><center>%s</center></div>';
+define('_MI_GLOSSAIRE_BREAK_IMAGE', sprintf($BreaklineStyle, 'Images'));
+define('_MI_GLOSSAIRE_BREAK_FILE', sprintf($BreaklineStyle, 'Files'));
+define('_MI_GLOSSAIRE_BREAK_GROUP', sprintf($BreaklineStyle, 'Groups'));
+define('_MI_GLOSSAIRE_BREAK_ALPHABARRE', sprintf($BreaklineStyle, 'Select barre'));
+define('_MI_GLOSSAIRE_BREAK_INTERFACE', sprintf($BreaklineStyle, 'Interface'));
+define('_MI_GLOSSAIRE_BREAK_EXTRA', sprintf($BreaklineStyle, 'Extra'));
+
 ?>

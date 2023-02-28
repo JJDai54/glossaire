@@ -17,8 +17,10 @@ HTServer=localhost
 Extensions=*.*
 [Project tree]
 _glossaire
+	+_JJD
+		..\..\uploads\glossaire\data\Sigles_et_Acronymes\glossaire-category.css
 	+glossaire
-		-admin
+		+admin
 			admin\about.php
 			admin\categories.php
 			admin\categories-list.php
@@ -114,8 +116,8 @@ _glossaire
 			blocks\categories.php
 			blocks\entries.php
 			blocks\index.php
-		-class
-			+Common
+		+class
+			-Common
 				class\Common\Breadcrumb.php
 				class\Common\Configurator.php
 				class\Common\DirectoryChecker.php
@@ -274,90 +276,26 @@ _glossaire
 		read-me.txt
 		xoops_version.php
 [Open project files]
-0=assets\css\category-modele.css
-1=sql\mysql.sql
-2=language\french\admin.php
-3=class\Categories.php
-4=class\EntriesHandler.php
-5=language\french\common.php
-6=language\english\main.php
-7=language\english\feedback.php
-8=language\english\common.php
-9=language\english\blocks.php
-10=language\english\admin.php
-11=docs\index.php
-12=docs\todo.txt
-13=class\Common\XoopsConfirm.php
-14=admin\entries-delete.php
-15=language\french\feedback.php
-16=class\CategoriesHandler.php
-17=admin\feedback.php
-18=class\Common\ModuleFeedback.php
-19=docs\changelog.txt
-20=xoops_version.php
+0=class\Categories.php
+1=templates\glossaire_entries_terms_links.tpl
+2=..\..\uploads\glossaire\data\Sigles_et_Acronymes\glossaire-category.css
+3=assets\css\category-modele.css
+4=xoops_version.php
 [Selected Project Files]
 Main=
 Selected=xoops_version.php
+[class\Categories.php]
+TopLine=538
+Caret=30,590
+[templates\glossaire_entries_terms_links.tpl]
+TopLine=1
+Caret=1,29
+[..\..\uploads\glossaire\data\Sigles_et_Acronymes\glossaire-category.css]
+TopLine=1
+Caret=12,21
 [assets\css\category-modele.css]
 TopLine=1
-Caret=1,34
-[sql\mysql.sql]
-TopLine=21
-Caret=1,67
-[language\french\admin.php]
-TopLine=151
-Caret=50,160
-[class\Categories.php]
-TopLine=104
-Caret=27,123
-[class\EntriesHandler.php]
-TopLine=163
-Caret=3,181
-[language\french\common.php]
-TopLine=16
-Caret=1,60
-[language\english\main.php]
-TopLine=10
 Caret=1,1
-[language\english\feedback.php]
-TopLine=1
-Caret=1,1
-[language\english\common.php]
-TopLine=15
-Caret=68,57
-[language\english\blocks.php]
-TopLine=1
-Caret=1,1
-[language\english\admin.php]
-TopLine=152
-Caret=1,196
-[docs\index.php]
-TopLine=1
-Caret=1,1
-[docs\todo.txt]
-TopLine=17
-Caret=1,49
-[class\Common\XoopsConfirm.php]
-TopLine=48
-Caret=28,66
-[admin\entries-delete.php]
-TopLine=8
-Caret=17,42
-[language\french\feedback.php]
-TopLine=1
-Caret=3,10
-[class\CategoriesHandler.php]
-TopLine=206
-Caret=34,232
-[admin\feedback.php]
-TopLine=33
-Caret=39,70
-[class\Common\ModuleFeedback.php]
-TopLine=11
-Caret=38,22
-[docs\changelog.txt]
-TopLine=1
-Caret=2,6
 [xoops_version.php]
-TopLine=19
+TopLine=21
 Caret=41,47

@@ -556,13 +556,13 @@ Function parseCss(&$content)
         $j = strpos($content, "}", $i);  // recherche "}"      
         
         //echo  "i-j-delta : {$i}-{$j}-" . $j-$i;        
-        $cssClass = substr($content, $i + 1, $j - $i - 1); //extraction des styles de la classe        
-        $h = strpos($cssClass, "\n");  //recherche un retour à la ligne de debut pour le supprimer si besoin      
-        If ($h === 1)  $cssClass = substr($cssClass, strlen("\n")); //suppression du retour à la ligne de début
+        $attributs = substr($content, $i + 1, $j - $i - 1); //extraction des styles de la classe        
+        $h = strpos($attributs, "\n");  //recherche un retour à la ligne de debut pour le supprimer si besoin      
+        If ($h === 1)  $attributs = substr($attributs, strlen("\n")); //suppression du retour à la ligne de début
         //---------------------------------------------
 
         // pour controle
-        //$temp = str_replace("\n","<br>", $cssClass);
+        //$temp = str_replace("\n","<br>", $attributs);
         //echo "<br>===>{$temp}<br>";
 
         //------------------------------------------
@@ -572,7 +572,7 @@ Function parseCss(&$content)
         $cssName = trim(str_replace(array("}","\n"), "", $temp));
         //echo "temp = {$j}{$j} : |{$cssName}|<br>";
 
-        $cssArr[$cssName] = $cssClass; 
+        $cssArr[$cssName] = $attributs; 
       
     }    
     //echoArray($cssArr);
@@ -585,9 +585,9 @@ Function parseCss(&$content)
 //    echoArray($cssArr);
         $t = array();
         $t[] = "/* ***   " . $this->getVar('cat_name') . "   *** */\n\n";
-        foreach($cssArr as $cssName=>$cssClass)  {
+        foreach($cssArr as $cssName=>$attributs)  {
             $t[] = $cssName . "{";
-            $t[] = $cssClass . "}\n\n";
+            $t[] = $attributs . "}\n\n";
         
         }
         $content = implode("", $t);
