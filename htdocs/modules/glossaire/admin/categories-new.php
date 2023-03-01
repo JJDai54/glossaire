@@ -42,6 +42,7 @@ use XoopsModules\Glossaire\Common;
     $categoriesObj->setVar('cat_alphabarre',            $glossaireHelper->getConfig('alphabarre'));
     $categoriesObj->setVar('cat_alphabarre_mode',       $glossaireHelper->getConfig('alphabarre_mode'));
     $categoriesObj->setVar('cat_replace_arobase',       $glossaireHelper->getConfig('replace_arobase'));
+    $categoriesObj->setVar('cat_show_bin', 326767));
 
     
     $form = $categoriesObj->getFormCategories();

@@ -114,6 +114,7 @@ class Entries extends \XoopsObject
      * @public function getForm
      * @param bool $action
      * @return \XoopsThemeForm
+     * 
      */
     public function getFormEntries($action = false)
     {//exit("<hr>getFormEntries - statusIdSelect = {$statusIdSelect}<hr>");
@@ -125,7 +126,8 @@ class Entries extends \XoopsObject
         }
         $catIdSelect = $this->getVar('ent_cat_id');
         $categoriesObj = $categoriesHandler->get($catIdSelect);
-
+        $catArray = $categoriesObj->getValuesCategories();
+        
         if ($this->isNew()){
             $this->setVar('ent_is_acronym', $categoriesObj->getVar('cat_is_acronym'));
         }
@@ -168,152 +170,174 @@ class Entries extends \XoopsObject
         //$entUid = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('ent_uid');
         //$form->addElement(new \XoopsFormSelectUser(\_AM_GLOSSAIRE_ENTRY_UID, 'ent_uid', false, $entUid));
         // Form Text entTerm
-        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_TERM, 'ent_term', 50, 255, $this->getVar('ent_term')), true);
+        $libelle = \_AM_GLOSSAIRE_ENTRY_TERM . (($catArray['show_bin'][GLOSSAIRE_ENT_ID]) ? " - [#{$this->getVar('ent_id')}]": '');
+        $form->addElement(new \XoopsFormText($libelle, 'ent_term', 50, 255, $this->getVar('ent_term')), true);
         // Form Text entShortdef
         //---------------------------------------------------------------------     
-        if($this->isNew()){
-            $entUid = $GLOBALS['xoopsUser']->uid();
-            $creator = \XoopsUser::getUnameFromId($entUid);
-        }else{
-            $creator = $this->getVar('ent_creator');
-        }
-        //$form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CREATOR, $creator));
-        //$form->addElement(new \XoopsFormHidden('ent_creator', $creator));   
-        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CREATOR, 'ent_creator', 50, 50, $creator), false);
-        //---------------------------------------------------------------------     
-        $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_SHORTDEF, 'ent_shortdef', 120, 255, $this->getVar('ent_shortdef')));
-        
-        // Form Text ent_is_acronym
-        $inpMagnifySd = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_ENTRY_MAGNIFY_SD, 'ent_is_acronym', $this->getVar('ent_is_acronym'));
-        $inpMagnifySd->setDescription(\_AM_GLOSSAIRE_ENTRY_MAGNIFY_SD_DESC);
-        $form->addElement($inpMagnifySd);
-        
-        //-------------------------------------------------
-        $entImage = $this->isNew() ? '' : $this->getVar('ent_image');
-        $form->addElement(new \XoopsFormHidden('ent_image', $entImage));        
- 
-        $urlImg = $categoriesObj->getPathUploads('images', true) . '/' . $entImage;
-        $isImgOk = (is_readable($categoriesObj->getPathUploads('images', false) . '/' . $entImage) AND $entImage!='');
-        $currentImg = new \XoopsFormLabel('', "<br><img src='{$urlImg}'  name='image_img2' id='image_img2' alt='' style='max-width:100px'>");
-        
-//         if (!is_null() && $fulName!=='' && is_readable($fulName)) {
-//           $urlImg = XOOPS_URL . "/modules/slider/assets/images/slide-temp-01.png";
-//         }else{
-//           $urlImg = SLIDER_UPLOAD_IMAGE_URL . "/slides/" . $slideImg;
-//         }
-        // Form File: Upload entImage
-        $imgUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_IMAGE, '<br>');
-        $permissionUpload = true;
-        if ($permissionUpload) {
-            $fileDirectory = '/uploads/glossaire/files/entries';
-            if ($isImgOk) {
-                $imgUploadTray->addElement(new \XoopsFormLabel(\sprintf(\_AM_GLOSSAIRE_ENTRY_IMAGE_UPLOADS, ".{$fileDirectory}/"), $entImage));
-                $inpDeleteImg = new \XoopsFormCheckBox('', 'ent_delete_img', "",'<br>');
-                $inpDeleteImg->addOption(1, _AM_GLOSSAIRE_DELETE_IMG);
-                $imgUploadTray->addElement($inpDeleteImg);
-                
+        if($catArray['show_bin'][GLOSSAIRE_ENT_CREATOR]){
+            if($this->isNew()){
+                $entUid = $GLOBALS['xoopsUser']->uid();
+                $creator = \XoopsUser::getUnameFromId($entUid);
+            }else{
+                $creator = $this->getVar('ent_creator');
             }
-            $maxsize = $glossaireHelper->getConfig('maxsize_file');
-            $imgUploadTray->addElement(new \XoopsFormFile('', 'ent_image', $maxsize));
-            $imgUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
-            //$form->addElement($imgUploadTray);
-
-        } else {
-
+            //$form->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_CREATOR, $creator));
+            //$form->addElement(new \XoopsFormHidden('ent_creator', $creator));   
+            $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CREATOR, 'ent_creator', 50, 50, $creator), false);
         }
-        $upload_size = $glossaireHelper->getConfig('maxsize_image');
-        $imageTray  = new \XoopsFormElementTray(_AM_GLOSSAIRE_ENTRY_IMAGE,"<br>"); 
-        $imageTray->addElement($currentImg, false);
-        $imageTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $upload_size / 1024), '<br>');
-        $imageTray->addElement($imgUploadTray, false);
-        $form->addElement($imageTray);
+        //---------------------------------------------------------------------     
+        //echoArray($catArray['show_bin'],"shortdef = " . GLOSSAIRE_ENT_SHORTDEF);
+        if($catArray['show_bin'][GLOSSAIRE_ENT_SHORTDEF]){
+            $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_SHORTDEF, 'ent_shortdef', 120, 255, $this->getVar('ent_shortdef')));
+        
+            // Form Text ent_is_acronym
+            if($catArray['show_bin'][GLOSSAIRE_ENT_SHORTDEF]){ 
+                $inpMagnifySd = new \XoopsFormRadioYN(\_AM_GLOSSAIRE_ENTRY_MAGNIFY_SD, 'ent_is_acronym', $this->getVar('ent_is_acronym'));
+                $inpMagnifySd->setDescription(\_AM_GLOSSAIRE_ENTRY_MAGNIFY_SD_DESC);
+                $form->addElement($inpMagnifySd);
+            }
+        }
+
         //-------------------------------------------------
+        if($catArray['show_bin'][GLOSSAIRE_ENT_IMAGE]){
+            $entImage = $this->isNew() ? '' : $this->getVar('ent_image');
+            $form->addElement(new \XoopsFormHidden('ent_image', $entImage));        
+     
+            $urlImg = $categoriesObj->getPathUploads('images', true) . '/' . $entImage;
+            $isImgOk = (is_readable($categoriesObj->getPathUploads('images', false) . '/' . $entImage) AND $entImage!='');
+            $currentImg = new \XoopsFormLabel('', "<br><img src='{$urlImg}'  name='image_img2' id='image_img2' alt='' style='max-width:100px'>");
             
-        // Form Editor DhtmlTextArea entDefinition
-        if ($isAdmin) {
-            $editor = $glossaireHelper->getConfig('editor_admin');
-        } else {
-            $editor = $glossaireHelper->getConfig('editor_user');
+    //         if (!is_null() && $fulName!=='' && is_readable($fulName)) {
+    //           $urlImg = XOOPS_URL . "/modules/slider/assets/images/slide-temp-01.png";
+    //         }else{
+    //           $urlImg = SLIDER_UPLOAD_IMAGE_URL . "/slides/" . $slideImg;
+    //         }
+            // Form File: Upload entImage
+            $imgUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_IMAGE, '<br>');
+            $permissionUpload = true;
+            if ($permissionUpload) {
+                $fileDirectory = '/uploads/glossaire/files/entries';
+                if ($isImgOk) {
+                    $imgUploadTray->addElement(new \XoopsFormLabel(\sprintf(\_AM_GLOSSAIRE_ENTRY_IMAGE_UPLOADS, ".{$fileDirectory}/"), $entImage));
+                    $inpDeleteImg = new \XoopsFormCheckBox('', 'ent_delete_img', "",'<br>');
+                    $inpDeleteImg->addOption(1, _AM_GLOSSAIRE_DELETE_IMG);
+                    $imgUploadTray->addElement($inpDeleteImg);
+                    
+                }
+                $maxsize = $glossaireHelper->getConfig('maxsize_file');
+                $imgUploadTray->addElement(new \XoopsFormFile('', 'ent_image', $maxsize));
+                $imgUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
+                //$form->addElement($imgUploadTray);
+    
+            } else {
+    
+            }
+            $upload_size = $glossaireHelper->getConfig('maxsize_image');
+            $imageTray  = new \XoopsFormElementTray(_AM_GLOSSAIRE_ENTRY_IMAGE,"<br>"); 
+            $imageTray->addElement($currentImg, false);
+            $imageTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $upload_size / 1024), '<br>');
+            $imageTray->addElement($imgUploadTray, false);
+            $form->addElement($imageTray);
+        }
+        //-------------------------------------------------
+        if($catArray['show_bin'][GLOSSAIRE_ENT_DEFINITION]){
+            
+            // Form Editor DhtmlTextArea entDefinition
+            if ($isAdmin) {
+                $editor = $glossaireHelper->getConfig('editor_admin');
+            } else {
+                $editor = $glossaireHelper->getConfig('editor_user');
+            }
+            
+            $editorConfigs1 = [];
+            $editorConfigs1['name'] = 'ent_definition';
+            $editorConfigs1['value'] = $this->getVar('ent_definition', 'e');
+            $editorConfigs1['rows'] = 10;
+            $editorConfigs1['cols'] = 40;
+            $editorConfigs1['width'] = '100%';
+            $editorConfigs1['height'] = '400px';
+            $editorConfigs1['editor'] = $editor;
+            $inpDefinition = new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_DEFINITION, 'ent_definition', $editorConfigs1);
+            //$inpDefinition->setDescription(_AM_GLOSSAIRE_ENTRY_DEFINITION_DESC);
+            $form->addElement($inpDefinition);
         }
         
-        $editorConfigs1 = [];
-        $editorConfigs1['name'] = 'ent_definition';
-        $editorConfigs1['value'] = $this->getVar('ent_definition', 'e');
-        $editorConfigs1['rows'] = 10;
-        $editorConfigs1['cols'] = 40;
-        $editorConfigs1['width'] = '100%';
-        $editorConfigs1['height'] = '400px';
-        $editorConfigs1['editor'] = $editor;
-        $inpDefinition = new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_DEFINITION, 'ent_definition', $editorConfigs1);
-        //$inpDefinition->setDescription(_AM_GLOSSAIRE_ENTRY_DEFINITION_DESC);
-        $form->addElement($inpDefinition);
         
-        // Form Editor DhtmlTextArea entReference
-        $editorConfigs2 = [];
-        $editorConfigs2['name'] = 'ent_reference';
-        $editorConfigs2['value'] = $this->getVar('ent_reference', 'e');
-        $editorConfigs2['rows'] = 5;
-        $editorConfigs2['cols'] = 40;
-        $editorConfigs2['width'] = '100%';
-        $editorConfigs2['height'] = '200px';
-        $editorConfigs2['editor'] = $editor;
-        $inpReference = new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_REFERENCES, 'ent_reference', $editorConfigs2);
-        $inpReference->setDescription(_AM_GLOSSAIRE_ENTRY_REFERENCES_DESC);
-        $form->addElement($inpReference);
+        if($catArray['show_bin'][GLOSSAIRE_ENT_REFERENCE]){
+            // Form Editor DhtmlTextArea entReference
+            $editorConfigs2 = [];
+            $editorConfigs2['name'] = 'ent_reference';
+            $editorConfigs2['value'] = $this->getVar('ent_reference', 'e');
+            $editorConfigs2['rows'] = 5;
+            $editorConfigs2['cols'] = 40;
+            $editorConfigs2['width'] = '100%';
+            $editorConfigs2['height'] = '200px';
+            $editorConfigs2['editor'] = $editor;
+            $inpReference = new \XoopsFormEditor(\_AM_GLOSSAIRE_ENTRY_REFERENCES, 'ent_reference', $editorConfigs2);
+            $inpReference->setDescription(_AM_GLOSSAIRE_ENTRY_REFERENCES_DESC);
+            $form->addElement($inpReference);
+        }
 
         //-------------------------------------------------
         // Form Text ent_file
-        $entFileName = $this->isNew() ? '' : $this->getVar('ent_file_name');
-        $entFilePath = $this->isNew() ? '' : $this->getVar('ent_file_path');
-        $form->addElement(new \XoopsFormHidden('ent_file_name', $entFileName));        
-        $form->addElement(new \XoopsFormHidden('ent_file_path', $entFilePath));        
- 
-        $isFileOk = (is_readable($categoriesObj->getPathUploads('files', false) . '/' . $entFilePath) AND $entFilePath != '');
-        //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_FILE_NAME, 'ent_file_name', 50, 50, $this->getVar('ent_file_name')), false);
-        //-------------------------------------------------
-        if ($isFileOk) {
-            $currentFileTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_CURRENT_FILE, '<br>');
+        if($catArray['show_bin'][GLOSSAIRE_ENT_FILE_NAME]){
+            $entFileName = $this->isNew() ? '' : $this->getVar('ent_file_name');
+            $entFilePath = $this->isNew() ? '' : $this->getVar('ent_file_path');
+            $form->addElement(new \XoopsFormHidden('ent_file_name', $entFileName));        
+            $form->addElement(new \XoopsFormHidden('ent_file_path', $entFilePath));        
+     
+            $isFileOk = (is_readable($categoriesObj->getPathUploads('files', false) . '/' . $entFilePath) AND $entFilePath != '');
+            //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_FILE_NAME, 'ent_file_name', 50, 50, $this->getVar('ent_file_name')), false);
+            //-------------------------------------------------
+            if ($isFileOk) {
+                $currentFileTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_CURRENT_FILE, '<br>');
+                
+                $currentFile = new \XoopsFormLabel('', sprintf("%s ===> <span style='color:blue;'>%s</span><br>", $entFileName, $entFilePath));
+                $currentFileTray->addElement($currentFile);
+                
+                //$imgUploadTray->addElement(new \XoopsFormLabel(\sprintf(\_AM_GLOSSAIRE_ENTRY_IMAGE_UPLOADS, ".{$fileDirectory}/"), $entImage));
+                $inpDeleteFile = new \XoopsFormCheckBox('', 'ent_delete_file', "",'<br>');            
+                $inpDeleteFile->addOption(1, _AM_GLOSSAIRE_DELETE_FILE);
+                $currentFileTray->addElement($inpDeleteFile);
+                
+                $form->addElement($currentFileTray);
+            }
+        
+            // Form File: Upload 
+            $maxsize = $glossaireHelper->getConfig('maxsize_file');
+            $fileUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_FILE, '<br>');
+            $permissionUpload = true;
+            if ($permissionUpload) {
             
-            $currentFile = new \XoopsFormLabel('', sprintf("%s ===> <span style='color:blue;'>%s</span><br>", $entFileName, $entFilePath));
-            $currentFileTray->addElement($currentFile);
-            
-            //$imgUploadTray->addElement(new \XoopsFormLabel(\sprintf(\_AM_GLOSSAIRE_ENTRY_IMAGE_UPLOADS, ".{$fileDirectory}/"), $entImage));
-            $inpDeleteFile = new \XoopsFormCheckBox('', 'ent_delete_file', "",'<br>');            
-            $inpDeleteFile->addOption(1, _AM_GLOSSAIRE_DELETE_FILE);
-            $currentFileTray->addElement($inpDeleteFile);
-            
-            $form->addElement($currentFileTray);
+                //$fileDirectory = '/uploads/glossaire/files/entries';
+                //$maxsize = $glossaireHelper->getConfig('maxsize_file');
+                $fileUploadTray->addElement(new \XoopsFormFile('', 'ent_file_name', $maxsize));
+                $fileUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
+            $fileUploadTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC2 . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $maxsize / 1024), '<br>');
+            $form->addElement($fileUploadTray);
+            } 
         }
-        
-        // Form File: Upload entImage
-        $maxsize = $glossaireHelper->getConfig('maxsize_file');
-        $fileUploadTray = new \XoopsFormElementTray(\_AM_GLOSSAIRE_ENTRY_FILE, '<br>');
-        $permissionUpload = true;
-        if ($permissionUpload) {
-        
-            //$fileDirectory = '/uploads/glossaire/files/entries';
-            //$maxsize = $glossaireHelper->getConfig('maxsize_file');
-            $fileUploadTray->addElement(new \XoopsFormFile('', 'ent_file_name', $maxsize));
-            $fileUploadTray->addElement(new \XoopsFormLabel(\_AM_GLOSSAIRE_FORM_UPLOAD_SIZE, ($maxsize / 1048576) . ' '  . \_AM_GLOSSAIRE_FORM_UPLOAD_SIZE_MB));
-        $fileUploadTray->setDescription(_AM_GLOSSAIRE_ENTRY_IMG_DESC2 . '<br>' . sprintf(_AM_GLOSSAIRE_FILE_UPLOADSIZE, $maxsize / 1024), '<br>');
-        $form->addElement($fileUploadTray);
-        } 
         //-------------------------------------------------
-        
         // Form Text ent_urls
-        $inpUrls = new \XoopsFormTextArea(_AM_GLOSSAIRE_ENTRY_URLS, 'ent_urls', $this->getVar('ent_urls'), 3, 120);  
-        $inpUrls->setDescription(_AM_GLOSSAIRE_ENTRY_URLS_DESC); 
-        $form->addElement($inpUrls);
+        if($catArray['show_bin'][GLOSSAIRE_ENT_URLS]){
+            $inpUrls = new \XoopsFormTextArea(_AM_GLOSSAIRE_ENTRY_URLS, 'ent_urls', $this->getVar('ent_urls'), 3, 120);  
+            $inpUrls->setDescription(_AM_GLOSSAIRE_ENTRY_URLS_DESC); 
+            $form->addElement($inpUrls);
+        }
 
         
         // Form Text ent_email
-        $inpEmail = new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_EMAIL, 'ent_email', 50, 80, $this->getVar('ent_email'));
-        $inpEmail->setDescription(_AM_GLOSSAIRE_ENTRY_EMAIL_DESC); 
-        $form->addElement($inpEmail);
+        if($catArray['show_bin'][GLOSSAIRE_ENT_EMAIL]){
+            $inpEmail = new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_EMAIL, 'ent_email', 50, 80, $this->getVar('ent_email'));
+            $inpEmail->setDescription(_AM_GLOSSAIRE_ENTRY_EMAIL_DESC); 
+            $form->addElement($inpEmail);
+        }
         
         // Form Text entCounter
         //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENTRY_COUNTER, 'ent_counter', 50, 255, $this->getVar('ent_counter')));
-        $form->addElement(new \XoopsFormHidden(\_AM_GLOSSAIRE_ENTRY_COUNTER, $this->getVar('ent_counter')));
+        if($catArray['show_bin'][GLOSSAIRE_ENT_COUNTER]){
+            $form->addElement(new \XoopsFormHidden(\_AM_GLOSSAIRE_ENTRY_COUNTER, $this->getVar('ent_counter')));
+        }
                   
         // Entries Handler
         $entriesHandler = $glossaireHelper->getHandler('Entries');

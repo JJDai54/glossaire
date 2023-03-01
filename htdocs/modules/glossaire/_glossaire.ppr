@@ -20,7 +20,7 @@ _glossaire
 	+_JJD
 		..\..\uploads\glossaire\data\Sigles_et_Acronymes\glossaire-category.css
 	+glossaire
-		-admin
+		+admin
 			admin\about.php
 			admin\categories.php
 			admin\categories-list.php
@@ -42,7 +42,7 @@ _glossaire
 			admin\index.php
 			admin\menu.php
 			admin\permissions.php
-		+assets
+		-assets
 			+css
 				-admin
 					assets\css\admin\index.php
@@ -106,17 +106,18 @@ _glossaire
 				assets\images\blank.png
 				assets\images\index.php
 				assets\images\logoModule.png
-			+js
+			-js
 				assets\js\functions.js
 				assets\js\highslide.js
 				assets\js\index.php
 				assets\js\scroll.js
 			assets\index.php
+			class\Entries.php
 		-blocks
 			blocks\categories.php
 			blocks\entries.php
 			blocks\index.php
-		+class
+		-class
 			-Common
 				class\Common\Breadcrumb.php
 				class\Common\Configurator.php
@@ -136,7 +137,6 @@ _glossaire
 			class\CategoriesHandler.php
 			class\Constants.php
 			class\delete
-			class\Entries.php
 			class\EntriesHandler.php
 			class\Helper.php
 			class\index.php
@@ -149,7 +149,7 @@ _glossaire
 			config\icons.php
 			config\index.php
 			config\paths.php
-		+docs
+		-docs
 			docs\changelog.txt
 			docs\credits.txt
 			docs\index.php
@@ -158,7 +158,7 @@ _glossaire
 			docs\license.txt
 			docs\readme.txt
 			docs\todo.txt
-		-include
+		+include
 			include\common.php
 			include\functions.php
 			include\import_export.php
@@ -217,14 +217,14 @@ _glossaire
 				language\french\main.php
 				language\french\modinfo.php
 			language\index.php
-		+preloads
+		-preloads
 			preloads\autoloader.php
 			preloads\core.php
 			preloads\index.php
 		+sql
 			sql\index.php
 			sql\mysql.sql
-		+templates
+		-templates
 			+admin
 				templates\admin\glossaire_admin_about.tpl
 				templates\admin\glossaire_admin_categories.tpl
@@ -238,7 +238,7 @@ _glossaire
 				templates\admin\glossaire_admin_index.tpl
 				templates\admin\glossaire_admin_permissions.tpl
 				templates\admin\index.php
-			+blocks
+			-blocks
 				templates\blocks\glossaire_block_categories.tpl
 				templates\blocks\glossaire_block_entries.tpl
 				templates\blocks\index.php
@@ -276,66 +276,70 @@ _glossaire
 		read-me.txt
 		xoops_version.php
 [Open project files]
-0=assets\css\category-modele.css
-1=class\Categories.php
-2=templates\glossaire_entries_terms_links.tpl
-3=..\..\uploads\glossaire\data\Sigles_et_Acronymes\glossaire-category.css
-4=templates\glossaire_entries_item-02.tpl
-5=assets\css\style.css
-6=class\Entries.php
-7=language\french\admin.php
-8=language\english\admin.php
-9=xoops_version.php
-10=admin\categories.php
-11=class\EntriesHandler.php
-12=admin\import.php
-13=sql\mysql.sql
-14=docs\todo.txt
+0=class\Categories.php
+1=admin\categories-save.php
+2=header.php
+3=categories.php
+4=admin\header.php
+5=sql\mysql.sql
+6=language\french\admin.php
+7=language\english\admin.php
+8=include\common.php
+9=admin\entries-list.php
+10=class\Entries.php
+11=templates\glossaire_entries_item-02.tpl
+12=..\..\uploads\glossaire\data\Sigles_et_Acronymes\glossaire-category.css
+13=assets\css\category-modele.css
+14=entries-list.php
+15=include\import_export.php
 [Selected Project Files]
 Main=
-Selected=sql\mysql.sql
-[assets\css\category-modele.css]
-TopLine=1
-Caret=5,4
+Selected=language\french\admin.php
 [class\Categories.php]
-TopLine=491
-Caret=33,507
-[templates\glossaire_entries_terms_links.tpl]
-TopLine=9
-Caret=47,37
-[..\..\uploads\glossaire\data\Sigles_et_Acronymes\glossaire-category.css]
-TopLine=17
-Caret=2,44
-[templates\glossaire_entries_item-02.tpl]
-TopLine=17
-Caret=34,17
-[assets\css\style.css]
-TopLine=49
-Caret=14,71
-[class\Entries.php]
-TopLine=158
-Caret=68,182
-[language\french\admin.php]
-TopLine=158
-Caret=55,187
-[language\english\admin.php]
-TopLine=123
-Caret=40,143
-[xoops_version.php]
-TopLine=17
-Caret=37,48
-[admin\categories.php]
-TopLine=25
-Caret=1,44
-[class\EntriesHandler.php]
-TopLine=172
-Caret=3,191
-[admin\import.php]
-TopLine=123
-Caret=1,142
+TopLine=118
+Caret=61,134
+[admin\categories-save.php]
+TopLine=79
+Caret=41,111
+[header.php]
+TopLine=12
+Caret=1,30
+[categories.php]
+TopLine=62
+Caret=47,116
+[admin\header.php]
+TopLine=30
+Caret=1,48
 [sql\mysql.sql]
-TopLine=1
-Caret=17,33
-[docs\todo.txt]
-TopLine=1
-Caret=1,2
+TopLine=35
+Caret=15,61
+[language\french\admin.php]
+TopLine=177
+Caret=53,184
+[language\english\admin.php]
+TopLine=174
+Caret=53,185
+[include\common.php]
+TopLine=86
+Caret=30,99
+[admin\entries-list.php]
+TopLine=106
+Caret=83,136
+[class\Entries.php]
+TopLine=140
+Caret=55,177
+[templates\glossaire_entries_item-02.tpl]
+TopLine=84
+Caret=73,84
+[..\..\uploads\glossaire\data\Sigles_et_Acronymes\glossaire-category.css]
+TopLine=49
+Caret=10,75
+[assets\css\category-modele.css]
+TopLine=54
+Caret=41,73
+[entries-list.php]
+TopLine=106
+Caret=1,160
+[include\import_export.php]
+TopLine=220
+Caret=31,242

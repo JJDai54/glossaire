@@ -108,6 +108,7 @@ use XoopsModules\Glossaire\Common;
     $categoriesObj->setVar('cat_replace_arobase', Request::getString('cat_replace_arobase', 0));
     $categoriesObj->setVar('cat_br_after_term', Request::getInt('cat_br_after_term', 0));
     $categoriesObj->setVar('cat_show_terms_index', Request::getInt('cat_show_terms_index', 1));
+    $categoriesObj->setVar('cat_show_bin', Request::getInt('cat_show_bin', 32767));
     $categoriesObj->setVar('cat_count_entries', $entriesHandler->getCountOnCategory($catId));
     
     // Insert Data

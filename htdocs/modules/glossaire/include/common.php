@@ -77,16 +77,33 @@ require_once \GLOSSAIRE_PATH . '/include/functions.php';
 //--------- a mettre dans xoops_version.php
 define('GLOSSAIRE_CATEGORY_CSS_NAME_FILE', "glossaire-category.css"); 
 
-$row=1;
-define('GLOSSAIRE_COL_ADM_ENTRIES_ID', $row++);
-define('GLOSSAIRE_COL_ADM_ENTRIES_CREATOR', $row++);
-define('GLOSSAIRE_COL_ADM_ENTRIES_STATUS', $row++);
-define('GLOSSAIRE_COL_ADM_ENTRIES_TERM', $row++);
-define('GLOSSAIRE_COL_ADM_ENTRIES_IMAGE', $row++);
-define('GLOSSAIRE_COL_ADM_ENTRIES_FILE', $row++);
-define('GLOSSAIRE_COL_ADM_ENTRIES_SHORTDEF', $row++);
-define('GLOSSAIRE_COL_ADM_ENTRIES_COUNTER', $row++);
-define('GLOSSAIRE_COL_ADM_ENTRIES_DATE_CREATION', $row++);
-define('GLOSSAIRE_COL_ADM_ENTRIES_DATE_UPDATE', $row++);
-define('GLOSSAIRE_COL_ADM_ENTRIES_FORM_ACTION', $row++);
+// peut ^tre a remplacer par les constantes plus bas, ça fait un peu double emploi
+// faudra juste faire attention au valeur attibuée et modifier en conséquence
+// voir les supprimer purement et simplement, utilisée qu'une seule fois
+// $row=1;
+// define('GLOSSAIRE_COL_ADM_ENTRIES_ID', $row++);
+// define('GLOSSAIRE_COL_ADM_ENTRIES_CREATOR', $row++);
+// define('GLOSSAIRE_COL_ADM_ENTRIES_STATUS', $row++);
+// define('GLOSSAIRE_COL_ADM_ENTRIES_TERM', $row++);
+// define('GLOSSAIRE_COL_ADM_ENTRIES_IMAGE', $row++);
+// define('GLOSSAIRE_COL_ADM_ENTRIES_FILE', $row++);
+// define('GLOSSAIRE_COL_ADM_ENTRIES_SHORTDEF', $row++);
+// define('GLOSSAIRE_COL_ADM_ENTRIES_COUNTER', $row++);
+// define('GLOSSAIRE_COL_ADM_ENTRIES_DATE_CREATION', $row++);
+// define('GLOSSAIRE_COL_ADM_ENTRIES_DATE_UPDATE', $row++);
+// define('GLOSSAIRE_COL_ADM_ENTRIES_FORM_ACTION', $row++);
 
+$h = 0;
+define('GLOSSAIRE_ENT_ID', $h++);
+define('GLOSSAIRE_ENT_SHORTDEF', $h++);
+define('GLOSSAIRE_ENT_MAGNIFY', $h++);
+define('GLOSSAIRE_ENT_DEFINITION', $h++);
+define('GLOSSAIRE_ENT_CREATOR', $h++);
+define('GLOSSAIRE_ENT_IMAGE', $h++);
+define('GLOSSAIRE_ENT_REFERENCE', $h++);
+define('GLOSSAIRE_ENT_FILE_NAME', $h++);
+define('GLOSSAIRE_ENT_URLS', $h++);
+define('GLOSSAIRE_ENT_EMAIL', $h++);
+define('GLOSSAIRE_ENT_COUNTER', $h++);
+define('GLOSSAIRE_ENT_DATE_CREATION', $h++);
+define('GLOSSAIRE_ENT_DATE_UPDATE', $h++);

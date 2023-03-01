@@ -25,14 +25,15 @@ declare(strict_types=1);
 require \dirname(__DIR__, 3) . '/include/cp_header.php';
 require_once \dirname(__DIR__) . '/include/common.php';
 //require_once \dirname(__DIR__) . '/include/functions-colors-set.php';
-include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/back_office.php");
+//xoops_load('XoopsFormLoader');
+include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
+\JJD\loadAllXForms();
 
 $sysPathIcon16   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
 $sysPathIcon32   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
 $pathModuleAdmin = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
 $modPathIcon16   = \GLOSSAIRE_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modicons16') ; //. '/'
 $modPathIcon32   = \GLOSSAIRE_URL . '/' . $GLOBALS['xoopsModule']->getInfo('modicons32') ; //. '/'
-xoops_load('XoopsFormLoader');
 
 // Get instance of module
 $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();

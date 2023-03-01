@@ -106,17 +106,26 @@ use XoopsModules\Glossaire\Common;
                           
                            
 ///////////////////////////////////////////////////////////////////////////
-
+ $cols = 1;
  $colToSortArray=[
- array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT1, 'fields'=>'ent_term,ent_id',             'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_TERM),
- array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT2, 'fields'=>'ent_id',                      'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_ID),
- array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT3, 'fields'=>'ent_shortdef,ent_id',         'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_SHORTDEF),
- array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT4, 'fields'=>'ent_creator,ent_term,ent_id', 'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_CREATOR),
- array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT5, 'fields'=>'ent_date_creation,ent_id',    'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_DATE_CREATION),
- array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT6, 'fields'=>'ent_date_update,ent_id',      'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_DATE_UPDATE),
- array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT7, 'fields'=>'ent_counter,ent_term,ent_id', 'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_COUNTER),
- array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT8, 'fields'=>'ent_status,ent_term,ent_id',  'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_STATUS)
+ array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT1, 'fields'=>'ent_term,ent_id',             'tplColToSort'=>$cols++),
+ array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT2, 'fields'=>'ent_id',                      'tplColToSort'=>$cols++),
+ array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT3, 'fields'=>'ent_shortdef,ent_id',         'tplColToSort'=>$cols++),
+ array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT4, 'fields'=>'ent_creator,ent_term,ent_id', 'tplColToSort'=>$cols++),
+ array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT5, 'fields'=>'ent_date_creation,ent_id',    'tplColToSort'=>$cols++),
+ array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT6, 'fields'=>'ent_date_update,ent_id',      'tplColToSort'=>$cols++),
+ array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT7, 'fields'=>'ent_counter,ent_term,ent_id', 'tplColToSort'=>$cols++),
+ array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT8, 'fields'=>'ent_status,ent_term,ent_id',  'tplColToSort'=>$cols++)
  ];                         
+//  array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT1, 'fields'=>'ent_term,ent_id',             'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_TERM),
+//  array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT2, 'fields'=>'ent_id',                      'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_ID),
+//  array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT3, 'fields'=>'ent_shortdef,ent_id',         'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_SHORTDEF),
+//  array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT4, 'fields'=>'ent_creator,ent_term,ent_id', 'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_CREATOR),
+//  array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT5, 'fields'=>'ent_date_creation,ent_id',    'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_DATE_CREATION),
+//  array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT6, 'fields'=>'ent_date_update,ent_id',      'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_DATE_UPDATE),
+//  array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT7, 'fields'=>'ent_counter,ent_term,ent_id', 'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_COUNTER),
+//  array('caption'=>_CO_GLOSSAIRE_ENTRIES_SORT8, 'fields'=>'ent_status,ent_term,ent_id',  'tplColToSort'=>GLOSSAIRE_COL_ADM_ENTRIES_STATUS)
+//  ];                         
         $inpSort = new \XoopsFormSelect(\_CO_GLOSSAIRE_ENTRIES_SORT0, 'sortIdSelect', $sortIdSelect);
         $h=-1;
         for($h=0; $h<count($colToSortArray); $h++){

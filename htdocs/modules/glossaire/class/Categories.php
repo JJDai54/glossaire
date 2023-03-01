@@ -69,6 +69,7 @@ class Categories extends \XoopsObject
         $this->initVar('cat_br_after_term', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_count_entries', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_show_terms_index', \XOBJ_DTYPE_INT); 
+        $this->initVar('cat_show_bin', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_active', \XOBJ_DTYPE_INT); 
         $this->initVar('cat_date_creation', \XOBJ_DTYPE_OTHER); //XOBJ_DTYPE_LTIME
         $this->initVar('cat_date_update', \XOBJ_DTYPE_OTHER); //XOBJ_DTYPE_LTIME
@@ -250,6 +251,28 @@ class Categories extends \XoopsObject
         $inpColsIndex->setMinMax(-1, 5);
         $form->addElement($inpColsIndex);
 
+        // Form  cat_show_bin
+  
+//     function __construct($caption, $name, $value = 0, 
+//                          $cols = 1, $allowCheckAll = false,
+//                          $optionsSeparator = ";")
+                         
+        $inpShowBin = new \XoopsFormCheckboxBin(_AM_GLOSSAIRE_CAT_SHOW_BIN, "cat_show_bin", $this->getVar('cat_show_bin'),1,true);
+        //$inpShowBin->setDescription(_AM_GLOSSAIRE_CAT_SHOW_BIN_DESC);
+        $inpShowBin->addOptionArray([_AM_GLOSSAIRE_ENT_ID,
+                                     _AM_GLOSSAIRE_ENT_SHORTDEF,
+                                     _AM_GLOSSAIRE_ENT_MAGNIFY,
+                                     _AM_GLOSSAIRE_ENT_DEFINITION,
+                                     _AM_GLOSSAIRE_ENT_CREATOR,
+                                     _AM_GLOSSAIRE_ENT_IMAGE,
+                                     _AM_GLOSSAIRE_ENT_REFERENCE,
+                                     _AM_GLOSSAIRE_ENT_FILE_NAME,
+                                     _AM_GLOSSAIRE_ENT_URLS,
+                                     _AM_GLOSSAIRE_ENT_EMAIL,
+                                     _AM_GLOSSAIRE_ENT_COUNTER,
+                                     _AM_GLOSSAIRE_ENT_DATE_CREATION,
+                                    _AM_GLOSSAIRE_ENT_DATE_UPDATE]);
+        $form->addElement($inpShowBin);
 
         // Form alphabarre 
         $inpAlphabarre = new \XoopsFormText(\_MI_GLOSSAIRE_ALPHABARRE, 'cat_alphabarre', 150, 255, $this->getVar('cat_alphabarre'));
@@ -344,6 +367,7 @@ class Categories extends \XoopsObject
         $ret['cat_replace_arobase']  = $this->getVar('cat_replace_arobase');     
         $ret['br_after_term']     = $this->getVar('cat_br_after_term');
         $ret['show_terms_index']  = $this->getVar('cat_show_terms_index');
+        $ret['show_bin']          = convert_bin_to_array($this->getVar('cat_show_bin'));
         $ret['count_entries']     = $this->getVar('cat_count_entries');
 //         $ret['date_creation']     = \formatTimestamp($this->getVar('cat_date_creation'), 'm');
 //         $ret['date_update']    = \formatTimestamp($this->getVar('cat_date_update'), 'm');
@@ -354,21 +378,7 @@ class Categories extends \XoopsObject
         
         return $ret;
     }
-
-    /**
-     * Returns an array representation of the object
-     *
-     * @return array
-     */
-    public function toArrayCategories()
-    {
-        $ret = [];
-        $vars = $this->getVars();
-        foreach (\array_keys($vars) as $var) {
-            $ret[$var] = $this->getVar('"{$var}"');
-        }
-        return $ret;
-    }
+    
     
     /**
      * cré les dossier de stockage des images et fichiers de la catégories

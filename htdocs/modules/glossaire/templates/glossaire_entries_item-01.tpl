@@ -4,52 +4,108 @@
 <{/if}>
 <{*  ------------------------------------------------------------------ *}>
 
-<div class="item-round-no <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;">
-    <span class="<{$colors_set}>-item-a"><b><{$entry.term}></b>
-    <{if $entry.shortdef}> : <{$entry.shortdefMagnifed}><{/if}>
-    </span>
+<div name="entry-<{$entry.id}>" id="entry-<{$entry.id}>" class="gls_title gls_ent_term item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:0px; c">
+    <{if $cat_br_after_term}>
+        <h2 style="<{$catArr.css.gls_ent_term}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
+        <{if $entry.shortdef AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_SHORTDEF]}>             
+            <h3  style="<{$catArr.css.gls_ent_shortdef}>"><{$entry.shortdefMagnifed}></h3>
+        <{/if}>
+    <{else}> 
+        <h2   style="<{$catArr.css.gls_ent_term}>float:left;<{$catArr.term_css}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
+        <{if $entry.shortdef AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_SHORTDEF]}>          
+            <h3  style="<{$catArr.css.gls_ent_shortdef}>">&nbsp;:&nbsp;<{$entry.shortdefMagnifed}></h3>
+        <{/if}>                  
+    <{/if}>
+    
+
+<{* ---------- Affichage de boutons image pour gerer l entree -----------*}>
+<{if ($posButtonsActions & 1) > 0}>
+    <a href="#haut_de_page">
+      <img src="<{xoModuleIcons16 ASC.png}>" class="gls_button gls_buttonTop" title="<{$smarty.const._MA_GLOSSAIRE_TOP}>"></a>
+
+
+    <{if $catPerms.approve}>
+        <a href="entries.php?op=delete&amp;ent_id=<{$entry.ent_id}>" title="<{$smarty.const._DELETE}>">
+           <img src="<{xoModuleIcons16 delete.png}>" class="gls_button" title="<{$smarty.const._DELETE}>"></a>
+        <a href="entries.php?op=new&catIdSelect=<{$catIdSelect}>" title="<{$smarty.const._ADD}>">
+           <img src="<{xoModuleIcons16 add.png}>" class="gls_button" title="<{$smarty.const._ADD}>"></a>
+        <a href="entries.php?op=clone&ent_id_source=<{$entry.ent_id}>" title="<{$smarty.const._CLONE}>">
+           <img src="<{xoModuleIcons16 editcopy.png}>" class="gls_button" title="<{$smarty.const._CLONE}>"></a>
+        <a href="entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>&letter=<{$letter}>">
+          <img src="<{xoModuleIcons16 edit.png}>" class="gls_button" title="<{$smarty.const._EDIT}>"></a>
+    <{/if}>
+<{/if}>
 </div>
 
-<div class="item-round-no <{$colors_set}>-item-body" style="padding:12px;margin-top:-5px;">
-    <{$entry.definition}>
-    <{if $entry.reference}><hr><{$entry.reference}><{/if}>
+<{* ---------- data de l entree -----------*}>
+<div class="item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:-5px;float:none;"><br></div>
+<div class="item-round-no <{$colors_set}>-item-body" style="padding:6px;margin-top:-5px;float:none;">
+    <{if $entry.definition_img AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_DEFINITION]}>
+        <div  style="<{$catArr.css.gls_ent_definition}>">
+            <{$entry.definition_img}>
+        </div>
+    <{/if}>
+    <{if $entry.reference AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_REFERENCE]}>
+        <span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_REFERENCES}> : </span><br>
+        <span style="<{$catArr.css.gls_ent_reference}>"><{$entry.reference}></span><br>
+    <{/if}>
+    <{if $entry.urls AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_URLS]}>
+        <span  class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_SEEALSO}> : </span>
+        <span style="<{$catArr.css.gls_ent_urls}>"><{$entry.urls}></span>
+    <{/if}>
+    <{if $entry.email AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_EMAIL]}>
+        <br><br><span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_CONTACT}> : </span>
+        <span style="<{$catArr.css.gls_ent_email}>"><{$entry.email}></span><br>
+    <{/if}>
+    <{if $entry.file_name AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_FILE_NAME]}>
+        <br><br><span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_FILE_LINKED}> : </span><br>
+        <span style="<{$catArr.css.gls_ent_files_joins}>"><{$entry.file_link}></span><br>
+    <{/if}>
+    
+
+    <{if $entry.creator AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_CREATOR]}>
+        <br><span class="gls_subtitle"><{$smarty.const._AM_GLOSSAIRE_CREATOR}> : </span>
+        <span style="<{$catArr.css.gls_ent_creator}>"><{$entry.creator}></span>
+    <{/if}>
+    <{if $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_COUNTER]}>
+        <br><span class="gls_subtitle"><{$smarty.const._AM_GLOSSAIRE_ENT_COUNTER}> : </span>
+        <span style="<{$catArr.css.gls_ent_counter}>"><{$entry.counter}></span>
+    <{/if}>
+    
+    <{if $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_DATE_CREATION]}>
+        <br><span class="gls_subtitle"><{$smarty.const._AM_GLOSSAIRE_ENT_DATE_CREATION}> : </span>
+        <span style="<{$catArr.css.gls_ent_dates}>"><{$entry.date_creation}></span>
+    <{/if}>
+    
+    <{if $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_DATE_UPDATE]}>
+        <br><span class="gls_subtitle"><{$smarty.const._AM_GLOSSAIRE_ENT_DATE_UPDATE}> : </span>
+        <span style="<{$catArr.css.gls_ent_dates}>"><{$entry.date_update}></span>
+    <{/if}>
+    
 </div>
-<div class="item-round-no <{$colors_set}>-item-foot" style="padding:6px 12px 6px 12px;margin-top:-5px;">
-    <{if $entry.urls}><{$entry.urls}><{/if}>
-</div>
-
-<{* Affichage de boutons image pour gerer l entree *}>
-<{if $catPerms.submit}>
-  <div class="item-round-no <{$colors_set}>-item-head" style="padding:6px;margin-top:-5px;text-align:right;">
-    <a href="entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>">
-      <img src="<{xoModuleIcons16 edit.png}>" title="<{$smarty.const._EDIT}>"></a>
-    <a href="entries.php?op=clone&ent_id_source=<{$entry.ent_id}>" title="<{$smarty.const._CLONE}>">
-       <img src="<{xoModuleIcons16 editcopy.png}>" title="<{$smarty.const._CLONE}>"></a>
-    <a href="entries.php?op=delete&amp;ent_id=<{$entry.ent_id}>" title="<{$smarty.const._DELETE}>">
-       <img src="<{xoModuleIcons16 delete.png}>" title="<{$smarty.const._DELETE}>"></a>
-  </div>
+ 
+<{* ---------- Affichage des boutons image pour gerer l entree -----------*}>
+<{if ($posButtonsActions & 2)>0}>
+    <a href="#haut_de_page">
+      <img src="<{xoModuleIcons16 ASC.png}>" class="gls_button gls_buttonTop" title="<{$smarty.const._MA_GLOSSAIRE_TOP}>"></a>
 
 
-<{else}>
-    <{* Affichage de boutons texte pour gerer l entree *}>
-  <div class="panel-foot">
-      <div class="col-sm-12 right">
-          <{if $showItem|default:""}>
-              <a class="btn btn-success right" href="entries.php?op=list&amp;start=<{$start}>&amp;limit=<{$limit}>#entId_<{$entry.ent_id}>" title="<{$smarty.const._MA_GLOSSAIRE_ENTRIES_LIST}>"><{$smarty.const._MA_GLOSSAIRE_ENTRIES_LIST}></a>
-          <{else}>
-              <a class="btn btn-success right" href="entries.php?op=show&amp;ent_id=<{$entry.ent_id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._MA_GLOSSAIRE_DETAILS}>"><{$smarty.const._MA_GLOSSAIRE_DETAILS}></a>
-          <{/if}>
-          <{if $isCatAllowed}>
-                <a class="btn btn-primary right" href="entries.php?op=edit&amp;ent_id=<{$entry.ent_id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._EDIT}>"><{$smarty.const._EDIT}></a>
-                <a class="btn btn-primary right" href="entries.php?op=clone&amp;ent_id_source=<{$entry.ent_id}>" title="<{$smarty.const._CLONE}>"><{$smarty.const._CLONE}></a>
-                <a class="btn btn-danger right" href="entries.php?op=delete&amp;ent_id=<{$entry.ent_id}>" title="<{$smarty.const._DELETE}>"><{$smarty.const._DELETE}></a>
-              <{/if}>
-  
-      </div>
-  </div>
+    <{if $catPerms.approve}>
+        <a href="entries.php?op=delete&amp;ent_id=<{$entry.ent_id}>" title="<{$smarty.const._DELETE}>">
+           <img src="<{xoModuleIcons16 delete.png}>" class="gls_button" title="<{$smarty.const._DELETE}>"></a>
+        <a href="entries.php?op=new&catIdSelect=<{$catIdSelect}>" title="<{$smarty.const._ADD}>">
+           <img src="<{xoModuleIcons16 add.png}>" class="gls_button" title="<{$smarty.const._ADD}>"></a>
+        <a href="entries.php?op=clone&ent_id_source=<{$entry.ent_id}>" title="<{$smarty.const._CLONE}>">
+           <img src="<{xoModuleIcons16 editcopy.png}>" class="gls_button" title="<{$smarty.const._CLONE}>"></a>
+        <a href="entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>">
+          <img src="<{xoModuleIcons16 edit.png}>" class="gls_button" title="<{$smarty.const._EDIT}>"></a>
+    <{/if}>
 <{/if}>
 
-<br>
+
+<div class="item-round-no <{$colors_set}>-item-body" style="padding:1px;margin-top:0px;">
+    <{if !$smarty.foreach.entry.last}><hr class="<{$colors_set}>-hr-style-two"><{else}><br><{/if}>
+</div>
 <{*  ------------------------------------------------------------------ *}>
 <{if $smarty.const.GLOSSAIRE_SHOW_TPL_NAME==1}>
 <{assign var=tplHierarchie value=$tplHierarchie-1}>
