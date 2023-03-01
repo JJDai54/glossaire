@@ -1,3 +1,6 @@
+ALTER TABLE `x2511_glossaire_categories` ADD `cat_show_bits` SMALLINT NOT NULL DEFAULT '32767' AFTER `cat_show_terms_index`; 
+
+
 ajouter | pour des retours à la ligne dans la barre de lettre
 
 ajouter une gestion des mots clés

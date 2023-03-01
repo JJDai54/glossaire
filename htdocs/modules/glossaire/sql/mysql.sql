@@ -30,6 +30,7 @@ CREATE TABLE `glossaire_categories` (
   `cat_replace_arobase` varchar(5) NOT NULL DEFAULT '',
   `cat_br_after_term` tinyint NOT NULL DEFAULT '0',
   `cat_show_terms_index` tinyint(1) NOT NULL DEFAULT '1',
+  `cat_show_bits` SMALLINT NOT NULL DEFAULT '32767',   
   `cat_count_entries` int NOT NULL DEFAULT '0',
   `cat_active` tinyint(1) NOT NULL DEFAULT '0',
   `cat_date_creation` datetime(6) NOT NULL DEFAULT '1970-01-01 00:00:00.000000',

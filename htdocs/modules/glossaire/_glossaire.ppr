@@ -289,9 +289,11 @@ _glossaire
 10=admin\categories.php
 11=class\EntriesHandler.php
 12=admin\import.php
+13=sql\mysql.sql
+14=docs\todo.txt
 [Selected Project Files]
 Main=
-Selected=admin\categories.php
+Selected=sql\mysql.sql
 [assets\css\category-modele.css]
 TopLine=1
 Caret=5,4
@@ -305,7 +307,7 @@ Caret=47,37
 TopLine=17
 Caret=2,44
 [templates\glossaire_entries_item-02.tpl]
-TopLine=41
+TopLine=17
 Caret=34,17
 [assets\css\style.css]
 TopLine=49
@@ -331,3 +333,9 @@ Caret=3,191
 [admin\import.php]
 TopLine=123
 Caret=1,142
+[sql\mysql.sql]
+TopLine=1
+Caret=17,33
+[docs\todo.txt]
+TopLine=1
+Caret=1,2
