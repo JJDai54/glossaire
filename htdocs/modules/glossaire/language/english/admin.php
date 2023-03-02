@@ -102,7 +102,7 @@ define('_AM_GLOSSAIRE_PERMISSIONS_SUBMIT_DESC', "Permissions to submit");
 define('_AM_GLOSSAIRE_PERMISSIONS_VIEW_DESC', "Permissions to view");
 define('_AM_GLOSSAIRE_FIRST', "Premier");
 define('_AM_GLOSSAIRE_REPLACE_AROBASE', "Remplacer l'arobase");
-define('_AM_GLOSSAIRE_ALPHABARRE', "Search bar by letters");
+define('_AM_GLOSSAIRE_ENT_HEADER', "Page header : Index and Search bar by letters");
 define('_AM_GLOSSAIRE_ENTRY_URLS', "Reference sites");
 define('_AM_GLOSSAIRE_SELECT_LEX_CATEGORY_DESC', "Select the category of the Lexikon module to import");
 define('_AM_GLOSSAIRE_SELECT_CATEGORY_DESC', "Select a destination category for these new definitions.");

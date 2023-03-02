@@ -93,6 +93,7 @@ switch (strtolower($op)) {
 //         if (!$categoriesHandler->isCatAllowed($catIdSelect, 'view'))
 //             \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
         include_once "entries-list.php";
+        $GLOBALS['xoopsTpl']->assign('form', null);        
         break;
 
     case 'save':

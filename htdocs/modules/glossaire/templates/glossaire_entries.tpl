@@ -11,11 +11,11 @@
 
 <div class="table-responsive">
 <{if $catIdSelect}>
-<form name="select_filter" id="select_filter" action="entries.php" method="post" onsubmit="return xoopsFormValidate_form();" enctype="">
-<input type="hidden" name="op" value="list" />
-<input type="hidden" name="sender" value="0" />
-<{* <{$smarty.const._CO_GLOSSAIRE_CATEGORY}> : <{$catIdSelect}> *}>
-</form>
+    <form name="select_filter" id="select_filter" action="entries.php" method="post" onsubmit="return xoopsFormValidate_form();" enctype="">
+        <input type="hidden" name="op" value="list" />
+        <input type="hidden" name="sender" value="0" />
+        <{* <{$smarty.const._CO_GLOSSAIRE_CATEGORY}> : <{$catIdSelect}> *}>
+    </form>
 <{/if}>
 <{*  ------------------------------------------------------------------ *}>
     <a name="haut_de_page" id="haut_de_page"></a>
@@ -115,8 +115,8 @@
 
 </div>
 
-<{else}>
-    <{* ------------- Formulaire d edition --------------------*}>
+<{else if $form}>
+    <{* ------------- Formulaire d edition --------------------*}>     
     <div class="item-round-top <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;">
         <{$cat_name}>
     </div>

@@ -422,6 +422,7 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 1,
 ];
+/*
 
 $modversion['config'][] = [
     'name'        => 'letter_css_default',
@@ -451,14 +452,13 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
-    'name'        => 'letter_css_notexist',
+    'name'        => 'letter_css_empty',
     'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST',
     'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => 'color: #bfc9ca;',
 ];
-
 $modversion['config'][] = [
     'name'        => 'replace_arobase',
     'title'       => '\_MI_GLOSSAIRE_REPLACE_AROBASE',
@@ -467,6 +467,7 @@ $modversion['config'][] = [
     'valuetype'   => 'text',
     'default'     => '[@]',
 ];
+*/
 
 // ------------------- interface ------------------- //
 $modversion['config'][] = glossaire_getBreakLine('interface');

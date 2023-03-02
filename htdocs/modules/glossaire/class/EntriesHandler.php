@@ -163,7 +163,7 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $catArr)
     
     $linkRefOk  = "<b><a href='{$url}' title='' alt=''><span class='letter-exist'>%s</span></a></b>";
     //$linkNoRef  = "<span>%s</span>";
-    $linkNoRef  = "<span class='letter-notexist'>%s</span>";
+    $linkNoRef  = "<span class='letter-empty'>%s</span>";
     $linkOldRef = "<span class='letter-selected'>%s</span>";
 
     $oldLetter = strtoupper($oldLetter);
@@ -183,7 +183,7 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $catArr)
     . ".letter-default span{{$catArr['css']['gls_letter_default']}}\n"
     . ".letter-selected{{$catArr['css']['gls_letter_seleced']}}\n"
     . ".letter-exist{{$catArr['css']['gls_letter_exist']}}\n"
-    . ".letter-notexist{{V['css']['gls_letter_empty']}}\n"
+    . ".letter-empty{{$catArr['css']['gls_letter_empty']}}\n"
     ."</style>\n";
     //------------------------------------------------------
 $temp = str_replace('<', '[', $style);    
