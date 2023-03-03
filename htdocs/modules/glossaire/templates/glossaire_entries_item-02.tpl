@@ -19,21 +19,8 @@
     
 
 <{* ---------- Affichage de boutons image pour gerer l entree -----------*}>
-<{if ($posButtonsActions & 1) > 0}>
-    <a href="#haut_de_page">
-      <img src="<{xoModuleIcons16 ASC.png}>" class="gls_button gls_buttonTop" title="<{$smarty.const._MA_GLOSSAIRE_TOP}>"></a>
-
-
-    <{if $catPerms.approve}>
-        <a href="entries.php?op=delete&amp;ent_id=<{$entry.ent_id}>" title="<{$smarty.const._DELETE}>">
-           <img src="<{xoModuleIcons16 delete.png}>" class="gls_button" title="<{$smarty.const._DELETE}>"></a>
-        <a href="entries.php?op=new&catIdSelect=<{$catIdSelect}>" title="<{$smarty.const._ADD}>">
-           <img src="<{xoModuleIcons16 add.png}>" class="gls_button" title="<{$smarty.const._ADD}>"></a>
-        <a href="entries.php?op=clone&ent_id_source=<{$entry.ent_id}>" title="<{$smarty.const._CLONE}>">
-           <img src="<{xoModuleIcons16 editcopy.png}>" class="gls_button" title="<{$smarty.const._CLONE}>"></a>
-        <a href="entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>&letter=<{$letter}>">
-          <img src="<{xoModuleIcons16 edit.png}>" class="gls_button" title="<{$smarty.const._EDIT}>"></a>
-    <{/if}>
+<{if $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_BTN_ACTIONS_TOP]}> 
+    <{include file="db:glossaire_entries_item_btn.tpl" }>
 <{/if}>
 </div>
 
@@ -46,22 +33,21 @@
         </div>
     <{/if}>
     <{if $entry.reference AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_REFERENCE]}>
-        <span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_REFERENCES}> : </span><br>
-        <span style="<{$catArr.css.gls_ent_reference}>"><{$entry.reference}></span><br>
+        <br><br><span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_REFERENCES}> : </span>
+        <span style="<{$catArr.css.gls_ent_reference}>"><{$entry.reference}></span>
     <{/if}>
     <{if $entry.urls AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_URLS]}>
-        <span  class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_SEEALSO}> : </span>
+        <br><br><span  class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_SEEALSO}> : </span>
         <span style="<{$catArr.css.gls_ent_urls}>"><{$entry.urls}></span>
     <{/if}>
     <{if $entry.email AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_EMAIL]}>
-        <br><br><span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_CONTACT}> : </span>
-        <span style="<{$catArr.css.gls_ent_email}>"><{$entry.email}></span><br>
+        <br><span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_CONTACT}> : </span>
+        <span style="<{$catArr.css.gls_ent_email}>"><{$entry.email}></span>
     <{/if}>
     <{if $entry.file_name AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_FILE_NAME]}>
-        <br><br><span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_FILE_LINKED}> : </span><br>
-        <span style="<{$catArr.css.gls_ent_files_joins}>"><{$entry.file_link}></span><br>
+        <br><span class="gls_subtitle"><{$smarty.const._MA_GLOSSAIRE_FILE_LINKED}> : </span>
+        <span style="<{$catArr.css.gls_ent_files_joins}>"><{$entry.file_link}></span>
     <{/if}>
-    
 
     <{if $entry.creator AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_CREATOR]}>
         <br><span class="gls_subtitle"><{$smarty.const._AM_GLOSSAIRE_CREATOR}> : </span>
@@ -85,21 +71,8 @@
 </div>
  
 <{* ---------- Affichage des boutons image pour gerer l entree -----------*}>
-<{if ($posButtonsActions & 2)>0}>
-    <a href="#haut_de_page">
-      <img src="<{xoModuleIcons16 ASC.png}>" class="gls_button gls_buttonTop" title="<{$smarty.const._MA_GLOSSAIRE_TOP}>"></a>
-
-
-    <{if $catPerms.approve}>
-        <a href="entries.php?op=delete&amp;ent_id=<{$entry.ent_id}>" title="<{$smarty.const._DELETE}>">
-           <img src="<{xoModuleIcons16 delete.png}>" class="gls_button" title="<{$smarty.const._DELETE}>"></a>
-        <a href="entries.php?op=new&catIdSelect=<{$catIdSelect}>" title="<{$smarty.const._ADD}>">
-           <img src="<{xoModuleIcons16 add.png}>" class="gls_button" title="<{$smarty.const._ADD}>"></a>
-        <a href="entries.php?op=clone&ent_id_source=<{$entry.ent_id}>" title="<{$smarty.const._CLONE}>">
-           <img src="<{xoModuleIcons16 editcopy.png}>" class="gls_button" title="<{$smarty.const._CLONE}>"></a>
-        <a href="entries.php?op=edit&ent_id=<{$entry.ent_id}>&start=<{$start}>&limit=<{$limit}>">
-          <img src="<{xoModuleIcons16 edit.png}>" class="gls_button" title="<{$smarty.const._EDIT}>"></a>
-    <{/if}>
+<{if $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM]}>
+    <{include file="db:glossaire_entries_item_btn.tpl" }>
 <{/if}>
 
 

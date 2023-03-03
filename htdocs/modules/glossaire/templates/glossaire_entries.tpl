@@ -105,7 +105,7 @@
 <{/if}>
     <div class="item-round-no <{$colors_set}>-item-head" style="padding:12px;margin-top:-5px;"></div>
     <div class="item-round-bottom <{$colors_set}>-item-body" style="padding:12px;margin-top:-5px;">
-    <center><{$alphaBarre}>
+    <center><{$alphaBarre_bottom}>
       <{if $pagenav|default:""}>
           <div class="pagenav pagenav-container"><{$pagenav}></div>
       <{/if}>

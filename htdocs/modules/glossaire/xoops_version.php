@@ -43,8 +43,8 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
     'name'                => \_MI_GLOSSAIRE_NAME,
-    'version'             => 1.6,
-    'release'             => '2023-02-28',
+    'version'             => 1.8,
+    'release'             => '2023-03-03',
     'module_status'       => 'Beta 1',
     'description'         => \_MI_GLOSSAIRE_DESC,
     'author'              => 'Jean-Jacques Delalandre',
@@ -106,10 +106,12 @@ $modversion['templates'] = [
     ['file' => 'glossaire_categories.tpl', 'description' => ''],
     ['file' => 'glossaire_categories_list.tpl', 'description' => ''],
     ['file' => 'glossaire_categories_item.tpl', 'description' => ''],
+    ['file' => 'glossaire_categories_item_btn.tpl', 'description' => ''],
     ['file' => 'glossaire_entries.tpl', 'description' => ''],
     ['file' => 'glossaire_entries_list.tpl', 'description' => ''],
     ['file' => 'glossaire_entries_item-01.tpl', 'description' => ''],
     ['file' => 'glossaire_entries_item-02.tpl', 'description' => ''],
+    ['file' => 'glossaire_entries_item_btn.tpl', 'description' => ''],
     ['file' => 'glossaire_entries_terms_links.tpl', 'description' => ''],
     ['file' => 'glossaire_breadcrumbs.tpl', 'description' => ''],
     ['file' => 'glossaire_search.tpl', 'description' => ''],
@@ -422,52 +424,6 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 1,
 ];
-/*
-
-$modversion['config'][] = [
-    'name'        => 'letter_css_default',
-    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT',
-    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_DEFAULT_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => 'font-size:1.5em;margin-left:3px;margin-right:3px;',
-];
-
-$modversion['config'][] = [
-    'name'        => 'letter_css_selected',
-    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED',
-    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_SELECTED_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => 'font-weight:bold;color:red;text-decoration:underline;underline red;',
-];
-
-$modversion['config'][] = [
-    'name'        => 'letter_css_exist',
-    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST',
-    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_EXIST_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => 'font-weight:bold;',
-];
-
-$modversion['config'][] = [
-    'name'        => 'letter_css_empty',
-    'title'       => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST',
-    'description' => '\_MI_GLOSSAIRE_ALPHABARRE_LETTER_NOT_EXIST_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => 'color: #bfc9ca;',
-];
-$modversion['config'][] = [
-    'name'        => 'replace_arobase',
-    'title'       => '\_MI_GLOSSAIRE_REPLACE_AROBASE',
-    'description' => '\_MI_GLOSSAIRE_REPLACE_AROBASE_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => '[@]',
-];
-*/
 
 // ------------------- interface ------------------- //
 $modversion['config'][] = glossaire_getBreakLine('interface');
@@ -509,18 +465,6 @@ $modversion['config'][] = [
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1,
-];
-$modversion['config'][] = [
-    'name'        => 'posButtonsActions',
-    'title'       => '\_MI_GLOSSAIRE_BTN_ACTION_POS',
-    'description' => '\_MI_GLOSSAIRE_BTN_ACTION_POS_DESC',
-    'formtype'    => 'select',
-    'valuetype'   => 'int',
-    'default'     => 1,
-    'options'     => [_MI_GLOSSAIRE_BTN_ACTION_POS_NONE    => 0,
-                      _MI_GLOSSAIRE_BTN_ACTION_POS_TOP     => 1, 
-                      _MI_GLOSSAIRE_BTN_ACTION_POS_BOTTOM  => 2, 
-                      _MI_GLOSSAIRE_BTN_ACTION_POS_ALL     => 3],
 ];
 
 $modversion['config'][] = [

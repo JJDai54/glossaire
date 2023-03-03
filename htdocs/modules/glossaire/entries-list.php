@@ -98,8 +98,11 @@ use JJD AS JJD;
 
     //url = XOOPS_URL . "/modules/glossaire/op=list&catId={$catId}&letter=%s";        &exp2search={$exp2search}
         $url = "{$page2redirect}?op=list&catIdSelect={$catIdSelect}&start=0&limit={$limit}&letter=%s&exp2search={$exp2search}";
-        $GLOBALS['xoopsTpl']->assign('alphaBarre', $entriesHandler->getAlphaBarre($crEntries, $url, $letter, $catArr));
-
+        
+        $alphaBarre = $entriesHandler->getAlphaBarre($crEntries, $url, $letter, $catArr, $alphaBarreWithoutStyle);
+        $GLOBALS['xoopsTpl']->assign('alphaBarre', $alphaBarre);
+        $GLOBALS['xoopsTpl']->assign('alphaBarre_bottom', $alphaBarreWithoutStyle);
+        
         if (strpos($glossaireHelper->getConfig('alphabarre'), $letter) !== false && $letter !='*'){
             $crEntries->add(new \Criteria('ent_initiale',$letter, "="));
         }

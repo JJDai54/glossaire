@@ -1,4 +1,4 @@
- 
+ALTER TABLE `x2511_glossaire_categories` ADD `cat_date_format` VARCHAR(30) NOT NULL DEFAULT 'd-m-Y : H-i-s' AFTER `cat_active`;  
 
 
 ajouter | pour des retours à la ligne dans la barre de lettre
@@ -55,7 +55,7 @@ define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DEFINITION', "Style de la définition");
 
 define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_DEFAULT', "Lettres par défaut");
 define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EXIST', "Lettres existantes");
-define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_SELECED', "Lettre sélectionée");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_SELECTED', "Lettre sélectionée");
 define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EMPTY', "Lettres absentes");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_CREATOR', "Créateur");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_REFERENCE', "Références");

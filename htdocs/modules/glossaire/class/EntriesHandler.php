@@ -146,7 +146,7 @@ class EntriesHandler extends \XoopsPersistableObjectHandler
     /**
      * @return array
      */
-public function getAlphaBarre($criteria, $url, $oldLetter, $catArr)
+public function getAlphaBarre($criteria, $url, $oldLetter, $catArr, &$alphaBarreWithoutStyle)
 {
     global $glossaireHelper;
 /*
@@ -181,13 +181,13 @@ public function getAlphaBarre($criteria, $url, $oldLetter, $catArr)
 //echoArray($catArr['css']);
     $style="<style>\n"
     . ".letter-default span{{$catArr['css']['gls_letter_default']}}\n"
-    . ".letter-selected{{$catArr['css']['gls_letter_seleced']}}\n"
+    . ".letter-selected{{$catArr['css']['gls_letter_selected']}}\n"
     . ".letter-exist{{$catArr['css']['gls_letter_exist']}}\n"
     . ".letter-empty{{$catArr['css']['gls_letter_empty']}}\n"
     ."</style>\n";
     //------------------------------------------------------
-$temp = str_replace('<', '[', $style);    
-$temp = str_replace('>', ']', $temp);    
+//$temp = str_replace('<', '[', $style);    
+//$temp = str_replace('>', ']', $temp);    
 //echo "<hr><pre><code>{$temp}</code></pre><hr>";    
     //------------------------------------------------------
     for ($h = 0; $h < strlen($alphabarre); ++$h) {
@@ -217,7 +217,8 @@ $temp = str_replace('>', ']', $temp);
 
     }
 
-    return $style. "<span class='letter-default'>" . implode('', $lettersArr) . "</span>";
+    $alphaBarreWithoutStyle = "<span class='letter-default'>" . implode('', $lettersArr) . "</span>";
+    return $style. $alphaBarreWithoutStyle;
 }
 
 

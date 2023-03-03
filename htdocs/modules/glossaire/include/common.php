@@ -107,3 +107,5 @@ define('GLOSSAIRE_ENT_EMAIL', $h++);
 define('GLOSSAIRE_ENT_COUNTER', $h++);
 define('GLOSSAIRE_ENT_DATE_CREATION', $h++);
 define('GLOSSAIRE_ENT_DATE_UPDATE', $h++);
+define('GLOSSAIRE_ENT_BTN_ACTIONS_TOP', $h++);
+define('GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM', $h++);

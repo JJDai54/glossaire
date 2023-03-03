@@ -175,19 +175,25 @@ define('_AM_GLOSSAIRE_CATEGORY_STATUS_PROPOSITION', "Propose");
 define('_AM_GLOSSAIRE_ENTRY_STATUS', "Status");
 define('_AM_GLOSSAIRE_FORM_OK', "Successfully saved");
 define('_AM_GLOSSAIRE_CATEGORY', "Categorie");
+define('_AM_GLOSSAIRE_DATE_FORMAT', "Date format");
+define('_AM_GLOSSAIRE_DATE_FORMAT_DESC', "See PHP help for more informations");
 
 
 define('_AM_GLOSSAIRE_CAT_SHOW_BIN', "field ti show");
 //define('_AM_GLOSSAIRE_CAT_SHOW_BIN', "Style du terme");
 
-define('_AM_GLOSSAIRE_STYLES_GLS_ENT_TERM', "Terme");
+
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_DEFAULT', "Alphabet : Lettres par défaut");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EXIST', "Alphabet : Lettres existantes");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_SELECTED', "Alphabet : Lettre sélectionée");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EMPTY', "Alphabet : Lettres absentes");
+
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_INDEX_TABLE', "<hr>Index des termes en colonnes");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_INDEX_DIV', "Index des termes en liste");
+
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_TERM', "<hr>Terme");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_SHORTDEF', "Définition courte");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DEFINITION', "Définition");
-
-define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_DEFAULT', "Lettres par défaut");
-define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EXIST', "Lettres existantes");
-define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_SELECED', "Lettre sélectionée");
-define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EMPTY', "Lettres absentes");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_CREATOR', "Auteur");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_REFERENCE', "Références");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_FILE_NAME', "Fichier joint");
@@ -197,8 +203,6 @@ define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DATES', "Dates");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_COUNTER', "Compteur de visites");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DATES_CREATION', "Date de création");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DATE_UPDATE', "Date de mise à jour");
-define('_AM_GLOSSAIRE_STYLES_GLS_ENT_INDEX_TABLE', "Index des termes en colonnes");
-define('_AM_GLOSSAIRE_STYLES_GLS_ENT_INDEX_DIV', "Index des termes en liste");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_FILES_JOINS', "Fichiers joints");
 
 define('_AM_GLOSSAIRE_ENT_ID', "ID");
@@ -212,9 +216,11 @@ define('_AM_GLOSSAIRE_ENT_REFERENCE', "Référence");
 define('_AM_GLOSSAIRE_ENT_FILE_NAME', "Fichier joint");
 define('_AM_GLOSSAIRE_ENT_URLS', "Voir aussi");
 define('_AM_GLOSSAIRE_ENT_EMAIL', "Contact");
-define('_AM_GLOSSAIRE_ENT_COUNTER', "Compteur e visite");
+define('_AM_GLOSSAIRE_ENT_COUNTER', "Compteur se visites");
 define('_AM_GLOSSAIRE_ENT_DATE_CREATION', "Date de création");
 define('_AM_GLOSSAIRE_ENT_DATE_UPDATE', "Date de mise à jour");
+define('_AM_GLOSSAIRE_ENT_BTN_ACTIONS_TOP', "Position en bas des boutons de gestion");
+define('_AM_GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM', "Position en bas des boutons de gestion");
 
 
 ?>

@@ -6,7 +6,7 @@ Compilator.ProgSaveAll=0
 Compilator.ProgRunSelection=0
 Compilator.LogType=0
 Compilator.LogEncoding=0
-DefaultDir=J:\Xoops\modules-JJD\glossaire\projet\htdocs\modules\glossaire
+DefaultDir=D:\_JJD-WorkSpace-D\Wamp-Serveur\Sites\xoops-2511b-fr\www\modules\glossaire
 DefaultCP=0
 LogtoEnd=1
 DontOpen=0
@@ -17,8 +17,6 @@ HTServer=localhost
 Extensions=*.*
 [Project tree]
 _glossaire
-	+_JJD
-		..\..\uploads\glossaire\data\Sigles_et_Acronymes\glossaire-category.css
 	+glossaire
 		+admin
 			admin\about.php
@@ -44,14 +42,14 @@ _glossaire
 			admin\permissions.php
 		+assets
 			+css
-				+admin
+				-admin
 					assets\css\admin\index.php
 					assets\css\admin\style.css
 				assets\css\category-modele.css
 				assets\css\import-export.css
 				assets\css\index.php
 				assets\css\style.css
-			+icons
+			-icons
 				-16
 					-arrows
 						-blue
@@ -93,6 +91,7 @@ _glossaire
 				-32
 					assets\icons\32\broken.png
 					assets\icons\32\category.png
+					assets\icons\32\clone.png
 					assets\icons\32\index.php
 					assets\icons\32\translations.png
 				assets\icons\delete.gif
@@ -109,10 +108,10 @@ _glossaire
 			-js
 				assets\js\functions.js
 				assets\js\highslide.js
+				assets\js\import-export.js
 				assets\js\index.php
 				assets\js\scroll.js
 			assets\index.php
-			class\Entries.php
 		-blocks
 			blocks\categories.php
 			blocks\entries.php
@@ -136,7 +135,7 @@ _glossaire
 			class\Categories.php
 			class\CategoriesHandler.php
 			class\Constants.php
-			class\delete
+			class\Entries.php
 			class\EntriesHandler.php
 			class\Helper.php
 			class\index.php
@@ -158,6 +157,7 @@ _glossaire
 			docs\license.txt
 			docs\readme.txt
 			docs\todo.txt
+		-htdocs
 		+include
 			include\common.php
 			include\functions.php
@@ -171,52 +171,19 @@ _glossaire
 			include\xoops_version.inc.php
 		+language
 			+english
-				-help
-					language\english\help\help.html
-					language\english\help\index.php
-				-mail_template
-					language\english\mail_template\category_approve_notify.tpl
-					language\english\mail_template\category_delete_notify.tpl
-					language\english\mail_template\category_modify_notify.tpl
-					language\english\mail_template\entry_approve_notify.tpl
-					language\english\mail_template\entry_delete_notify.tpl
-					language\english\mail_template\entry_modify_notify.tpl
-					language\english\mail_template\global_approve_notify.tpl
-					language\english\mail_template\global_delete_notify.tpl
-					language\english\mail_template\global_modify_notify.tpl
-					language\english\mail_template\global_new_notify.tpl
-					language\english\mail_template\index.php
 				language\english\admin.php
 				language\english\blocks.php
 				language\english\common.php
 				language\english\feedback.php
-				language\english\index.php
 				language\english\main.php
 				language\english\modinfo.php
 			+french
-				-help
-					language\french\help\help.html
-					language\french\help\index.php
-				-mail_template
-					language\french\mail_template\category_approve_notify.tpl
-					language\french\mail_template\category_delete_notify.tpl
-					language\french\mail_template\category_modify_notify.tpl
-					language\french\mail_template\entry_approve_notify.tpl
-					language\french\mail_template\entry_delete_notify.tpl
-					language\french\mail_template\entry_modify_notify.tpl
-					language\french\mail_template\global_approve_notify.tpl
-					language\french\mail_template\global_delete_notify.tpl
-					language\french\mail_template\global_modify_notify.tpl
-					language\french\mail_template\global_new_notify.tpl
-					language\french\mail_template\index.php
 				language\french\admin.php
 				language\french\blocks.php
 				language\french\common.php
 				language\french\feedback.php
-				language\french\index.php
 				language\french\main.php
 				language\french\modinfo.php
-			language\index.php
 		-preloads
 			preloads\autoloader.php
 			preloads\core.php
@@ -225,7 +192,7 @@ _glossaire
 			sql\index.php
 			sql\mysql.sql
 		+templates
-			+admin
+			-admin
 				templates\admin\glossaire_admin_about.tpl
 				templates\admin\glossaire_admin_categories.tpl
 				templates\admin\glossaire_admin_categories_css.tpl
@@ -241,6 +208,7 @@ _glossaire
 			-blocks
 				templates\blocks\glossaire_block_categories.tpl
 				templates\blocks\glossaire_block_entries.tpl
+				templates\blocks\glossaire_block_entries-02.tpl
 				templates\blocks\index.php
 			templates\glossaire_breadcrumbs.tpl
 			templates\glossaire_categories.tpl
@@ -257,15 +225,23 @@ _glossaire
 			templates\glossaire_header.tpl
 			templates\glossaire_index.tpl
 			templates\index.php
-		+testdata
+			templates\glossaire_entries_item_btn.tpl
+			templates\glossaire_categories_item_btn.tpl
+		-testdata
 			-english
+				testdata\english\index.html
 			-french
+				testdata\french\index.html
+				testdata\french\Sigles_et_Acronymes.zip
+				testdata\french\Telephones_a_connaitre.zip
 			-images
 				testdata\images\blank.gif
 				testdata\images\blank.png
 			testdata\index.php
-		.scrutinizer.yml
+		_glossaire.ppr
 		categories.php
+		categories-delete.php
+		categories-list.php
 		categories-new.php
 		entries.php
 		entries-list.php
@@ -273,93 +249,37 @@ _glossaire
 		header.php
 		index.php
 		notification_update.php
-		read-me.txt
+		readme.txt
 		xoops_version.php
 [Open project files]
-0=class\Categories.php
-1=language\french\admin.php
-2=language\english\admin.php
-3=assets\css\style.css
-4=assets\css\import-export.css
-5=assets\css\category-modele.css
-6=templates\glossaire_entries_item-02.tpl
-7=templates\glossaire_entries_list.tpl
-8=templates\glossaire_entries.tpl
-9=entries-list.php
-10=..\..\uploads\glossaire\data\Sigles_et_Acronymes\glossaire-category.css
-11=class\EntriesHandler.php
-12=xoops_version.php
-13=admin\categories-new.php
-14=categories-new.php
-15=templates\admin\glossaire_admin_categories.tpl
-16=templates\admin\glossaire_admin_categories_css.tpl
-17=assets\css\admin\style.css
-18=admin\header.php
-19=admin\categories-list.php
-20=templates\admin\glossaire_admin_entries.tpl
+0=sql\mysql.sql
+1=xoops_version.php
+2=testdata\index.php
+3=include\import_export.php
+4=class\Categories.php
+5=templates\glossaire_entries_item-02.tpl
+6=class\Entries.php
 [Selected Project Files]
 Main=
-Selected=templates\admin\glossaire_admin_entries.tpl
-[class\Categories.php]
-TopLine=244
-Caret=9,276
-[language\french\admin.php]
-TopLine=86
-Caret=91,105
-[language\english\admin.php]
-TopLine=86
-Caret=61,105
-[assets\css\style.css]
-TopLine=150
-Caret=1,184
-[assets\css\import-export.css]
+Selected=xoops_version.php
+[sql\mysql.sql]
 TopLine=1
-Caret=1,1
-[assets\css\category-modele.css]
-TopLine=1
-Caret=18,20
-[templates\glossaire_entries_item-02.tpl]
-TopLine=1
-Caret=63,14
-[templates\glossaire_entries_list.tpl]
-TopLine=1
-Caret=24,29
-[templates\glossaire_entries.tpl]
-TopLine=75
-Caret=12,10
-[entries-list.php]
-TopLine=82
-Caret=1,101
-[..\..\uploads\glossaire\data\Sigles_et_Acronymes\glossaire-category.css]
-TopLine=1
-Caret=18,17
-[class\EntriesHandler.php]
-TopLine=145
-Caret=21,186
+Caret=51,32
 [xoops_version.php]
-TopLine=446
-Caret=1,471
-[admin\categories-new.php]
-TopLine=25
-Caret=1,44
-[categories-new.php]
-TopLine=25
-Caret=15,48
-[templates\admin\glossaire_admin_categories.tpl]
-TopLine=77
-Caret=1,99
-[templates\admin\glossaire_admin_categories_css.tpl]
-TopLine=1
-Caret=1,1
-[assets\css\admin\style.css]
-TopLine=1
-Caret=56,26
-[admin\header.php]
-TopLine=49
-Caret=7,79
-[admin\categories-list.php]
-TopLine=16
-Caret=1,34
-[templates\admin\glossaire_admin_entries.tpl]
-TopLine=76
-Caret=43,87
+TopLine=30
+Caret=33,46
+[testdata\index.php]
+TopLine=95
+Caret=58,114
+[include\import_export.php]
+TopLine=223
+Caret=154,243
+[class\Categories.php]
+TopLine=364
+Caret=3,389
+[templates\glossaire_entries_item-02.tpl]
+TopLine=50
+Caret=1,87
+[class\Entries.php]
+TopLine=571
+Caret=43,594

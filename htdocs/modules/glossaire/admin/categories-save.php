@@ -110,6 +110,7 @@ use XoopsModules\Glossaire\Common;
     $categoriesObj->setVar('cat_show_terms_index', Request::getInt('cat_show_terms_index', 1));
     $categoriesObj->setVar('cat_show_bin', Request::getInt('cat_show_bin', 32767));
     $categoriesObj->setVar('cat_count_entries', $entriesHandler->getCountOnCategory($catId));
+    $categoriesObj->setVar('cat_date_format', Request::getString('cat_date_format', 'd-m-Y : H-i-s'));
     
     // Insert Data
     if ($categoriesHandler->insert($categoriesObj)) {

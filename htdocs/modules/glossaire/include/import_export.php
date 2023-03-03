@@ -240,6 +240,7 @@ global $categoriesHandler;
     
 	if (isset($data['cat_userpager'])) $categoriesObj->setVar('cat_userpager',  $data['cat_userpager']); else $categoriesObj->setVar('cat_userpager',10);    
 	if (isset($data['cat_show_bin']))  $categoriesObj->setVar('cat_show_bin',  $data['cat_show_bin']); else $categoriesObj->setVar('cat_show_bin',32767);    
+	if (isset($data['cat_date_format']))  $categoriesObj->setVar('cat_date_format',  $data['cat_date_format']); else $categoriesObj->setVar('cat_date_format','d-m-Y : H-i-s');    
 	$categoriesObj->setVar('cat_alphabarre',       $data['cat_alphabarre']);  
 	$categoriesObj->setVar('cat_alphabarre_mode',  $data['cat_alphabarre_mode']);  
 	$categoriesObj->setVar('cat_upload_folder',  $data['cat_upload_folder'] . $suffix);    
@@ -249,6 +250,7 @@ global $categoriesHandler;
 	$categoriesObj->setVar('cat_show_terms_index', $data['cat_show_terms_index']);    
 	$categoriesObj->setVar('show_bin',             $data['cat_show_bin']);    
 	$categoriesObj->setVar('cat_count_entries',    $data['cat_count_entries']);    
+	$categoriesObj->setVar('cat_date_format',      $data['cat_date_format']);    
 	$categoriesObj->setVar('cat_date_creation',    $data['cat_date_creation']);    
 	$categoriesObj->setVar('cat_date_update', date("Y-m-d H:i:00.00000"));
     
