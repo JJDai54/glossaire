@@ -35,7 +35,8 @@ use JJD AS JJD;
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_ENTRIES_LIST];
         $xoTheme->addScript(XOOPS_URL . '/modules/glossaire/assets/js/scroll.js');        
 //Utility::include_highslide(array('allowMultipleInstances'=>false));        
-        \JJD\include_highslide(array('allowMultipleInstances'=>false));    
+        \JJD\include_highslide(array('allowMultipleInstances'=>false));  
+        //highslide::include_files(array('allowMultipleInstances'=>false));    
         // --------------------------------------------
         // categories avec une listbox
         //$categoriesHandler = $glossaireHelper->getHandler('Categories');

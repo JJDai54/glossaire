@@ -24,7 +24,7 @@
 defined( 'XOOPS_ROOT_PATH' ) or die( 'Accès restreint' );
 
 define('_AM_GLOSSAIRE_MAINTAINEDBY', " is maintained by ");
-define('_AM_GLOSSAIRE_EXPORT_AVERTISSEMENT_DESC', "<b>Important</b> : Pour alléger l'archive l'export effectue un netoyage des fichiers images et fichiers joints inutiles<br>qui n'ont pas été supprimés correctement lors de modifications");
+define('_AM_GLOSSAIRE_EXPORT_AVERTISSEMENT_DESC', "<b>Important</b> : Pour alléger l'archive l'export effectue un nettoyage des fichiers images et fichiers joints inutiles<br>qui n'ont pas été supprimés correctement lors de modifications");
 define('_AM_GLOSSAIRE_ACTIVATE', "Activer");
 define('_AM_GLOSSAIRE_CATEGORY_ADD', "Add Category");
 define('_AM_GLOSSAIRE_ENTRY_ADD', "Add Entry");
@@ -56,7 +56,7 @@ define('_AM_GLOSSAIRE_CATEGORY_ENTRIES', "Entries");
 define('_AM_GLOSSAIRE_CLONE_INVALIDNAME', "ERROR: Invalid module name, please try another one!");
 define('_AM_GLOSSAIRE_CLONE_EXISTS', "ERROR: Module name already taken, please try another one!");
 define('_AM_GLOSSAIRE_EXPORT', "Export");
-define('_AM_GLOSSAIRE_EXPORT_AVERTISSEMENT', "Exportation : netoyage des fichiers.");
+define('_AM_GLOSSAIRE_EXPORT_AVERTISSEMENT', "Exportation : nettoyage des fichiers.");
 define('_AM_GLOSSAIRE_EXPORTER', "Exporter");
 define('_AM_GLOSSAIRE_FILE_TO_LOAD', "File to import");
 define('_AM_GLOSSAIRE_FILE_NAME', "File title");
@@ -219,7 +219,7 @@ define('_AM_GLOSSAIRE_ENT_EMAIL', "Contact");
 define('_AM_GLOSSAIRE_ENT_COUNTER', "Compteur se visites");
 define('_AM_GLOSSAIRE_ENT_DATE_CREATION', "Date de création");
 define('_AM_GLOSSAIRE_ENT_DATE_UPDATE', "Date de mise à jour");
-define('_AM_GLOSSAIRE_ENT_BTN_ACTIONS_TOP', "Position en bas des boutons de gestion");
+define('_AM_GLOSSAIRE_ENT_BTN_ACTIONS_TOP', "Position en haut des boutons de gestion");
 define('_AM_GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM', "Position en bas des boutons de gestion");
 
 
