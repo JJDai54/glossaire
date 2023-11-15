@@ -112,7 +112,7 @@ _glossaire
 				assets\js\index.php
 				assets\js\scroll.js
 			assets\index.php
-		-blocks
+		+blocks
 			blocks\categories.php
 			blocks\entries.php
 			blocks\index.php
@@ -148,7 +148,7 @@ _glossaire
 			config\icons.php
 			config\index.php
 			config\paths.php
-		+docs
+		-docs
 			docs\changelog.txt
 			docs\credits.txt
 			docs\index.php
@@ -192,7 +192,7 @@ _glossaire
 			sql\index.php
 			sql\mysql.sql
 		+templates
-			-admin
+			+admin
 				templates\admin\glossaire_admin_about.tpl
 				templates\admin\glossaire_admin_categories.tpl
 				templates\admin\glossaire_admin_categories_css.tpl
@@ -252,66 +252,22 @@ _glossaire
 		readme.txt
 		xoops_version.php
 [Open project files]
-0=sql\mysql.sql
-1=xoops_version.php
-2=testdata\index.php
-3=include\import_export.php
-4=class\Categories.php
-5=templates\glossaire_entries_item-02.tpl
-6=class\Entries.php
-7=templates\glossaire_entries.tpl
-8=templates\admin\glossaire_admin_entries.tpl
-9=header.php
-10=entries-list.php
-11=admin\categories.php
-12=admin\categories-save.php
-13=language\french\admin.php
-14=language\english\admin.php
+0=templates\admin\glossaire_admin_entries.tpl
+1=admin\entries-list.php
+2=admin\categories-save.php
+3=admin\categories-new.php
 [Selected Project Files]
 Main=
-Selected=admin\categories-save.php
-[sql\mysql.sql]
-TopLine=14
-Caret=51,33
-[xoops_version.php]
-TopLine=30
-Caret=41,47
-[testdata\index.php]
-TopLine=95
-Caret=58,114
-[include\import_export.php]
-TopLine=223
-Caret=154,243
-[class\Categories.php]
-TopLine=22
-Caret=5,47
-[templates\glossaire_entries_item-02.tpl]
-TopLine=50
-Caret=1,86
-[class\Entries.php]
-TopLine=384
-Caret=14,406
-[templates\glossaire_entries.tpl]
-TopLine=1
-Caret=1,14
+Selected=admin\categories-new.php
 [templates\admin\glossaire_admin_entries.tpl]
 TopLine=1
-Caret=5,4
-[header.php]
-TopLine=19
-Caret=1,31
-[entries-list.php]
-TopLine=19
-Caret=9,39
-[admin\categories.php]
-TopLine=1
-Caret=1,1
+Caret=1,11
+[admin\entries-list.php]
+TopLine=118
+Caret=1,152
 [admin\categories-save.php]
-TopLine=132
-Caret=1,171
-[language\french\admin.php]
-TopLine=8
-Caret=119,27
-[language\english\admin.php]
-TopLine=8
-Caret=119,27
+TopLine=98
+Caret=1,117
+[admin\categories-new.php]
+TopLine=1
+Caret=63,44

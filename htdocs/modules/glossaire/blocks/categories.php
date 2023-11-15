@@ -27,6 +27,9 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Helper;
 use XoopsModules\Glossaire\Constants;
 
+include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
+\JJD\loadAllXForms();
+
 /**
  * Function show block
  * @param  $options

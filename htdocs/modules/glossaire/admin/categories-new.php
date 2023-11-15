@@ -41,7 +41,7 @@ use XoopsModules\Glossaire\Common;
     $categoriesObj->setVar('cat_userpager',             $glossaireHelper->getConfig('userpager'));
     $categoriesObj->setVar('cat_alphabarre',            $glossaireHelper->getConfig('alphabarre'));
     $categoriesObj->setVar('cat_alphabarre_mode',       $glossaireHelper->getConfig('alphabarre_mode'));
-    $categoriesObj->setVar('cat_replace_arobase',       '[@]'; 
+    $categoriesObj->setVar('cat_replace_arobase',       '[@]'); 
     //$categoriesObj->setVar('cat_show_bin', 326767));
     //$categoriesObj->setVar('cat_date_format', 'd-m-Y : H-i-s'));
 
