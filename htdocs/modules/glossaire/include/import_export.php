@@ -48,6 +48,7 @@ function export_glossaire($catId, $gls_add_img = false, $gls_add_files=false)
     $catObj = $categoriesHandler->get($catId);
     $catName = $catObj->getVar('cat_name');    
     $folder = \JJD\sanityseNameForFile($catName);
+    echo "<hr>folder : {$folder}<hr>";
     //$catName = $folder; // nom du fichier = nom du dosser pour faciliter l'import
     
     $pathExport = GLOSSAIRE_UPLOAD_PATH . "/export";

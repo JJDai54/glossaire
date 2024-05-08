@@ -256,9 +256,14 @@ _glossaire
 1=admin\entries-list.php
 2=admin\categories-save.php
 3=admin\categories-new.php
+4=admin\about.php
+5=templates\admin\glossaire_admin_about.tpl
+6=xoops_version.php
+7=admin\export.php
+8=include\import_export.php
 [Selected Project Files]
 Main=
-Selected=admin\categories-new.php
+Selected=templates\admin\glossaire_admin_about.tpl
 [templates\admin\glossaire_admin_entries.tpl]
 TopLine=1
 Caret=1,11
@@ -269,5 +274,20 @@ Caret=1,152
 TopLine=98
 Caret=1,117
 [admin\categories-new.php]
+TopLine=10
+Caret=1,52
+[admin\about.php]
+TopLine=17
+Caret=34,40
+[templates\admin\glossaire_admin_about.tpl]
 TopLine=1
-Caret=63,44
+Caret=1,6
+[xoops_version.php]
+TopLine=9
+Caret=41,47
+[admin\export.php]
+TopLine=35
+Caret=38,51
+[include\import_export.php]
+TopLine=38
+Caret=15,51
