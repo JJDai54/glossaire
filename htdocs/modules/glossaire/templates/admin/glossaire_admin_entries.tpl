@@ -52,7 +52,7 @@
                 </td>
                 <td class="left">
                     <a href="entries.php?op=edit&amp;ent_id=<{$entry.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._EDIT}>">
-                        <img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}>">
+                        <img src="<{xoModuleIcons16 'edit.png'}>" alt="<{$smarty.const._EDIT}>">
                         [<{$entry.initiale}>] - <{$entry.term}>
                     </a>
                 </td>
@@ -86,9 +86,9 @@
                 <td class="center"><{$entry.date_update}></td>
                 <td class="center  width10">
                     <div class="glossaire-btn-actions">
-                    <a href="entries.php?op=edit&amp;ent_id=<{$entry.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}> entries" ></a>
-                    <a href="entries.php?op=clone&amp;ent_id_source=<{$entry.id}>" title="<{$smarty.const._CLONE}>"><img src="<{xoModuleIcons16 editcopy.png}>" alt="<{$smarty.const._CLONE}> entries" ></a>
-                    <a href="entries.php?op=delete&ent_id=<{$entry.id}>&start=<{$start}>&statusIdSelect=<{$statusIdSelect}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}> entries" ></a>
+                    <a href="entries.php?op=edit&amp;ent_id=<{$entry.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16 'edit.png'}>" alt="<{$smarty.const._EDIT}> entries" ></a>
+                    <a href="entries.php?op=clone&amp;ent_id_source=<{$entry.id}>" title="<{$smarty.const._CLONE}>"><img src="<{xoModuleIcons16 'editcopy.png'}>" alt="<{$smarty.const._CLONE}> entries" ></a>
+                    <a href="entries.php?op=delete&ent_id=<{$entry.id}>&start=<{$start}>&statusIdSelect=<{$statusIdSelect}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16 'delete.png'}>" alt="<{$smarty.const._DELETE}> entries" ></a>
                     </div>
                 </td>
             </tr>

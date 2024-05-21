@@ -77,9 +77,9 @@ require_once \GLOSSAIRE_PATH . '/include/functions.php';
 //--------- a mettre dans xoops_version.php
 define('GLOSSAIRE_CATEGORY_CSS_NAME_FILE', "glossaire-category.css"); 
 
-// peut ^tre a remplacer par les constantes plus bas, ça fait un peu double emploi
-// faudra juste faire attention au valeur attibuée et modifier en conséquence
-// voir les supprimer purement et simplement, utilisée qu'une seule fois
+// peut ^tre a remplacer par les constantes plus bas, Ã§a fait un peu double emploi
+// faudra juste faire attention au valeur attibuÃ©e et modifier en consÃ©quence
+// voir les supprimer purement et simplement, utilisÃ©e qu'une seule fois
 // $row=1;
 // define('GLOSSAIRE_COL_ADM_ENTRIES_ID', $row++);
 // define('GLOSSAIRE_COL_ADM_ENTRIES_CREATOR', $row++);

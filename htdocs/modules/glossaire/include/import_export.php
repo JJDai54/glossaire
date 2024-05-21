@@ -40,7 +40,7 @@ function export_glossaire($catId, $gls_add_img = false, $gls_add_files=false)
 {
     global $xoopsConfig, $xoopsDB, $utility, $categoriesHandler, $xoopsFolder;
 
-    //nettoyage du dossier a exporter pour alléger l'archive compressee
+    //nettoyage du dossier a exporter pour allÃ©ger l'archive compressee
     $stat = $utility->cleanCatFolders($catId, 'ent_image', '', 'images', 1, 1);        
     $stat = $utility->cleanCatFolders($catId, 'ent_file_path', 'ent_file_name', 'files', 1, 1);        
     
@@ -174,7 +174,7 @@ global $entriesHandler, $xoopsFolder;
     $fullName = "{$pathImport}/entries.yml";
     $tabledata = \Xmf\Yaml::readWrapped($fullName);
     
-    //Mise à jour des champs avant importation
+    //Mise Ã  jour des champs avant importation
     foreach ($tabledata as $index => $row) {
         //affectation du nouvel ID
         $tabledata[$index]['ent_id'] = 0;
@@ -218,7 +218,7 @@ global $categoriesHandler;
     $fullName = "{$pathImport}/categories.yml";
     $tabledata = \Xmf\Yaml::readWrapped($fullName);
 
-    //Il n'y a normalement qu'une seul entrée:
+    //Il n'y a normalement qu'une seul entrÃ©e:
     $index = 0;
     $data = $tabledata[$index];
     
