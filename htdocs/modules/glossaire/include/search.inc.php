@@ -26,13 +26,13 @@
 use XoopsModules\Glossaire;
 
 /**
- * glossaire_build_criteria_words construit les criteres de recherche sur le term et la définition
- * la fonction peut être appelée par la fonction de rechecher globale ou par la fonction du module
- * voir les préférence du module
+ * glossaire_build_criteria_words construit les criteres de recherche sur le term et la dÃ©finition
+ * la fonction peut Ãªtre appelÃ©e par la fonction de rechecher globale ou par la fonction du module
+ * voir les prÃ©fÃ©rence du module
  *
  * @param string $queryarray  string ou array selon l'appel global ou module
  * @param string $type     string replacement for any blank case
- * @return string $andor peut être vide, dans ce cas la r"echeche de "+" ou "|" dans $queryarray forcera 'OR' sinon 'AND'
+ * @return string $andor peut Ãªtre vide, dans ce cas la r"echeche de "+" ou "|" dans $queryarray forcera 'OR' sinon 'AND'
  */
 function glossaire_build_criteria_words($queryarray, $andor = '')
 {

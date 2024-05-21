@@ -55,7 +55,7 @@ use JJD AS JJD;
         //----------------------------------------------------------
         $GLOBALS['xoopsTpl']->assign('categories', $catList);
         
-        //Categorie selectionnée, utilisée notamment pour colorset
+        //Categorie selectionnÃ©e, utilisÃ©e notamment pour colorset
         $GLOBALS['xoopsTpl']->assign('catSelected', $catList[$catIdSelect]);
         
         $GLOBALS['xoopsTpl']->assign('catIdSelect', $catIdSelect);
