@@ -1,5 +1,5 @@
 <?php
-namespace XoopsModules\Quizmaker;
+namespace XoopsModules\Glossaire;
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -27,33 +27,15 @@ use XoopsModules\Glossaire\Constants;
 //require_once XOOPS_ROOT_PATH . '/modules/quizmaker/admin/header.php';
 require_once 'header.php';
 $templateMain = 'glossaire_admin_about.tpl';
-
-
-$box = array();
-$clAbout = new \About($glossaireHelper);
-/* ------------------------- PAYPAL -----------------------------*/
-
-$box['module']['legend'] = _AM_MODULEADMIN_ABOUT_MODULEINFO;
-$box['module']['content'] = $clAbout->htmlTableInfo();
-
-/* ------------------------- Module -----------------------------*/
-$box['paypal']['legend'] = _AM_JJD_ABOUT_CONTRIBUTION;
-$box['paypal']['content'] = $clAbout->contribution('MUUZPTPGJSB9G',
-                            "https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif",
-                            "https://www.paypal.com/en_FR/i/scr/pixel.gif");
-
-/* ------------------------- Header Info -----------------------------*/
-$box['header']['legend'] = "header";
-$box['header']['content'] = $clAbout->localHeaderInfo();
-
-/* ------------------------- Chanlog -----------------------------*/
-$box['changelog']['legend'] = _AM_MODULEADMIN_ABOUT_CHANGELOG;
-$box['changelog']['content'] = $clAbout->changelog();
+$clAbout = new \About($glossaireHelper,
+                      'MUUZPTPGJSB9G',
+                      "https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif",
+                      "https://www.paypal.com/en_FR/i/scr/pixel.gif");
 
 
 /************************************************************************/
 $adminObject->displayNavigation('about.php');
-$GLOBALS['xoopsTpl']->assign('box', $box);
+$GLOBALS['xoopsTpl']->assign('box', $clAbout->getBox());
 $GLOBALS['xoopsTpl']->assign('tplAbout', XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/templates/admin_about.tpl");
 
 require __DIR__ . '/footer.php';
