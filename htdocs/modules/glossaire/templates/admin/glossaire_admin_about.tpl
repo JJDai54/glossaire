@@ -1,8 +1,8 @@
 <!-- Header -->
-<{includeq file='db:glossaire_admin_header.tpl' }>
+<{include file='db:glossaire_admin_header.tpl' }>
 
 <!-- About Page -->
-<{includeq file=$tplAbout}>
+<{include file=$tplAbout}>
 
 <!-- Footer -->
-<{includeq file='db:glossaire_admin_footer.tpl' }>
+<{include file='db:glossaire_admin_footer.tpl' }>

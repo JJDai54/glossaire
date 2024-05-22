@@ -164,8 +164,8 @@ global $_POST, $_FILES;
             }
             //$entriesObj->setVar('ent_image', );
         }
-//ajout du téléchargement du fichier joint
-//modifier au le test pour l'image pour bien diférencier les deux        
+//ajout du tÃ©lÃ©chargement du fichier joint
+//modifier au le test pour l'image pour bien difÃ©rencier les deux        
 //         $entriesObj->setVar('', Request::getText('ent_file_name', ''));
 
         

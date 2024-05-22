@@ -13,6 +13,6 @@ $(document).ready(function(){
         $("#glossaire_download").delay(1000).show(1000, "linear");
 
         $("#glossaire_download").delay(5000).hide(1000, "linear", function(){
-            //alert("Titre bien caché");
+            //alert("Titre bien cachÃ©");
         });
 });

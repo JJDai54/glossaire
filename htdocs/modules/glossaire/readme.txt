@@ -1,28 +1,28 @@
 module Glossaire pour xoops
 ---------------------------
-Ce module pemet de gérer des Glossaire ou Lexiques.
+Ce module pemet de gÃ©rer des Glossaire ou Lexiques.
 Il prend en charge 
-- les catégories avec colorations différenciées
-- L'exportation des défintions par cétégories y compris les images des définitions
+- les catÃ©gories avec colorations diffÃ©renciÃ©es
+- L'exportation des dÃ©fintions par cÃ©tÃ©gories y compris les images des dÃ©finitions
 - L'importation dans une nouvelle categorie ou une existante 
-  d'une catégorie exportée par ce module ou un de ses clones.
-  Les images sont également importées si elles existent.
+  d'une catÃ©gorie exportÃ©e par ce module ou un de ses clones.
+  Les images sont Ã©galement importÃ©es si elles existent.
 - Lexikon : L'importation dans une nouvelle categorie ou une existante 
-  d'une catégorie du module "Lexikon"
+  d'une catÃ©gorie du module "Lexikon"
 - Le clonage sans conflit
 
-Chaque défitnion comprned :
+Chaque dÃ©fitnion comprned :
 - un terme
-- Une définition courte avec prise en chage d'une mis en forme pour les acronymes
-- Une définition
-- une zone de références
+- Une dÃ©finition courte avec prise en chage d'une mis en forme pour les acronymes
+- Une dÃ©finition
+- une zone de rÃ©fÃ©rences
 - 0 ou plusieurs URLs (voir aussi)
-- Une image pour chaque définition
-- un Status : Inactif, Proposé, Soumis
+- Une image pour chaque dÃ©finition
+- un Status : Inactif, ProposÃ©, Soumis
 
 Conception :
 ----------
-La structure du module a été réalisée grace au module "moduleBuilder"
+La structure du module a Ã©tÃ© rÃ©alisÃ©e grace au module "moduleBuilder"
 https://github.com/XoopsModules25x/modulebuilder
 
 ---------------------------------------------------
@@ -31,7 +31,7 @@ Installation:
 avant d'installer le module il faut installer les frameworks :
 - "jjd-Framework"
 	https://github.com/JJDai54/JJD-Framework
-- "highslide version 5.0.0.0" (le dossier doit etre renommé en ""highslide" 
+- "highslide version 5.0.0.0" (le dossier doit etre renommÃ© en ""highslide" 
 	http://highslide.com/
 - "trierTableauHTML"
 	https://github.com/JJDai54/trierTableauHTML
@@ -43,8 +43,8 @@ Contact :
 https://github.com/JJDai54
 http://jubile.fr
 
-en prévision :
+en prÃ©vision :
 ------------
 Importation de fichiers CSV
-Fichier liés (PDF, ZIP,TXT, ...)
+Fichier liÃ©s (PDF, ZIP,TXT, ...)
 
