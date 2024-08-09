@@ -299,7 +299,7 @@ xoops_load('XoopsLists');
         } else{
             $GLOBALS['xoopsTpl']->assign('form_lexikon', "");        
         }
-/*     =============== verifier d'abord si le module est installÃ© 
+/*     =============== verifier d'abord si le module est installé 
 */
 
 

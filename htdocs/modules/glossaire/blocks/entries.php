@@ -29,6 +29,7 @@ use XoopsModules\Glossaire\Constants;
 
 include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 \JJD\loadAllXForms();
+require_once \dirname(__DIR__) . '/include/common.php';
 
 /**
  * Function show block

@@ -392,12 +392,12 @@ class Categories extends \XoopsObject
     
     
     /**
-     * cr√© les dossier de stockage des images et fichiers de la cat√©gories
+     * crÈ les dossier de stockage des images et fichiers de la catÈgories
      *
      * @return string fullPath
      */
     public function createFolders($catFolder){
-        //verifie si le dossier existe d√©j√†
+        //verifie si le dossier existe dÈj‡
         $fldArr = array($catFolder,"{$catFolder}/logo","{$catFolder}/images","{$catFolder}/files");
         
         for($h=0;$h<count($fldArr);$h++){
@@ -412,7 +412,7 @@ class Categories extends \XoopsObject
 }    
     
     /**
-     * Returns chemin de stockage des images et fichiers de la cat√©gories
+     * Returns chemin de stockage des images et fichiers de la catÈgories
      *
      * @return string fullPath
      */
@@ -425,7 +425,7 @@ class Categories extends \XoopsObject
         $fIndex  = XOOPS_UPLOAD_PATH . '/index.php';        
         //--------------------------------------------------
         $fullPath = GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH . $folder;
-        //optimisation, le dossier a sans doute ete d√©ja cr√©√© avec la premiere image
+        //optimisation, le dossier a sans doute ete dÈja crÈÈ avec la premiere image
         if(!is_dir($fullPath)){
             //echo "getPathUploads fullPath : {$fullPath}<br>";
             $h = strpos($fullPath, '/', strlen(XOOPS_ROOT_PATH)+1);
@@ -451,9 +451,9 @@ class Categories extends \XoopsObject
 
 
 	/**
-     * Fonction qui liste les cat√©gories qui respectent la permission demand√©e
+     * Fonction qui liste les catÈgories qui respectent la permission demandÈe
      * @param string   $permtype	Type de permission
-     * @return array   $cat		    Liste des cat√©gorie qui correspondent √† la permission
+     * @return array   $cat		    Liste des catÈgorie qui correspondent ‡ la permission
      */
 	public function getPerms()
     {global $categoriesHandler;
@@ -518,7 +518,7 @@ class Categories extends \XoopsObject
     
 	public function load_css_as_array($likeStyle = false)
     {
-        //copie du fichier csz modele si il n'existe paq d√©j√†
+        //copie du fichier csz modele si il n'existe paq dÈj‡
         $this->copy_css_category_modele();
         $cssCatFille = $this->getCssFileName();   
 /*
@@ -535,7 +535,7 @@ class Categories extends \XoopsObject
         $cssArr = $this->parseCss($content);
 
         //-----------------------------------------------------
-        //complete avec les nouveau style fevitni dans le mod√®le        
+        //complete avec les nouveau style fevitni dans le modËle        
         $modCssModele = GLOSSAIRE_PATH . "/assets/css/category-modele.css";
         $ModContent = file_get_contents($modCssModele);
         $modCssArr = $this->parseCss($ModContent);
@@ -562,7 +562,7 @@ class Categories extends \XoopsObject
                //$tStyle[substr($cssName,1)] = $this->css_trim_content($attributs, "\n");
                $tStyle[$cssName] = $this->css_trim_content($attributs, "\n");
             }
-            //renvoi un ta√©bleau associatif 'class => style'
+            //renvoi un taÈbleau associatif 'class => style'
             return $tStyle;
         }
         
@@ -579,15 +579,15 @@ Function parseCss(&$content)
     
     While (True) {
         //echo "<br>---------------------------------<br>";
-        $m = $j;  //stock la position courante pour recup√©rer le nom de la class plus loin
+        $m = $j;  //stock la position courante pour recupÈrer le nom de la class plus loin
         $i = strpos($content, "{" , $j); //recherche de la premiere "{"
-        If ($i === false) break;         // si pas trouv√© c'est la fin du fichier CSS
+        If ($i === false) break;         // si pas trouvÈ c'est la fin du fichier CSS
         $j = strpos($content, "}", $i);  // recherche "}"      
         
         //echo  "i-j-delta : {$i}-{$j}-" . $j-$i;        
         $attributs = substr($content, $i + 1, $j - $i - 1); //extraction des styles de la classe        
-        $h = strpos($attributs, "\n");  //recherche un retour √† la ligne de debut pour le supprimer si besoin      
-        If ($h === 1)  $attributs = substr($attributs, strlen("\n")); //suppression du retour √† la ligne de d√©but
+        $h = strpos($attributs, "\n");  //recherche un retour ‡ la ligne de debut pour le supprimer si besoin      
+        If ($h === 1)  $attributs = substr($attributs, strlen("\n")); //suppression du retour ‡ la ligne de dÈbut
         //---------------------------------------------
 
         // pour controle

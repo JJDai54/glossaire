@@ -59,7 +59,7 @@
     
     <input type="text" id="exp2search" name="exp2search" required  minlength="4" maxlength="30" size="30" value="<{$exp2search}>">  
     <button  type="submit" class="gls_btn_icon">
-        <img src="<{xoModuleIcons16 'search.png'}>" title="<{$smarty.const._SEARCH}>" class="gls_btn_img"><{$smarty.const._MA_GLOSSAIRE_ENTRY_SEARCH}>
+        <img src="<{xoModuleIcons16}>/search.png" title="<{$smarty.const._SEARCH}>" class="gls_btn_img"><{$smarty.const._MA_GLOSSAIRE_ENTRY_SEARCH}>
     </button>
   </form>
 </div>
@@ -71,7 +71,7 @@
       <input type="hidden" name="catIdSelect" value="<{$catIdSelect}>" />
       <{* <input type="hidden" name="statusAccess" value="<{$statusAccess}>" /> *}>
       <button  type="submit" class="gls_btn_icon" style="width:250px;" onclick="">
-          <img src="<{xoModuleIcons16 'add.png'}>" title="<{$smarty.const._ADD}>" class="gls_btn_img">
+          <img src="<{xoModuleIcons16}>/add.png" title="<{$smarty.const._ADD}>" class="gls_btn_img">
           <{if $catPerms.approve}><{$smarty.const._MA_GLOSSAIRE_ENTRY_NEW}><{elseif $catPerms.submit}><{$smarty.const._MA_GLOSSAIRE_ENTRY_SOUMETTRE}><{/if}>
       </button>
     </form>

@@ -38,9 +38,9 @@ use XoopsModules\Glossaire\Common;
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('entries.php'));
         $adminObject->addItemButton(\_AM_GLOSSAIRE_ADD_ENTRY, "entries.php?op=new&catIdSelect={$catIdSelect}", 'add');
         
-        /* remplacÃ© par deux boutons, un pour chaque cas
+        /* remplacé par deux boutons, un pour chaque cas
         $imgCleanArr = $utility->cleanEntriesImages($catIdSelect, 0);
-        if($imgCleanArr[0] > 0 ){ //il il i a des image a supprimÃ©e ou des definition a nettoyer
+        if($imgCleanArr[0] > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
           $caption = sprintf(_AM_GLOSSAIRE_CLEAN_IMAGES, $imgCleanArr[1], $imgCleanArr[2]);
           $adminObject->addItemButton($caption, "entries.php?op=cleanEntriesImages&catIdSelect={$catIdSelect}", 'update');
         }
@@ -54,7 +54,7 @@ use XoopsModules\Glossaire\Common;
                         'fldName'     => '',
                         'catIdSelect' => $catIdSelect);        
         $stat = $utility->cleanCatFolders($catIdSelect, $params['fldPath'], $params['fldName'], $params['folder'], 0, 0);
-        if($stat[0] > 0 ){ //il il i a des image a supprimÃ©e ou des definition a nettoyer
+        if($stat[0] > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
           $caption = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES, $stat[1], $stat[2]);
           $adminObject->addItemButton($caption, \JJD\array2urlParams($params, '', 'entries.php?'), 'update');
         }
@@ -65,7 +65,7 @@ use XoopsModules\Glossaire\Common;
                         'fldName'     => 'ent_file_name',
                         'catIdSelect' => $catIdSelect);        
         $stat = $utility->cleanCatFolders($catIdSelect, $params['fldPath'], $params['fldName'], $params['folder'], 0, 0);
-        if($stat[0] > 0 ){ //il il i a des image a supprimÃ©e ou des definition a nettoyer
+        if($stat[0] > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
           $caption = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_FILES, $stat[1], $stat[2]);
           $adminObject->addItemButton($caption, \JJD\array2urlParams($params, '', 'entries.php?'), 'update');
         }

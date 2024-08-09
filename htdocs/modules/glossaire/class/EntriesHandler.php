@@ -298,7 +298,7 @@ exit ($sql);
 }
 
 /* ******************************
- * met Ã  jour le compteur avev $value pour la catÃ©gorie $catId
+ * met à jour le compteur avev $value pour la catégorie $catId
  * *********************** */
 public function RazCounters($catId, $newValue=0){
     $sql = "UPDATE {$this->table} SET ent_counter = {$newValue} WHERE ent_cat_id={$catId}";

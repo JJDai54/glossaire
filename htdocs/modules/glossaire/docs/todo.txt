@@ -1,9 +1,9 @@
 ALTER TABLE `x2511_glossaire_categories` ADD `cat_date_format` VARCHAR(30) NOT NULL DEFAULT 'd-m-Y : H-i-s' AFTER `cat_active`;  
 
 
-ajouter | pour des retours Ã  la ligne dans la barre de lettre
+ajouter | pour des retours à la ligne dans la barre de lettre
 
-ajouter une gestion des mots clÃ©s
+ajouter une gestion des mots clés
 
 tester la barre avec tous les chiffres
 
@@ -16,17 +16,17 @@ Ajout d'une liste pour le tri dans l'admin des termes
 
 Ajout des fichiers joints dans l'export et l'import
 
-Style des lettres par dÃ©faut
-Style CSS des lettre par dÃ©faut.
+Style des lettres par défaut
+Style CSS des lettre par défaut.
 	
-Style de la lettre sÃ©lectionnÃ©e
-Style de la lettre sÃ©lectionnÃ©e.
+Style de la lettre sélectionnée
+Style de la lettre sélectionnée.
 	
 Style des lettres existantes
-Style des lettres quand des dÃ©finitions commenÃ§ant par cette-ci existe
+Style des lettres quand des définitions commençant par cette-ci existe
 	
 Style des lettres inexistantes
-Style des lettres quand des dÃ©finitions commenÃ§ant par cette-ci n'existe pas.
+Style des lettres quand des définitions commençant par cette-ci n'existe pas.
 
 css_letter
 css_letter_selected
@@ -45,25 +45,25 @@ css_letter_not-exists
  
  /* *********************************************************
  ne pas supprimer ces constantes
- Ces dÃ©fitions sont utilisÃ©es avec un outil excel-vba 
- pour le comptage et la suppression des constantes inutilisÃ©es
+ Ces défitions sont utilisées avec un outil excel-vba 
+ pour le comptage et la suppression des constantes inutilisées
  //--------------------------------------------------------------
 
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_TERM', "Style du terme");
-define('_AM_GLOSSAIRE_STYLES_GLS_ENT_SHORTDEF', "Style de la dÃ©finition courte");
-define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DEFINITION', "Style de la dÃ©finition");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_SHORTDEF', "Style de la définition courte");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DEFINITION', "Style de la définition");
 
-define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_DEFAULT', "Lettres par dÃ©faut");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_DEFAULT', "Lettres par défaut");
 define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EXIST', "Lettres existantes");
-define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_SELECTED', "Lettre sÃ©lectionÃ©e");
+define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_SELECTED', "Lettre sélectionée");
 define('_AM_GLOSSAIRE_STYLES_GLS_LETTER_EMPTY', "Lettres absentes");
-define('_AM_GLOSSAIRE_STYLES_GLS_ENT_CREATOR', "CrÃ©ateur");
-define('_AM_GLOSSAIRE_STYLES_GLS_ENT_REFERENCE', "RÃ©fÃ©rences");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_CREATOR', "Créateur");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_REFERENCE', "Références");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_FILE_NAME', "Fichier joint");
-define('_AM_GLOSSAIRE_STYLES_GLS_ENT_URLS', "URL Ã  visiter");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_URLS', "URL à visiter");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_EMAIL', "Courriel");
-define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DATE_CREATION', "Date de crÃ©ation");
-define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DATE_UPDATE', "Date de mise Ã  jour");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DATE_CREATION', "Date de création");
+define('_AM_GLOSSAIRE_STYLES_GLS_ENT_DATE_UPDATE', "Date de mise à jour");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_INDEX_TABLE', "Index des termes en colonnes");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_INDEX_DIV', "Index des termes en liste");
 define('_AM_GLOSSAIRE_STYLES_GLS_ENT_FILES_JOINS', "Fichiers joints");

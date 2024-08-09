@@ -375,8 +375,8 @@ class Entries extends \XoopsObject
      * @param bool $action
      * @return \XoopsThemeForm
      * 
-     * C'est forcÃ©ment une nouvel entrÃ©e donc pas besoin de teste $this->isNew()
-     * isAdmin est faux Ã©galement
+     * C'est forcément une nouvel entrée donc pas besoin de teste $this->isNew()
+     * isAdmin est faux également
      */
     public function getFormEntriesLight($action = false)
     {//exit("<hr>getFormEntries - statusIdSelect = {$statusIdSelect}<hr>");
@@ -537,7 +537,7 @@ class Entries extends \XoopsObject
         $imgUrl  =  $categoriesObj->getPathUploads('images', true);
         if ($ret['image'] !== '' && is_readable($imgPath . '/' . $this->getVar('ent_image'))){
           $ret['image_url']        =  $imgUrl . '/' . $this->getVar('ent_image');
-          //definition_img contient l'image et la dÃ©finition prete a l'emloi dans le form
+          //definition_img contient l'image et la définition prete a l'emloi dans le form
           $ret['definition_img'] = "<div class='highslide-gallery'>"
             . "<a href='{$ret['image_url']}' class='highslide' onclick='return hs.expand(this);' >"
             . "<img src='{$ret['image_url']}' class='img_glossaire' alt='' style='max-width:100px' />"

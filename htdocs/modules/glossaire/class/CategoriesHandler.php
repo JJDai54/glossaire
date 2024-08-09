@@ -180,9 +180,9 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
  }
 
 	/**
-     * Fonction qui liste les entrie qui respectent la permission demandÃ©e
+     * Fonction qui liste les entrie qui respectent la permission demandée
      * @param string   $permtype	Type de permission
-     * @return array   $cat		    Liste des catÃ©gorie qui correspondent Ã  la permission
+     * @return array   $cat		    Liste des catégorie qui correspondent à la permission
      */
 	public function getPermissions($short_permtype = 'view')
     {$moduleName = 'glossaire';
@@ -199,11 +199,11 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         return $tPerm;
     }
 	/**
-     * getStatus renvoie les tatus qui dÃ©fini le type d'accÃ¨s aau formulaire des sefinition
-     * @param catId   iod de la catÃ©togrie
+     * getStatus renvoie les tatus qui défini le type d'accès aau formulaire des sefinition
+     * @param catId   iod de la catétogrie
      * @return int  
      *          0 : Aucune permission
-     *          1 : permet de soumettre une dÃ©finition, certain champs seront masquÃ© ou inaccessible
+     *          1 : permet de soumettre une définition, certain champs seront masqué ou inaccessible
      *          2 : permet d'approuver. Full acces au formulaire
      */
 	public function getStatusAccess($catId){
@@ -221,9 +221,9 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
 }
 
 	/**
-     * Fonction qui liste les catÃ©gories qui respectent la permission demandÃ©e
+     * Fonction qui liste les catégories qui respectent la permission demandée
      * @param string   $permtype	Type de permission
-     * @return array   $cat		    Liste des catÃ©gorie qui correspondent Ã  la permission
+     * @return array   $cat		    Liste des catégorie qui correspondent à la permission
      */
 	public function getListAllowed($short_permtype, $criteria=null, $sorted='cat_weight,cat_name,cat_id', $order="ASC")
     {
@@ -296,9 +296,9 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
     }
 
 	/**
-     * Fonction qui liste les catÃ©gories qui respectent la permission demandÃ©e
+     * Fonction qui liste les catégories qui respectent la permission demandée
      * @param string   $permtype	Type de permission
-     * @return array   $cat		    Liste des catÃ©gorie qui correspondent Ã  la permission
+     * @return array   $cat		    Liste des catégorie qui correspondent à la permission
      */
 	public function isCatAllowed($idCat, $short_permtype = 'submit')
     {
@@ -307,9 +307,9 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
     }
 
 // 	/**
-//      * Fonction qui liste les catÃ©gories qui respectent la permission demandÃ©e
+//      * Fonction qui liste les catégories qui respectent la permission demandée
 //      * @param string   $permtype	Type de permission
-//      * @return array   $cat		    Liste des catÃ©gorie qui correspondent Ã  la permission
+//      * @return array   $cat		    Liste des catégorie qui correspondent à la permission
 //      */
 // 	public function getPerms($idCat)
 //     {   $allPerms = array();
@@ -327,9 +327,9 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
 //     }
 
 	/**
-     * Fonction crÃ©e une nouvelle catÃ©gorie
+     * Fonction crée une nouvelle catégorie
      * @param string   $permtype	Type de permission
-     * @return int   $catId		    Renvoie le nouvel id de la catÃ©gorie
+     * @return int   $catId		    Renvoie le nouvel id de la catégorie
      */
 public function getNewCategory($name, &$categoriesObj = null){
 global $utility;
@@ -363,7 +363,7 @@ global $utility;
     }
 
 /* ******************************
- * renvoie lle nombre d'entrÃ©es par categorie et status 
+ * renvoie lle nombre d'entrées par categorie et status 
  * *********************** */
 public function getStatistiques(){
 global $entriesHandler;
