@@ -286,13 +286,13 @@ TopLine=1
 Caret=33,2
 [xoops_version.php]
 TopLine=46
-Caret=32,46
+Caret=41,47
 [templates\glossaire_entries_item_btn.tpl]
 TopLine=1
 Caret=35,10
 [docs\changelog.txt]
 TopLine=1
-Caret=42,6
+Caret=13,2
 [include\common.php]
 TopLine=37
 Caret=10,60
