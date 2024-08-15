@@ -123,7 +123,8 @@ function b_glossaire_categories_edit($options)
     $index++;   
     $tCat = explode(',', $options[$index]); 
     $categoriesHandler = $glossaireHelper->getHandler('Categories');
-    $catAll = $categoriesHandler->getAllCategories();
+    $clPerms->addPermissions($criteria, 'view_cats', 'cat_id');
+    $catAll = $categoriesHandler->getAllCategories($criteria);
 
     $inpCat = new \XoopsFormSelect(_CO_JJD_CATEGORIES, "options[{$index}]", $tCat, $size = 5, true);
     $inpCat->addOption(0, _CO_JJD_ALL_CAT);

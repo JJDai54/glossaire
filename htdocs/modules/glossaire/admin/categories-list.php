@@ -36,8 +36,12 @@ use XoopsModules\Glossaire\Common;
     $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
     $adminObject->addItemButton(\_AM_GLOSSAIRE_ADD_CATEGORY, 'categories.php?op=new', 'add');
     $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
+
+    $clPerms->addPermissions($criteria, 'view_cats', 'cat_id');
+    $categoriesAll = $categoriesHandler->getAllCategories($criteria, $start, $limit);
+    //$categoriesCount = count($categoriesAll);
     $categoriesCount = $categoriesHandler->getCountCategories();
-    $categoriesAll = $categoriesHandler->getAllCategories($start, $limit);
+
     $GLOBALS['xoopsTpl']->assign('categories_count', $categoriesCount);
     $GLOBALS['xoopsTpl']->assign('glossaire_url', \GLOSSAIRE_URL);
     $GLOBALS['xoopsTpl']->assign('glossaire_upload_url', \GLOSSAIRE_UPLOAD_URL);

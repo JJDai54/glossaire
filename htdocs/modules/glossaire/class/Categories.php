@@ -117,7 +117,8 @@ class Categories extends \XoopsObject
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
         }
-        $isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+
+        //$isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
         // Title
 
         // Get Theme Form
@@ -156,14 +157,23 @@ class Categories extends \XoopsObject
      * @return \XoopsThemeForm
      */
     public function getFormCategories($action = false)
-    {
+    {global $clPerms;
+
+        if(!$clPerms->isPermit('global_ac', GLOSSAIRE_PERM_MANCATS)){
+            redirect_header(GLOSSAIRE_URL, 3 ,_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
+        }
+
+    
+        
         $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
         $styleBreakLine = '<center><div style="background:black;color:white;">%s</div></center>';
         
         if (!$action) {
             $action = $_SERVER['REQUEST_URI'];
         }
-        $isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+        //$isAdmin = $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid());
+        $isAdmin = $clPerms->isUserAdmin; 
+        //$isAdmin = $clPerms['isUserAdmin']; 
         // Title
         $title = $this->isNew() ? \sprintf(\_AM_GLOSSAIRE_CATEGORY_ADD) : \sprintf(\_AM_GLOSSAIRE_CATEGORY_EDIT);
         // Get Theme Form
@@ -298,35 +308,17 @@ class Categories extends \XoopsObject
         $inpActive->setDescription(\_AM_GLOSSAIRE_CATEGORY_ACTIVE_DESC);
         $form->addElement($inpActive);
         
-        // Permissions
+        // ------------------ Permissions ----------------------------------------
         $memberHandler = \xoops_getHandler('member');
         $groupList = $memberHandler->getGroupList();
         $grouppermHandler = \xoops_getHandler('groupperm');
         $fullList[] = \array_keys($groupList);
-        if ($this->isNew()) {
-            $groupsCanApproveCheckbox = new \XoopsFormCheckBox(\_AM_GLOSSAIRE_PERMISSIONS_APPROVE, 'groups_approve_categories[]', $fullList);
-            $groupsCanSubmitCheckbox = new \XoopsFormCheckBox(\_AM_GLOSSAIRE_PERMISSIONS_SUBMIT, 'groups_submit_categories[]', $fullList);
-            $groupsCanViewCheckbox = new \XoopsFormCheckBox(\_AM_GLOSSAIRE_PERMISSIONS_VIEW, 'groups_view_categories[]', $fullList);
-        } else {
-            $groupsIdsApprove = $grouppermHandler->getGroupIds('glossaire_approve_categories', $this->getVar('cat_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-            $groupsIdsApprove[] = \array_values($groupsIdsApprove);
-            $groupsCanApproveCheckbox = new \XoopsFormCheckBox(\_AM_GLOSSAIRE_PERMISSIONS_APPROVE, 'groups_approve_categories[]', $groupsIdsApprove);
-            $groupsIdsSubmit = $grouppermHandler->getGroupIds('glossaire_submit_categories', $this->getVar('cat_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-            $groupsIdsSubmit[] = \array_values($groupsIdsSubmit);
-            $groupsCanSubmitCheckbox = new \XoopsFormCheckBox(\_AM_GLOSSAIRE_PERMISSIONS_SUBMIT, 'groups_submit_categories[]', $groupsIdsSubmit);
-            $groupsIdsView = $grouppermHandler->getGroupIds('glossaire_view_categories', $this->getVar('cat_id'), $GLOBALS['xoopsModule']->getVar('mid'));
-            $groupsIdsView[] = \array_values($groupsIdsView);
-            $groupsCanViewCheckbox = new \XoopsFormCheckBox(\_AM_GLOSSAIRE_PERMISSIONS_VIEW, 'groups_view_categories[]', $groupsIdsView);
-        }
-        // To Approve
-        $groupsCanApproveCheckbox->addOptionArray($groupList);
-        $form->addElement($groupsCanApproveCheckbox);
-        // To Submit
-        $groupsCanSubmitCheckbox->addOptionArray($groupList);
-        $form->addElement($groupsCanSubmitCheckbox);
-        // To View
-        $groupsCanViewCheckbox->addOptionArray($groupList);
-        $form->addElement($groupsCanViewCheckbox);
+
+        $catId = $this->getVar('cat_id');
+        $form->addElement($clPerms->getCheckboxByGroup2(_AM_GLOSSAIRE_PERM_APPROVE_ENTRIES, 'approve_entries', $catId, $this->isNew()));
+        $form->addElement($clPerms->getCheckboxByGroup2(_AM_GLOSSAIRE_PERM_SUBMIT_ENTRIES, 'submit_entries', $catId, $this->isNew()));
+
+        //---------------------------------------------------------
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormHidden('start', $this->start));
@@ -373,6 +365,7 @@ class Categories extends \XoopsObject
 
         $ret['upload_folder']        = $this->getVar('cat_upload_folder');
         $ret['colors_set']           = ($this->getVar('cat_colors_set')) ? $this->getVar('cat_colors_set') : "default";
+        $ret['theme']                = ($this->getVar('cat_colors_set')) ? $this->getVar('cat_colors_set') : "default";
         $ret['is_acronym']           = $this->getVar('cat_is_acronym');
         $ret['cat_replace_arobase']  = $this->getVar('cat_replace_arobase');     
         $ret['br_after_term']     = $this->getVar('cat_br_after_term');
@@ -450,35 +443,6 @@ class Categories extends \XoopsObject
     }
 
 
-	/**
-     * Fonction qui liste les catégories qui respectent la permission demandée
-     * @param string   $permtype	Type de permission
-     * @return array   $cat		    Liste des catégorie qui correspondent à la permission
-     */
-	public function getPerms()
-    {global $categoriesHandler;
-     
-        $allPerms = array();
-        $idCat=$this->getVar('cat_id');
-        
-        $tPerm = $categoriesHandler->getPermissions('view');
-
-//echo "<hr>cat_id = {$idCat}<pre>" . print_r($tPerm, true) . "</pre><hr>";
-        
-        $allPerms['view'] = !(array_search($idCat, $tPerm) === false);
-        
-        $tPerm = $categoriesHandler->getPermissions('submit');
-        $allPerms['submit'] = !(array_search($idCat, $tPerm) === false);
-        
-        $tPerm = $categoriesHandler->getPermissions('approve');
-        $allPerms['approve'] = !(array_search($idCat, $tPerm) === false);
-        //-------------------------------------
-//         $allPerms['view'] = ($allPerms['view']) ? "Ok" : "Pas Ok";
-//         $allPerms['submit'] = ($allPerms['submit']) ? "Ok" : "Pas Ok";
-//         $allPerms['approve'] = ($allPerms['approve']) ? "Ok" : "Pas Ok";
-        
-        return $allPerms;
-    }                                 
      
      /* ***************** gestion des CSS par categorie ********************/   
 	/**

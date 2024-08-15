@@ -92,14 +92,6 @@ define('_AM_GLOSSAIRE_CLEAN_ENTRIES_FILES', 'Nettoyer les fichiers joints (%1\$s
 define('_AM_GLOSSAIRE_CATEGORY_BR_AFTER_TERME', "Retour à la ligne après le terme");
 define('_AM_GLOSSAIRE_IMPORT_SUCCES', "Importation Ok dans catIdSelect #%s");
 define('_AM_GLOSSAIRE_REPLACE_AROBASE_DESC', "Permet de bloquer les accès directs au courriels sur les pages.<br>exemple : [@]");
-define('_AM_GLOSSAIRE_PERMISSIONS_GLOBAL', "Permissions globales");
-define('_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_4', "Permissions globales à approuver");
-define('_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_DESC', "Permissions globales pour vérifier le type de.");
-define('_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_8', "Permissions globales à soumettre");
-define('_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_16', "Permissions globales pour voir");
-define('_AM_GLOSSAIRE_PERMISSIONS_APPROVE_DESC', "Autorisations d'approuver");
-define('_AM_GLOSSAIRE_PERMISSIONS_SUBMIT_DESC', "Autorisations de soumettre");
-define('_AM_GLOSSAIRE_PERMISSIONS_VIEW_DESC', "Permissions de voir");
 define('_AM_GLOSSAIRE_FIRST', "Premier");
 define('_AM_GLOSSAIRE_REPLACE_AROBASE', "Remplacer l'arobase");
 define('_AM_GLOSSAIRE_ENT_HEADER', "Haut de page : Index et Barre de recherche par lettres");
@@ -154,7 +146,6 @@ define('_AM_GLOSSAIRE_LIST_CATEGORIES', "Liste des Catégories");
 define('_AM_GLOSSAIRE_CATEGORY_LOGO', "Logo");
 define('_AM_GLOSSAIRE_CATEGORY_NAME', "Nom");
 define('_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES', 'Nettoyer les images (%1\$s images inexistantes, %2\$s images non référencées)');
-define('_AM_GLOSSAIRE_NO_PERMISSIONS_SET', "Aucun ensemble d'autorisations");
 define('_AM_GLOSSAIRE_PERMISSIONS', "Permissions");
 define('_AM_GLOSSAIRE_PERMISSIONS_APPROVE', "Permissions d'approuver");
 define('_AM_GLOSSAIRE_PERMISSIONS_SUBMIT', "Autorisations de soumettre");
@@ -220,4 +211,22 @@ define('_AM_GLOSSAIRE_ENT_DATE_CREATION', "Date de création");
 define('_AM_GLOSSAIRE_ENT_DATE_UPDATE', "Date de mise à jour");
 define('_AM_GLOSSAIRE_ENT_BTN_ACTIONS_TOP', "Position en haut des boutons de gestion");
 define('_AM_GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM', "Position en bas des boutons de gestion");
+
+define('_AM_GLOSSAIRE_PERM_MANCATS', "Gérer les catégories");
+define('_AM_GLOSSAIRE_PERM_IPORT', "Importer un glossaire");
+define('_AM_GLOSSAIRE_PERM_EXPORT', "Exporter un glossaire");
+define('_AM_GLOSSAIRE_PERM_CLONE', "Cloner le module");
+define('_AM_GLOSSAIRE_PERM_PERMS', "Gérer les permissions");
+
+define('_AM_GLOSSAIRE_PERM_GLOBAL_AC', "Permissions globales");
+define('_AM_GLOSSAIRE_PERM_VIEW_CATS', "Voir les catégories");
+define('_AM_GLOSSAIRE_PERM_APPROVE_ENTRIES', "Approuver les entrées");
+define('_AM_GLOSSAIRE_PERM_SUBMIT_ENTRIES', "Soumettre des entrées");
+// define('_AM_GLOSSAIRE_PERM_ADD_ENTRIES', "Ajouter des entrées");
+// define('_AM_GLOSSAIRE_PERM_EDIT_ENTRIES', "Editer des entrées");
+// define('_AM_GLOSSAIRE_PERM_DELETE_ENTRIES', "Suprimer des entrèes");
+define('_AM_GLOSSAIRE_PERM_DESC', "Gestion des permissions");
+define('_AM_GLOSSAIRE_NO_PERMISSIONS_SET', "Vous n'avez pas les permissions pour accéder à cette fonctionalité");
+
+
 ?>

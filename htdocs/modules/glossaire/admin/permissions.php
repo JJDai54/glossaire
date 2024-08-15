@@ -28,76 +28,90 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 
 require __DIR__ . '/header.php';
+$clPerms->checkAndRedirect('global_ac', GLOSSAIRE_PERM_PERMS , 'GLOSSAIRE_PERM_PERMS', "index.php", true);
 
 // Template Index
 $templateMain = 'glossaire_admin_permissions.tpl';
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('permissions.php'));
 
-$op = Request::getCmd('op', 'global');
 
 // Get Form
 require_once \XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 \xoops_load('XoopsFormLoader');
+
+$op = Request::getCmd('op', '');
+if ($op == '') $op = 'global_ac';
+$domaines = explode('_', $op . '__');
+
+
+//permission spécifiques
+$permArr = ['global_ac'         => _AM_GLOSSAIRE_PERM_GLOBAL_AC,
+            'view_cats'         => _AM_GLOSSAIRE_PERM_VIEW_CATS,
+            'approve_entries'    => _AM_GLOSSAIRE_PERM_APPROVE_ENTRIES,
+            'submit_entries'    => _AM_GLOSSAIRE_PERM_SUBMIT_ENTRIES];
+/*
+            'submit_entries'    => _AM_GLOSSAIRE_PERM_SUBMIT_ENTRIES,
+            'add_entries'       => _AM_GLOSSAIRE_PERM_ADD_ENTRIES,
+            'edit_entries'      => _AM_GLOSSAIRE_PERM_EDIT_ENTRIES,
+            'delete_entries'    => _AM_GLOSSAIRE_PERM_DELETE_ENTRIES];
+            
+$clPerms->checkAndRedirect('add_entries', $catId , 'cat_id', "index.php", true);
+$clPerms->checkAndRedirect('edit_entries', $catId , 'cat_id', "index.php", true);
+$clPerms->checkAndRedirect('delete_entries', $catId , 'cat_id', "index.php", true);
+$clPerms->checkAndRedirect('view_cats', $catId , 'cat_id', "index.php", true);
+$clPerms->addPermissions($criteria, 'view_cats', 'cat_id');
+SELECT * FROM `x251_group_permission` WHERE `gperm_name` LIKE "%glossaire%"
+*/
 $permTableForm = new \XoopsSimpleForm('', 'fselperm', 'permissions.php', 'post');
 $formSelect = new \XoopsFormSelect('', 'op', $op);
 $formSelect->setExtra('onchange="document.fselperm.submit()"');
-$formSelect->addOption('global', \_AM_GLOSSAIRE_PERMISSIONS_GLOBAL);
-$formSelect->addOption('approve_categories', \_AM_GLOSSAIRE_PERMISSIONS_APPROVE . ' Categories');
-$formSelect->addOption('submit_categories', \_AM_GLOSSAIRE_PERMISSIONS_SUBMIT . ' Categories');
-$formSelect->addOption('view_categories', \_AM_GLOSSAIRE_PERMISSIONS_VIEW . ' Categories');
+$formSelect->addOptionArray($permArr);
 $permTableForm->addElement($formSelect);
 $permTableForm->display();
-switch ($op) {
-    case 'global':
-    default:
-        $formTitle = \_AM_GLOSSAIRE_PERMISSIONS_GLOBAL;
-        $permName = 'glossaire_ac';
-        $permDesc = \_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_DESC;
-        $globalPerms = ['4' => \_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_4, '8' => \_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_8, '16' => \_AM_GLOSSAIRE_PERMISSIONS_GLOBAL_16 ];
+
+/*
+echo '===>' . $op . '--->' . '_AM_GLOSSAIRE_PERM_' . strtoupper($domaines[0]). '<br>';
+*/
+	$formTitle = constant('_AM_GLOSSAIRE_PERM_' . strtoupper($domaines[0] . '_' . strtoupper($domaines[1]))) ;
+	$permName = $op; 
+    //$cst = strtoupper('_AM_QUIZMAKER_PERMISSIONS_' . strtoupper($domaines[0]));   // ."_DESC"
+	$permDesc = $formTitle;
+	$permFound = true;
+
+//exit;
+switch($domaines[1]) {
+	case 'ac':
+        //permission globales
+		$permArr = [GLOSSAIRE_PERM_MANCATS => _AM_GLOSSAIRE_PERM_MANCATS,
+                    GLOSSAIRE_PERM_IPORT   => _AM_GLOSSAIRE_PERM_IPORT,
+                    GLOSSAIRE_PERM_EXPORT  => _AM_GLOSSAIRE_PERM_EXPORT,
+                    GLOSSAIRE_PERM_CLONE   => _AM_GLOSSAIRE_PERM_CLONE, 
+                    GLOSSAIRE_PERM_PERMS   => _AM_GLOSSAIRE_PERM_PERMS]; 
+                         
         break;
-    case 'approve_categories':
-        $formTitle = \_AM_GLOSSAIRE_PERMISSIONS_APPROVE;
-        $permName = 'glossaire_approve_categories';
-        $permDesc = \_AM_GLOSSAIRE_PERMISSIONS_APPROVE_DESC . ' Categories';
-        $handler = $glossaireHelper->getHandler('categories');
+	case 'cats':
+	case 'entries':
+        $permArr = $categoriesHandler->getList();
         break;
-    case 'submit_categories':
-        $formTitle = \_AM_GLOSSAIRE_PERMISSIONS_SUBMIT;
-        $permName = 'glossaire_submit_categories';
-        $permDesc = \_AM_GLOSSAIRE_PERMISSIONS_SUBMIT_DESC . ' Categories';
-        $handler = $glossaireHelper->getHandler('categories');
-        break;
-    case 'view_categories':
-        $formTitle = \_AM_GLOSSAIRE_PERMISSIONS_VIEW;
-        $permName = 'glossaire_view_categories';
-        $permDesc = \_AM_GLOSSAIRE_PERMISSIONS_VIEW_DESC . ' Categories';
-        $handler = $glossaireHelper->getHandler('categories');
-        break;
+	default:
+	$permFound = false;
 }
-$moduleId = $xoopsModule->getVar('mid');
-$permform = new \XoopsGroupPermForm($formTitle, $moduleId, $permName, $permDesc, 'admin/permissions.php');
-$permFound = false;
-if ($op === 'global') {
-    foreach ($globalPerms as $gPermId => $gPermName) {
-        $permform->addItem($gPermId, $gPermName);
-    }
-    $GLOBALS['xoopsTpl']->assign('form', $permform->render());
-    $permFound = true;
-}
-if ('approve_categories' === $op || 'submit_categories' === $op || 'view_categories' === $op) {
-    $categoriesCount = $categoriesHandler->getCountCategories();
-    if ($categoriesCount > 0) {
-        $categoriesAll = $categoriesHandler->getAllCategories(0, 'cat_name');
-        foreach (\array_keys($categoriesAll) as $i) {
-            $permform->addItem($categoriesAll[$i]->getVar('cat_id'), $categoriesAll[$i]->getVar('cat_name'));
-        }
-        $GLOBALS['xoopsTpl']->assign('form', $permform->render());
-    }
-    $permFound = true;
-}
+
+//echoArray($permArr, "op= {$op} - domaine={$domaine}");
+//echo "formTitle : {$formTitle}<br>permName : {$permName}<br>permDesc : {$permDesc}<hr>";
+    $permform = $clPerms->getPermissionsForm($formTitle, $permName, _AM_GLOSSAIRE_PERM_DESC, $permArr, $op);
+    //$permform->addElement(new XoopsFormHidden('op','edit_quiz'));
+    echo $permform->render();
+    //$GLOBALS['xoopsTpl']->assign('form', $permform->render());
+
+
 unset($permform);
 if (true !== $permFound) {
-    \redirect_header('permissions.php', 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
-    exit();
+	redirect_header('permissions.php', 3, _AM_GLOSSAIRE_NO_PERMISSIONS_SET);
+	exit();
 }
 require __DIR__ . '/footer.php';
+
+/////////////////////////////////////////////////////////////////////////////////
+
+

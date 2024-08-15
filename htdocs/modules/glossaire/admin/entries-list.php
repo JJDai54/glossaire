@@ -28,9 +28,10 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
         //$categoriesHandler = $glossaireHelper->getHandler('Categories');
-        $catList = $categoriesHandler->getList();
+        $clPerms->addPermissions($criteria, 'view_cats', 'cat_id');        
+        $catList = $categoriesHandler->getList($criteria);
         if (count($catList) == 0) \redirect_header('categories.php', 5, _AM_GLOSSAIRE_NO_CATEGORIES1);
-        if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
+        if (!array_key_exists ($catIdSelect, $catList)) $catIdSelect = array_key_first($catList);
 
         // Define Stylesheet
         $GLOBALS['xoTheme']->addStylesheet($style, null);

@@ -40,7 +40,7 @@ _glossaire
 			admin\index.php
 			admin\menu.php
 			admin\permissions.php
-		+assets
+		-assets
 			+css
 				-admin
 					assets\css\admin\index.php
@@ -139,8 +139,6 @@ _glossaire
 			class\EntriesHandler.php
 			class\Helper.php
 			class\index.php
-			class\Permissions.php
-			class\PermissionsHandler.php
 			class\Utility.php
 		-config
 			config\admin.yml
@@ -148,7 +146,7 @@ _glossaire
 			config\icons.php
 			config\index.php
 			config\paths.php
-		+docs
+		-docs
 			docs\changelog.txt
 			docs\credits.txt
 			docs\index.php
@@ -193,10 +191,8 @@ _glossaire
 			sql\mysql.sql
 		+templates
 			+admin
-				templates\admin\glossaire_admin_about.tpl
 				templates\admin\glossaire_admin_categories.tpl
 				templates\admin\glossaire_admin_categories_css.tpl
-				templates\admin\glossaire_admin_clone.tpl
 				templates\admin\glossaire_admin_entries.tpl
 				templates\admin\glossaire_admin_export.tpl
 				templates\admin\glossaire_admin_footer.tpl
@@ -215,8 +211,10 @@ _glossaire
 			templates\glossaire_categories_cat_list.tpl
 			templates\glossaire_categories_colors_set.tpl
 			templates\glossaire_categories_item.tpl
+			templates\glossaire_categories_item_btn.tpl
 			templates\glossaire_categories_list.tpl
 			templates\glossaire_entries.tpl
+			templates\glossaire_entries_item_btn.tpl
 			templates\glossaire_entries_item-01.tpl
 			templates\glossaire_entries_item-02.tpl
 			templates\glossaire_entries_list.tpl
@@ -225,8 +223,6 @@ _glossaire
 			templates\glossaire_header.tpl
 			templates\glossaire_index.tpl
 			templates\index.php
-			templates\glossaire_entries_item_btn.tpl
-			templates\glossaire_categories_item_btn.tpl
 		-testdata
 			-english
 				testdata\english\index.html
@@ -252,74 +248,22 @@ _glossaire
 		readme.txt
 		xoops_version.php
 [Open project files]
-0=admin\entries-list.php
-1=admin\categories-save.php
-2=admin\categories-new.php
-3=admin\about.php
-4=xoops_version.php
-5=templates\glossaire_entries_item_btn.tpl
-6=docs\changelog.txt
-7=include\common.php
-8=admin\header.php
-9=header.php
-10=templates\blocks\glossaire_block_categories.tpl
-11=blocks\categories.php
-12=blocks\entries.php
-13=config\icons.php
-14=templates\glossaire_categories_item_btn.tpl
-15=templates\glossaire_entries.tpl
-16=templates\admin\glossaire_admin_categories.tpl
+0=admin\permissions.php
+1=class\Categories.php
+2=admin\categories-save.php
+3=xoops_version.php
 [Selected Project Files]
 Main=
 Selected=xoops_version.php
-[admin\entries-list.php]
-TopLine=118
-Caret=1,152
+[admin\permissions.php]
+TopLine=59
+Caret=37,85
+[class\Categories.php]
+TopLine=1
+Caret=1,319
 [admin\categories-save.php]
-TopLine=98
-Caret=1,117
-[admin\categories-new.php]
-TopLine=9
-Caret=1,52
-[admin\about.php]
 TopLine=1
-Caret=33,2
+Caret=3,31
 [xoops_version.php]
-TopLine=46
-Caret=41,47
-[templates\glossaire_entries_item_btn.tpl]
-TopLine=1
-Caret=35,10
-[docs\changelog.txt]
-TopLine=1
-Caret=13,2
-[include\common.php]
-TopLine=37
-Caret=10,60
-[admin\header.php]
 TopLine=17
-Caret=1,26
-[header.php]
-TopLine=1
-Caret=1,1
-[templates\blocks\glossaire_block_categories.tpl]
-TopLine=1
-Caret=1,1
-[blocks\categories.php]
-TopLine=1
-Caret=56,32
-[blocks\entries.php]
-TopLine=1
-Caret=1,33
-[config\icons.php]
-TopLine=1
-Caret=57,11
-[templates\glossaire_categories_item_btn.tpl]
-TopLine=1
-Caret=46,4
-[templates\glossaire_entries.tpl]
-TopLine=41
-Caret=36,62
-[templates\admin\glossaire_admin_categories.tpl]
-TopLine=11
-Caret=166,31
+Caret=41,47

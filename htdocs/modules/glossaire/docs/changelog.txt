@@ -1,4 +1,9 @@
 ==============================================================
+1.4 beta 3 [2024/08/14] jjdelalandre@orange.fr
+==============================================================
+Refonte complète des permissions
+
+==============================================================
 1.4 beta 2 [2024/08/09] jjdelalandre@orange.fr
 ==============================================================
 Correction :xoModuleIcons16 quand le nom de l'icone est entre cote ça bug avec xoops2511

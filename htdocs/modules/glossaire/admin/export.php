@@ -29,6 +29,7 @@ use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Utility;
 
 require __DIR__ . '/header.php';
+$clPerms->checkAndRedirect('global_ac',GLOSSAIRE_PERM_EXPORT , 'GLOSSAIRE_PERM_EXPORT', "index.php");
 // It recovered the value of argument op in URL$
 $op = Request::getCmd('op', 'list');
 $catId  = Request::getInt('cat_id', -1);
@@ -42,6 +43,8 @@ include_once GLOSSAIRE_PATH . "/include/import_export.php";
 
 $utility = new \XoopsModules\Glossaire\Utility();  
 //$xoTheme->addScript(XOOPS_URL . '/modules/glossaire/assets/js/import-export.js');        
+
+// define("GLOSSAIRE_PERM_PERMS", $h++);
                                                              
 ////////////////////////////////////////////////////////////////////////
 switch($op) {
@@ -104,11 +107,6 @@ switch($op) {
         $inpFileYN->setDescription(_AM_GLOSSAIRE_INCLUDE_FILES_DESC);
   	    $form->addElement($inpFileYN);
 
-//         $inpQuiz = new \XoopsFormSelect(_AM_QUIZMAKER_QUIZ, 'quiz_id', $quizId);
-//         $inpQuiz->addOptionArray($quizHandler->getListKeyName($catId));
-//         //$inpQuiz->setExtra('onchange="document.quizmaker_select_filter.sender.value=this.name;document.quizmaker_select_filter.submit();"');
-//   	    $form->addElement($inpQuiz);
-        
         //-----------------------------------------------$caption, $name, $value = '', $type = 'button'
         $btnSubmit = new \XoopsFormButton(_AM_GLOSSAIRE_EXPORT_AVERTISSEMENT, _SUBMIT, _AM_GLOSSAIRE_EXPORTER, 'submit');
         $btnSubmit->setDescription(_AM_GLOSSAIRE_EXPORT_AVERTISSEMENT_DESC);

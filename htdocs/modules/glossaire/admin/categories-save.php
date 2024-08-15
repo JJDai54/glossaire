@@ -28,7 +28,7 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
 //use JJD;
-
+//echoArray("gp", "", true);
     $templateMain = 'glossaire_admin_categories.tpl';
     // Security Check
     if (!$GLOBALS['xoopsSecurity']->check()) {
@@ -84,8 +84,8 @@ use XoopsModules\Glossaire\Common;
     require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
     $imageDirectory = $categoriesObj->getPathUploads("logo");
     $uploader = new \XoopsMediaUploader($imageDirectory, 
-                                                $glossaireHelper->getConfig('mimetypes_image'), 
-                                                $glossaireHelper->getConfig('maxsize_image'), null, null);
+                                        $glossaireHelper->getConfig('mimetypes_image'), 
+                                        $glossaireHelper->getConfig('maxsize_image'), null, null);
     if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
         //$uploader->fetchMedia($_POST['xoops_upload_file'][0]);
         if ($uploader->upload()) {
@@ -135,32 +135,21 @@ use XoopsModules\Glossaire\Common;
     }
         
 //exit ($imageDirectory);            
-        
         //---------------------------------------------------
         $permId = isset($_REQUEST['cat_id']) ? $catId : $newCatId;
-        $grouppermHandler = \xoops_getHandler('groupperm');
-        $mid = $GLOBALS['xoopsModule']->getVar('mid');
-        // Permission to view_categories
-        $grouppermHandler->deleteByModule($mid, 'glossaire_view_categories', $permId);
-        if (isset($_POST['groups_view_categories'])) {
-            foreach ($_POST['groups_view_categories'] as $onegroupId) {
-                $grouppermHandler->addRight('glossaire_view_categories', $permId, $onegroupId, $mid);
-            }
-        }
-        // Permission to submit_categories
-        $grouppermHandler->deleteByModule($mid, 'glossaire_submit_categories', $permId);
-        if (isset($_POST['groups_submit_categories'])) {
-            foreach ($_POST['groups_submit_categories'] as $onegroupId) {
-                $grouppermHandler->addRight('glossaire_submit_categories', $permId, $onegroupId, $mid);
-            }
-        }
-        // Permission to approve_categories
-        $grouppermHandler->deleteByModule($mid, 'glossaire_approve_categories', $permId);
-        if (isset($_POST['groups_approve_categories'])) {
-            foreach ($_POST['groups_approve_categories'] as $onegroupId) {
-                $grouppermHandler->addRight('glossaire_approve_categories', $permId, $onegroupId, $mid);
-            }
-        }
+        //$grouppermHandler = \xoops_getHandler('groupperm');
+        //$mid = $GLOBALS['xoopsModule']->getVar('mid');
+       
+        // Permission to approve_entries
+       $groupArr = (isset($_POST['approve_entries'])) ? $_POST['approve_entries'] : null;
+	   $clPerms->addRight('approve_entries', $permId, $groupArr);        
+        
+        // Permission to submit_entries
+       $groupArr = (isset($_POST['submit_entries'])) ? $_POST['submit_entries'] : null;
+	   $clPerms->addRight('submit_entries', $permId, $groupArr);       
+// echoArray('gp');exit;       
+        //---------------------------------------------------
+
         if ('' !== $uploaderErrors) {
             \redirect_header('categories.php?op=edit&cat_id=' . $catId, 5, $uploaderErrors);
         } else {

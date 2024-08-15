@@ -30,6 +30,7 @@ require_once __DIR__ . '/include/common.php';
 xoops_load('XoopsFormLoader');
 require_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 \JJD\loadXFormArr(['LineBreak','img','number','checkboxbin']);
+$clPerms = new \jjdPermissions();
 
 $moduleDirName = \basename(__DIR__);
 // Breadcrumbs
@@ -38,7 +39,9 @@ $xoBreadcrumbs = [];
 $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
 $categoriesHandler = $glossaireHelper->getHandler('Categories');
 $entriesHandler = $glossaireHelper->getHandler('Entries');
-$permissionsHandler = $glossaireHelper->getHandler('Permissions');
+//$isAdmin = $clPerms->isUserAdmin;
+$isAdmin = $glossaireHelper->isUserAdmin();
+
 // 
 $myts = MyTextSanitizer::getInstance();
 // Default Css Style

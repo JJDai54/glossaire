@@ -52,6 +52,7 @@ use JJD AS JJD;
         // categories avec des onglets
         \JJD\load_css();
         $GLOBALS['xoopsTpl']->assign('catPerms', $catPerms);
+        //echoArray($catPerms, "entries_list");
         //----------------------------------------------------------
         $GLOBALS['xoopsTpl']->assign('categories', $catList);
         

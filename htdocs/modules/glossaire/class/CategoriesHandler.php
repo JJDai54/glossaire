@@ -85,9 +85,9 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return int
      */
-    public function getCountCategories($start = 0, $limit = 0, $sort = 'cat_id ASC, cat_name', $order = 'ASC')
+    public function getCountCategories($crCountCategories = null, $start = 0, $limit = 0, $sort = 'cat_id ASC, cat_name', $order = 'ASC')
     {
-        $crCountCategories = new \CriteriaCompo();
+        if (!$crCountCategories) $crCountCategories = new \CriteriaCompo();
         $crCountCategories = $this->getCategoriesCriteria($crCountCategories, $start, $limit, $sort, $order);
         return $this->getCount($crCountCategories);
     }
@@ -100,9 +100,9 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      * @param string $order
      * @return array
      */
-    public function getAllCategories($start = 0, $limit = 0, $sort = 'cat_weight,cat_id ASC, cat_name', $order = 'ASC')
+    public function getAllCategories($crAllCategories = null, $start = 0, $limit = 0, $sort = 'cat_weight,cat_id ASC, cat_name', $order = 'ASC')
     {
-        $crAllCategories = new \CriteriaCompo();
+        if (!$crAllCategories) $crAllCategories = new \CriteriaCompo();
         $crAllCategories = $this->getCategoriesCriteria($crAllCategories, $start, $limit, $sort, $order);
         return $this->getAll($crAllCategories);
     }
@@ -208,11 +208,11 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      */
 	public function getStatusAccess($catId){
     
-    $tPerms = array_flip($this->getPermissions('approve'));
+    $tPerms = array_flip($this->getPermissions('approve_entries'));
     //echo "<hr>catId : {$catId}<pre>" . print_r($tPerms, true) . "</pre><hr>";
     if (array_key_exists($catId, $tPerms)) return 2;
   
-    $tPerms =  array_flip($this->getPermissions('submit'));
+    $tPerms =  array_flip($this->getPermissions('submit_entries'));
     //echo "<hr>catId : {$catId}<pre>" . print_r($tPerms, true) . "</pre><hr>";
     if (array_key_exists($catId, $tPerms)) return 1;
     
@@ -225,35 +225,18 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
      * @param string   $permtype	Type de permission
      * @return array   $cat		    Liste des catégorie qui correspondent à la permission
      */
-	public function getListAllowed($short_permtype, $criteria=null, $sorted='cat_weight,cat_name,cat_id', $order="ASC")
-    {
-        if (!$short_permtype)  $short_permtype = 'view';
-        $tPerm = $this->getPermissions($short_permtype);
-        $ids = join(',', $tPerm);
-        //------------------------------------------------
-        if (is_null($criteria)) $criteria = new \CriteriaCompo();
-        $criteria->add(new \Criteria('cat_id',"({$ids})",'IN'));
-        if ($sorted != '') $criteria->setSort($sorted);
-        if ($order  != '') $criteria->setOrder($order);
-
-        $allEnrAllowed = parent::getList($criteria);
-        return $allEnrAllowed;
-    }
     
-	public function getAllCatAllowed($short_permtype, $criteria, $sorted='cat_weight,cat_name,cat_id', $order="ASC")
-    {
-        if (!$short_permtype)  $short_permtype = 'view';
-        $tPerm = $this->getPermissions($short_permtype);
-        $ids = join(',', $tPerm);
-        //------------------------------------------------
-        if (is_null($criteria)) $criteria = new \CriteriaCompo();
+	public function getAllCatAllowed($short_permtype, $criteria, $sort='cat_weight,cat_name,cat_id', $order="ASC")
+    {global $clPerms;
+     if (!$clPerms) $clPerms = new \jjdPermissions('glossaire');
+    //echo "<hr>getAllCatAllowed : $short_permtype = {$short_permtype}<hr>";
+        $clPerms->addPermissions($criteria, 'view_cats', 'cat_id');
+        
         $criteria->add(new \Criteria('cat_active',"1",'='));
-        $criteria->add(new \Criteria('cat_id',"({$ids})",'IN'));
-        if ($sorted != '') $criteria->setSort($sorted);
+        if ($sort != '') $criteria->setSort($sort);
         if ($order  != '') $criteria->setOrder($order);
 
         $allEnrAllowed = $this->getAll($criteria);
-        
         return $allEnrAllowed;
     }
 
@@ -264,32 +247,25 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
     }
     
 	public function getAllAllowed($short_permtype = 'view', $criteria = null, $start = 0, $limit = 0, $sort='cat_weight,cat_name,cat_id', $order="ASC",$zzz=false)
-    { 
-        $tPerm = $this->getPermissions($short_permtype);
-        $ids = join(',', $tPerm);
-        //------------------------------------------------
-        if(!$criteria) $criteria = new \CriteriaCompo();
-        $criteria = new \CriteriaCompo();
-        $criteria->add(new \Criteria('cat_active',"1",'='));
-        $criteria->add(new \Criteria('cat_id',"({$ids})",'IN'));
-        $criteria = $this->getCategoriesCriteria($criteria, $start, $limit, $sort, $order);
+    {
+        $categoriesAll = $this->getAllCatAllowed($short_permtype, $criteria, $sort, $order);
 
-        $catArr = array();
-        $categoriesAll = $this->getAll($criteria);;
         foreach (\array_keys($categoriesAll) as $i) {
             //$catArr[] = $categoriesAll[$i]->getValuesCategories();
             $catArr[$categoriesAll[$i]->getVar('cat_id')] = $categoriesAll[$i]->getValuesCategories();
         }
+//echoArray($allEnrAllowed) ;       
         if ($zzz) exit;
         return $catArr;
 
     }
     
 	public function getAlPermsByCatId(&$categoriesAll){
+    global $clPerms;
         foreach (\array_keys($categoriesAll) as $i) {
             $catId = $categoriesAll[$i]->getVar('cat_id');
-            $tPerms[$catId] = $categoriesAll[$i]->getPerms();
-            $tPerms[$catId]['name'] = $categoriesAll[$i]->getVar('cat_name');
+            $tPerms[$catId] = $clPerms->getPermNames(GLOSSAIRE_PERM_MANCATS);
+            //$tPerms[$catId]['name'] = $categoriesAll[$i]->getVar('cat_name');
         }
 //echoArray($tPerms);
         return $tPerms; 
@@ -305,26 +281,6 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         $tPerm = $this->getPermissions($short_permtype);
         return (!(array_search($idCat, $tPerm) === false));
     }
-
-// 	/**
-//      * Fonction qui liste les catégories qui respectent la permission demandée
-//      * @param string   $permtype	Type de permission
-//      * @return array   $cat		    Liste des catégorie qui correspondent à la permission
-//      */
-// 	public function getPerms($idCat)
-//     {   $allPerms = array();
-//     
-//         $tPerm = $this->getPermissions('view');
-//         $allPerms['view'] = !(array_search($idCat, $tPerm) === false)
-//         
-//         $tPerm = $this->getPermissions('submit');
-//         $allPerms['submit'] = !(array_search($idCat, $tPerm) === false)
-//         
-//         $tPerm = $this->getPermissions('approve');
-//         $allPerms['approve'] = !(array_search($idCat, $tPerm) === false)
-//         
-//         return $allPerms;
-//     }
 
 	/**
      * Fonction crée une nouvelle catégorie

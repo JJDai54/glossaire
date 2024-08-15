@@ -190,7 +190,9 @@ function b_glossaire_get_AllCategories()
     require_once \XOOPS_ROOT_PATH . '/modules/glossaire/class/Categories.php';
     $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
     $categoriesHandler = $glossaireHelper->getHandler('Categories');
-    return $categoriesHandler->getAllCategories();
+    $clPerms->addPermissions($criteria, 'view_cats', 'cat_id');
+    $categoriesAll = $categoriesHandler->getAllCategories($criteria, $start, $limit);
+    return $categoriesAll;
     
 }
 function b_glossaire_get_AllowedCategories()

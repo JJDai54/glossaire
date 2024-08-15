@@ -44,6 +44,7 @@ echo "<hr><pre>" . print_r($gp, true) . "</pre><hr>";
 echo "<hr><pre>" . print_r($_FILES, true) . "</pre><hr>";
 */
 
+$clPerms->checkAndRedirect('global_ac', GLOSSAIRE_PERM_MANCATS, 'GLOSSAIRE_PERM_MANCATS', "index.php");
 
 $utility = new \XoopsModules\Glossaire\Utility();
         

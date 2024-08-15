@@ -4,8 +4,7 @@
 <a href="#haut_de_page">
   <img src="<{xoModuleIcons16}>/ASC.png" class="gls_button gls_buttonTop" title="<{$smarty.const._MA_GLOSSAIRE_TOP}>"></a>
 
-
-<{if $catPerms.approve}>
+<{if $catPerms.approve_entries}>
     <a href="entries.php?op=delete&amp;ent_id=<{$entry.ent_id}>" title="<{$smarty.const._DELETE}>">
        <img src="<{xoModuleIcons16}>/delete.png" class="gls_button" title="<{$smarty.const._DELETE}>"></a>
     <a href="entries.php?op=new&catIdSelect=<{$catIdSelect}>" title="<{$smarty.const._ADD}>">

@@ -42,14 +42,14 @@ $limit = $glossaireHelper->getConfig('adminpager');
 if ($limit == 0) $limit = $glossaireHelper->getConfig('adminpager');
 
 // utilise notamment par pagenav
-$gepeto = ['catIdSelect'     => Request::getInt('catIdSelect'),
-           'statusIdSelect'  => Request::getInt('statusIdSelect',GLOSSAIRE_STATUS_ALL),
-           'sortIdSelect'    => Request::getInt('sortIdSelect',0)
-           ];
-$gp = '';
-foreach ($gepeto as $key=>$v){
-    $gp .= "&{$key}={$v}";
-}
+// $gepeto = ['catIdSelect'     => Request::getInt('catIdSelect'),
+//            'statusIdSelect'  => Request::getInt('statusIdSelect',GLOSSAIRE_STATUS_ALL),
+//            'sortIdSelect'    => Request::getInt('sortIdSelect',0)
+//            ];
+// $gp = '';
+// foreach ($gepeto as $key=>$v){
+//     $gp .= "&{$key}={$v}";
+// }
 //echo "===>gp : {$gp}<br>";
 
 
@@ -72,6 +72,7 @@ switch (strtolower($op)) {
     case 'clone':
     case 'save':   //exit;
     case 'edit':
+    case 'delete':
         include_once("entries-{$op}.php");
         break;
         

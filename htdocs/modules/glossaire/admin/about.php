@@ -11,11 +11,11 @@ namespace XoopsModules\Glossaire;
 */
 
 /**
- * quizmaker - Slides management module for xoops
+ * glossaire - Slides management module for xoops
  *
  * @copyright      2020 XOOPS Project (https://xooops.org)
  * @license        GPL 2.0 or later
- * @package        quizmaker
+ * @package        glossaire
  * @since          1.0
  * @min_xoops      2.5.9
  * @author         JJDai - Email:<jjdelalandre@orange.fr> - Website:<http://jubile.fr>
@@ -24,7 +24,7 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Helper;
 use XoopsModules\Glossaire\Constants;
 
-//require_once XOOPS_ROOT_PATH . '/modules/quizmaker/admin/header.php';
+//require_once XOOPS_ROOT_PATH . '/modules/glossaire/admin/header.php';
 require_once 'header.php';
 $templateMain = 'glossaire_admin_about.tpl';
 $clAbout = new \About($glossaireHelper,
@@ -35,7 +35,8 @@ $clAbout = new \About($glossaireHelper,
 
 /************************************************************************/
 $adminObject->displayNavigation('about.php');
-$GLOBALS['xoopsTpl']->assign('box', $clAbout->getBox());
-$GLOBALS['xoopsTpl']->assign('tplAbout', XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/templates/admin_about.tpl");
-
+// $GLOBALS['xoopsTpl']->assign('box', $clAbout->getBox());
+// //$GLOBALS['xoopsTpl']->assign('tplAbout', XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/templates/admin_about.tpl");
+// $GLOBALS['xoopsTpl']->display(XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/templates/admin_about.tpl");
+$clAbout->display();
 require __DIR__ . '/footer.php';

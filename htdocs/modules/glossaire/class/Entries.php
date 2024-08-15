@@ -118,7 +118,10 @@ class Entries extends \XoopsObject
      */
     public function getFormEntries($action = false)
     {//exit("<hr>getFormEntries - statusIdSelect = {$statusIdSelect}<hr>");
-        global $categoriesHandler;
+        global $categoriesHandler, $clPerms;
+        if(!$clPerms->isPermit('approve_entries', $this->getVar('ent_cat_id'))){
+            redirect_header(GLOSSAIRE_URL, 3 ,_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
+        }
 
         $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
         if (!$action) {
@@ -132,7 +135,7 @@ class Entries extends \XoopsObject
             $this->setVar('ent_is_acronym', $categoriesObj->getVar('cat_is_acronym'));
         }
         
-        $isAdmin = ($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid()) : false;
+        //$isAdmin = ($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid()) : false;
         if($GLOBALS['xoopsUser']){
             if($this->isNew()){
                 $entUid = $GLOBALS['xoopsUser']->uid();

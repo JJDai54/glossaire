@@ -64,7 +64,7 @@
   </form>
 </div>
 
-<{if $catPerms.approve OR $catPerms.submit}>
+<{if $catPerms.approve_entries OR $catPerms.submit_entries}>
   <div style="color:black;"> 
     <form name="gls_addnew" id="gls_addnew" action="entries.php" method="post" enctype="">
       <input type="hidden" name="op" value="<{if $catPerms.approve}>new<{else}>new_light<{/if}>" />         

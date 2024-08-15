@@ -31,9 +31,6 @@ use XoopsModules\Glossaire\Common;
     // Breadcrumbs
     $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_CATEGORY_ADD];
     // Check permissions
-    if (!$permissionsHandler->getPermGlobalSubmit()) {
-        \redirect_header('categories.php?op=list', 3, \_NOPERM);
-    }
     // Form Create
     $categoriesObj = $categoriesHandler->create();
     $categoriesObj->setVar('cat_weight', $categoriesHandler->getMax('cat_weight')+10);
@@ -41,7 +38,7 @@ use XoopsModules\Glossaire\Common;
     $categoriesObj->setVar('userpager',                 $glossaireHelper->getConfig('userpager'));
     $categoriesObj->setVar('cat_alphabarre',            $glossaireHelper->getConfig('alphabarre'));
     $categoriesObj->setVar('cat_alphabarre_mode',       $glossaireHelper->getConfig('alphabarre_mode'));
-    $categoriesObj->setVar('cat_replace_arobase',       '[@]'; 
+    $categoriesObj->setVar('cat_replace_arobase',       '[@]'); 
 
     $form = $categoriesObj->getFormCategories();
     $GLOBALS['xoopsTpl']->assign('form', $form->render());

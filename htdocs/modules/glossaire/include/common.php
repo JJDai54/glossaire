@@ -28,8 +28,10 @@ if (!\defined('XOOPS_ICONS32_PATH')) {
 if (!\defined('XOOPS_ICONS32_URL')) {
     \define('XOOPS_ICONS32_URL', \XOOPS_URL . '/Frameworks/moduleclasses/icons/32');
 }
-if (isset($xoopsModuleConfig)) define('GLOSSAIRE_SHOW_TPL_NAME', $xoopsModuleConfig['displayTemplateName']);
-else define('GLOSSAIRE_SHOW_TPL_NAME', 0);
+if (isset($xoopsModuleConfig)) 
+    define('GLOSSAIRE_SHOW_TPL_NAME', $xoopsModuleConfig['displayTemplateName']);
+else 
+    define('GLOSSAIRE_SHOW_TPL_NAME', 0);
 
 
 define('GLOSSAIRE_CHIFFRES', '#');
@@ -77,22 +79,6 @@ require_once \GLOSSAIRE_PATH . '/include/functions.php';
 //--------- a mettre dans xoops_version.php
 define('GLOSSAIRE_CATEGORY_CSS_NAME_FILE', "glossaire-category.css"); 
 
-// peut ^tre a remplacer par les constantes plus bas, ça fait un peu double emploi
-// faudra juste faire attention au valeur attibuée et modifier en conséquence
-// voir les supprimer purement et simplement, utilisée qu'une seule fois
-// $row=1;
-// define('GLOSSAIRE_COL_ADM_ENTRIES_ID', $row++);
-// define('GLOSSAIRE_COL_ADM_ENTRIES_CREATOR', $row++);
-// define('GLOSSAIRE_COL_ADM_ENTRIES_STATUS', $row++);
-// define('GLOSSAIRE_COL_ADM_ENTRIES_TERM', $row++);
-// define('GLOSSAIRE_COL_ADM_ENTRIES_IMAGE', $row++);
-// define('GLOSSAIRE_COL_ADM_ENTRIES_FILE', $row++);
-// define('GLOSSAIRE_COL_ADM_ENTRIES_SHORTDEF', $row++);
-// define('GLOSSAIRE_COL_ADM_ENTRIES_COUNTER', $row++);
-// define('GLOSSAIRE_COL_ADM_ENTRIES_DATE_CREATION', $row++);
-// define('GLOSSAIRE_COL_ADM_ENTRIES_DATE_UPDATE', $row++);
-// define('GLOSSAIRE_COL_ADM_ENTRIES_FORM_ACTION', $row++);
-
 $h = 0;
 define('GLOSSAIRE_ENT_ID', $h++);
 define('GLOSSAIRE_ENT_SHORTDEF', $h++);
@@ -109,3 +95,12 @@ define('GLOSSAIRE_ENT_DATE_CREATION', $h++);
 define('GLOSSAIRE_ENT_DATE_UPDATE', $h++);
 define('GLOSSAIRE_ENT_BTN_ACTIONS_TOP', $h++);
 define('GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM', $h++);
+
+
+$h = 1;
+define("GLOSSAIRE_PERM_MANCATS", $h++);
+define("GLOSSAIRE_PERM_IPORT", $h++);
+define("GLOSSAIRE_PERM_EXPORT", $h++);
+define("GLOSSAIRE_PERM_CLONE", $h++);
+define("GLOSSAIRE_PERM_PERMS", $h++);
+

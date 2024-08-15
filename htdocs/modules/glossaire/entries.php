@@ -78,9 +78,10 @@ $GLOBALS['xoopsTpl']->assign('showItem', $entId > 0);
         if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
         $catObj = $categoriesHandler->get($catIdSelect);
         $catArr = $catObj->getValuesCategories();
-        $catPerms = $catObj->getPerms();
+        $catPerms  = $clPerms->getPermNames($catIdSelect, ['view_cats', 'submit_entries', 'approve_entries']);
         $limit = ($catObj->getVar('cat_userpager')) ? $catObj->getVar('cat_userpager') :  $glossaireHelper->getConfig('userpager');
         $GLOBALS['xoopsTpl']->assign('limit', $limit);
+        //echoArray($catPerms);
 //echo "<he>===> Limit = {$limit}<hr>";
 //echo "<hr>perms<pre>" . print_r($catPerms, true) . "</pre><hr>";
 //echo "<hr>cat<pre>" . print_r($catArr, true) . "</pre><hr>";
@@ -114,7 +115,7 @@ switch (strtolower($op)) {
         $entriesObj->setVar('ent_cat_id', $catIdSelect);
         $entriesObj->setVar('ent_status', GLOSSAIRE_PROPOSITION);
 //        $entriesObj->setVar('statusAccess', $statusAccess);
-        if($catPerms['approve'] ){
+        if($catPerms['approve_entries'] ){
             $form = $entriesObj->getFormEntries(false, true);
         }else{
             $form = $entriesObj->getFormEntriesLight(false, true);
@@ -126,7 +127,7 @@ switch (strtolower($op)) {
         break;
         
     case 'edit':
-        if (!$catPerms['approve'] ) {
+        if (!$catPerms['approve_entries'] ) {
             \redirect_header("{$page2redirect}?op=list", 3, \_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
         }
         if (0 == $entId) {

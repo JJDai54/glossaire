@@ -49,8 +49,8 @@ $keywords = [];
 // Breadcrumbs
 $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_INDEX, 'link' => 'index.php'];
 // Permissions
-//$permEdit = $permissionsHandler->getPermGlobalSubmit();
-$perms = $categoriesHandler->getPermissions();
+
+
 // $GLOBALS['xoopsTpl']->assign('permEdit', $permEdit);
 // $GLOBALS['xoopsTpl']->assign('showItem', $catId > 0);
 
@@ -70,9 +70,6 @@ switch ($op) {
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_CATEGORY_EDIT];
         // Check permissions
-        if (!$permissionsHandler->getPermGlobalSubmit()) {
-            \redirect_header('categories.php?op=list', 3, \_NOPERM);
-        }
         // Check params
         if (0 == $catId) {
             \redirect_header('categories.php?op=list', 3, \_MA_GLOSSAIRE_INVALID_PARAM);
@@ -89,9 +86,6 @@ switch ($op) {
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_CATEGORY_CLONE];
         // Check permissions
-        if (!$permissionsHandler->getPermGlobalSubmit()) {
-            \redirect_header('categories.php?op=list', 3, \_NOPERM);
-        }
         // Request source
         $catIdSource = Request::getInt('cat_id_source');
         // Check params

@@ -31,9 +31,6 @@ use XoopsModules\Glossaire\Common;
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_CATEGORY_DELETE];
         // Check permissions
-        if (!$permissionsHandler->getPermGlobalSubmit()) {
-            \redirect_header('categories.php?op=list', 3, \_NOPERM);
-        }
         // Check params
         if (0 == $catId) {
             \redirect_header('categories.php?op=list', 3, \_MA_GLOSSAIRE_INVALID_PARAM);

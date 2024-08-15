@@ -28,10 +28,15 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
 
+
     $templateMain = 'glossaire_admin_entries.tpl';
     $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('entries.php'));
     $entriesObj = $entriesHandler->get($entId);
     $catIdSelect = $entriesObj->getVar('ent_cat_id');
+    
+    if(!$clPerms->isPermit('approve_entries', $catIdSelect)){
+        redirect_header(GLOSSAIRE_URL, 3 ,_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
+    }
     
     if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
         if (!$GLOBALS['xoopsSecurity']->check()) {

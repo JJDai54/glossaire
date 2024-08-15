@@ -4,15 +4,24 @@
 <{/if}>
 <{*  ------------------------------------------------------------------ *}>
 <{include file="db:glossaire_header.tpl" }>
+<style>
+    div [catlist]{
+        padding: 12px 12px 12px 12px;
+        margin:0px;
+        font-size:1.2em;
+    }
+</style>
 
 <{if $categoriesCount|default:0 > 0}>
 <div class="table-responsive">
     <table class="table table-<{$table_type|default:false}>">
+    <{*
         <thead>
             <tr class="head">
                 <th ><{$smarty.const._MA_GLOSSAIRE_CATEGORIES_TITLE}></th>
             </tr>
         </thead>
+     *}> 
         <tbody>
                 <{foreach item=category from=$categories name=category}>
             <tr>

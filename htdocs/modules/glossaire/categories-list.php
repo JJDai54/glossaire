@@ -49,26 +49,27 @@ $keywords = [];
 // Breadcrumbs
 $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_INDEX, 'link' => 'index.php'];
 // Permissions
-//$permEdit = $permissionsHandler->getPermGlobalSubmit();
+
 $perms = $categoriesHandler->getPermissions();
 // $GLOBALS['xoopsTpl']->assign('permEdit', $permEdit);
 // $GLOBALS['xoopsTpl']->assign('showItem', $catId > 0);
-
+        \JJD\load_css();
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_CATEGORIES_LIST];
         $crCategories = new \CriteriaCompo();
         if ($catId > 0) {
             $crCategories->add(new \Criteria('cat_id', $catId));
         }
-        $categoriesCount = $categoriesHandler->getAllCatAllowed('view', $crCategories);
+        $categoriesAll = $categoriesHandler->getAllCatAllowed('view', $crCategories);
+        $categoriesCount = count($categoriesAll); //$categoriesHandler->getAllCatAllowed('view', $crCategories);
         $GLOBALS['xoopsTpl']->assign('categoriesCount', $categoriesCount);
         if (0 === $catId) {
             $crCategories->setStart($start);
             $crCategories->setLimit($limit);
         }
-        $categoriesAll = $categoriesHandler->getAllCatAllowed('view', $crCategories);
         if ($categoriesCount > 0) {
 	        $catPerms = $categoriesHandler->getAlPermsByCatId($categoriesAll);        
+            //echoArray( $catPerms );
             $categories = [];
             $catName = '';
             // Get All Categories

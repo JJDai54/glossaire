@@ -64,6 +64,7 @@ $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
 
 //$xoTheme->addScript(XOOPS_URL . '/Frameworks/trierTableauHTML/trierTableau.js');
 \jjd\load_trierTableauHTML();
+$clPerms = new \jjdPermissions();
 //$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/Frameworks/trierTableauHTML/trierTableau.js');
 
 // System icons path
