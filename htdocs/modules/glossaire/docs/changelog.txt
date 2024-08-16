@@ -33,7 +33,7 @@ Ce module pemet de gérer des Glossaire ou Lexiques. Il prend en charge
     L'exportation des défintions par cétégories y compris les images des définitions
     L'importation dans une nouvelle categorie ou une existante d'une catégorie exportée par ce module ou un de ses clones. 
     Les images sont également importées si elles existent.
-    Une feille de style par catégorie popur la barre de lettre et les éléments des entrées
+    Une feuille de style par catégorie pour la barre de lettre et les éléments des entrées
     Lexikon : L'importation dans une nouvelle categorie ou une existante d'une catégorie du module "Lexikon"
     Le clonage 
     

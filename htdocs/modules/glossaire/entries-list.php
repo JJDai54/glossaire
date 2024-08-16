@@ -109,7 +109,6 @@ use JJD AS JJD;
             $crEntries->add(new \Criteria('ent_initiale',$letter, "="));
         }
         $entriesCount = $entriesHandler->getCount($crEntries);
-        
 //echo "<hr>crEntries<br>"    . $crEntries->renderWhere() . "<hr>";     
         $GLOBALS['xoopsTpl']->assign('entriesCount', $entriesCount);
         if (0 === $entId) {

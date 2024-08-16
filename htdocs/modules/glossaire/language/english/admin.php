@@ -213,5 +213,17 @@ define('_AM_GLOSSAIRE_ENT_DATE_UPDATE', "Date de mise à jour");
 define('_AM_GLOSSAIRE_ENT_BTN_ACTIONS_TOP', "Position en haut des boutons de gestion");
 define('_AM_GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM', "Position en bas des boutons de gestion");
 
+define('_AM_GLOSSARY_PERM_MANCATS', "Manage Categories");
+define('_AM_GLOSSARY_PERM_IPORT', "Import Glossary");
+define('_AM_GLOSSARY_PERM_EXPORT', "Export Glossary");
+define('_AM_GLOSSARY_PERM_CLONE', "Clone Module");
+define('_AM_GLOSSARY_PERM_PERMS', "Manage Permissions");
+
+define('_AM_GLOSSARY_PERM_GLOBAL_AC', "Global Permissions");
+define('_AM_GLOSSARY_PERM_VIEW_CATS', "View Categories");
+define('_AM_GLOSSARY_PERM_APPROVE_ENTRIES', "Approve Entries");
+define('_AM_GLOSSARY_PERM_SUBMIT_ENTRIES', "Submit entries");
+define('_AM_GLOSSARY_PERM_DESC', "Manage permissions");
+define('_AM_GLOSSARY_NO_PERMISSIONS_SET', "You do not have permissions to access this feature");
 
 ?>

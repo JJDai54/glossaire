@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> <html><head> <meta http-equiv="content-type" content="text/html; charset=UTF-8 "></head><body> <h4 class="odd">Glossaries / Entries</h4> <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2"> <tbody> <tr> <td colspan="4" rowspan="1" style="vertical-align: top; background-color: rgb(204 , 255, 255);">Definition options - glossary_entries table<br> </td> </tr> <tr> <td style="vertical-align: top;">ent_id</td> <td style= "vertical-align: top;">int(8)</td> <td style="vertical-align: top;">Identifier<br> </td> <td style="vertical-align: top;" >Unique identifier automatically incremented</td> </tr> <tr> <td style="vertical-align: top;">ent_cat_id</td> <td style="vertical-align: top;"> int(10)</td>
+<td style="vertical-align: top;">Category<br>
+</td>
+<td style="vertical-align: top;">Category ID .<br>
+It is possible to change the category of the entry<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_creator</td>
+<td style ="vertical-align: top;"> varchar(80)</td>
+<td style="vertical-align: top;">Author<br>
+</td>
+<td style="vertical-align: top; ">Author Name<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">nt_term</td>
+<td style="vertical-align: top;">varchar(255)</td>
+<td style="vertical-align: top;">Term<br>
+</td>
+<td style="vertical-align: top;">Main term or phrase , this field is required<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_initiale</td>
+<td style="vertical-align: top;"> varchar(5) </td>
+<td style="vertical-align: top;">Initial<br>
+</td>
+<td style="vertical-align: top;">Automatically populated, allows for faster selection when clicking on the alphanumeric selection bar.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_shortdef</td>
+<td style="vertical-align: top;">varchar(255)</td> <td style="vertical-align: top;">Short definition<br> </td>
+<td style="vertical-align: top;">String displayed after the term or on the line according to the category settings.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_is_acronym</td>
+<td style="vertical-align: top;">tinyint(1)</td>
+<td style="vertical-align: top;">Acronym<br>
+</td>
+<td style="vertical-align: top;">Forces the default value defined in the category settings.<br>
+defined if the entry is an acronym.<br>
+If yes, the first uppercase characters of each word of the short description will be bolded.<br>
+example:<br>
+<div style="margin-left: 40px;">Council of the wise<br>
+</div>
+will become<br>
+<div style="margin-left: 40px;"><big><span style="font-weight: bold;">C</span></big>onseil <big><span style="font-weight: bold;">d</span></big>es <big><span style="font-style: italic;">S</span></big>ages<br>
+</div>
+The characters in the short definition preceded by the "/" character will also be bolded<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_image</td>
+<td style="vertical-align: top;">varchar(255) </td>
+<td style="vertical-align: top;">Logo<br>
+</td>
+<td style="vertical-align: top;">Logo or image displayed in the header of the definition.<br> </td> </tr> <tr> <td style="vertical-align: top;">ent_definition</td> <td style="vertical-align: top;">text</td> <td style="vertical-align: top;">Definition<br> </td>
+<td style="vertical-align: top;">Full text of the entry. <br>
+Important: you must define the text editor in the module settings.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_reference</td>
+<td style="vertical-align: top;">text</td>
+<td style="vertical-align: top;">Reference<br>
+</td>
+<td style="vertical-align: top;">Free field that allows you to provide additional information<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_file_name</td>
+<td style="vertical-align: top;">varchar(80) </td>
+<td style="vertical-align: top;">Displayed name of the file<br>
+</td>
+<td style="vertical-align: top;">Displayed name of the file attached if it exists. Not used at the moment, planned for a future version.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_file_path</td>
+<td style="vertical-align: top;">varchar(80) </td>
+<td style="vertical-align: top;">Physical name of the file<br>
+</td>
+<td style="vertical-align: top;">Name of the file in the folder "/uploads/glossaire/categorie/"<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_urls</td>
+<td style="vertical-align: top;">text</td>
+<td style="vertical-align: top;">Reference links<br>
+</td>
+<td style="vertical-align: top;">Allows you to add as many links as you want on reference sites.<br>
+Enter one URL per line without a separator.<br>
+Each line can be composed of the title and the URL separated by a '|' without a space.<br>
+<span style="font-weight: bold;">Example</span>: Xoops France<b> | </b>https://www.frxoops.org/<br> The anchor will be automatically generated.<br> </td> </tr> <tr> <td style="vertical-align: top;">ent_email</td> <td style="vertical-align: top;">varchar(80)</td> <td style="vertical-align: top;">Email<br> </td> <td style="vertical-align: top;">Court riel of a contact <br> </td> </tr><tr> <td style="vertical-align: top;">ent_counter</td> <td style="vertical-align: top;"> int(10)</td> <td style="vertical-align: top;">Counter<br> </td> <td style="vertical-align: top;">Counts them click on the entries.<br>
+Important: this value should be taken with caution.<br>
+It is just an indication and may not be exact since
+it is possible to see the description without clicking on the name.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_status</td>
+<td style="vertical-align: top;">tinyint</td>
+<td style="vertical-align: top;">Status<br>
+</td>
+<td style="vertical-align: top;">Inactive: The definition will not be displayed to the user<br>
+Proposed: definition proposed by a user. It is not visible until it has been approved.<br>
+Approved: The definition is visible to the user.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_flag</td>
+<td style="vertical-align: top;">int(10) </td>
+<td style="vertical-align: top;">Flag<br>
+</td>
+<td style="vertical-align: top;">Field used during import to keep definition and category IDs consistent.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_date_creation</td>
+<td style="vertical-align: top;">datetime(6) </td>
+<td style="vertical-align: top;">Date of creation<br>
+</td>
+<td style="vertical-align: top;">Field automatically updated - See display format in category settings.</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">ent_date_update</td>
+<td style="vertical-align: top;">datetime(6)</td>
+<td style="vertical-align: top;">Date updated<br>
+</td>
+<td style="vertical-align: top;">Field automatically updated - See display format in category settings.<br>
+</td>
+</tr>
+
+</tbody>
+</table>
+<br><br>
+<br>
+
+</body></html>
+

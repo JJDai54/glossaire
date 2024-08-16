@@ -212,7 +212,7 @@ global $entriesHandler, $xoopsFolder;
  * 
  * ************************************************************/
 function import_category($pathImport){
-global $categoriesHandler;
+global $categoriesHandler, $clPerms;
        
     //lecture du fichier et chargement dans un tableau
     $fullName = "{$pathImport}/categories.yml";
@@ -249,7 +249,7 @@ global $categoriesHandler;
 	$categoriesObj->setVar('cat_is_acronym',     $data['cat_is_acronym']);    
 	$categoriesObj->setVar('cat_br_after_term',    $data['cat_br_after_term']);    
 	$categoriesObj->setVar('cat_show_terms_index', $data['cat_show_terms_index']);    
-	$categoriesObj->setVar('show_bin',             $data['cat_show_bin']);    
+	$categoriesObj->setVar('cat_show_bin',         $data['cat_show_bin']);    
 	$categoriesObj->setVar('cat_count_entries',    $data['cat_count_entries']);    
 	$categoriesObj->setVar('cat_date_format',      $data['cat_date_format']);    
 	$categoriesObj->setVar('cat_date_creation',    $data['cat_date_creation']);    
@@ -261,7 +261,12 @@ global $categoriesHandler;
         $newCatId = 0;
         exit("Erreur catId : {$newCatId}");
     }
-
+    
+    //affect les autorisation au groupe du user courant
+    $clPerms->addRight('view_cats', $newCatId);
+    $clPerms->addRight('approve_entries', $newCatId);
+    $clPerms->addRight('submit_entries', $newCatId);
+    
     return $categoriesObj;
 }
 

@@ -137,13 +137,12 @@ define('_MI_GLOSSAIRE_ALPHABARRE_DESC', "Liste des lettres de la barre de sélec
 define('_MI_GLOSSAIRE_ALPHABARRE_MODE', "Afficher toutes les lettres");
 define('_MI_GLOSSAIRE_USER_PAGER', "Nombre de lignes côté utilisateur");
 define('_MI_GLOSSAIRE_USER_PAGER_DESC', "Nombre de lignes par page dans les listes pour les utilisateurs");
+define('_MI_GLOSSAIRE_HELP_OVERVIEW', "Vue d'ensemble");
+define('_MI_GLOSSAIRE_HELP_INSTALL', "Installation");
+define('_MI_GLOSSAIRE_HELP_CATEGORY', "Catégories");
+define('_MI_GLOSSAIRE_HELP_ENTRIES', "Entrées / Définitions");
+define('_MI_GLOSSAIRE_HELP_EXPORT', "Exportation");
+define('_MI_GLOSSAIRE_HELP_IMPORT', "Importation");
 
-$BreaklineStyle = '<div style="background:black;color:white;"><center>%s</center></div>';
-define('_MI_GLOSSAIRE_BREAK_IMAGE', sprintf($BreaklineStyle, 'Images'));
-define('_MI_GLOSSAIRE_BREAK_FILE', sprintf($BreaklineStyle, 'Fichiers'));
-define('_MI_GLOSSAIRE_BREAK_GROUP', sprintf($BreaklineStyle, 'Groupes'));
-define('_MI_GLOSSAIRE_BREAK_ALPHABARRE', sprintf($BreaklineStyle, 'Barre de sélection'));
-define('_MI_GLOSSAIRE_BREAK_INTERFACE', sprintf($BreaklineStyle, 'Interface'));
-define('_MI_GLOSSAIRE_BREAK_EXTRA', sprintf($BreaklineStyle, 'Extra'));
 
 ?>                        

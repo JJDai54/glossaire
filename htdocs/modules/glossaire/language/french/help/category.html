@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body>
+<h4 class="odd">Catégories<br>
+</h4>Pour accéder à l'onglet "Catégorie" il faut au moins une
+catégorie, et lui affecter les autorisations globales dans l'onglet
+"Autorisations".<br>
+
+<br><table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2"><tbody><tr><td colspan="4" rowspan="1" style="vertical-align: top; background-color: rgb(204, 255, 255);">Options des catégories - Table : glossaire_categories
+      </td>
+
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_id</td>
+      <td style="vertical-align: top;">int</td>
+      <td style="vertical-align: top;">Identifiant<br>
+      </td>
+      <td style="vertical-align: top;">Identifiant unique incrémenté automatiquement<br>
+      </td>
+    </tr>
+<tr>
+      <td style="vertical-align: top;">cat_name<br>
+      </td>
+      <td style="vertical-align: top;">varchar(255) </td>
+<td style="vertical-align: top;">Nom de la catégorie<br>
+      </td>
+      <td style="vertical-align: top;">Chaine de caractères<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_description</td>
+      <td style="vertical-align: top;">text</td>
+<td style="vertical-align: top;">Description<br>
+      </td>
+      <td style="vertical-align: top;">Elle sera affichée côté utilisateur en
+dessous du choix de la catégorie.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_weight</td>
+      <td style="vertical-align: top;">int</td>
+      <td style="vertical-align: top;">Poids<br>
+      </td>
+      <td style="vertical-align: top;">Ordre dans lequel seront affichées les catégories<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_logo</td>
+      <td style="vertical-align: top;">varchar(80) </td>
+      <td style="vertical-align: top;">Logo<br>
+      </td>
+      <td style="vertical-align: top;">Logo ou image associé à la catégorie. Il est affiché dans l'entête des listes.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_alphabarre</td>
+      <td style="vertical-align: top;">varchar(255) </td>
+      <td style="vertical-align: top;">Alphabet<br>
+      </td>
+      <td style="vertical-align: top;">Liste de lettres ou de caractères alphanumériques affichés en tête et en queue de liste pour faciliter les recherches.<br>
+Un clique sur un des caractère sélectionne les entrèes qui commence par celui-ci.<br>
+Caractères spéciaux que l'on peut insérer dans cette liste v:<br>
+      <div style="margin-left: 40px;"><span style="font-weight: bold;">*</span>&nbsp;&nbsp; (astérisque) :&nbsp; Sélectionne toutes les entrées <br>
+      <span style="font-weight: bold;">#</span>&nbsp;&nbsp; (Dièse) : Sélectionne les entrèes qui commence par un chiffre<br>
+      <span style="font-weight: bold;">|&nbsp;</span>&nbsp;&nbsp; (Barre verticale) : insère un retrour à la ligne. Permet de séparer par exemple les lettres et les chiffres.<br>
+      </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_alphabarre_mode</td>
+      <td style="vertical-align: top;">tinyint</td>
+      <td style="vertical-align: top;">Mode d'affichage<br>
+      </td>
+      <td style="vertical-align: top;">oui : affiche tous les caractères de la barre, même ceux pour lesquels il n'y a pas d'entrées.<br>
+non : Affiche seulement les caractères de la barre pour lesquels il existe des entrées.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_upload_folder</td>
+      <td style="vertical-align: top;">varchar(255)</td>
+      <td style="vertical-align: top;">Dossier des fichiers<br>
+      </td>
+      <td style="vertical-align: top;">Nom du dossier dans lequel seront stockés les logo, images et fichers associés aux entrées.<br>
+C'est un sous dossier du dossier "/uploads" du site.<br>
+Important : Ce nom doit être unique.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_colors_set</td>
+      <td style="vertical-align: top;">varchar(50) </td>
+      <td style="vertical-align: top;">Jeu de couleurs<br>
+      </td>
+      <td style="vertical-align: top;">Permet de sélectionner un jeu de couleurs prédéfini dans le framework "JJD_Framework"<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_is_acronym</td>
+      <td style="vertical-align: top;">tinyint</td>
+      <td style="vertical-align: top;">Acronyme<br>
+      </td>
+      <td style="vertical-align: top;">défini si l'entrée est un acronyme.<br>
+Si oui, les premiers caractères majuscules de chaque mots de la description courte seront mis en gras.<br>
+exemple :<br>
+      <div style="margin-left: 40px;">Conseil des sages<br>
+      </div>
+deviendra <br>
+      <div style="margin-left: 40px;"><big><span style="font-weight: bold;">C</span></big>onseil <big><span style="font-weight: bold;">d</span></big>es <big><span style="font-weight: bold;">S</span></big>ages<br>
+      </div>
+Les caractères de la définition courte précédés par le caractère "/" seront également mis en gras<br>
+      </td>
+    </tr>
+<tr>
+      <td style="vertical-align: top;">cat_replace_arobase</td>
+      <td style="vertical-align: top;">varchar(5) </td>
+<td style="vertical-align: top;"><br>
+</td>
+      <td style="vertical-align: top;">Chaine de caractère qui remplace les "@" dans les courriels.<br>
+Exemple : [@]<br>
+courriel@domaine.fr sera remplacé par courriel[@]domaine.fr et bloquera l'affichage de l'application de messagerie.<br>
+</td>
+    </tr>
+    
+    <tr>
+      <td style="vertical-align: top;">cat_pid</td>
+      <td style="vertical-align: top;">int<br>
+      </td>
+      <td style="vertical-align: top;">inutilisé<br>
+      </td>
+      <td style="vertical-align: top;">ce champ est voué à disparaitre dans une version future<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_userpager</td>
+      <td style="vertical-align: top;">tinyint</td>
+      <td style="vertical-align: top;">Nombre de ligne par page<br>
+      </td>
+      <td style="vertical-align: top;">Nombre de lignes maximum affiché par page. Il peut être différent pour chaque catégorie.<br>
+Si la valeur est zéro, affiche toutes les entrées de la catégorie. A
+utiliser lorsqu'il y a peu de définitions dans la catégorie.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_br_after_term</td>
+      <td style="vertical-align: top;">tinyint</td>
+      <td style="vertical-align: top;">Retour à la ligne<br>
+      </td>
+      <td style="vertical-align: top;">non : Le nom et la définition courte seront sur la même ligne<br>
+oui : la description courte sera mis à la ligne<br>
+exemple non : <br>
+      <div style="margin-left: 40px;">CdS : consil des Sages<br>
+      </div>
+exemple oui :<br>
+      <div style="margin-left: 40px;">CdS<br>
+Conseil des Sages<br>
+      </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_show_terms_index</td>
+      <td style="vertical-align: top;">tinyint</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">inutilisé<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_show_bin</td>
+      <td style="vertical-align: top;">SMALLINT</td>
+      <td style="vertical-align: top;">champ binaire<br>
+      </td>
+      <td style="vertical-align: top;">Chaque bit de ce champ défini les champ à afficher et les options particulières :<br>
+      <div style="margin-left: 40px;">ID<br>
+Définition courte<br>
+Magnifier<br>
+Définition<br>
+Auteur<br>
+Image<br>
+Référence<br>
+Fichier joint <br>
+Voir aussi<br>
+Contact<br>
+Compteur de visites<br>
+Date de création<br>
+Date de mise à jour<br>
+Position en haut des boutons de gestion<br>
+Position en bas des boutons de gestion<br>
+      </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_count_entries</td>
+      <td style="vertical-align: top;">int</td>
+      <td style="vertical-align: top;">Nombre de clique<br>
+      </td>
+      <td style="vertical-align: top;">Nombre de définitions de la cétégorie.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_active</td>
+      <td style="vertical-align: top;">tinyint</td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;">Prioritaire sur les autorisations.<br>
+oui : La catégorie sera affichée côté utilisateur selon les permissions accordées.<br>
+non : la catégorie ne sera pas affichée côté utilisateur quelque soit les permissions.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_date_format</td>
+      <td style="vertical-align: top;">varchar(30) </td>
+      <td style="vertical-align: top;">Format des dates<br>
+      </td>
+      <td style="vertical-align: top;">Format des dates de création et de mise à jour.<br>
+Voir la documentation PHP pour plus d'information.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_date_creation</td>
+      <td style="vertical-align: top;">datetime(6) </td>
+      <td style="vertical-align: top;">Date de création<br>
+      </td>
+      <td style="vertical-align: top;">Cette date est mise à jour automatiquement lors de la création de la catégorie<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">cat_date_update</td>
+      <td style="vertical-align: top;">datetime(6) </td>
+      <td style="vertical-align: top;">Date de mise à jour<br>
+      </td>
+      <td style="vertical-align: top;">Cette date est mise à jour à chaque modification de la catégorie.<br>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<br>
+<br>
+
+</body></html>

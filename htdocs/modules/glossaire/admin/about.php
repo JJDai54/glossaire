@@ -26,7 +26,7 @@ use XoopsModules\Glossaire\Constants;
 
 //require_once XOOPS_ROOT_PATH . '/modules/glossaire/admin/header.php';
 require_once 'header.php';
-$templateMain = 'glossaire_admin_about.tpl';
+
 $clAbout = new \About($glossaireHelper,
                       'MUUZPTPGJSB9G',
                       "https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif",

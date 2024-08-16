@@ -89,7 +89,7 @@ $modversion = [
 // ------------------- Templates ------------------- //
 $modversion['templates'] = [
     // Admin templates
-    ['file' => 'glossaire_admin_about.tpl', 'description' => '', 'type' => 'admin'],
+
     ['file' => 'glossaire_admin_header.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'glossaire_admin_index.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'glossaire_admin_categories.tpl', 'description' => '', 'type' => 'admin'],
@@ -120,6 +120,7 @@ $modversion['templates'] = [
 ];
 // ------------------- Mysql ------------------- //
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
+
 // Tables
 $modversion['tables'] = [
     'glossaire_categories',
@@ -161,6 +162,17 @@ if ($currdirname == $moduleDirName) {
         'url'  => 'entries.php?op=new',
     ];
 }
+
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = [
+    ['name' => _MI_GLOSSAIRE_HELP_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_GLOSSAIRE_HELP_INSTALL, 'link' => 'page=install'],
+    ['name' => _MI_GLOSSAIRE_HELP_CATEGORY, 'link' => 'page=category'],
+    ['name' => _MI_GLOSSAIRE_HELP_ENTRIES, 'link' => 'page=entries'],
+    ['name' => _MI_GLOSSAIRE_HELP_EXPORT, 'link' => 'page=export'],
+    ['name' => _MI_GLOSSAIRE_HELP_IMPORT, 'link' => 'page=import'],
+];
+
 // ------------------- Blocks ------------------- //
 // Entries last
 $modversion['blocks'][] = [

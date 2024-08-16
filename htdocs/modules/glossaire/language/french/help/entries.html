@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body>
+<h4 class="odd">Glossaires / Entrées</h4>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td colspan="4" rowspan="1" style="vertical-align: top; background-color: rgb(204, 255, 255);">Options des définitions - table glossaire_entries<br>
+      </td>
+      
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_id</td>
+      <td style="vertical-align: top;">int(8)</td>
+      <td style="vertical-align: top;">Identifiant<br>
+      </td>
+<td style="vertical-align: top;">Identifiant unique incrémenté automatiquement</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_cat_id</td>
+      <td style="vertical-align: top;"> int(10)</td>
+      <td style="vertical-align: top;">Catégorie<br>
+      </td>
+<td style="vertical-align: top;">Identifiant de la catégorie.<br>
+Il est possible de changer la catégorie de l'entrée<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_creator</td>
+      <td style="vertical-align: top;"> varchar(80)</td>
+      <td style="vertical-align: top;">Auteur<br>
+      </td>
+<td style="vertical-align: top;">Nom de l'auteur<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">nt_terme</td>
+      <td style="vertical-align: top;">varchar(255)</td>
+      <td style="vertical-align: top;">Terme<br>
+      </td>
+<td style="vertical-align: top;">Terme ou expression principal, ce champ est obligatoire<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_initiale</td>
+      <td style="vertical-align: top;">varchar(5) </td>
+      <td style="vertical-align: top;">Initiale<br>
+      </td>
+<td style="vertical-align: top;">Renseignéé automatiquement, permet une sélection plus rapide lors d'un clique sur la barre alpha-numérique de sélection.<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_shortdef</td>
+      <td style="vertical-align: top;">varchar(255)</td>
+      <td style="vertical-align: top;">Définition courte<br>
+      </td>
+<td style="vertical-align: top;">Chaine de caractères afichée à la suite du terme ou à la ligne selon les paramètres de la catégorie.<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_is_acronym</td>
+      <td style="vertical-align: top;">tinyint(1)</td>
+      <td style="vertical-align: top;">Acronyme<br>
+      </td>
+<td style="vertical-align: top;">Force la valeur par défaut définie dans les paramètres de la catégories.<br>
+défini si l'entrée est un acronyme.<br>
+Si oui, les premiers caractères majuscules de chaque mots de la description courte seront mis en gras.<br>
+exemple :<br>
+      <div style="margin-left: 40px;">Conseil des sages<br>
+      </div>
+deviendra<br>
+      <div style="margin-left: 40px;"><big><span style="font-weight: bold;">C</span></big>onseil <big><span style="font-weight: bold;">d</span></big>es <big><span style="font-style: italic;">S</span></big>ages<br>
+      </div>
+Les caractères de la définition courte précédés par le caractère "/" seront également mis en gras<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_image</td>
+      <td style="vertical-align: top;">varchar(255) </td>
+      <td style="vertical-align: top;">Logo<br>
+      </td>
+<td style="vertical-align: top;">Logo ou image affichée dans l'entète de la définition.<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_definition</td>
+      <td style="vertical-align: top;">text</td>
+      <td style="vertical-align: top;">Définition<br>
+      </td>
+<td style="vertical-align: top;">Texte complet de l'entrée. <br>
+Important : il faut définir léditeur de texte dans les paramètres du module.<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_reference</td>
+      <td style="vertical-align: top;">text</td>
+      <td style="vertical-align: top;">Référence<br>
+      </td>
+<td style="vertical-align: top;">Champ libre qui permet d'apporter des informations supplémentaires<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_file_name</td>
+      <td style="vertical-align: top;">varchar(80) </td>
+      <td style="vertical-align: top;">Nom affiché du fichier<br>
+      </td>
+<td style="vertical-align: top;">Nom affiché du fichier attaché si il existe. Inutilisé pour l'instant, prévu dans une future version.<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_file_path</td>
+      <td style="vertical-align: top;">varchar(80) </td>
+      <td style="vertical-align: top;">Nom physique du fichier <br>
+      </td>
+<td style="vertical-align: top;">Nom du fichier dans le dossier "/uploads/glossaire/categorie/"<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_urls</td>
+      <td style="vertical-align: top;">text</td>
+      <td style="vertical-align: top;">Liens de référence<br>
+      </td>
+<td style="vertical-align: top;">Permet d'ajouter autant de lien que l'on souhaite sur des sites de références.<br>
+Entrer une URL par ligne sans séparateur.<br>
+Chaque ligne peut etre composée du titre et de l'url séparée par un '|' sans espace.<br>
+      <span style="font-weight: bold;">Exemple</span> : Xoops France<b> | </b>https://www.frxoops.org/<br>
+L'ancre sera automatiquement générée.<br>
+</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_email</td>
+      <td style="vertical-align: top;">varchar(80)</td>
+      <td style="vertical-align: top;">Courriel<br>
+      </td>
+<td style="vertical-align: top;">Courriel d'un contact <br>
+</td>
+    </tr><tr>
+      <td style="vertical-align: top;">ent_counter</td>
+      <td style="vertical-align: top;"> int(10)</td>
+      <td style="vertical-align: top;">Compteur<br>
+      </td>
+      <td style="vertical-align: top;">Compte les cliques sur les entrées.<br>
+Important : cette valeur est à prendre avec précaution.<br>
+C'est juste une indication et ne peut pas être exacte dans la mesure ou
+il est possible de voir la description sans cliquer sur le nom.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_status</td>
+      <td style="vertical-align: top;">tinyint</td>
+      <td style="vertical-align: top;">Status<br>
+      </td>
+      <td style="vertical-align: top;">Inactif : La définition ne sera pas affichée pour l"utilisateur<br>
+Proposé :&nbsp; définition proposée par un utilisateur. Elle n'est pas visible tant qu'elle n'a pas été approuvée.<br>
+Approuvé : La définition est visible pour l'utilisateur.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_flag</td>
+      <td style="vertical-align: top;">int(10) </td>
+      <td style="vertical-align: top;">Flag<br>
+      </td>
+      <td style="vertical-align: top;">Champ utilisé lors de l'importation pour garder la cohérence des identifiant des définitions et des catégories.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_date_creation</td>
+      <td style="vertical-align: top;">datetime(6) </td>
+      <td style="vertical-align: top;">Date de création<br>
+      </td>
+      <td style="vertical-align: top;">Champ mis à jour automatiquement - Voir le format d'affichage dans les paramètres de la catégorie.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ent_date_update</td>
+      <td style="vertical-align: top;">datetime(6)</td>
+      <td style="vertical-align: top;">Date de mise à jour<br>
+      </td>
+      <td style="vertical-align: top;">Champ mis à jour automatiquement - Voir le format d'affichage dans les paramètres de la catégorie.<br>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+<br><br>
+<br>
+
+
+</body></html>

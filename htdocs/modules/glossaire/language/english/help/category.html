@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body>
+<h4 class="odd">Categories<br>
+</h4>To access the "Category" tab, you need at least one
+category, and assign it global permissions in the "Permissions" tab.<br>
+
+<br><table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2"><tbody><tr><td colspan="4" rowspan="1" style="vertical-align: top; background-color: rgb(204, 255, 255);">Category options - Table: glossary_categories </td> </tr> <tr> <td style="vertical-align: top;">cat_id</td> <td style="vertical-align: top;">int</td> <td style="vertical-align: top;">Identifier<br> </td> <td style="vertical-align: top;">Unique identifier automatically incremented<br> </td> </tr> <tr> <td style="vertical-align: top;">cat_name<br> </td> <td style="vertical-align: top;">varchar(255) </td>
+<td style="vertical-align: top;">Category name<br>
+</td>
+<td style="vertical-align: top;">String<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_description</td>
+<td style="vertical-align: top;">text</td>
+<td style="vertical-align: top;">Description<br>
+</td>
+<td style="vertical-align: top;">It will be displayed on the user side below the category selection.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_weight</td>
+<td style="vertical-align: top;">int</td>
+<td style="vertical-align: top;">Weight<br>
+</td>
+<td style="vertical-align: top;">Order in which categories will be displayed<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_logo</td>
+<td style="vertical-align: top;">varchar(80) </td>
+<td style="vertical-align: top;">Logo<br>
+</td>
+<td style="vertical-align: top;">Logo or image associated with the category. It is displayed in the header of the lists.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_alphabarre</td>
+<td style="vertical-align: top;">varchar(255) </td>
+<td style="vertical-align: top;">Alphabet<br>
+</td>
+<td style="vertical-align: top;">List of letters or alphanumeric characters displayed at the head and tail of the list to facilitate searches.<br>
+A click on one of the characters selects the entries that begin with it.<br>
+Special characters that can be inserted in this list v:<br>
+<div style="margin-left: 40px;"><span style="font-weight: bold;">*</span>&nbsp;&nbsp; (asterisk) :&nbsp; Selects all entries<br>
+<span style="font-weight: bold;">#</span>&nbsp;&nbsp; (Hash mark): Selects entries that begin with a number<br>
+<span style="font-weight: bold;">|&nbsp;</span>&nbsp;&nbsp; (Vertical bar): Inserts a line break. Allows you to separate letters and numbers, for example.<br>
+</div>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_alphabarre_mode</td>
+<td style="vertical-align: top;">tinyint</td>
+<td style="vertical-align: top;">Display mode<br>
+</td>
+<td style="vertical-align: top;">yes: displays all characters in the bar, even those for which there are no entries.<br>
+no: displays only characters in the bar for which there are entries.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_upload_folder</td>
+<td style="vertical-align: top;">varchar(255)</td>
+<td style="vertical-align: top;">Files folder<br>
+</td>
+<td style="vertical-align: top;">Name of the folder in which the logo, images and files associated with the entries will be stored.<br>
+This is a subfolder of the "/uploads" folder of the site.<br>
+Important: This name must be unique.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_colors_set</td>
+<td style="vertical-align: top;">varchar(50) </td>
+<td style="vertical-align: top;">Color set<br>
+</td>
+<td style="vertical-align: top;">Allows you to select a predefined color set in the "JJD_Framework" framework<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_is_acronym</td>
+<td style="vertical-align: top;">tinyint</td>
+<td style="vertical-align: top;">Acronym<br>
+</td>
+<td style="vertical-align: top;">Defines whether the entry is an acronym.<br>
+If so, the first uppercase characters of each word in the short description will be bolded.<br>
+example:<br>
+<div style="margin-left: 40px;">Council of the Wise<br>
+</div>
+will become <br>
+<div style="margin-left: 40px;"><big><span style="font-weight: bold;">C</span></big>onseil <big><span style="font-weight: bold;">d</span></big>es <big><span style="font-weight: bold;">S</span></big>ages<br>
+</div>
+Characters in the short definition preceded by the "/" character will also be bolded<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_replace_arobase</td>
+<td style="vertical-align: top;">varchar(5) </td>
+<td style="vertical-align: top;"><br>
+</td>
+<td style="vertical-align: top;">String that replaces "@" in emails.<br>
+Example: [@]<br>
+email@domain.fr will be replaced by email[@]domain.fr and will block the display of the email application.<br>
+</td>
+</tr>
+
+<tr>
+<td style="vertical-align: top;">cat_pid</td>
+<td style="vertical-align: top;">int<br>
+</td>
+<td style="vertical-align: top;">unused<br>
+</td>
+<td style="vertical-align: top;">this field is scheduled to disappear in a future version<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_userpager</td>
+<td style="vertical-align: top;">tinyint</td>
+<td style="vertical-align: top;">Number of lines per page<br>
+</td>
+<td style="vertical-align: top;">Maximum number of lines displayed per page. It can be different for each category.<br>
+If zero, displays all entries in the category. To be used when there are few definitions in the category.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_br_after_term</td>
+<td style="vertical-align: top;">tinyint</td>
+<td style="vertical-align: top;">Line break<br>
+</td>
+<td style="vertical-align: top;">no: The name and the short definition will be on the same line<br>
+yes: the short description will be put on the line<br>
+example no: <br>
+<div style="margin-left: 40px;">CdS: council of the Wise<br>
+</div>
+example yes:<br>
+<div style="margin-left: 40px;">CdS<br>
+Council of the Wise<br>
+</div>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_show_terms_index</td> <td style="vertical-align: top;">tinyint</td> <td style="vertical-align: top;"><br> </td> <td style="vertical-align: top;">unused<br> </td> </tr> <tr> <td style="vertical-align: top;">cat_show_bin</td> <td style="vertical-align: top;"> SMALLINT</td> <td style="vertical-align: top;">binary field<br> </td> <td style="vertical-align: top;">Each bit of this field defines the fields to display and the particular options:<br> <div style="margin-left: 40px;">ID<br> Definition short<br>
+Magnify<br>
+Definition<br>
+Author<br>
+Image<br>
+Reference<br>
+Attached file<br>
+See also<br>
+Contact<br>
+Visitor counter<br>
+Creation date<br>
+Update date<br>
+Position at the top of the management buttons<br>
+Position at the bottom of the management buttons<br>
+</div>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_count_entries</td>
+<td style="vertical-align: top;">int</td>
+<td style="vertical-align: top;">Number of clicks<br>
+</td>
+<td style="vertical-align: top;">Number of definitions of the category.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_active</td>
+<td style="vertical-align: top;">tinyint</td>
+<td style="vertical-align: top;"><br>
+</td>
+<td style="vertical-align: top;">Overrides permissions.<br>
+yes: The category will be displayed on the user side according to the permissions granted.<br>
+no: The category will not be displayed on the user side regardless of the permissions.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_date_format</td>
+<td style="vertical-align: top;">varchar(30) </td>
+<td style="vertical-align: top;">Date format<br>
+</td>
+<td style="vertical-align: top;">Format of creation and update dates. day.<br>
+See the PHP documentation for more information.<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_date_creation</td>
+<td style="vertical-align: top;">datetime(6) </td>
+<td style="vertical-align: top;">Creation date<br>
+</td>
+<td style="vertical-align: top;">This date is automatically updated when the category is created<br>
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;">cat_date_update</td>
+<td style="vertical-align: top;">datetime(6) </td>
+<td style="vertical-align: top;">Update date<br>
+</td>
+<td style="vertical-align: top;">This date is updated each time the category is modified.<br>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+<br>
+<br>
+
+</body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

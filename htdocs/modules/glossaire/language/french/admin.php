@@ -222,9 +222,6 @@ define('_AM_GLOSSAIRE_PERM_GLOBAL_AC', "Permissions globales");
 define('_AM_GLOSSAIRE_PERM_VIEW_CATS', "Voir les catégories");
 define('_AM_GLOSSAIRE_PERM_APPROVE_ENTRIES', "Approuver les entrées");
 define('_AM_GLOSSAIRE_PERM_SUBMIT_ENTRIES', "Soumettre des entrées");
-// define('_AM_GLOSSAIRE_PERM_ADD_ENTRIES', "Ajouter des entrées");
-// define('_AM_GLOSSAIRE_PERM_EDIT_ENTRIES', "Editer des entrées");
-// define('_AM_GLOSSAIRE_PERM_DELETE_ENTRIES', "Suprimer des entrèes");
 define('_AM_GLOSSAIRE_PERM_DESC', "Gestion des permissions");
 define('_AM_GLOSSAIRE_NO_PERMISSIONS_SET', "Vous n'avez pas les permissions pour accéder à cette fonctionalité");
 

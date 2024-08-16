@@ -249,7 +249,8 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
 	public function getAllAllowed($short_permtype = 'view', $criteria = null, $start = 0, $limit = 0, $sort='cat_weight,cat_name,cat_id', $order="ASC",$zzz=false)
     {
         $categoriesAll = $this->getAllCatAllowed($short_permtype, $criteria, $sort, $order);
-
+        $catArr = [];
+        
         foreach (\array_keys($categoriesAll) as $i) {
             //$catArr[] = $categoriesAll[$i]->getValuesCategories();
             $catArr[$categoriesAll[$i]->getVar('cat_id')] = $categoriesAll[$i]->getValuesCategories();

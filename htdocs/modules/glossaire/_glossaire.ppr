@@ -146,7 +146,7 @@ _glossaire
 			config\icons.php
 			config\index.php
 			config\paths.php
-		-docs
+		+docs
 			docs\changelog.txt
 			docs\credits.txt
 			docs\index.php
@@ -248,22 +248,38 @@ _glossaire
 		readme.txt
 		xoops_version.php
 [Open project files]
-0=admin\permissions.php
-1=class\Categories.php
-2=admin\categories-save.php
-3=xoops_version.php
+0=language\english\help\category.html
+1=language\english\help\entries.html
+2=language\english\help\export.html
+3=language\english\help\import.html
+4=xoops_version.php
+5=..\protector\language\french\help\help.tpl
+6=language\french\help\help.html
+7=language\english\help\help.html
 [Selected Project Files]
 Main=
-Selected=xoops_version.php
-[admin\permissions.php]
-TopLine=59
-Caret=37,85
-[class\Categories.php]
+Selected=language\english\help\help.html
+[language\english\help\category.html]
+TopLine=172
+Caret=15,209
+[language\english\help\entries.html]
+TopLine=88
+Caret=1,143
+[language\english\help\export.html]
 TopLine=1
-Caret=1,319
-[admin\categories-save.php]
+Caret=15,44
+[language\english\help\import.html]
 TopLine=1
-Caret=3,31
+Caret=43,32
 [xoops_version.php]
-TopLine=17
-Caret=41,47
+TopLine=145
+Caret=65,168
+[..\protector\language\french\help\help.tpl]
+TopLine=1
+Caret=195,2
+[language\french\help\help.html]
+TopLine=1
+Caret=205,6
+[language\english\help\help.html]
+TopLine=1
+Caret=183,2

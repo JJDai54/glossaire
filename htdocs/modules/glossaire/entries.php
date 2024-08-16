@@ -66,15 +66,16 @@ $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_INDEX, 'link' => $page2redirect];
 // Permissions
 $GLOBALS['xoopsTpl']->assign('showItem', $entId > 0);
 
-//------------------------------------------------------------
-//           chargement des permissions
-//------------------------------------------------------------
+        //------------------------------------------------------------
+        //           chargement des permissions
+        //------------------------------------------------------------
         $utility = new \XoopsModules\Glossaire\Utility();  
         $catList = $categoriesHandler->getAllAllowed();
         if (count($catList) == 0) {
-            require __DIR__ . '/footer.php';
+            redirect_header(XOOPS_URL,5,_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
             exit;
         }
+       
         if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
         $catObj = $categoriesHandler->get($catIdSelect);
         $catArr = $catObj->getValuesCategories();
