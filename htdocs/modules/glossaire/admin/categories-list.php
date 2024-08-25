@@ -27,7 +27,7 @@ use Xmf\Request;
 use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
-//use JJD;
+//use JANUS;
 
 
     // Define Stylesheet

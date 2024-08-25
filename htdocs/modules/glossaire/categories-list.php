@@ -53,7 +53,7 @@ $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_INDEX, 'link' => 'index.php'];
 $perms = $categoriesHandler->getPermissions();
 // $GLOBALS['xoopsTpl']->assign('permEdit', $permEdit);
 // $GLOBALS['xoopsTpl']->assign('showItem', $catId > 0);
-        \JJD\load_css();
+        \JANUS\load_css();
         // Breadcrumbs
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_CATEGORIES_LIST];
         $crCategories = new \CriteriaCompo();

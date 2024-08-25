@@ -180,23 +180,25 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
  }
 
 	/**
-     * Fonction qui liste les entrie qui respectent la permission demandée
+     * Fonction qui liste les cats qui respectent la permission demandée
      * @param string   $permtype	Type de permission
      * @return array   $cat		    Liste des catégorie qui correspondent à la permission
      */
-	public function getPermissions($short_permtype = 'view')
-    {$moduleName = 'glossaire';
-        $permtype = sprintf("%s_%s_categories", $moduleName, $short_permtype);
-        
-        global $xoopsUser;
-        $tPerm = array();
-        $glossaireHelper = Helper::getHelper($moduleName);
-        $moduleHandler = $glossaireHelper->getModule();
-        $groups = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
-        $gpermHandler = xoops_getHandler('groupperm');
-        $tPerm = $gpermHandler->getItemIds($permtype, $groups, $moduleHandler->getVar('mid'));
-//echoArray($tPerm);
-        return $tPerm;
+	public function getPermissions($short_permtype = 'view_cats')
+    {global $clPerms;
+        return $clPerms->getIdsPermissions($short_permtype);
+//     $moduleName = 'glossaire';
+//         $permtype = sprintf("%s_%s_categories", $moduleName, $short_permtype);
+//         
+//         global $xoopsUser;
+//         $tPerm = array();
+//         $glossaireHelper = Helper::getHelper($moduleName);
+//         $moduleHandler = $glossaireHelper->getModule();
+//         $groups = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
+//         $gpermHandler = xoops_getHandler('groupperm');
+//         $tPerm = $gpermHandler->getItemIds($permtype, $groups, $moduleHandler->getVar('mid'));
+// //echoArray($tPerm);
+//         return $tPerm;
     }
 	/**
      * getStatus renvoie les tatus qui défini le type d'accès aau formulaire des sefinition
@@ -228,7 +230,8 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
     
 	public function getAllCatAllowed($short_permtype, $criteria, $sort='cat_weight,cat_name,cat_id', $order="ASC")
     {global $clPerms;
-     if (!$clPerms) $clPerms = new \jjdPermissions('glossaire');
+    //include_once (XOOPS_ROOT_PATH . "/Frameworks/janus/class/Permissions.php");
+     if (!$clPerms) $clPerms = new \JanusPermissions('glossaire');
     //echo "<hr>getAllCatAllowed : $short_permtype = {$short_permtype}<hr>";
         $clPerms->addPermissions($criteria, 'view_cats', 'cat_id');
         
@@ -240,13 +243,13 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         return $allEnrAllowed;
     }
 
-	public function getIdsAllowed($short_permtype = 'view')
+	public function getIdsAllowed($short_permtype = 'view_cats')
     {
         $tPerm = $this->getPermissions($short_permtype);
         return join(',', $tPerm);
     }
     
-	public function getAllAllowed($short_permtype = 'view', $criteria = null, $start = 0, $limit = 0, $sort='cat_weight,cat_name,cat_id', $order="ASC",$zzz=false)
+	public function getAllAllowed($short_permtype = 'view_cats', $criteria = null, $start = 0, $limit = 0, $sort='cat_weight,cat_name,cat_id', $order="ASC",$zzz=false)
     {
         $categoriesAll = $this->getAllCatAllowed($short_permtype, $criteria, $sort, $order);
         $catArr = [];
@@ -292,9 +295,9 @@ public function getNewCategory($name, &$categoriesObj = null){
 global $utility;
     $categoriesObj = $this->create();
 	$categoriesObj->setVar('cat_name', $name);
-	$categoriesObj->setVar('cat_upload_folder', \JJD\sanityseNameForFile($name));
+	$categoriesObj->setVar('cat_upload_folder', \JANUS\sanityseNameForFile($name));
 	$categoriesObj->setVar('cat_weight',  $this->getMax('cat_weight')+10);
-	$categoriesObj->setVar('cat_date_creation', \JJD\getSqlDate());
+	$categoriesObj->setVar('cat_date_creation', \JANUS\getSqlDate());
 
     if ($this->insert($categoriesObj)) {
         $newCatId = $categoriesObj->getNewInsertedIdCategories();

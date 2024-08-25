@@ -28,7 +28,7 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
 //use colorSet AS colorSet;
-use JJD AS JJD;
+use JANUS AS JANUS;
 
 $GLOBALS['xoopsOption']['template_main'] = 'glossaire_entries.tpl';
 require __DIR__ . '/header.php';
@@ -121,7 +121,7 @@ switch (strtolower($op)) {
         }else{
             $form = $entriesObj->getFormEntriesLight(false, true);
         }
-        \JJD\load_css();
+        \JANUS\load_css();
         $GLOBALS['xoopsTpl']->assign('colors_set', $catObj->getVar('cat_colors_set'));
         $GLOBALS['xoopsTpl']->assign('cat_name', $catObj->getVar('cat_name'));
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
@@ -149,7 +149,7 @@ switch (strtolower($op)) {
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         $GLOBALS['xoopsTpl']->assign('colors_set', $catObj->getVar('cat_colors_set'));
         $GLOBALS['xoopsTpl']->assign('cat_name', $catObj->getVar('cat_name'));
-        \JJD\load_css();
+        \JANUS\load_css();
         break;
         
     case 'clone':
@@ -170,7 +170,7 @@ switch (strtolower($op)) {
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         $GLOBALS['xoopsTpl']->assign('colors_set', $catObj->getVar('cat_colors_set'));
         $GLOBALS['xoopsTpl']->assign('cat_name', $catObj->getVar('cat_name'));
-        \JJD\load_css();
+        \JANUS\load_css();
         break;
         
     case 'delete':

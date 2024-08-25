@@ -40,8 +40,9 @@
 
 .gls_ent_shortdef{
     font-style: italic;
-    padding : 15px 25px 0px 0px;
-    font-weight:normal;
+    padding : 15px 25px 0px 25px;
+    font-weight:bold;
+    font-color:red;
 }
 
 .gls_ent_definition{  padding:0px 50px 0px 50px;

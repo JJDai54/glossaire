@@ -77,10 +77,10 @@ global $xoopsDB, $categoriesHandler;
     $catObj->setVar('cat_description', $catLexArr['description']);
     $catObj->setVar('cat_count_entries', $catLexArr['total']);
     $catObj->setVar('cat_', $catLexArr['weight']);
-	$catObj->setVar('cat_upload_folder', \JJD\sanityseNameForFile($catLexArr['name']) . $suffix);
+	$catObj->setVar('cat_upload_folder', \JANUS\sanityseNameForFile($catLexArr['name']) . $suffix);
         
-	$catObj->setVar('cat_date_creation', \JJD\getSqlDate());
-	$catObj->setVar('cat_date_update', \JJD\getSqlDate());
+	$catObj->setVar('cat_date_creation', \JANUS\getSqlDate());
+	$catObj->setVar('cat_date_update', \JANUS\getSqlDate());
     
 
     if ($categoriesHandler->insert($catObj)) {
@@ -100,8 +100,8 @@ global $xoopsDB, $categoriesHandler;
 
 $entUid = $GLOBALS['xoopsUser']->uid();
 $creator = \XoopsUser::getUnameFromId($entUid);
-$date_creation = \JJD\getSqlDate();
-$date_update = \JJD\getSqlDate();
+$date_creation = \JANUS\getSqlDate();
+$date_update = \JANUS\getSqlDate();
 
 $sql = "INSERT INTO " . $xoopsDB->prefix('glossaire_entries')
 . "(ent_cat_id,ent_term,ent_initiale,ent_definition,ent_creator,ent_urls,ent_counter,ent_is_acronym,ent_status,ent_date_creation,ent_date_update) "
@@ -148,7 +148,7 @@ switch($op) {
                       $fullName =  GLOSSAIRE_UPLOAD_IMPORT_PATH . "/". $savedFilename;
                       $destPath = GLOSSAIRE_UPLOAD_IMPORT_PATH . '/' . $fileName; //"/files_new_glossaire";
                       //echo "<br>===>{$savedFilename}<br>===>{$fullName}<br>===>{$destPath}<br>";
-                      \JJD\unZipFile($fullName, $destPath);
+                      \JANUS\unZipFile($fullName, $destPath);
                       /*
                       $newQuizId = $quizUtility::loadAsNewData($destPath, $catId);
                       */
@@ -173,7 +173,7 @@ switch($op) {
             $h = strrpos($fileToImport, '.');
             $fileName = substr($fileToImport, 0, $h);
             $destPath = GLOSSAIRE_UPLOAD_IMPORT_PATH . '/' . $fileName; //"/files_new_glossaire";
-            \JJD\unZipFile($fullName, $destPath);
+            \JANUS\unZipFile($fullName, $destPath);
             $catIdSelect = import_glossaire($destPath, $catIdSelect);
             //exit ("catIdSelect = {$catIdSelect}<br>{$fileName}<br>{$destPath}");
 

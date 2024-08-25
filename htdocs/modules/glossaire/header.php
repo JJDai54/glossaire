@@ -28,9 +28,9 @@ require_once __DIR__ . '/include/common.php';
 //require __DIR__ . '/include/functions-colors-set.php';
 
 xoops_load('XoopsFormLoader');
-require_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
-\JJD\loadXFormArr(['LineBreak','img','number','checkboxbin']);
-$clPerms = new \jjdPermissions();
+require_once (XOOPS_ROOT_PATH . "/Frameworks/janus/load.php");
+\JANUS\loadXFormArr(['LineBreak','img','number','checkboxbin']);
+$clPerms = new \JanusPermissions('glossaire');
 
 $moduleDirName = \basename(__DIR__);
 // Breadcrumbs

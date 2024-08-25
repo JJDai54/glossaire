@@ -57,7 +57,7 @@ use XoopsModules\Glossaire\Common;
         $stat = $utility->cleanCatFolders($catIdSelect, $params['fldPath'], $params['fldName'], $params['folder'], 0, 0);
         if($stat[0] > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
           $caption = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_IMAGES, $stat[1], $stat[2]);
-          $adminObject->addItemButton($caption, \JJD\array2urlParams($params, '', 'entries.php?'), 'update');
+          $adminObject->addItemButton($caption, \JANUS\array2urlParams($params, '', 'entries.php?'), 'update');
         }
         
         $params = array('op'          => 'cleanCatFolders',
@@ -68,7 +68,7 @@ use XoopsModules\Glossaire\Common;
         $stat = $utility->cleanCatFolders($catIdSelect, $params['fldPath'], $params['fldName'], $params['folder'], 0, 0);
         if($stat[0] > 0 ){ //il il i a des image a supprimée ou des definition a nettoyer
           $caption = sprintf(_AM_GLOSSAIRE_CLEAN_ENTRIES_FILES, $stat[1], $stat[2]);
-          $adminObject->addItemButton($caption, \JJD\array2urlParams($params, '', 'entries.php?'), 'update');
+          $adminObject->addItemButton($caption, \JANUS\array2urlParams($params, '', 'entries.php?'), 'update');
         }
         
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));

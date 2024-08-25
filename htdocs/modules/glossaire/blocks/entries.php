@@ -27,8 +27,8 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Helper;
 use XoopsModules\Glossaire\Constants;
 
-include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
-\JJD\loadAllXForms();
+include_once (XOOPS_ROOT_PATH . "/Frameworks/janus/load.php");
+\JANUS\loadAllXForms();
 require_once \dirname(__DIR__) . '/include/common.php';
 
 /**
@@ -131,7 +131,7 @@ function b_glossaire_entries_show($options)
 
 //echo "<hr>===>block : <pre>". print_r($block, true) ."</pre><hr>";
 
-\JJD\load_css('', false);	
+\JANUS\load_css('', false);	
     return $block;
 
 }
@@ -148,7 +148,7 @@ function b_glossaire_entries_edit($options)
 	$form->setExtra('enctype="multipart/form-data"');
             
     //--------------------------------------------
-    $filterTray = new \XoopsFormElementTray(_CO_JJD_NB_QUIZ_2_list, '');    
+    $filterTray = new \XoopsFormElementTray(_CO_JANUS_NB_QUIZ_2_list, '');    
     $index = 0;    //last, random, ... //mettre les formHidden en dernier
     $inpFilter = new \XoopsFormHidden("options[{$index}]", $options[$index]); 
     $filterTray->addElement($inpFilter);
@@ -162,22 +162,22 @@ function b_glossaire_entries_edit($options)
     $form->addElement($filterTray);
     //--------------------------------------------
     $index++;    
-    $inpLgItems = new \XoopsFormNumber(_CO_JJD_NAME_LENGTH, "options[{$index}]", 5, 5, $options[$index]);
+    $inpLgItems = new \XoopsFormNumber(_CO_JANUS_NAME_LENGTH, "options[{$index}]", 5, 5, $options[$index]);
     $inpLgItems->setMinMax(25, 120);
     $form->addElement($inpLgItems);
 
     $index++;   
     $tCat = explode(',', $options[$index]); 
 	$catAll = b_glossaire_get_AllCategories();
-    $inpCat = new \XoopsFormSelect(_CO_JJD_CATEGORIES, "options[{$index}]", $tCat, $size = 5, true);
-    $inpCat->addOption(0, _CO_JJD_ALL_CAT);
+    $inpCat = new \XoopsFormSelect(_CO_JANUS_CATEGORIES, "options[{$index}]", $tCat, $size = 5, true);
+    $inpCat->addOption(0, _CO_JANUS_ALL_CAT);
 	foreach(array_keys($catAll) as $i) {
         $inpCat->addOption($catAll[$i]->getVar('cat_id'), $catAll[$i]->getVar('cat_name'));
 	}
     $form->addElement($inpCat);
     
     $index++;    
-    $inpCaption = new \XoopsFormText(_CO_JJD_BLOCK_TITLE ,  "options[{$index}]", 120, 120, $options[$index]);
+    $inpCaption = new \XoopsFormText(_CO_JANUS_BLOCK_TITLE ,  "options[{$index}]", 120, 120, $options[$index]);
     $form->addElement($inpCaption);
 
     return $form->render();

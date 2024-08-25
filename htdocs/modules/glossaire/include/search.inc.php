@@ -24,7 +24,10 @@
  */
 
 use XoopsModules\Glossaire;
+include_once (XOOPS_ROOT_PATH . "/Frameworks/janus/class/Permissions.php");
 
+//include_once (XOOPS_ROOT_PATH . "/Frameworks/janus/load.php");
+//include_once (XOOPS_ROOT_PATH . "/modules/glossaire/header.php");
 /**
  * glossaire_build_criteria_words construit les criteres de recherche sur le term et la définition
  * la fonction peut être appelée par la fonction de rechecher globale ou par la fonction du module
@@ -57,8 +60,9 @@ function glossaire_build_criteria_words($queryarray, $andor = '')
 
 
     $crKeywords = new \CriteriaCompo();
-        
+//echo "<hr><pre>" . print_r($queryarray, true) . "</pre><hr>";        
         for ($i = 0; $i  <  $elementCount; $i++) {
+            if(!$queryarray[$i]) continue;
             $crKeyword = new \CriteriaCompo();
             $crKeyword->add(new \Criteria('ent_term', "%{$queryarray[$i]}%",'LIKE'),'OR');
             $crKeyword->add(new \Criteria('ent_shortdef', "%{$queryarray[$i]}%",'LIKE'),'OR');
@@ -86,15 +90,21 @@ function glossaire_build_criteria_words($queryarray, $andor = '')
  */
 function glossaire_search($queryarray, $andor, $limit, $offset, $userid)
 {
+global $clPerms;
 
-
+if (!$clPerms) $clPerms = new \JanusPermissions('glossaire');
     $ret = [];
+    $clPerms->addPermissions($criteria,'view_cats', 'cat_id');
     $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
     $categoriesHandler = $glossaireHelper->getHandler('Categories');
+    $catAllowed = $categoriesHandler->getAllCategories($criteria);
+
+
     //$catIdsAllowes = $categoriesHandler->getIdsAllowed();
-	$catAllowed = $categoriesHandler->getListAllowed('view');
-    $catIdsAllowes = implode(',', array_keys($catAllowed));
-        
+//	$catAllowed = $categoriesHandler->getAllAllowed('view_cats');
+   // $catIdsAllowes = implode(',', array_keys($catAllowed));
+    $catIdsAllowes = $categoriesHandler->getIdsAllowed('view_cats');
+
     // search in table entries
     // search keywords
     $elementCount = 0;
@@ -102,7 +112,6 @@ function glossaire_search($queryarray, $andor, $limit, $offset, $userid)
     if (\is_array($queryarray)) {
         $elementCount = \count($queryarray);
     }
-/*
     if ($elementCount > 0) {
         $crKeywords = new \CriteriaCompo();
         
@@ -118,6 +127,7 @@ function glossaire_search($queryarray, $andor, $limit, $offset, $userid)
             
         }
     }
+/*
 */
     $crKeywords = glossaire_build_criteria_words($queryarray, $andor, $catIdSelect=null);
     
@@ -166,7 +176,7 @@ function glossaire_search($queryarray, $andor, $limit, $offset, $userid)
           $ret[] = [
               'image'  => 'assets/icons/16/detail.png',
               'link'   => sprintf($catLink, $catId),
-              'title'  => sprintf($catTitle, $catId, $catAllowed[$catId], "eeee") ,
+              'title'  => sprintf($catTitle, $catId, $catAllowed[$catId]->getVar('cat_name')) ,
               'time'   => ''
           ];
           $cuttentId = $catId;

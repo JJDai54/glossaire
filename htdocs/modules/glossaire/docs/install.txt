@@ -1,8 +1,8 @@
 Lisez moi en premier
 ====================
 
-Copier tout d'abord "JJD-Frameworks"  dans le dossier "Frameworks":
-https://github.com/JJDai54/JJD-Framework
+Copier tout d'abord "janus"  dans le dossier "Frameworks":
+https://github.com/JJDai54/janus
 
 L'utilisation de "highslide" dans le dossier "Frameworks" est recommandé (version 5.0.0)
 Copier dans le dossier "Frameworks" la librairie "highslide" disponible ici:
@@ -18,8 +18,8 @@ Dans le dossier "glossaire/testdata/french" il y a deux archives pour tester les
 Read Me First
 =============
 
-First copy "JJD-Frameworks" into the "Frameworks" folder:
-https://github.com/JJDai54/JJD-Framework
+First copy "janus" into the "Frameworks" folder:
+https://github.com/JJDai54/janus
 
 The use of "highslide" in the "Frameworks" folder is recommended (version 5.0.0)
 Copy into the "Frameworks" folder the "highslide" library available here:

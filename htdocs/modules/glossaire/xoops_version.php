@@ -26,9 +26,11 @@ declare(strict_types=1);
 
 function glossaire_getBreakLine($name){
 // ------------------- Images ------------------- //
+$cstName = '_MI_GLOSSAIRE_BREAK_' . strtoupper($name);
+define($cstName, $name);
 $tBreakLine = [
     'name'        => 'gls_break_' . strtolower($name),
-    'title'       => '\_MI_GLOSSAIRE_BREAK_' . strtoupper($name),
+    'title'       => $cstName,
     'description' => '', //\_MI_GLOSSAIRE_BREAK_' . strtoupper($name) . '_DESC',
     'formtype'    => 'line_break',
     'valuetype'   => 'textbox',
@@ -43,9 +45,9 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 // ------------------- Informations ------------------- //
 $modversion = [
     'name'                => \_MI_GLOSSAIRE_NAME,
-    'version'             => 1.4,
-    'release'             => '2024/08/15',
-    'module_status'       => 'Beta 4',
+    'version'             => 1.5,
+    'release'             => '2024/08/25',
+    'module_status'       => 'Beta 1',
     'description'         => \_MI_GLOSSAIRE_DESC,
     'author'              => 'Jean-Jacques Delalandre',
     'author_mail'         => 'jjdelalandre@orange.fr',

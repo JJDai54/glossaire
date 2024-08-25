@@ -27,7 +27,7 @@ use Xmf\Request;
 use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
-use JJD AS JJD;
+use JANUS AS JANUS;
 
 //         include_once "entries-list.php";
 //         break;
@@ -35,7 +35,7 @@ use JJD AS JJD;
         $xoBreadcrumbs[] = ['title' => \_MA_GLOSSAIRE_ENTRIES_LIST];
         $xoTheme->addScript(XOOPS_URL . '/modules/glossaire/assets/js/scroll.js');        
 //Utility::include_highslide(array('allowMultipleInstances'=>false));        
-        \JJD\include_highslide(array('allowMultipleInstances'=>false));  
+        \JANUS\include_highslide(array('allowMultipleInstances'=>false));  
         //highslide::include_files(array('allowMultipleInstances'=>false));    
         // --------------------------------------------
         // categories avec une listbox
@@ -50,7 +50,7 @@ use JJD AS JJD;
         */
         // --------------------------------------------
         // categories avec des onglets
-        \JJD\load_css();
+        \JANUS\load_css();
         $GLOBALS['xoopsTpl']->assign('catPerms', $catPerms);
         //echoArray($catPerms, "entries_list");
         //----------------------------------------------------------

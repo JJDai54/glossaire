@@ -27,7 +27,7 @@ use Xmf\Request;
 use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
-//use JJD;
+//use JANUS;
 
 require_once __DIR__ . '/header.php';
 // Get all request values
@@ -88,6 +88,27 @@ switch (strtolower($op)) {
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
         break;
         
+    case 'init_css':
+        $ok = Request::getInt('ok', 0);
+        $categoriesObj = $categoriesHandler->get($catId);
+        $catName = $categoriesObj->getVar('cat_name');
+        if($ok == 0){
+            $templateMain = 'glossaire_admin_categories.tpl';
+            $xoopsconfirm = new XoopsConfirm(
+                ['ok' => 1, 'cat_id' => $catId, 'start' => $start, 'limit' => $limit, 'op' => 'init_css'],
+                $_SERVER['REQUEST_URI'], 
+                \sprintf(\_AM_GLOSSAIRE_FORM_SURE_INIT_CSS, $catId, $catName));
+            $form = $xoopsconfirm->getFormXoopsConfirm();
+            $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        }else{
+
+          //copie du modele
+          $categoriesObj->copy_css_category_modele(true);
+          $msg = sprintf(_AM_GLOSSAIRE_FORM_INIT_CSS_OK, $catId, $catName);
+          redirect_header("categories.php?op=edit_css&cat_id={$catId}&start={$start}&limit={$limit}" , 3, $msg);    
+        }
+        break;
+
     case 'edit_css':
         $templateMain = 'glossaire_admin_categories_css.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
@@ -100,6 +121,7 @@ switch (strtolower($op)) {
         $form = $categoriesObj->getFormCategoriesCss();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());    
         break;
+        
         
     case 'save_css':
         //echoArray($_POST);
@@ -135,7 +157,7 @@ switch (strtolower($op)) {
                 $GLOBALS['xoopsTpl']->assign('error', $categoriesObj->getHtmlErrors());
             }
         } else {
-            $xoopsconfirm = new Common\XoopsConfirm(
+            $xoopsconfirm = new XoopsConfirm(
                 ['ok' => 1, 'cat_id' => $catId, 'start' => $start, 'limit' => $limit, 'op' => 'delete'],
                 $_SERVER['REQUEST_URI'],
                 \sprintf(\_AM_GLOSSAIRE_FORM_SURE_DELETE, $categoriesObj->getVar('cat_id'), $categoriesObj->getVar('cat_name')));

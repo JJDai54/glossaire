@@ -30,7 +30,7 @@ $clPerms->checkAndRedirect('global_ac', GLOSSAIRE_PERM_CLONE,'GLOSSAIRE_PERM_CLO
 $op = Request::getString('op', 'list');
 $clone = Request::getString('clone', '');
 
-include_once (JJD_PATH . "/class/CloneModule.php");
+include_once (JANUS_PATH . "/class/CloneModule.php");
 $clCloneModule = new CloneModule($glossaireHelper->getModule());
 
 

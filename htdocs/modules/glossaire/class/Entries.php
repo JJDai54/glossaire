@@ -65,7 +65,7 @@ class Entries extends \XoopsObject
     {
         $this->initVar('ent_id', \XOBJ_DTYPE_INT);
         $this->initVar('ent_cat_id', \XOBJ_DTYPE_INT);
-//        $this->initVar('ent_uid', \XOBJ_DTYPE_INT);
+        $this->initVar('ent_submitter', \XOBJ_DTYPE_INT);
         $this->initVar('ent_creator', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_term', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_initiale', \XOBJ_DTYPE_TXTBOX);
@@ -170,8 +170,8 @@ class Entries extends \XoopsObject
         
         // Form Select User entUid
         //en cas d'import d'une autre base le uid n'a pas de sens
-        //$entUid = $this->isNew() ? $GLOBALS['xoopsUser']->uid() : $this->getVar('ent_uid');
-        //$form->addElement(new \XoopsFormSelectUser(\_AM_GLOSSAIRE_ENTRY_UID, 'ent_uid', false, $entUid));
+        //$entUid = $this->isNew() ? $GLOBALS['xoopsUser']->ent_submitter() : $this->getVar('ent_submitter');
+        //$form->addElement(new \XoopsFormSelectUser(\_AM_GLOSSAIRE_ENTRY_UID, 'ent_submitter', false, $entUid));
         // Form Text entTerm
         $libelle = \_AM_GLOSSAIRE_ENTRY_TERM . (($catArray['show_bin'][GLOSSAIRE_ENT_ID]) ? " - [#{$this->getVar('ent_id')}]": '');
         $form->addElement(new \XoopsFormText($libelle, 'ent_term', 50, 255, $this->getVar('ent_term')), true);
@@ -524,7 +524,7 @@ class Entries extends \XoopsObject
         $ret['id']               = $this->getVar('ent_id');
         $ret['cat_id']           = $this->getVar('ent_cat_id');
         $ret['cat_name']         = $categoriesObj->getVar('cat_name');
-//        $ret['uid']              = \XoopsUser::getUnameFromId($this->getVar('ent_uid'));
+        $ret['submitter']        = \XoopsUser::getUnameFromId($this->getVar('ent_submitter'));
         $ret['creator']          = $this->getVar('ent_creator');
         $ret['term']             = $this->getVar('ent_term');
         $ret['initiale']         = $this->getVar('ent_initiale');
@@ -589,8 +589,8 @@ class Entries extends \XoopsObject
                 $ret['email']         = '';
         }          
         
-		$ret['date_creation']          = \JJD\getDateSql2Str($this->getVar('ent_date_creation'), $categoriesObj->getVar('cat_date_format'));
-		$ret['date_update']            = \JJD\getDateSql2Str($this->getVar('ent_date_update'), $categoriesObj->getVar('cat_date_format'));
+		$ret['date_creation']          = \JANUS\getDateSql2Str($this->getVar('ent_date_creation'), $categoriesObj->getVar('cat_date_format'));
+		$ret['date_update']            = \JANUS\getDateSql2Str($this->getVar('ent_date_update'), $categoriesObj->getVar('cat_date_format'));
         
         $ret['counter']          = $this->getVar('ent_counter');
         $ret['status']           = $this->getVar('ent_status');

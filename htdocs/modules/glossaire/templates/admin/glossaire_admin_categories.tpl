@@ -19,6 +19,7 @@
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_ENTRIES}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_DATE_CREATION}></th>
                 <th class="center"><{$smarty.const._AM_GLOSSAIRE_CATEGORY_DATE_UPDATE}></th>
+                <th class="center width5"><{$smarty.const._AM_GLOSSAIRE_STYLES_GLS_STYLE_SHEET}></th>
                 <th class="center width5"><{$smarty.const._AM_GLOSSAIRE_FORM_ACTIONS}></th>
             </tr>
         </thead>
@@ -95,12 +96,18 @@
                 <td class="center"><{$category.count_entries}></td>
                 <td class="center"><{$category.date_creation}></td>
                 <td class="center"><{$category.date_update}></td>
+                <td class="center">
+                    <div class="glossaire-btn-actions">
+                    <a href="categories.php?op=edit_css&cat_id=<{$category.id}>" title="<{$smarty.const._AM_GLOSSAIRE_EDIT_CSS}>"><img src="<{xoModuleIcons16}>/attach.png" alt="<{$smarty.const._AM_GLOSSAIRE_EDIT_CSS}> categories" ></a>               
+                    <a href="categories.php?op=init_css&cat_id=<{$category.id}>" title="<{$smarty.const._AM_GLOSSAIRE_STYLES_INIT_STYLE_SHEET}>"><img src="<{xoModuleIcons16}>/editpaste.png" alt="<{$smarty.const._AM_GLOSSAIRE_STYLES_INIT_STYLE_SHEET}> categories" ></a>
+                    </div>
+                </td>
+           
                 <td class="center  width10 ">
                     <div class="glossaire-btn-actions">
                     <a href="entries.php?op=list&catIdSelect=<{$category.id}>&tart=0&limit=<{$limit}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16}>/inserttable.png" alt="<{$smarty.const._AM_GLOSSAIRE_ENTRIES}>" ></a>                
-                    <a href="categories.php?op=edit&amp;cat_id=<{$category.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16}>/edit.png" alt="<{$smarty.const._EDIT}> categories" ></a>
-                    <a href="categories.php?op=clone&amp;cat_id_source=<{$category.id}>" title="<{$smarty.const._CLONE}>"><img src="<{xoModuleIcons16}>/editcopy.png" alt="<{$smarty.const._CLONE}> categories" ></a>
-                    <a href="categories.php?op=edit_css&amp;cat_id=<{$category.id}>" title="<{$smarty.const._AM_GLOSSAIRE_EDIT_CSS}>"><img src="<{xoModuleIcons16}>/attach.png" alt="<{$smarty.const._AM_GLOSSAIRE_EDIT_CSS}> categories" ></a>
+                    <a href="categories.php?op=edit&cat_id=<{$category.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>" title="<{$smarty.const._EDIT}>"><img src="<{xoModuleIcons16}>/edit.png" alt="<{$smarty.const._EDIT}> categories" ></a>
+                    <a href="categories.php?op=clone&cat_id_source=<{$category.id}>" title="<{$smarty.const._CLONE}>"><img src="<{xoModuleIcons16}>/editcopy.png" alt="<{$smarty.const._CLONE}> categories" ></a>
                     <a href="categories.php?op=delete&amp;cat_id=<{$category.id}>" title="<{$smarty.const._DELETE}>"><img src="<{xoModuleIcons16}>/delete.png" alt="<{$smarty.const._DELETE}> categories" ></a>
                     </div>
                 </td>

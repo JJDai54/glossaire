@@ -27,7 +27,7 @@ use Xmf\Request;
 use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
-//use JJD;
+//use JANUS;
 //echoArray("gp", "", true);
     $templateMain = 'glossaire_admin_categories.tpl';
     // Security Check
@@ -38,16 +38,16 @@ use XoopsModules\Glossaire\Common;
         $categoriesObj = $categoriesHandler->get($catId);
     } else {
         $categoriesObj = $categoriesHandler->create();
-		$categoriesObj->setVar('cat_date_creation', \JJD\getSqlDate());
+		$categoriesObj->setVar('cat_date_creation', \JANUS\getSqlDate());
 }
-//            echo "<hr>Date : " .  \JJD\getSqlDate(). "<hr>";exit;
+//            echo "<hr>Date : " .  \JANUS\getSqlDate(). "<hr>";exit;
 
     // Set Vars
     $uploaderErrors = '';
     $categoriesObj->setVar('cat_name', Request::getString('cat_name', ''));
     $categoriesObj->setVar('cat_description', Request::getText('cat_description', ''));
     $categoriesObj->setVar('cat_weight', Request::getInt('cat_weight', 0));
-    $categoriesObj->setVar('cat_date_update', \JJD\getSqlDate());
+    $categoriesObj->setVar('cat_date_update', \JANUS\getSqlDate());
     $categoriesObj->setVar('cat_active', Request::getInt('cat_active', 0));
 
 
@@ -57,10 +57,10 @@ use XoopsModules\Glossaire\Common;
     $newImgFolder = Request::getString('cat_upload_folder', '');
 
     if ($newImgFolder == ''){
-        $newImgFolder = \JJD\sanityseNameForFile(Request::getString('cat_name', ''));
+        $newImgFolder = \JANUS\sanityseNameForFile(Request::getString('cat_name', ''));
         $categoriesObj->setVar('cat_upload_folder', $newImgFolder);
     }elseif($newImgFolder != $oldImgFolder){
-        $newImgFolder = \JJD\sanityseNameForFile($newImgFolder);
+        $newImgFolder = \JANUS\sanityseNameForFile($newImgFolder);
         $categoriesObj->setVar('cat_upload_folder', $newImgFolder);
     }else{
         $categoriesObj->setVar('cat_upload_folder', $oldImgFolder);

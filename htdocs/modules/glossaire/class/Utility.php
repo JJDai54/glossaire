@@ -263,7 +263,7 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
      * @return string
      */
     public static     function getInitiale($exp){
-      $initiale = \JJD\enleve_accents(mb_strtoupper(mb_substr($exp,0,1)));
+      $initiale = \JANUS\enleve_accents(mb_strtoupper(mb_substr($exp,0,1)));
 
       if (ord($initiale) > 64 && ord($initiale) < 91)
       {

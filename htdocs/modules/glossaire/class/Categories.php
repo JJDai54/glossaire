@@ -28,7 +28,7 @@ namespace XoopsModules\Glossaire;
 
 use XoopsModules\Glossaire;
 use colorSet AS colorSet;
-use JJD;
+use JANUS;
 
 \defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
@@ -131,6 +131,7 @@ class Categories extends \XoopsObject
         $cssArr = $this->load_css_as_array();
         //echoArray($cssArr);
         $h = 0;
+        
         foreach($cssArr as $cssName=>$cssClass){
             $constName = "_AM_GLOSSAIRE_STYLES_" . strtoupper(substr($cssName,1));            
             $cssTray = new \XoopsFormElementTray(constant($constName) . " - <span style='color:red;'>[{$cssName}]</span>", '<br>');
@@ -226,7 +227,7 @@ class Categories extends \XoopsObject
        // Form Text Date Select cat_colors_set
         //$form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_CATEGORY_THEME, 'cat_colors_set', 50, 50, $this->getVar('cat_colors_set')));
         $selectFormColorSet = new \XoopsFormSelect(_AM_GLOSSAIRE_CATEGORY_COLOR_SET , 'cat_colors_set', $this->getVar( 'cat_colors_set', 'e' ) );
-        $selectFormColorSet->addOptionArray(\jjd\get_css_color());
+        $selectFormColorSet->addOptionArray(\JANUS\get_css_color());
         //$selectFormColorSet->setDescription(_AM_GLOSSAIRE_CATEGORY_COLOR_SET_DESC);
         $form->addElement($selectFormColorSet);
 
@@ -327,6 +328,7 @@ class Categories extends \XoopsObject
         return $form;
     }
 
+
     /**
      * Get Values
      * @param null $keys
@@ -376,8 +378,8 @@ class Categories extends \XoopsObject
 //         $ret['date_update']    = \formatTimestamp($this->getVar('cat_date_update'), 'm');
         $ret['active']            = $this->getVar('cat_active');
 		$ret['date_format']       = $this->getVar('cat_date_format');
-		$ret['date_creation']     = \JJD\getDateSql2Str($this->getVar('cat_date_creation'),$ret['date_format']);
-		$ret['date_update']       = \JJD\getDateSql2Str($this->getVar('cat_date_update'),$ret['date_format']);
+		$ret['date_creation']     = \JANUS\getDateSql2Str($this->getVar('cat_date_creation'),$ret['date_format']);
+		$ret['date_update']       = \JANUS\getDateSql2Str($this->getVar('cat_date_update'),$ret['date_format']);
 		$ret['css'] = $this->load_css_as_array(true);
 //echoArray($ret);
         return $ret;
@@ -396,9 +398,9 @@ class Categories extends \XoopsObject
         for($h=0;$h<count($fldArr);$h++){
             $fullName = GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH.'/'. $fldArr[$h];
             if(!is_dir($fullName)) mkdir($fullName, $mode = 0777);
-            //\JJD\FSO\addHtmlIndex2folder($fullName);
+            //\JANUS\FSO\addHtmlIndex2folder($fullName);
         }
-            \JJD\FSO\addHtmlIndex2folder(GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH.'/'. $catFolder, true);
+            \JANUS\FSO\addHtmlIndex2folder(GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH.'/'. $catFolder, true);
         
 //exit(GLOSSAIRE_UPLOAD_IMPORT_DATA_PATH.'/'. $catFolder) ;       
         return true;
@@ -453,18 +455,19 @@ class Categories extends \XoopsObject
 	/**
      */
      
-	public function copy_css_category_modele()
+	public function copy_css_category_modele($bForceCopy = false)
     {
     global $categoriesHandler;
-        $cssCatFille = $this->getCssFileName();
+        $cssCatFile = $this->getCssFileName();
         //echo $cssCatFille  . "<br>";
-        if (!file_exists($cssCatFille)){
+        if ($bForceCopy) unlink($cssCatFile);
+        if (!file_exists($cssCatFile)){
             $cssModele = GLOSSAIRE_PATH . "/assets/css/category-modele.css";
             //echo  $cssModele . "<br>";
-            copy($cssModele, $cssCatFille);            
-            //\JJD\FSO\saveTexte2File($fullName, $content, $mod = 0777){
+            copy($cssModele, $cssCatFile);            
+            //\JANUS\FSO\saveTexte2File($fullName, $content, $mod = 0777){
         }
-        
+        return true;
     }
      
      
@@ -484,31 +487,33 @@ class Categories extends \XoopsObject
     {
         //copie du fichier csz modele si il n'existe paq déjà
         $this->copy_css_category_modele();
-        $cssCatFille = $this->getCssFileName();   
+        $cssCatFile = $this->getCssFileName();   
 /*
         
-        //echo $cssCatFille  . "<br>";
-        if (!file_exists($cssCatFille)){
+        //echo $cssCatFile  . "<br>";
+        if (!file_exists($cssCatFile)){
             $cssModele = GLOSSAIRE_PATH . "/assets/css/category-modele.css";
             //echo  $cssModele . "<br>";
-            copy($cssModele, $cssCatFille);            
-            //\JJD\FSO\saveTexte2File($fullName, $content, $mod = 0777){
+            copy($cssModele, $cssCatFile);            
+            //\JANUS\FSO\saveTexte2File($fullName, $content, $mod = 0777){
         }
 */        
-        $content = file_get_contents($cssCatFille);
+        $content = file_get_contents($cssCatFile);
         $cssArr = $this->parseCss($content);
+//echoArray($cssArr,  $cssCatFile);                   
 
         //-----------------------------------------------------
-        //complete avec les nouveau style fevitni dans le modèle        
+        //complete avec les nouveau style defini dans le modèle        
         $modCssModele = GLOSSAIRE_PATH . "/assets/css/category-modele.css";
         $ModContent = file_get_contents($modCssModele);
         $modCssArr = $this->parseCss($ModContent);
-        $cssArr = array_merge($modCssArr, $cssArr);  
+//echoArray($modCssArr, $modCssModele);                   
+        $cssArr = array_merge($modCssArr,$cssArr);  
 //         echoArray($modCssArr,'modele'); 
-//         echoArray($cssArr,'categorie'); 
+//        echoArray($cssArr,'categorie'); 
         //-----------------------------------------------------
         //renvoie une ligne avec uniquement les attribut et valeur        
-            $tStyle = array();
+        $tStyle = array();
         if($likeStyle){
             forEach($cssArr as $cssName=>$attributs){
             /*
@@ -535,7 +540,7 @@ class Categories extends \XoopsObject
 /* *******************************
 
 ********************************** */
-Function parseCss(&$content)
+public function parseCss(&$content)
 {   
     // recherche la premiere classe qui commence par un "." 
     $j = strpos($content, ".");
@@ -587,7 +592,7 @@ Function parseCss(&$content)
         $cssCatFille = $this->getCssFileName();
         //echo $cssCatFille  . "<br>";
         //echo $content  . "<br>";
-        \JJD\FSO\saveTexte2File($cssCatFille, $content, 0777);
+        \JANUS\FSO\saveTexte2File($cssCatFille, $content, 0777);
     }
 
 }

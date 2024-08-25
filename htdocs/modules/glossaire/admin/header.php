@@ -26,8 +26,8 @@ require \dirname(__DIR__, 3) . '/include/cp_header.php';
 require_once \dirname(__DIR__) . '/include/common.php';
 //require_once \dirname(__DIR__) . '/include/functions-colors-set.php';
 //xoops_load('XoopsFormLoader');
-include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
-\JJD\loadAllXForms();
+include_once (XOOPS_ROOT_PATH . "/Frameworks/janus/load.php");
+\JANUS\loadAllXForms();
 
 $sysPathIcon16   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
 $sysPathIcon32   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
@@ -63,8 +63,8 @@ xoops_cp_header();
 $glossaireHelper = \XoopsModules\Glossaire\Helper::getInstance();
 
 //$xoTheme->addScript(XOOPS_URL . '/Frameworks/trierTableauHTML/trierTableau.js');
-\jjd\load_trierTableauHTML();
-$clPerms = new \jjdPermissions();
+\JANUS\load_trierTableauHTML();
+$clPerms = new \JanusPermissions('glossaire');
 //$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/Frameworks/trierTableauHTML/trierTableau.js');
 
 // System icons path

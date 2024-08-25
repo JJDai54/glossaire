@@ -2,6 +2,9 @@
 1.4 beta 3 [2024/08/14] jjdelalandre@orange.fr
 ==============================================================
 Refonte complète des permissions
+catégorie : ajout initilisatio de la feuille de style
+            déplacement dans la liste des catégories dans une colonne spécifique.
+xoops_confirm : deplacement de la class utilisée par plusieurs modules dans janus, 
 
 ==============================================================
 1.4 beta 2 [2024/08/09] jjdelalandre@orange.fr

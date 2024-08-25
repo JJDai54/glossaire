@@ -30,12 +30,13 @@ use XoopsModules\Glossaire\Common;
 
 
     $templateMain = 'glossaire_admin_entries.tpl';
-    $GLOBALS['xoopsTpl']->assign('avigation', $adminObject->displayNavigation('entries.php'));
+    $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('entries.php'));
     $adminObject->addItemButton(\_AM_GLOSSAIRE_LIST_ENTRIES, 'entries.php', 'list');
     $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
     // Form Create
     $entriesObj = $entriesHandler->create();
     $entriesObj->setVar('ent_cat_id', $catIdSelect);
+    $entriesObj->setVar('ent_submitter', $xoopsUser->uid());        
     if ($statusIdSelect >= GLOSSAIRE_STATUS_ALL){
         $entriesObj->setVar('ent_status', GLOSSAIRE_STATUS_APPROVED);
     }else{

@@ -44,6 +44,7 @@ CREATE TABLE `glossaire_categories` (
 CREATE TABLE `glossaire_entries` (
   `ent_id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ent_cat_id` int(10) NOT NULL DEFAULT '0',
+  `ent_submitter` int(10) NOT NULL DEFAULT '0',
   `ent_creator` varchar(80) NOT NULL DEFAULT '',
   `ent_term` varchar(255) NOT NULL DEFAULT '',
   `ent_initiale` varchar(5) NOT NULL DEFAULT '',

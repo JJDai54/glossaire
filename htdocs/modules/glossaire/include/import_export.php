@@ -47,7 +47,7 @@ function export_glossaire($catId, $gls_add_img = false, $gls_add_files=false)
     // --- Dossier de destination
     $catObj = $categoriesHandler->get($catId);
     $catName = $catObj->getVar('cat_name');    
-    $folder = \JJD\sanityseNameForFile($catName);
+    $folder = \JANUS\sanityseNameForFile($catName);
     echo "<hr>folder : {$folder}<hr>";
     //$catName = $folder; // nom du fichier = nom du dosser pour faciliter l'import
     
@@ -66,11 +66,11 @@ function export_glossaire($catId, $gls_add_img = false, $gls_add_files=false)
     //echo "<hr>{$cssFrom}<br>" . $pathGlossaire . "/" . GLOSSAIRE_CATEGORY_CSS_NAME_FILE .  "<hr>";
     copy($cssFrom, $pathGlossaire . "/" . GLOSSAIRE_CATEGORY_CSS_NAME_FILE); 
    
-    \JJD\FSO\addHtmlIndex2folder($pathExport, true);    
+    \JANUS\FSO\addHtmlIndex2folder($pathExport, true);    
     //----------------------------------------------------
     
     
-    \JJD\zipSimpleDir($pathGlossaire  , $pathExport . "/{$folder}.zip");  
+    \JANUS\zipSimpleDir($pathGlossaire  , $pathExport . "/{$folder}.zip");  
     $xoopsFolder->delete($pathGlossaire);
     
     $outZipUrl = GLOSSAIRE_UPLOAD_URL . "/export/{$folder}.zip";
@@ -179,6 +179,7 @@ global $entriesHandler, $xoopsFolder;
         //affectation du nouvel ID
         $tabledata[$index]['ent_id'] = 0;
         $tabledata[$index]['ent_cat_id'] = $catId;
+        $tabledata[$index]['ent_submitter'] = $xoopsUser->uid();
     }
     
     $table = 'glossaire_entries';

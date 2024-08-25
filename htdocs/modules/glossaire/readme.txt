@@ -30,7 +30,7 @@ Installation:
 ------------
 avant d'installer le module il faut installer les frameworks :
 - "jjd-Framework"
-	https://github.com/JJDai54/JJD-Framework
+	https://github.com/JJDai54/janus
 - "highslide version 5.0.0.0" (le dossier doit etre renommé en ""highslide" 
 	http://highslide.com/
 - "trierTableauHTML"

@@ -53,7 +53,7 @@ use XoopsModules\Glossaire\Common;
                 $GLOBALS['xoopsTpl']->assign('error', $categoriesObj->getHtmlErrors());
             }
         } else {
-            $xoopsconfirm = new Common\XoopsConfirm(
+            $xoopsconfirm = new XoopsConfirm(
                 ['ok' => 1, 'cat_id' => $catId, 'start' => $start, 'limit' => $limit, 'op' => 'delete'],
                 $_SERVER['REQUEST_URI'],
                 \sprintf(\_MA_GLOSSAIRE_FORM_SURE_DELETE, $categoriesObj->getVar('cat_name')));

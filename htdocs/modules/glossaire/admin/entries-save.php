@@ -38,7 +38,7 @@ global $_POST, $_FILES;
 
 
 
-        $prefixFile = \JJD\sanityseNameForFile($prefix) . '_';
+        $prefixFile = \JANUS\sanityseNameForFile($prefix) . '_';
         $fileFolder = $categoriesObj->getPathUploads($subfolder, false) ."/";
 /////////////////////////////////////////////////////////
         $ent_delete_file = Request::getInt('ent_delete_file', 0);
@@ -86,7 +86,8 @@ global $_POST, $_FILES;
             $entriesObj = $entriesHandler->get($entId);
         } else {
             $entriesObj = $entriesHandler->create();
-    		$entriesObj->setVar('ent_date_creation', \JJD\getSqlDate());
+    		$entriesObj->setVar('ent_date_creation', \JANUS\getSqlDate());
+            $entriesObj->setVar('ent_submitter', $xoopsUser->uid());
         }
 
 
@@ -96,7 +97,7 @@ global $_POST, $_FILES;
         } else {
             $categoriesObj = $categoriesHandler->create();
 		}
-//            echo "<hr>Date : " .  \JJD\getSqlDate(). "<hr>";exit;
+//            echo "<hr>Date : " .  \JANUS\getSqlDate(). "<hr>";exit;
 
         // Set Vars
         $uploaderErrors = '';
@@ -110,9 +111,8 @@ global $_POST, $_FILES;
         
         
         // Set Vars
-		$entriesObj->setVar('ent_date_update', \JJD\getSqlDate());
+		$entriesObj->setVar('ent_date_update', \JANUS\getSqlDate());
         $entriesObj->setVar('ent_cat_id', Request::getInt('ent_cat_id', 0));
-//        $entriesObj->setVar('ent_uid', Request::getInt('ent_uid', 0));
         $entriesObj->setVar('ent_creator', Request::getString('ent_creator', ''));
         $entriesObj->setVar('ent_term', Request::getString('ent_term', ''));
         $entriesObj->setVar('ent_initiale', $utility::getInitiale(Request::getString('ent_term', '')));
@@ -134,7 +134,7 @@ global $_POST, $_FILES;
         require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
         $filename       = $_FILES['ent_image']['name'];
         //$imgNameDef     = Request::getString('ent_cat_id');
-        $prefixImg = \JJD\sanityseNameForFile(Request::getString('ent_term')) . '_';
+        $prefixImg = \JANUS\sanityseNameForFile(Request::getString('ent_term')) . '_';
         $imgFolder = $categoriesObj->getPathUploads('images', false) ."/";
         $ent_delete_img = Request::getInt('ent_delete_img', 0);
         if($ent_delete_img == 1){
@@ -172,7 +172,7 @@ global $_POST, $_FILES;
         // Set Var ent_file
 
         $fileName       = $_FILES['ent_file_name']['name'];
-        $prefixFile = \JJD\sanityseNameForFile(Request::getString('ent_term')) . '_';
+        $prefixFile = \JANUS\sanityseNameForFile(Request::getString('ent_term')) . '_';
         $fileFolder = $categoriesObj->getPathUploads('files', false) ."/";
         $ent_delete_file = Request::getInt('ent_delete_file', 0);
         if($ent_delete_file == 1){
@@ -189,7 +189,7 @@ global $_POST, $_FILES;
             $uploader->fetchMedia($_POST['xoops_upload_file'][$key]);
             if ($uploader->upload()) {
                 $entriesObj->setVar('ent_file_name', $fileName);
-                $newName =  $prefixFile . \JJD\sanityseNameForFile($fileName);
+                $newName =  $prefixFile . \JANUS\sanityseNameForFile($fileName);
                 rename($fileFolder .'/' . $uploader->getSavedFileName(), $fileFolder . '/' . $newName);
                 $entriesObj->setVar('ent_file_path', $newName);
             } else {

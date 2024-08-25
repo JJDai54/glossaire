@@ -6,7 +6,7 @@ Compilator.ProgSaveAll=0
 Compilator.ProgRunSelection=0
 Compilator.LogType=0
 Compilator.LogEncoding=0
-DefaultDir=D:\_JJD-WorkSpace-D\Wamp-Serveur\Sites\xoops-2511b-fr\www\modules\glossaire
+DefaultDir=D:\_JJD-WorkSpace-D\Wamp-Serveur\Sites\xoops-2511b-fr\htdocs\modules\glossaire
 DefaultCP=0
 LogtoEnd=1
 DontOpen=0
@@ -41,11 +41,12 @@ _glossaire
 			admin\menu.php
 			admin\permissions.php
 		-assets
-			+css
+			-css
 				-admin
 					assets\css\admin\index.php
 					assets\css\admin\style.css
 				assets\css\category-modele.css
+				assets\css\glossaire-category.css
 				assets\css\import-export.css
 				assets\css\index.php
 				assets\css\style.css
@@ -112,26 +113,17 @@ _glossaire
 				assets\js\index.php
 				assets\js\scroll.js
 			assets\index.php
-		+blocks
+		-blocks
 			blocks\categories.php
 			blocks\entries.php
 			blocks\index.php
-		+class
+		-class
 			-Common
-				class\Common\Breadcrumb.php
 				class\Common\Configurator.php
-				class\Common\DirectoryChecker.php
-				class\Common\FileChecker.php
 				class\Common\FilesManagement.php
-				class\Common\Migrate.php
 				class\Common\ModuleFeedback.php
-				class\Common\ModuleStats.php
-				class\Common\Resizer.php
 				class\Common\ServerStats.php
-				class\Common\SysUtility.php
-				class\Common\TableChecker.php
 				class\Common\VersionChecks.php
-				class\Common\XoopsConfirm.php
 			class\Categories.php
 			class\CategoriesHandler.php
 			class\Constants.php
@@ -155,8 +147,7 @@ _glossaire
 			docs\license.txt
 			docs\readme.txt
 			docs\todo.txt
-		-htdocs
-		+include
+		-include
 			include\common.php
 			include\functions.php
 			include\import_export.php
@@ -169,13 +160,87 @@ _glossaire
 			include\xoops_version.inc.php
 		+language
 			+english
+				-help
+					-img
+						language\english\help\img\_barre_de_dev.jpg
+						language\english\help\img\2024-07-08 09 04 56.jpg
+						language\english\help\img\add_question-01.jpg
+						language\english\help\img\bad_answerq.jpg
+						language\english\help\img\broken.png
+						language\english\help\img\btn_init_weight.jpg
+						language\english\help\img\btn-build_quiz.jpg
+						language\english\help\img\btn-edit_quiz.jpg
+						language\english\help\img\btn-export_quiz.jpg
+						language\english\help\img\btn-goto category.jpg
+						language\english\help\img\btn-purge_images.jpg
+						language\english\help\img\edit-no.png
+						language\english\help\img\edit-ok.png
+						language\english\help\img\good_answers.jpg
+						language\english\help\img\goto_dlide_01.jpg
+						language\english\help\img\goto_slide.jpg
+						language\english\help\img\install-green.png
+						language\english\help\img\install-grey.png
+						language\english\help\img\install-red.png
+						language\english\help\img\out_of_group-green.png
+						language\english\help\img\play-green.png
+						language\english\help\img\play-grey.png
+						language\english\help\img\play-red.png
+						language\english\help\img\previous.jpg
+						language\english\help\img\quiz-0.png
+						language\english\help\img\quiz-1.png
+						language\english\help\img\reload.jpg
+						language\english\help\img\timer.jpg
+					language\english\help\category.html
+					language\english\help\entries.html
+					language\english\help\export.html
+					language\english\help\help.html
+					language\english\help\import.html
+					language\english\help\index.html
+					language\english\help\install.html
 				language\english\admin.php
 				language\english\blocks.php
 				language\english\common.php
 				language\english\feedback.php
 				language\english\main.php
 				language\english\modinfo.php
-			+french
+			-french
+				-help
+					-img
+						language\french\help\img\_barre_de_dev.jpg
+						language\french\help\img\2024-07-08 09 04 56.jpg
+						language\french\help\img\add_question-01.jpg
+						language\french\help\img\bad_answerq.jpg
+						language\french\help\img\broken.png
+						language\french\help\img\btn_init_weight.jpg
+						language\french\help\img\btn-build_quiz.jpg
+						language\french\help\img\btn-edit_quiz.jpg
+						language\french\help\img\btn-export_quiz.jpg
+						language\french\help\img\btn-goto category.jpg
+						language\french\help\img\btn-purge_images.jpg
+						language\french\help\img\edit-no.png
+						language\french\help\img\edit-ok.png
+						language\french\help\img\good_answers.jpg
+						language\french\help\img\goto_dlide_01.jpg
+						language\french\help\img\goto_slide.jpg
+						language\french\help\img\install-green.png
+						language\french\help\img\install-grey.png
+						language\french\help\img\install-red.png
+						language\french\help\img\out_of_group-green.png
+						language\french\help\img\play-green.png
+						language\french\help\img\play-grey.png
+						language\french\help\img\play-red.png
+						language\french\help\img\previous.jpg
+						language\french\help\img\quiz-0.png
+						language\french\help\img\quiz-1.png
+						language\french\help\img\reload.jpg
+						language\french\help\img\timer.jpg
+					language\french\help\category.html
+					language\french\help\entries.html
+					language\french\help\export.html
+					language\french\help\help.html
+					language\french\help\import.html
+					language\french\help\index.html
+					language\french\help\install.html
 				language\french\admin.php
 				language\french\blocks.php
 				language\french\common.php
@@ -186,11 +251,11 @@ _glossaire
 			preloads\autoloader.php
 			preloads\core.php
 			preloads\index.php
-		+sql
+		-sql
 			sql\index.php
 			sql\mysql.sql
-		+templates
-			+admin
+		-templates
+			-admin
 				templates\admin\glossaire_admin_categories.tpl
 				templates\admin\glossaire_admin_categories_css.tpl
 				templates\admin\glossaire_admin_entries.tpl
@@ -201,7 +266,7 @@ _glossaire
 				templates\admin\glossaire_admin_index.tpl
 				templates\admin\glossaire_admin_permissions.tpl
 				templates\admin\index.php
-			+blocks
+			-blocks
 				templates\blocks\glossaire_block_categories.tpl
 				templates\blocks\glossaire_block_entries.tpl
 				templates\blocks\glossaire_block_entries-02.tpl
@@ -248,38 +313,18 @@ _glossaire
 		readme.txt
 		xoops_version.php
 [Open project files]
-0=language\english\help\category.html
-1=language\english\help\entries.html
-2=language\english\help\export.html
-3=language\english\help\import.html
-4=xoops_version.php
-5=..\protector\language\french\help\help.tpl
-6=language\french\help\help.html
-7=language\english\help\help.html
+0=docs\changelog.txt
+1=admin\header.php
+2=xoops_version.php
 [Selected Project Files]
 Main=
-Selected=language\english\help\help.html
-[language\english\help\category.html]
-TopLine=172
-Caret=15,209
-[language\english\help\entries.html]
-TopLine=88
-Caret=1,143
-[language\english\help\export.html]
+Selected=xoops_version.php
+[docs\changelog.txt]
 TopLine=1
-Caret=15,44
-[language\english\help\import.html]
-TopLine=1
-Caret=43,32
+Caret=1,1
+[admin\header.php]
+TopLine=14
+Caret=1,1
 [xoops_version.php]
-TopLine=145
-Caret=65,168
-[..\protector\language\french\help\help.tpl]
 TopLine=1
-Caret=195,2
-[language\french\help\help.html]
-TopLine=1
-Caret=205,6
-[language\english\help\help.html]
-TopLine=1
-Caret=183,2
+Caret=33,48
