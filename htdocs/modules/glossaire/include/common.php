@@ -20,7 +20,7 @@ declare(strict_types=1);
  * @package        glossaire
  * @since          1.0
  * @min_xoops      2.5.10
- * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
+ * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<xoopsfr.kiolo.fr>
  */
 if (!\defined('XOOPS_ICONS32_PATH')) {
     \define('XOOPS_ICONS32_PATH', \XOOPS_ROOT_PATH . '/Frameworks/moduleclasses/icons/32');
@@ -72,7 +72,7 @@ define('GLOSSAIRE_CHIFFRES', '#');
 
 $localLogo = \GLOSSAIRE_IMAGE_URL . '/xoopsdevelopmentteam_logo.png';
 // Module Information
-$copyright = "<a href='jubile.fr' title='XOOPS Project' target='_blank'><img src='" . $localLogo . "' alt='XOOPS Project' ></a>";
+$copyright = "<a href='xoopsfr.kiolo.fr' title='XOOPS Project' target='_blank'><img src='" . $localLogo . "' alt='XOOPS Project' ></a>";
 require_once \XOOPS_ROOT_PATH . '/class/xoopsrequest.php';
 require_once \GLOSSAIRE_PATH . '/include/functions.php';
 

@@ -17,7 +17,7 @@
  * @package        glossaire
  * @since          1.0
  * @min_xoops      2.5.10
- * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
+ * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<xoopsfr.kiolo.fr>
  */
 $(document).ready(function(){
     $( "button, input:button, input:submit, input:file, input:reset" ).css("color","inherit").button();

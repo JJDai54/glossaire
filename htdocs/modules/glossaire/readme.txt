@@ -41,7 +41,7 @@ Ensuite le module s'installe comme tous les modules Xoops.
 Contact : 
 -------
 https://github.com/JJDai54
-http://jubile.fr
+https://xoopsfr.kiolo.fr
 
 en prévision :
 ------------

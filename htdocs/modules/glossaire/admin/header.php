@@ -20,7 +20,7 @@ declare(strict_types=1);
  * @package        glossaire
  * @since          1.0
  * @min_xoops      2.5.10
- * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
+ * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<xoopsfr.kiolo.fr>
  */
 require \dirname(__DIR__, 3) . '/include/cp_header.php';
 require_once \dirname(__DIR__) . '/include/common.php';

@@ -20,7 +20,7 @@ declare(strict_types=1);
  * @package        glossaire
  * @since          1.0
  * @min_xoops      2.5.10
- * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<jubile.fr>
+ * @author        Jean-Jacques DELALANDRE - Email:<jjdelalandre@orange.fr> - Website:<xoopsfr.kiolo.fr>
  */
 
 
@@ -73,8 +73,8 @@ $modversion = [
     'sysicons32'          => '../../Frameworks/moduleclasses/icons/32',
     'modicons16'          => 'assets/icons/16',
     'modicons32'          => 'assets/icons/32',
-    'demo_site_url'       => 'https://xoops2511a.jubile.fr',
-    'demo_site_name'      => 'Jubile Demo Site',
+    'demo_site_url'       => 'https://xoops2511a.xoopsfr.kiolo.fr',
+    'demo_site_name'      => 'Kiolo Demo Site',
     'support_url'         => 'https://www.frxoops.org/modules/newbb/',
     'support_name'        => 'Support Forum',
     'module_website_url'  => 'github.com/JJDai54',

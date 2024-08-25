@@ -316,6 +316,7 @@ _glossaire
 0=docs\changelog.txt
 1=admin\header.php
 2=xoops_version.php
+3=admin\about.php
 [Selected Project Files]
 Main=
 Selected=xoops_version.php
@@ -326,5 +327,8 @@ Caret=1,1
 TopLine=14
 Caret=1,1
 [xoops_version.php]
-TopLine=1
-Caret=33,48
+TopLine=58
+Caret=36,77
+[admin\about.php]
+TopLine=2
+Caret=70,21
