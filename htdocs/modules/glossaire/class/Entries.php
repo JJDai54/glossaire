@@ -580,7 +580,7 @@ class Entries extends \XoopsObject
 
         //todo
         //$ret['file_name_1_fullname']        = $this->getVar('ent_file_name_1', 'e');
-echoArray($catArray);       
+//echoArray($catArray);       
         $urls = $this->getVar('ent_urls');
         if ($ret['link'] && $catArray['show_bin'][GLOSSAIRE_ENT_ADD_LINK_IN_URLS]) $urls = "{$ret['term'] }|{$ret['link']}\n{$urls}";
         
