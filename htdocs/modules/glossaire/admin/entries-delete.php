@@ -29,7 +29,7 @@ use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
 
 
-    $templateMain = 'glossaire_admin_entries.tpl';
+    $templateMain = GLOSSAIRE_TPL_ENTRIES_DEFAULT;
     $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('entries.php'));
     $entriesObj = $entriesHandler->get($entId);
     $catIdSelect = $entriesObj->getVar('ent_cat_id');

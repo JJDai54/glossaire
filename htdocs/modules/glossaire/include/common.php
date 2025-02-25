@@ -79,6 +79,9 @@ require_once \GLOSSAIRE_PATH . '/include/functions.php';
 //--------- a mettre dans xoops_version.php
 define('GLOSSAIRE_CATEGORY_CSS_NAME_FILE', "glossaire-category.css"); 
 
+define('GLOSSAIRE_TPL_ENTRIES_DEFAULT', 'glossaire_admin_entries_narrow.tpl'); //large ou narrow
+define('GLOSSAIRE_TPL_CATEGORIES_DEFAULT', 'glossaire_admin_categories_narrow.tpl'); //large ou narrow
+
 $h = 0;
 define('GLOSSAIRE_ENT_ID', $h++);
 define('GLOSSAIRE_ENT_SHORTDEF', $h++);
@@ -95,11 +98,20 @@ define('GLOSSAIRE_ENT_DATE_CREATION', $h++);
 define('GLOSSAIRE_ENT_DATE_UPDATE', $h++);
 define('GLOSSAIRE_ENT_BTN_ACTIONS_TOP', $h++);
 define('GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM', $h++);
+define('GLOSSAIRE_ENT_LINK', $h++);
+define('GLOSSAIRE_ENT_ADD_LINK_IN_URLS', $h++);
 
+$h = 0;
+define('GLOSSAIRE_CAT_ID', $h++);
+define('GLOSSAIRE_CAT_BR_AFTER_TERM', $h++); //Retour à la ligne après le terme
+define('GLOSSAIRE_CAT_MAGNIFY', $h++);
+define('GLOSSAIRE_CAAT_DEFINITION', $h++);
+define('GLOSSAIRE_CAT_CREATOR', $h++);
+define('GLOSSAIRE_CAT_IMAGE', $h++);
 
 $h = 1;
 define("GLOSSAIRE_PERM_MANCATS", $h++);
-define("GLOSSAIRE_PERM_IPORT", $h++);
+define("GLOSSAIRE_PERM_IMPORT", $h++);
 define("GLOSSAIRE_PERM_EXPORT", $h++);
 define("GLOSSAIRE_PERM_CLONE", $h++);
 define("GLOSSAIRE_PERM_PERMS", $h++);

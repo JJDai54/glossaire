@@ -46,6 +46,12 @@ $exp2search  = Request::getString('exp2search', '');
 $exp2searchGlobal  = Request::getString('exp2searchGlobal', '');
 $sender  = Request::getString('sender', '');
 
+// System icons path
+$GLOBALS['xoopsTpl']->assign('sysPathIcon16', $sysPathIcon16);
+$GLOBALS['xoopsTpl']->assign('sysPathIcon32', $sysPathIcon32);
+$GLOBALS['xoopsTpl']->assign('modPathIcon16', $modPathIcon16);
+$GLOBALS['xoopsTpl']->assign('modPathIcon32', $modPathIcon32);
+
 //if ($letter == '*') $exp2search ='';
 //$statusAccess = Request::getInt('statusAccess', 0);
 $page2redirect = "entries.php";
@@ -70,13 +76,13 @@ $GLOBALS['xoopsTpl']->assign('showItem', $entId > 0);
         //           chargement des permissions
         //------------------------------------------------------------
         $utility = new \XoopsModules\Glossaire\Utility();  
-        $catList = $categoriesHandler->getAllAllowed();
-        if (count($catList) == 0) {
+        $catListPermit = $categoriesHandler->getAllAllowed();
+        if (count($catListPermit) == 0) {
             redirect_header(XOOPS_URL,5,_AM_GLOSSAIRE_NO_PERMISSIONS_SET);
             exit;
         }
        
-        if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
+        if ($catIdSelect == 0) $catIdSelect = array_key_first($catListPermit);
         $catObj = $categoriesHandler->get($catIdSelect);
         $catArr = $catObj->getValuesCategories();
         $catPerms  = $clPerms->getPermNames($catIdSelect, ['view_cats', 'submit_entries', 'approve_entries']);

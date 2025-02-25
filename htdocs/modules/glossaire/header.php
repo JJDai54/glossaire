@@ -51,7 +51,8 @@ $sysPathIcon16 = $GLOBALS['xoopsModule']->getInfo('sysicons16');
 $sysPathIcon32 = $GLOBALS['xoopsModule']->getInfo('sysicons32');
 $pathModuleAdmin = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
 $modPathIcon16 = $GLOBALS['xoopsModule']->getInfo('modicons16');
-$modPathIcon32 = $GLOBALS['xoopsModule']->getInfo('modicons16');
+$modPathIcon32 = $GLOBALS['xoopsModule']->getInfo('modicons32');
+
 // Load Languages
 \xoops_loadLanguage('main');
 \xoops_loadLanguage('modinfo');

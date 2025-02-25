@@ -32,10 +32,10 @@ use XoopsModules\Glossaire\Common;
         $catList = $categoriesHandler->getList($criteria);
         if (count($catList) == 0) \redirect_header('categories.php', 5, _AM_GLOSSAIRE_NO_CATEGORIES1);
         if (!array_key_exists ($catIdSelect, $catList)) $catIdSelect = array_key_first($catList);
-
+//echo "<hr>" . GLOSSAIRE_TPL_ENTRIES_DEFAULT . "<hr>";
         // Define Stylesheet
         $GLOBALS['xoTheme']->addStylesheet($style, null);
-        $templateMain = 'glossaire_admin_entries.tpl';
+        $templateMain = GLOSSAIRE_TPL_ENTRIES_DEFAULT;
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('entries.php'));
         $adminObject->addItemButton(\_AM_GLOSSAIRE_ADD_ENTRY, "entries.php?op=new&catIdSelect={$catIdSelect}", 'add');
         

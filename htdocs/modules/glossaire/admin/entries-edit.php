@@ -30,7 +30,7 @@ use XoopsModules\Glossaire\Common;
 
 
 
-    $templateMain = 'glossaire_admin_entries.tpl';
+    $templateMain = GLOSSAIRE_TPL_ENTRIES_DEFAULT;
     $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('entries.php'));
     $adminObject->addItemButton(\_AM_GLOSSAIRE_ADD_ENTRY, 'entries.php?op=new', 'add');
     $adminObject->addItemButton(\_AM_GLOSSAIRE_LIST_ENTRIES, 'entries.php', 'list');

@@ -29,7 +29,7 @@ use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
 //use JANUS;
 //echoArray("gp", "", true);
-    $templateMain = 'glossaire_admin_categories.tpl';
+    $templateMain = GLOSSAIRE_TPL_CATEGORIES_DEFAULT;
     // Security Check
     if (!$GLOBALS['xoopsSecurity']->check()) {
         \redirect_header('categories.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));

@@ -169,7 +169,7 @@ function import_glossaire($pathImport, $catId)
  * 
  * ************************************************************/
 function import_entries($pathImport, $catId, $glsUploads){
-global $entriesHandler, $xoopsFolder;
+global $entriesHandler, $xoopsFolder,$xoopsUser;
 
     $fullName = "{$pathImport}/entries.yml";
     $tabledata = \Xmf\Yaml::readWrapped($fullName);

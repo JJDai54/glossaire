@@ -30,7 +30,7 @@ use XoopsModules\Glossaire\Common;
 //use JANUS;
 
 
-    $templateMain = 'glossaire_admin_categories.tpl';
+    $templateMain = GLOSSAIRE_TPL_CATEGORIES_DEFAULT;
     $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
     $adminObject->addItemButton(\_AM_GLOSSAIRE_LIST_CATEGORIES, 'categories.php', 'list');
     $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));

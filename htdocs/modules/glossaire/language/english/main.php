@@ -55,5 +55,6 @@ define('_MA_GLOSSAIRE_SEEALSO', "See also");
 define('_MA_GLOSSAIRE_TITLE', "Glossaire");
 define('_MA_GLOSSAIRE_INDEX', "Overview Glossaire");
 define('_MA_GLOSSAIRE_INVALID_PARAM', "Invalid parameter");
+define('_MA_GLOSSAIRE_GOTO_SITE', "Ouvrire le lien");
 
 ?>

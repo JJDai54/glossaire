@@ -187,19 +187,8 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
 	public function getPermissions($short_permtype = 'view_cats')
     {global $clPerms;
         return $clPerms->getIdsPermissions($short_permtype);
-//     $moduleName = 'glossaire';
-//         $permtype = sprintf("%s_%s_categories", $moduleName, $short_permtype);
-//         
-//         global $xoopsUser;
-//         $tPerm = array();
-//         $glossaireHelper = Helper::getHelper($moduleName);
-//         $moduleHandler = $glossaireHelper->getModule();
-//         $groups = is_object($xoopsUser) ? $xoopsUser->getGroups() : XOOPS_GROUP_ANONYMOUS;
-//         $gpermHandler = xoops_getHandler('groupperm');
-//         $tPerm = $gpermHandler->getItemIds($permtype, $groups, $moduleHandler->getVar('mid'));
-// //echoArray($tPerm);
-//         return $tPerm;
     }
+
 	/**
      * getStatus renvoie les tatus qui défini le type d'accès aau formulaire des sefinition
      * @param catId   iod de la catétogrie

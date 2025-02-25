@@ -262,6 +262,7 @@ class Categories extends \XoopsObject
                          
         $inpShowBin = new \XoopsFormCheckboxBin(_AM_GLOSSAIRE_CAT_SHOW_BIN, "cat_show_bin", $this->getVar('cat_show_bin'),2,true);
         //$inpShowBin->setDescription(_AM_GLOSSAIRE_CAT_SHOW_BIN_DESC);
+        /*
         $inpShowBin->addOptionArray([_AM_GLOSSAIRE_ENT_ID,
                                      _AM_GLOSSAIRE_ENT_SHORTDEF,
                                      _AM_GLOSSAIRE_ENT_MAGNIFY,
@@ -276,7 +277,40 @@ class Categories extends \XoopsObject
                                      _AM_GLOSSAIRE_ENT_DATE_CREATION,
                                      _AM_GLOSSAIRE_ENT_DATE_UPDATE,
                                      _AM_GLOSSAIRE_ENT_BTN_ACTIONS_TOP,
-                                     _AM_GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM]);
+                                     _AM_GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM,
+                                     _AM_GLOSSAIRE_ENT_LINK]);
+        */
+                                     
+                                     
+        $inpShowBin->addOptionArray([GLOSSAIRE_ENT_ID => _AM_GLOSSAIRE_ENT_ID,
+                                     GLOSSAIRE_ENT_LINK => _AM_GLOSSAIRE_ENT_LINK,
+                                     GLOSSAIRE_ENT_ADD_LINK_IN_URLS => _AM_GLOSSAIRE_ENT_ADD_LINK_IN_URLS,
+                                     GLOSSAIRE_ENT_SHORTDEF => _AM_GLOSSAIRE_ENT_SHORTDEF,
+                                     GLOSSAIRE_ENT_MAGNIFY => _AM_GLOSSAIRE_ENT_MAGNIFY,
+                                     GLOSSAIRE_ENT_DEFINITION => _AM_GLOSSAIRE_ENT_DEFINITION,
+                                     GLOSSAIRE_ENT_CREATOR => _AM_GLOSSAIRE_ENT_CREATOR,
+                                     GLOSSAIRE_ENT_IMAGE => _AM_GLOSSAIRE_ENT_IMAGE,
+                                     GLOSSAIRE_ENT_REFERENCE => _AM_GLOSSAIRE_ENT_REFERENCE,
+                                     GLOSSAIRE_ENT_FILE_NAME => _AM_GLOSSAIRE_ENT_FILE_NAME,
+                                     GLOSSAIRE_ENT_URLS => _AM_GLOSSAIRE_ENT_URLS,
+                                     GLOSSAIRE_ENT_EMAIL => _AM_GLOSSAIRE_ENT_EMAIL,
+                                     GLOSSAIRE_ENT_COUNTER => _AM_GLOSSAIRE_ENT_COUNTER,
+                                     GLOSSAIRE_ENT_DATE_CREATION => _AM_GLOSSAIRE_ENT_DATE_CREATION,
+                                     GLOSSAIRE_ENT_DATE_UPDATE => _AM_GLOSSAIRE_ENT_DATE_UPDATE,
+                                     GLOSSAIRE_ENT_BTN_ACTIONS_TOP => _AM_GLOSSAIRE_ENT_BTN_ACTIONS_TOP,
+                                     GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM => _AM_GLOSSAIRE_ENT_BTN_ACTIONS_BOTTOM
+                                     ]);
+                                     
+                                     
+
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
 
         $form->addElement($inpShowBin);        
 

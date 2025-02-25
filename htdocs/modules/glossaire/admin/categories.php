@@ -58,7 +58,7 @@ switch (strtolower($op)) {
         break;
         
     case 'clone':
-        $templateMain = 'glossaire_admin_categories.tpl';
+        $templateMain = GLOSSAIRE_TPL_CATEGORIES_DEFAULT;
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
         $adminObject->addItemButton(\_AM_GLOSSAIRE_LIST_CATEGORIES, 'categories.php', 'list');
         $adminObject->addItemButton(\_AM_GLOSSAIRE_ADD_CATEGORY, 'categories.php?op=new', 'add');
@@ -75,7 +75,7 @@ switch (strtolower($op)) {
         
         
     case 'edit':
-        $templateMain = 'glossaire_admin_categories.tpl';
+        $templateMain = GLOSSAIRE_TPL_CATEGORIES_DEFAULT;
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
         $adminObject->addItemButton(\_AM_GLOSSAIRE_ADD_CATEGORY, 'categories.php?op=new', 'add');
         $adminObject->addItemButton(\_AM_GLOSSAIRE_LIST_CATEGORIES, 'categories.php', 'list');
@@ -93,7 +93,7 @@ switch (strtolower($op)) {
         $categoriesObj = $categoriesHandler->get($catId);
         $catName = $categoriesObj->getVar('cat_name');
         if($ok == 0){
-            $templateMain = 'glossaire_admin_categories.tpl';
+            $templateMain = GLOSSAIRE_TPL_CATEGORIES_DEFAULT;
             $xoopsconfirm = new XoopsConfirm(
                 ['ok' => 1, 'cat_id' => $catId, 'start' => $start, 'limit' => $limit, 'op' => 'init_css'],
                 $_SERVER['REQUEST_URI'], 
@@ -135,7 +135,7 @@ switch (strtolower($op)) {
         
                 
     case 'delete':
-        $templateMain = 'glossaire_admin_categories.tpl';
+        $templateMain = GLOSSAIRE_TPL_CATEGORIES_DEFAULT;
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
         $categoriesObj = $categoriesHandler->get($catId);
         $catName = $categoriesObj->getVar('cat_name');

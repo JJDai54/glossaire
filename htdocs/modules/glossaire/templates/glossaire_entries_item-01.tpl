@@ -6,7 +6,14 @@
 
 <div name="entry-<{$entry.id}>" id="entry-<{$entry.id}>" class="gls_title gls_ent_term item-round-no <{$colors_set}>-item-body" style="vertical-align: baseline;padding:6px;margin-top:0px;">
     <{if $cat_br_after_term}>
-        <h2 style="<{$catArr.css.gls_ent_term}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
+        <{if $entry.link AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_LINK]}>
+            <a href="<{$entry.link}>" target="blank">
+            <h2 style="<{$catArr.css.gls_ent_term}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><img src="<{$modPathIcon32}>/link-32-green.png" style='width:16px;margin-right:5px;'><{$entry.term}></h2>
+            </a>
+        <{else}>
+            <h2 style="<{$catArr.css.gls_ent_term}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
+        <{/if}>
+
         <{if $entry.shortdef AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_SHORTDEF]}>             
             <h3  style="<{$catArr.css.gls_ent_shortdef}>"><{$entry.shortdefMagnifed}></h3>
         <{/if}>

@@ -29,7 +29,7 @@ use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Utility;
 
 require __DIR__ . '/header.php';
-$clPerms->checkAndRedirect('global_ac', GLOSSAIRE_PERM_IPORT, 'GLOSSAIRE_PERM_IPORT', "index.php");
+$clPerms->checkAndRedirect('global_ac', GLOSSAIRE_PERM_IMPORT, 'GLOSSAIRE_PERM_IMPORT', "index.php");
 // It recovered the value of argument op in URL$
 $op = Request::getCmd('op', 'list');
 $catIdSelect = Request::getInt('catIdSelect',0);

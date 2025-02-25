@@ -47,7 +47,7 @@ $domaines = explode('_', $op . '__');
 //permission spécifiques
 $permArr = ['global_ac'         => _AM_GLOSSAIRE_PERM_GLOBAL_AC,
             'view_cats'         => _AM_GLOSSAIRE_PERM_VIEW_CATS,
-            'approve_entries'    => _AM_GLOSSAIRE_PERM_APPROVE_ENTRIES,
+            'approve_entries'   => _AM_GLOSSAIRE_PERM_APPROVE_ENTRIES,
             'submit_entries'    => _AM_GLOSSAIRE_PERM_SUBMIT_ENTRIES];
 /*
             'submit_entries'    => _AM_GLOSSAIRE_PERM_SUBMIT_ENTRIES,
@@ -83,7 +83,7 @@ switch($domaines[1]) {
 	case 'ac':
         //permission globales
 		$permArr = [GLOSSAIRE_PERM_MANCATS => _AM_GLOSSAIRE_PERM_MANCATS,
-                    GLOSSAIRE_PERM_IPORT   => _AM_GLOSSAIRE_PERM_IPORT,
+                    GLOSSAIRE_PERM_IMPORT  => _AM_GLOSSAIRE_PERM_IMPORT,
                     GLOSSAIRE_PERM_EXPORT  => _AM_GLOSSAIRE_PERM_EXPORT,
                     GLOSSAIRE_PERM_CLONE   => _AM_GLOSSAIRE_PERM_CLONE, 
                     GLOSSAIRE_PERM_PERMS   => _AM_GLOSSAIRE_PERM_PERMS]; 

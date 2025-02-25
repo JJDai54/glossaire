@@ -364,9 +364,9 @@ var hasSelected = false; var selectBox = myform.item[A][amount];for (i = 0; i < 
                 $url  = $t[0];
             }
             
-            $i = stripos($url, 'http');
             
             if ($url != ''){
+              $i = stripos($url, 'http');
               if ($i === false) $url = 'http://' . $url;
               if($name == ''){
                 $retArr[]  = sprintf("<li><a href='%s' title='' alt='' target='blank'>%s</a></li>", $url, $url);

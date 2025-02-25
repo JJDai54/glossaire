@@ -65,12 +65,13 @@ class Entries extends \XoopsObject
     {
         $this->initVar('ent_id', \XOBJ_DTYPE_INT);
         $this->initVar('ent_cat_id', \XOBJ_DTYPE_INT);
-        $this->initVar('ent_submitter', \XOBJ_DTYPE_INT);
-        $this->initVar('ent_creator', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_term', \XOBJ_DTYPE_TXTBOX);
-        $this->initVar('ent_initiale', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('ent_link', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_shortdef', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_is_acronym', \XOBJ_DTYPE_INT);
+        $this->initVar('ent_submitter', \XOBJ_DTYPE_INT);
+        $this->initVar('ent_creator', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('ent_initiale', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_image', \XOBJ_DTYPE_TXTBOX);
         $this->initVar('ent_definition', \XOBJ_DTYPE_OTHER);
         $this->initVar('ent_reference', \XOBJ_DTYPE_OTHER);
@@ -175,6 +176,12 @@ class Entries extends \XoopsObject
         // Form Text entTerm
         $libelle = \_AM_GLOSSAIRE_ENTRY_TERM . (($catArray['show_bin'][GLOSSAIRE_ENT_ID]) ? " - [#{$this->getVar('ent_id')}]": '');
         $form->addElement(new \XoopsFormText($libelle, 'ent_term', 50, 255, $this->getVar('ent_term')), true);
+        // Form Text entShortdef
+        //---------------------------------------------------------------------     
+
+        if($catArray['show_bin'][GLOSSAIRE_ENT_LINK]){
+            $form->addElement(new \XoopsFormText(\_AM_GLOSSAIRE_ENT_LINK , 'ent_link', 150, 255, $this->getVar('ent_link')), false);
+        }
         // Form Text entShortdef
         //---------------------------------------------------------------------     
         if($catArray['show_bin'][GLOSSAIRE_ENT_CREATOR]){
@@ -517,6 +524,8 @@ class Entries extends \XoopsObject
 //        if (is_null($categoriesHandler)) echo "categoriesHandler est null"; else echo 'bin non';
         
         if(!$categoriesObj) $categoriesObj = $categoriesHandler->get($this->getVar('ent_cat_id'));
+        $catArray = $categoriesObj->getValuesCategories();
+        //if($catArray['show_bin'][GLOSSAIRE_ENT_ADD_LINK_IN_URLS]){
 
         //----------------------------------------------------
         $utility = new \XoopsModules\Glossaire\Utility();
@@ -527,6 +536,7 @@ class Entries extends \XoopsObject
         $ret['submitter']        = \XoopsUser::getUnameFromId($this->getVar('ent_submitter'));
         $ret['creator']          = $this->getVar('ent_creator');
         $ret['term']             = $this->getVar('ent_term');
+        $ret['link']             = $this->getVar('ent_link');
         $ret['initiale']         = $this->getVar('ent_initiale');
         $ret['shortdef']         = $this->getVar('ent_shortdef');
         $ret['is_acronym']       = $this->getVar('ent_is_acronym');
@@ -570,12 +580,14 @@ class Entries extends \XoopsObject
 
         //todo
         //$ret['file_name_1_fullname']        = $this->getVar('ent_file_name_1', 'e');
-
+echoArray($catArray);       
+        $urls = $this->getVar('ent_urls');
+        if ($ret['link'] && $catArray['show_bin'][GLOSSAIRE_ENT_ADD_LINK_IN_URLS]) $urls = "{$ret['term'] }|{$ret['link']}\n{$urls}";
         
-        if($this->getVar('ent_urls')){
-            $ret['urls']         = $utility::build_urls($this->getVar('ent_urls'));
+        if($urls){
+            $ret['urls'] = $utility::build_urls($urls);
         }else{
-            $ret['urls']         = '';
+            $ret['urls'] = '';
         }
 
         if($this->getVar('ent_email')){

@@ -28,6 +28,7 @@ use XoopsModules\Glossaire;
 use XoopsModules\Glossaire\Constants;
 use XoopsModules\Glossaire\Common;
 use JANUS AS JANUS;
+    $templateMain = GLOSSAIRE_TPL_ENTRIES_DEFAULT;
 
 //         include_once "entries-list.php";
 //         break;
@@ -41,10 +42,10 @@ use JANUS AS JANUS;
         // categories avec une listbox
         //$categoriesHandler = $glossaireHelper->getHandler('Categories');
         /*
-        $catList = $categoriesHandler->getListAllowed(view);
-        if ($catIdSelect == 0) $catIdSelect = array_key_first($catList);
+        $catListPermit = $categoriesHandler->getListAllowed(view);
+        if ($catIdSelect == 0) $catIdSelect = array_key_first($catListPermit);
         $inpCategory = new \XoopsFormSelect(\_AM_GLOSSAIRE_ENTRY_CAT_ID, 'catIdSelect', $catIdSelect);
-        $inpCategory->addOptionArray($catList);
+        $inpCategory->addOptionArray($catListPermit);
         $inpCategory->setExtra('onchange="document.select_filter.sender.value=this.name;document.select_filter.submit();"');
         $GLOBALS['xoopsTpl']->assign('catIdSelect', $inpCategory->render());
         */
@@ -54,13 +55,13 @@ use JANUS AS JANUS;
         $GLOBALS['xoopsTpl']->assign('catPerms', $catPerms);
         //echoArray($catPerms, "entries_list");
         //----------------------------------------------------------
-        $GLOBALS['xoopsTpl']->assign('categories', $catList);
+        $GLOBALS['xoopsTpl']->assign('categories', $catListPermit);
         
         //Categorie selectionnée, utilisée notamment pour colorset
-        $GLOBALS['xoopsTpl']->assign('catSelected', $catList[$catIdSelect]);
+        $GLOBALS['xoopsTpl']->assign('catSelected', $catListPermit[$catIdSelect]);
         
         $GLOBALS['xoopsTpl']->assign('catIdSelect', $catIdSelect);
-        $GLOBALS['xoopsTpl']->assign('nbCategories', count($catList));
+        $GLOBALS['xoopsTpl']->assign('nbCategories', count($catListPermit));
         $GLOBALS['xoopsTpl']->assign('isCatAllowed', $categoriesHandler->isCatAllowed($catIdSelect));
         $GLOBALS['xoopsTpl']->assign('page2redirect', $page2redirect);
         $GLOBALS['xoopsTpl']->assign('searchMode', array(0=>'globalSearch', 1=>'list')[$glossaireHelper->getConfig('search_mode')]);

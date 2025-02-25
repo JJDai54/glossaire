@@ -4,13 +4,19 @@
 <{/if}>
 <{*  ------------------------------------------------------------------ *}>
 <div name="entry-<{$entry.id}>" id="entry-<{$entry.id}>" class="gls_title gls_ent_term item-round-no <{$colors_set}>-item-body" style="vertical-align: baseline;padding:6px;margin-top:0px;">
+    <{if $entry.link AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_LINK]}>
+        <{assign var="local_term" value="<a href=`$entry.link` target='blank' title='`$smarty.const._MA_GLOSSAIRE_GOTO_SITE`'><img src='`$modPathIcon32`/link-32-green.png' style='width:16px;margin-right:5px;'>`$entry.term`</a>"}>
+    <{else}>
+        <{assign var="local_term" value=$entry.term}>
+    <{/if}>
+    
     <{if $cat_br_after_term}>
-        <h2 style="<{$catArr.css.gls_ent_term}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}></h2>
+        <h2 style="<{$catArr.css.gls_ent_term}>"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$local_term}></h2>
         <{if $entry.shortdef AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_SHORTDEF]}>             
             <h3  style="<{$catArr.css.gls_ent_shortdef}>"><{$entry.shortdefMagnifed}></h3>
         <{/if}>
     <{else}> 
-        <h2   style="<{$catArr.css.gls_ent_term}>float:left;"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$entry.term}>
+        <h2 style="<{$catArr.css.gls_ent_term}>float:left;"><{if $showId}>[#<{$entry.id}>]-<{/if}><{$local_term}>
           <{if $entry.shortdef AND $catArr.show_bin[$smarty.const.GLOSSAIRE_ENT_SHORTDEF]}>          
               <span  style="<{$catArr.css.gls_ent_shortdef}>">&nbsp;:&nbsp;<{$entry.shortdefMagnifed}></span>
           <{/if}> 

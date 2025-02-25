@@ -115,6 +115,7 @@ global $_POST, $_FILES;
         $entriesObj->setVar('ent_cat_id', Request::getInt('ent_cat_id', 0));
         $entriesObj->setVar('ent_creator', Request::getString('ent_creator', ''));
         $entriesObj->setVar('ent_term', Request::getString('ent_term', ''));
+        $entriesObj->setVar('ent_link', Request::getString('ent_link', ''));
         $entriesObj->setVar('ent_initiale', $utility::getInitiale(Request::getString('ent_term', '')));
         $entriesObj->setVar('ent_shortdef', Request::getString('ent_shortdef', ''));
         $entriesObj->setVar('ent_is_acronym', Request::getInt('ent_is_acronym', 0));

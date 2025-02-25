@@ -117,7 +117,7 @@ _glossaire
 			blocks\categories.php
 			blocks\entries.php
 			blocks\index.php
-		-class
+		+class
 			-Common
 				class\Common\Configurator.php
 				class\Common\FilesManagement.php
@@ -147,7 +147,7 @@ _glossaire
 			docs\license.txt
 			docs\readme.txt
 			docs\todo.txt
-		-include
+		+include
 			include\common.php
 			include\functions.php
 			include\import_export.php
@@ -203,7 +203,7 @@ _glossaire
 				language\english\feedback.php
 				language\english\main.php
 				language\english\modinfo.php
-			-french
+			+french
 				-help
 					-img
 						language\french\help\img\_barre_de_dev.jpg
@@ -251,14 +251,16 @@ _glossaire
 			preloads\autoloader.php
 			preloads\core.php
 			preloads\index.php
-		-sql
+		+sql
 			sql\index.php
 			sql\mysql.sql
-		-templates
-			-admin
-				templates\admin\glossaire_admin_categories.tpl
+		+templates
+			+admin
 				templates\admin\glossaire_admin_categories_css.tpl
-				templates\admin\glossaire_admin_entries.tpl
+				templates\admin\glossaire_admin_categories_large.tpl
+				templates\admin\glossaire_admin_categories_narrow.tpl
+				templates\admin\glossaire_admin_entries_large.tpl
+				templates\admin\glossaire_admin_entries_narrow.tpl
 				templates\admin\glossaire_admin_export.tpl
 				templates\admin\glossaire_admin_footer.tpl
 				templates\admin\glossaire_admin_header.tpl
@@ -313,22 +315,54 @@ _glossaire
 		readme.txt
 		xoops_version.php
 [Open project files]
-0=docs\changelog.txt
-1=admin\header.php
-2=xoops_version.php
-3=admin\about.php
+0=xoops_version.php
+1=templates\admin\glossaire_admin_entries_large.tpl
+2=templates\admin\glossaire_admin_entries_narrow.tpl
+3=templates\admin\glossaire_admin_categories_large.tpl
+4=templates\admin\glossaire_admin_categories_narrow.tpl
+5=include\common.php
+6=admin\categories-save.php
+7=admin\categories-new.php
+8=admin\categories-list.php
+9=admin\categories.php
+10=docs\changelog.txt
+11=class\Entries.php
 [Selected Project Files]
 Main=
-Selected=xoops_version.php
-[docs\changelog.txt]
+Selected=include\common.php
+[xoops_version.php]
+TopLine=85
+Caret=16,98
+[templates\admin\glossaire_admin_entries_large.tpl]
 TopLine=1
 Caret=1,1
-[admin\header.php]
-TopLine=14
+[templates\admin\glossaire_admin_entries_narrow.tpl]
+TopLine=72
+Caret=1,113
+[templates\admin\glossaire_admin_categories_large.tpl]
+TopLine=1
+Caret=1,140
+[templates\admin\glossaire_admin_categories_narrow.tpl]
+TopLine=1
 Caret=1,1
-[xoops_version.php]
-TopLine=58
-Caret=36,77
-[admin\about.php]
-TopLine=2
-Caret=70,21
+[include\common.php]
+TopLine=74
+Caret=39,88
+[admin\categories-save.php]
+TopLine=12
+Caret=53,32
+[admin\categories-new.php]
+TopLine=11
+Caret=53,33
+[admin\categories-list.php]
+TopLine=14
+Caret=53,35
+[admin\categories.php]
+TopLine=40
+Caret=57,61
+[docs\changelog.txt]
+TopLine=1
+Caret=15,12
+[class\Entries.php]
+TopLine=554
+Caret=20,583

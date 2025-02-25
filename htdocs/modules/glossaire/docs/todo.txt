@@ -1,3 +1,7 @@
+ALTER TABLE `x2511_glossaire_entries` ADD `ent_link` VARCHAR(255) NOT NULL AFTER `ent_initiale`; 
+ALTER TABLE `x251_glossaire_categories` CHANGE `cat_show_bin` `cat_show_bin` INT(8) NOT NULL DEFAULT '65535'; 
+
+
 ALTER TABLE `x2511_glossaire_entries` ADD `ent_submitter` INT NOT NULL DEFAULT '0' AFTER `ent_cat_id`; 
 ALTER TABLE `x2511_trombinoscope_members` ADD `mbr_submitter` INT NOT NULL DEFAULT '0' AFTER `mbr_cat_id`; 
 

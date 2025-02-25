@@ -29,6 +29,7 @@ define('_MB_GLOSSAIRE_ENT_DEFINITION', "Definition");
 define('_MB_GLOSSAIRE_ENT_REFERENCE', "Reference");
 define('_MB_GLOSSAIRE_ENT_SHORTDEF', "Shortdef");
 define('_MB_GLOSSAIRE_ENT_TERM', "Term");
+define('_MB_GLOSSAIRE_ENT_LINK', "Link");
 define('_MB_GLOSSAIRE_ENT_UID', "Uid");
 define('_MB_GLOSSAIRE_ENTRY_GOTO', "Goto Entry");
 

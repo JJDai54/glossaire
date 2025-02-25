@@ -1,4 +1,18 @@
 ==============================================================
+1.5 beta 1 [2025/02/24] jjdelalandre@orange.fr
+==============================================================
+Ajout de la posibilité de mettre un lien sur le terme
+  - ajout de la constante bin => GLOSSAIRE_ENT_LINK
+  - ajout des consantes de langues
+  - ajout du champ "ent_link" ans la table entries; Permet d'ajouter un lien sur le terme
+  - modification du type champ "cat_show_bin' ez, int(11) pour accepter plus de bits
+  - modification des forms categories et entries pour ajouter ces nouvelles données
+Onglet categorie
+    ajout de deux template large et narrow. choix a definir dans common.php
+Onglet entries
+    ajout de deux template large et narrow. choix a definir dans common.php
+    
+==============================================================
 1.4 beta 3 [2024/08/14] jjdelalandre@orange.fr
 ==============================================================
 Refonte complète des permissions

@@ -32,7 +32,7 @@ use XoopsModules\Glossaire\Common;
 
     // Define Stylesheet
     $GLOBALS['xoTheme']->addStylesheet($style, null);
-    $templateMain = 'glossaire_admin_categories.tpl';
+    $templateMain = GLOSSAIRE_TPL_CATEGORIES_DEFAULT;
     $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
     $adminObject->addItemButton(\_AM_GLOSSAIRE_ADD_CATEGORY, 'categories.php?op=new', 'add');
     $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
